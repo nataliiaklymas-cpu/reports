@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="uk"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Чорноморка Ужгород — 13–19 липня 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--ac:#1565C0;--red:#EF4444;--orange:#F59E0B;--green:#34D186;--muted:#6B7280;--border:#E8E8E8;--sh:0 2px 12px rgba(0,0,0,.07);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#F0F4FA;color:#1A1A1A;line-height:1.6;max-width:1000px;margin:0 auto;padding:20px;}
+.hero{background:linear-gradient(135deg,#0a1628 0%,#0d2a4a 60%,#0f3460 100%);color:white;border-radius:16px;padding:28px 32px;margin-bottom:18px;position:relative;overflow:hidden;}
+.hero::after{content:"🐟";position:absolute;bottom:14px;right:22px;font-size:60px;opacity:.07;}
+.badge{display:inline-block;background:#1565C0;color:#fff;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:4px 12px;border-radius:4px;margin-bottom:10px;}
+.hero h1{font-size:22px;font-weight:800;line-height:1.2;margin-bottom:3px;}
+.hero h1 span{color:#90CAF9;}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:16px;}
+.kpis{display:flex;gap:14px;flex-wrap:wrap;}
+.kpi{font-size:11px;color:rgba(255,255,255,.4);}
+.kpi strong{display:block;font-size:18px;font-weight:700;color:white;margin-bottom:1px;}
+/* TABS */
+.tabs{display:flex;gap:0;margin-bottom:0;}
+.tab-btn{padding:10px 22px;font-size:13px;font-weight:700;border:none;cursor:pointer;border-radius:10px 10px 0 0;background:#dde5f0;color:#6B7280;transition:.15s;}
+.tab-btn.active{background:white;color:#1565C0;box-shadow:0 -2px 8px rgba(0,0,0,.06);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+.sec{background:white;border-radius:0 14px 14px 14px;padding:20px 22px;margin-bottom:14px;box-shadow:var(--sh);}
+.sec.first{border-radius:14px;margin-top:0;}
+.sec-t{font-size:14px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.sec-t::after{content:"";flex:1;height:1px;background:var(--border);margin-left:8px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:13px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:13px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.card{background:#F5F8FF;border-radius:9px;padding:12px;border:1px solid #E3ECF8;}
+.card-g{background:#F0FFF8;border-radius:9px;padding:12px;border:1px solid #C6F6E4;}
+.card-r{background:#FFF5F5;border-radius:9px;padding:12px;border:1px solid #FECACA;}
+.cl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:2px;}
+.cv{font-size:21px;font-weight:800;margin-bottom:1px;}
+.cd{font-size:11px;color:var(--muted);}
+.pb{height:5px;background:#E8E8E8;border-radius:3px;overflow:hidden;margin-top:4px;}
+.pf{height:100%;border-radius:3px;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{background:#F5F8FF;padding:7px 10px;text-align:left;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;border-bottom:2px solid var(--border);}
+td{padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.num{text-align:right;}
+.rv{border-radius:9px;padding:10px 13px;margin-bottom:7px;border-left:4px solid var(--ac);background:#EEF4FF;}
+.rv.neg{border-left-color:var(--red);background:#FFF5F5;}
+.rv-s{color:#F59E0B;font-size:12px;margin-bottom:2px;font-weight:700;}
+.rv-t{font-size:12px;line-height:1.5;color:#374151;}
+.footer{text-align:center;font-size:11px;color:var(--muted);margin-top:22px;padding:14px 0;border-top:1px solid var(--border);}
+.alert-box{border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+.alert-red{background:#FFF5F5;border-left:4px solid #EF4444;}
+.alert-orange{background:#FFFBEB;border-left:4px solid #F59E0B;}
+.alert-green{background:#F0FFF8;border-left:4px solid #34D186;}
+@media(max-width:600px){.g4,.g3,.g2{grid-template-columns:1fr 1fr;}}
+</style>
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('btn-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+</script>
+
+</head><body>
+
+<div class="hero">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:7px;background:rgba(52,209,134,.12);border:1px solid rgba(52,209,134,.3);border-radius:8px;padding:6px 11px;"><span>⚡</span><span style="font-size:12px;font-weight:700;color:white;">Bolt Food Ukraine</span></div>
+    <div style="display:flex;align-items:center;gap:7px;background:rgba(21,101,192,.2);border:1px solid rgba(21,101,192,.4);border-radius:8px;padding:6px 11px;"><span>🐟</span><span style="font-size:12px;font-weight:700;color:white;">Чорноморка</span></div>
+    <span style="margin-left:auto;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:3px 9px;font-size:10px;font-weight:700;color:#F59E0B;">ТИЖНЕВИЙ ЗВІТ</span>
+  </div>
+  <div class="badge">13–19 лип 2026</div>
+  <h1><span>Чорноморка Ужгород</span></h1>
+  <p class="hero-sub">Provider ID: 189178 · Ужгород · 13–19 липня 2026</p>
+  <div class="kpis">
+    <div class="kpi"><strong>12</strong>Доставлено (тиждень)</div>
+    <div class="kpi"><strong>8 381&nbsp;₴</strong>Виручка</div>
+    <div class="kpi"><strong>698&nbsp;₴</strong>AOV</div>
+    <div class="kpi"><strong style="color:#34D186;">5.00★</strong>Рейтинг</div>
+    <div class="kpi"><strong style="color:#2d7a2d;">96%</strong>Доступність</div>
+    <div class="kpi"><strong><span style="font-size:11px;color:#34D186;font-weight:700;">▲172.7%</span></strong>vs сер. тижня червня</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" id="btn-jul" onclick="switchTab('jul')">📊 13–19 липня 2026</button>
+  <button class="tab-btn" id="btn-jun" onclick="switchTab('jun')">📅 Червень 2026</button>
+</div>
+
+<!-- ════════════════ TAB: JULY 13-19 ════════════════ -->
+<div class="tab-content active" id="tab-jul">
+
+  <!-- Urgency -->
+  <div class="sec first">
+    <div class="sec-t">🎯 Термінові метрики<span style="background:#FEF3C7;color:#D97706;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:8px;">⚠️ 1 метрик</span></div>
+    <div class="alert-box alert-orange"><div style="font-size:12px;font-weight:700;margin-bottom:4px;">⚠️ Час приготування 20 хв</div><div style="font-size:11px;color:#374151;line-height:1.5;">Ціль <15 хв. Оптимізувати процес або скоротити меню для прискорення.</div></div>
+  </div>
+
+  <!-- KPIs July -->
+  <div class="sec">
+    <div class="sec-t">📊 Результати тижня · 13–19 липня 2026</div>
+    <div class="g4">
+      <div class="card"><div class="cl">Доставлено</div><div class="cv" style="color:#1565C0;">12</div><div class="cd">за тиждень</div></div>
+      <div class="card"><div class="cl">Виручка ₴</div><div class="cv">8 381</div><div class="cd">до знижок</div></div>
+      <div class="card"><div class="cl">AOV ₴</div><div class="cv">698</div></div>
+      <div class="card"><div class="cl">Bolt промо ₴</div><div class="cv" style="color:#34D186;">0</div></div>
+    </div>
+    <div class="g4">
+      <div class="card"><div class="cl">Bolt+ замовлень</div><div class="cv">0</div><div class="cd">0% від усіх</div></div>
+      <div class="card"><div class="cl">Промо замовлень</div><div class="cv">0</div><div class="cd">0% від усіх</div></div>
+      <div class="card"><div class="cl">Скасовано</div><div class="cv" style="color:#34D186;">0</div><div class="cd">Fail rate: 0.0%</div></div>
+      <div class="card"><div class="cl">Нових клієнтів</div><div class="cv" style="color:#7C3AED;">4</div></div>
+    </div>
+    <div class="g3">
+      <div class="card"><div class="cl">Доступність</div><div class="cv" style="color:#2d7a2d;">96%</div><div class="cd">Ціль ≥95%</div></div>
+      <div class="card"><div class="cl">Час приготування</div><div class="cv" style="color:#F59E0B;">19.9 хв</div><div class="cd">Ціль &lt;15 хв</div></div>
+      <div class="card"><div class="cl">Рейтинг тижня</div><div class="cv" style="color:#34D186;">5.00★</div><div class="cd">2 відгуків (2+ / 0−)</div></div>
+    </div>
+  </div>
+
+  <!-- Daily dynamics -->
+  <div class="sec">
+    <div class="sec-t">📅 Денна динаміка · 13–19 липня</div>
+    <div style="overflow-x:auto;margin-bottom:12px;">
+    <table style="min-width:600px;"><thead><tr>
+      <th>Метрика</th>
+      <th class='num'>Пн 13.07</th><th class='num'>Вт 14.07</th><th class='num'>Ср 15.07</th><th class='num'>Чт 16.07</th><th class='num'>Пт 17.07</th><th class='num'>Сб 18.07</th><th class='num'>Нд 19.07</th>
+      <th class="num">Тотал</th>
+    </tr></thead><tbody>
+      <tr><td><strong>Доставлено</strong></td>
+        <td class='num'><strong>1</strong></td><td class='num'><strong>2</strong></td><td class='num'><strong>2</strong></td><td class='num'><strong>2</strong></td><td class='num'><strong>1</strong></td><td class='num'><strong>3</strong></td><td class='num'><strong>1</strong></td>
+        <td class="num"><strong>12</strong></td></tr>
+      <tr><td>Виручка ₴</td>
+        <td class='num'>700</td><td class='num'>1 174</td><td class='num'>1 733</td><td class='num'>1 567</td><td class='num'>436</td><td class='num'>1 971</td><td class='num'>800</td>
+        <td class="num"><strong>8 381</strong></td></tr>
+      <tr><td>Промо зам.</td>
+        <td class='num' style='color:#34D186;'>0</td><td class='num' style='color:#34D186;'>0</td><td class='num' style='color:#34D186;'>0</td><td class='num' style='color:#34D186;'>0</td><td class='num' style='color:#34D186;'>0</td><td class='num' style='color:#34D186;'>0</td><td class='num' style='color:#34D186;'>0</td>
+        <td class="num"><strong style="color:#34D186;">0</strong></td></tr>
+      <tr><td>Скасовано</td>
+        <td class='num' style='color:#EF4444;'>0</td><td class='num' style='color:#EF4444;'>0</td><td class='num' style='color:#EF4444;'>0</td><td class='num' style='color:#EF4444;'>0</td><td class='num' style='color:#EF4444;'>0</td><td class='num' style='color:#EF4444;'>0</td><td class='num' style='color:#EF4444;'>0</td>
+        <td class="num" style="color:#EF4444;"><strong>0</strong></td></tr>
+    </tbody></table>
+    </div>
+    <canvas id="chartJul" height="130"></canvas>
+    <script>
+    new Chart(document.getElementById('chartJul'),{type:'bar',data:{labels:["\u041f\u043d 13.07", "\u0412\u0442 14.07", "\u0421\u0440 15.07", "\u0427\u0442 16.07", "\u041f\u0442 17.07", "\u0421\u0431 18.07", "\u041d\u0434 19.07"],datasets:[
+      {label:'Доставлено',data:[1, 2, 2, 2, 1, 3, 1],backgroundColor:'rgba(21,101,192,.65)',borderRadius:5,yAxisID:'y'},
+      {label:'Виручка (тис. ₴)',data:[0.7, 1.2, 1.7, 1.6, 0.4, 2.0, 0.8],type:'line',borderColor:'#F59E0B',backgroundColor:'transparent',tension:0.3,borderWidth:2,pointRadius:4,yAxisID:'y1'}
+    ]},options:{responsive:true,interaction:{mode:'index',intersect:false},
+      plugins:{legend:{position:'top',labels:{font:{size:11}}}},
+      scales:{x:{grid:{display:false},ticks:{font:{size:10}}},
+        y:{beginAtZero:true},
+        y1:{beginAtZero:true,position:'right',grid:{drawOnChartArea:false},ticks:{callback:v=>v+'тис.'}}}}})</script>
+  </div>
+
+  <!-- Ops + Visibility -->
+  <div class="g2">
+    <div class="sec" style="margin-bottom:0;">
+      <div class="sec-t">⚙️ Операційні метрики</div>
+      <table>
+        <tr><td style="color:var(--muted);">Доступність</td><td class="num"><strong style="color:#2d7a2d;">96%</strong></td></tr>
+        <tr><td style="color:var(--muted);">Час приготування</td><td class="num"><strong style="color:#F59E0B;">19.9 хв</strong></td></tr>
+        <tr><td style="color:var(--muted);">Час прийому замовл.</td><td class="num"><strong style="color:#34D186;">0.6 хв</strong></td></tr>
+        <tr><td style="color:var(--muted);">Час доставки кур'єром</td><td class="num"><strong>28.8 хв</strong></td></tr>
+        <tr><td style="color:var(--muted);">Рейтинг</td><td class="num"><strong style="color:#34D186;">5.00★</strong></td></tr>
+        <tr><td style="color:var(--muted);">Відгуків</td><td class="num"><strong>2 (2+ / 0−)</strong></td></tr>
+      </table>
+    </div>
+    <div class="sec" style="margin-bottom:0;">
+      <div class="sec-t">👁️ Видимість та клієнти</div>
+      <table>
+        <tr><td style="color:var(--muted);">Покази (імпресії)</td><td class="num"><strong>1 778</strong></td></tr>
+        <tr><td style="color:var(--muted);">Перегляди меню</td><td class="num"><strong>96</strong></td></tr>
+        <tr><td style="color:var(--muted);">Конверсія меню→замовл.</td><td class="num"><strong>12.5%</strong></td></tr>
+        <tr><td style="color:var(--muted);">Нових клієнтів</td><td class="num"><strong style="color:#7C3AED;">4</strong></td></tr>
+        <tr><td style="color:var(--muted);">Bolt+ замовлень</td><td class="num"><strong style="color:#34D186;">0 (0%)</strong></td></tr>
+        <tr><td style="color:var(--muted);">Промо замовлень</td><td class="num"><strong style="color:#1565C0;">0 (0%)</strong></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Top dishes July -->
+  <div class="sec" style="margin-top:14px;">
+    <div class="sec-t">🦐 Топ страви · 13–19 липня</div>
+    <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#1</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Black Sea Soup</span><span style="font-weight:700;color:#1565C0;">5</span></div><div class="pb"><div class="pf" style="width:100%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#2</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Creamy Pasta with Shrimp</span><span style="font-weight:700;color:#1565C0;">4</span></div><div class="pb"><div class="pf" style="width:80%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#3</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Cold Okroshka with lightly salted salmon</span><span style="font-weight:700;color:#1565C0;">3</span></div><div class="pb"><div class="pf" style="width:60%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#4</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Mashed potatoes with milk and butter</span><span style="font-weight:700;color:#1565C0;">2</span></div><div class="pb"><div class="pf" style="width:40%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#5</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Salmon cutlets with mashed potatoes</span><span style="font-weight:700;color:#1565C0;">2</span></div><div class="pb"><div class="pf" style="width:40%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#6</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Shrimp Olivier Salad</span><span style="font-weight:700;color:#1565C0;">2</span></div><div class="pb"><div class="pf" style="width:40%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#7</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Salmon Cutlets with Mashed Potatoes</span><span style="font-weight:700;color:#1565C0;">2</span></div><div class="pb"><div class="pf" style="width:40%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#8</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Vegetable Salad with Butter</span><span style="font-weight:700;color:#1565C0;">1</span></div><div class="pb"><div class="pf" style="width:20%;background:#1565C0;"></div></div></div></div>
+  </div>
+
+  <!-- Reviews July -->
+  <div class="sec">
+    <div class="sec-t">💬 Відгуки · 13–19 липня</div>
+    <div style="color:var(--muted);font-size:12px;">Коментарів за цей період не знайдено</div>
+  </div>
+
+</div><!-- /tab-jul -->
+
+<!-- ════════════════ TAB: JUNE 2026 ════════════════ -->
+<div class="tab-content" id="tab-jun">
+
+  <!-- KPIs June -->
+  <div class="sec first">
+    <div class="sec-t">📊 Червень 2026 — місячна аналітика</div>
+    <div class="g4">
+      <div class="card"><div class="cl">Доставлено (червень)</div><div class="cv" style="color:#1565C0;">22</div></div>
+      <div class="card"><div class="cl">Виручка ₴</div><div class="cv">23 785</div><div class="cd">до знижок</div></div>
+      <div class="card"><div class="cl">AOV ₴</div><div class="cv">1 081</div></div>
+      <div class="card"><div class="cl">Bolt промо ₴</div><div class="cv" style="color:#34D186;">4 902</div></div>
+    </div>
+    <div class="g4">
+      <div class="card"><div class="cl">Bolt+ замовлень</div><div class="cv">4</div><div class="cd">18%</div></div>
+      <div class="card"><div class="cl">Промо замовлень</div><div class="cv">21</div><div class="cd">96%</div></div>
+      <div class="card"><div class="cl">Нових клієнтів</div><div class="cv" style="color:#7C3AED;">20</div></div>
+      <div class="card"><div class="cl">Покази</div><div class="cv">5 474</div></div>
+    </div>
+    <div class="g3">
+      <div class="card"><div class="cl">Доступність</div><div class="cv" style="color:#dc2626;">57%</div><div class="cd">Ціль ≥95%</div></div>
+      <div class="card"><div class="cl">Час приготування</div><div class="cv" style="color:#EF4444;">20.6 хв</div></div>
+      <div class="card"><div class="cl">Рейтинг червня</div><div class="cv" style="color:#EF4444;">4.20★</div><div class="cd">5 відгуків</div></div>
+    </div>
+  </div>
+
+  <!-- June weekly dynamics -->
+  <div class="sec">
+    <div class="sec-t">📅 Тижнева динаміка · Червень 2026</div>
+    <div style="overflow-x:auto;margin-bottom:12px;">
+    <table><thead><tr>
+      <th>Тиждень</th><th class="num">Доставлено</th><th class="num">Виручка ₴</th>
+    </tr></thead><tbody><tr><td>2026-06-01</td><td class='num'><strong>0</strong></td><td class='num'>0</td></tr><tr><td>2026-06-08</td><td class='num'><strong>5</strong></td><td class='num'>5 152</td></tr><tr><td>2026-06-15</td><td class='num'><strong>12</strong></td><td class='num'>12 452</td></tr><tr><td>2026-06-22</td><td class='num'><strong>5</strong></td><td class='num'>6 181</td></tr><tr><td>2026-06-29</td><td class='num'><strong>0</strong></td><td class='num'>0</td></tr></tbody></table>
+    </div>
+    <canvas id="chartJun" height="110"></canvas>
+    <script>
+    new Chart(document.getElementById("chartJun"),{type:"bar",data:{labels:["01.06", "08.06", "15.06", "22.06", "29.06"],datasets:[
+      {label:"Доставлено",data:[0, 5, 12, 5, 0],backgroundColor:"rgba(21,101,192,.65)",borderRadius:5,yAxisID:"y"},
+      {label:"Виручка (тис. ₴)",data:[0.0, 5.2, 12.5, 6.2, 0.0],type:"line",borderColor:"#F59E0B",backgroundColor:"transparent",tension:0.3,borderWidth:2,pointRadius:4,yAxisID:"y1"}
+    ]},options:{responsive:true,interaction:{mode:"index",intersect:false},
+      plugins:{legend:{position:"top",labels:{font:{size:11}}}},
+      scales:{x:{grid:{display:false}},y:{beginAtZero:true},y1:{beginAtZero:true,position:"right",grid:{drawOnChartArea:false},ticks:{callback:v=>v+"тис."}}}}})</script>
+  </div>
+
+  <!-- Top dishes June -->
+  <div class="sec">
+    <div class="sec-t">🦐 Топ страви · Червень 2026</div>
+    <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#1</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Salmon cutlets with mashed potatoes</span><span style="font-weight:700;color:#1565C0;">6</span></div><div class="pb"><div class="pf" style="width:100%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#2</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Thai-style fried rice with shrimp</span><span style="font-weight:700;color:#1565C0;">4</span></div><div class="pb"><div class="pf" style="width:67%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#3</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Homemade Hummus with Fried Shrimp and Cherry Tomatoes</span><span style="font-weight:700;color:#1565C0;">3</span></div><div class="pb"><div class="pf" style="width:50%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#4</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Salmon Cutlets with Mashed Potatoes</span><span style="font-weight:700;color:#1565C0;">3</span></div><div class="pb"><div class="pf" style="width:50%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#5</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Waffle Cake</span><span style="font-weight:700;color:#1565C0;">3</span></div><div class="pb"><div class="pf" style="width:50%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#6</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Potato deruny with lightly salted salmon and poached egg</span><span style="font-weight:700;color:#1565C0;">2</span></div><div class="pb"><div class="pf" style="width:33%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#7</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Fresh Vegetable Salad with Red Onion</span><span style="font-weight:700;color:#1565C0;">2</span></div><div class="pb"><div class="pf" style="width:33%;background:#1565C0;"></div></div></div></div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;"><span style="font-size:10px;color:#9CA3AF;min-width:18px;">#8</span><div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:12px;"><span>Coca-Cola (glass bottle)</span><span style="font-weight:700;color:#1565C0;">2</span></div><div class="pb"><div class="pf" style="width:33%;background:#1565C0;"></div></div></div></div>
+  </div>
+
+  <!-- Reviews June -->
+  <div class="sec">
+    <div class="sec-t">💬 Відгуки · Червень 2026</div>
+    <div class="rv"><div class="rv-s">★★★★★ 5/5</div><div class="rv-t">Але не було серветок і приборів(
+</div></div>
+  </div>
+
+</div><!-- /tab-jun -->
+
+<div class="footer">
+  Bolt Food Ukraine × Чорноморка · Чорноморка Ужгород<br>
+  Звіт за 13–19 липня 2026 · Provider ID: 189178<br>
+  <span style="font-size:10px;">Account Management Team · Databricks bolt-incentives · Сформовано: 20.07.2026</span>
+</div>
+</body></html>
