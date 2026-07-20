@@ -19,24 +19,15 @@
   pre code { background: none; border: none; color: inherit; padding: 0; }
   blockquote { margin: 16px 0; padding: 12px 16px; background: #fff8e6; border-left: 4px solid #f0b429; border-radius: 6px; color: #6b5200; }
   .lead { font-size: 17px; color: var(--muted); margin-bottom: 8px; }
-  .ways { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
-  .way { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
-  .way b { display:block; margin-bottom: 4px; }
-  .tag { display:inline-block; background:#e6f0ff; color:var(--brand); font-size:12px; font-weight:700; padding:2px 8px; border-radius:20px; margin-left:6px; }
   hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
   ol li, ul li { margin: 6px 0; }
-  @media (max-width: 620px) { .ways { grid-template-columns: 1fr; } body { padding: 32px 18px 64px; } }
+  @media (max-width: 620px) { body { padding: 32px 18px 64px; } }
 </style>
 </head>
 <body>
 
 <h1>Як зробити свій сайт зі звітами на GitHub Pages</h1>
 <p class="lead">Інструкція для колег. Результат: твої HTML-звіти відкриваються за посиланням у браузері (напр. <code>https://ТВІЙ-ЛОГІН.github.io/reports/greek-house/</code>), і кожному партнеру можна дати лише його папку.</p>
-
-<div class="ways">
-  <div class="way"><b>Спосіб A <span class="tag">без токена</span></b>Усе через сайт GitHub. Найпростіший, нічого встановлювати не треба. Рекомендовано.</div>
-  <div class="way"><b>Спосіб B <span class="tag">з токеном</span></b>Через Cursor AI. Швидко, якщо звітів багато і ти працюєш у Cursor.</div>
-</div>
 
 <hr>
 
@@ -49,48 +40,8 @@
 
 <hr>
 
-<h2>Спосіб A — через сайт GitHub (без токена)</h2>
-
-<h3>1. Створити репозиторій</h3>
-<ol>
-  <li>Праворуч вгорі натисни <b>+</b> → <b>New repository</b>.</li>
-  <li><b>Repository name</b>: <code>reports</code>.</li>
-  <li>Обери <b>Public</b>.</li>
-  <li>Постав галочку <b>Add a README file</b>.</li>
-  <li><b>Create repository</b>.</li>
-</ol>
-
-<h3>2. Завантажити звіти (з папками по партнерах)</h3>
-<ol>
-  <li>У репозиторії натисни <b>Add file</b> → <b>Upload files</b>.</li>
-  <li>Перетягни свої HTML-файли.</li>
-  <li>Щоб покласти файл у папку партнера — у полі імені файлу впиши шлях із папкою, напр. <code>greek-house/report.html</code> або <code>salateira/report.html</code> (GitHub автоматично створить папку).</li>
-  <li>Внизу натисни <b>Commit changes</b>.</li>
-</ol>
-<blockquote>Порада: назви папок латиницею без пробілів (<code>greek-house</code>, <code>salateira</code>, <code>muza</code>, <code>chornomorka</code>).</blockquote>
-
-<h3>3. (Необовʼязково) Сторінка-список у папці</h3>
-<p>Щоб партнер бачив гарний список своїх звітів, поклади в його папку файл <code>index.html</code>. Приклад вмісту — див. розділ «Шаблон index.html» нижче.</p>
-
-<h3>4. Увімкнути GitHub Pages</h3>
-<ol>
-  <li>У репозиторії → <b>Settings</b> (вгорі).</li>
-  <li>Ліворуч → <b>Pages</b>.</li>
-  <li>У блоці <b>Build and deployment</b> → <b>Source</b>: обери <b>Deploy from a branch</b>.</li>
-  <li><b>Branch</b>: <code>main</code>, папка <code>/ (root)</code> → <b>Save</b>.</li>
-  <li>Зачекай 1–2 хв. Угорі зʼявиться посилання виду <code>https://ЛОГІН.github.io/reports/</code>.</li>
-</ol>
-
-<h3>5. Готові посилання</h3>
-<ul>
-  <li>Партнеру давай посилання на <b>його папку</b>: <code>https://ЛОГІН.github.io/reports/greek-house/</code></li>
-  <li>Щоб додати нові звіти — повтори <b>крок 2</b>.</li>
-</ul>
-
-<hr>
-
-<h2>Спосіб B — через Cursor AI (з токеном)</h2>
-<p>Підходить, якщо працюєш у Cursor і хочеш, щоб AI все зробив сам.</p>
+<h2>Як завантажити звіти через Cursor AI</h2>
+<p>AI сам створить репозиторій, завантажить файли, увімкне GitHub Pages і дасть готові посилання.</p>
 
 <h3>1. Створити токен (Personal Access Token)</h3>
 <ol>
