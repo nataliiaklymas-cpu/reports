@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="uk"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Greek House × Bolt Food — Червень 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --ac:#1A237E;--acd:#0D1B6E;--lt:#5C6BC0;--gold:#FFC107;
+  --green:#34D186;--gdk:#28a96d;
+  --dark:#1A1A1A;--gray:#F5F5F5;--border:#E8E8E8;--muted:#6B7280;
+  --red:#EF4444;--orange:#F59E0B;--blue:#3B82F6;--purple:#7C3AED;
+  --sh:0 2px 12px rgba(0,0,0,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#F8F9FA;color:#1A1A1A;line-height:1.6;margin-left:230px;}
+#sb{position:fixed;top:0;left:0;bottom:0;width:230px;background:#0d1330;display:flex;flex-direction:column;z-index:1000;overflow-y:auto;}
+.sb-hd{padding:14px;border-bottom:1px solid rgba(255,255,255,.08);}
+.sb-nav{padding:8px;flex:1;}
+.sb-nav a{display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:7px;font-size:12px;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;margin-bottom:1px;transition:.15s;}
+.sb-nav a:hover,.sb-nav a.active{background:rgba(255,193,7,.12);color:#FFC107;font-weight:600;}
+.sb-lbl{font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.2);padding:8px 12px 3px;}
+.sb-ft{padding:10px 14px;border-top:1px solid rgba(255,255,255,.07);font-size:10px;color:rgba(255,255,255,.2);text-align:center;}
+@media(max-width:900px){body{margin-left:0;}#sb{display:none;}}
+.hero{background:linear-gradient(135deg,#0d1330 0%,#1a237e 60%,#283593 100%);color:white;padding:44px 48px 36px;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-70px;right:-70px;width:340px;height:340px;background:radial-gradient(circle,rgba(255,193,7,.13) 0%,transparent 70%);border-radius:50%;}
+.hbadge{display:inline-block;background:#FFC107;color:#000;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:4px;margin-bottom:14px;}
+.hero h1{font-size:30px;font-weight:800;line-height:1.15;margin-bottom:8px;}
+.hero h1 span{color:#FFC107;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:22px;}
+.kpis{display:flex;gap:20px;flex-wrap:wrap;}
+.kpi{font-size:12px;color:rgba(255,255,255,.4);}
+.kpi strong{display:block;font-size:21px;font-weight:700;color:white;margin-bottom:1px;}
+.wrap{max-width:1320px;margin:0 auto;padding:0 26px;}
+.sec{padding:36px 0;}
+.sec-t{font-size:20px;font-weight:700;margin-bottom:5px;}
+.sec-s{font-size:13px;color:var(--muted);margin-bottom:18px;}
+.hr{height:1px;background:var(--border);margin:0 0 22px;}
+.card{background:white;border-radius:12px;padding:16px;box-shadow:var(--sh);}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+@media(max-width:900px){.g5,.g4,.g3,.g2{grid-template-columns:1fr 1fr;}}
+.cl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px;}
+.cv{font-size:24px;font-weight:800;margin-bottom:2px;}
+.cd{font-size:12px;color:var(--muted);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:#F8F9FA;padding:8px 10px;text-align:left;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--border);}
+td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+tr:hover td{background:#FAFAFA;}
+.num{text-align:right;}
+.b{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700;}
+.bg{background:rgba(52,209,134,.15);color:#16a057;}
+.bo{background:rgba(245,158,11,.15);color:#b46309;}
+.br{background:rgba(239,68,68,.15);color:#dc2626;}
+.bb{background:rgba(59,130,246,.15);color:#1d4ed8;}
+.bgold{background:rgba(255,193,7,.2);color:#856404;}
+.pb{height:6px;background:#E8E8E8;border-radius:3px;overflow:hidden;margin-top:3px;}
+.pf{height:100%;border-radius:3px;}
+.chart-wrap{background:white;border-radius:12px;padding:22px;box-shadow:var(--sh);margin-top:18px;}
+.loc{background:white;border-radius:14px;box-shadow:var(--sh);overflow:hidden;margin-bottom:20px;}
+.loc-h{background:linear-gradient(135deg,#0d1330,#1a237e);color:white;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;}
+.loc-b{padding:16px;}
+.disc-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:20px;margin-bottom:16px;}
+.disc-t{font-size:15px;font-weight:800;color:white;margin-bottom:12px;}
+</style></head><body>
+
+<nav id="sb">
+<div class="sb-hd">
+  <div style="font-size:9px;color:rgba(255,255,255,.25);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Партнерський звіт</div>
+  <div style="display:flex;align-items:center;gap:8px;background:rgba(52,209,134,.1);border:1px solid rgba(52,209,134,.25);border-radius:8px;padding:7px 11px;margin-bottom:7px;">
+    <div style="width:26px;height:26px;background:#34D186;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#000;font-weight:900;">⚡</div>
+    <div><div style="font-size:13px;font-weight:800;color:white;">Bolt Food</div><div style="font-size:10px;color:rgba(255,255,255,.4);">Ukraine</div></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;background:rgba(255,193,7,.1);border:1px solid rgba(255,193,7,.3);border-radius:8px;padding:7px 11px;">
+    <div style="width:26px;height:26px;background:#1A237E;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;">🏛️</div>
+    <div><div style="font-size:12px;font-weight:800;color:white;">Greek House</div><div style="font-size:10px;color:rgba(255,255,255,.4);">8 локацій · Kyiv</div></div>
+  </div>
+</div>
+<div class="sb-nav">
+  <div class="sb-lbl">Навігація</div>
+  <a href="#hero">Головна</a>
+  <a href="#overview">Огляд червень</a>
+  <a href="#mom">MoM трав→черв</a>
+  <a href="#weekly">Тижнева динаміка</a>
+  <a href="#cancels">Скасування</a>
+  <a href="#dishes">Топ страви</a>
+  <a href="#ops">Операційна</a>
+  <a href="#boltplus">Bolt+</a>
+  <a href="#ratings">Рейтинги</a>
+  <a href="#sl">Sponsored Listing</a>
+  <a href="#locations">Локації</a>
+</div>
+<div class="sb-ft">Червень 2026 · <span style="color:#FFC107;font-weight:700;">Bolt Food</span></div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero"><div class="wrap">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
+    <div style="background:rgba(52,209,134,.15);border:1px solid rgba(52,209,134,.25);border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;color:#34D186;">⚡ Bolt Food Ukraine</div>
+    <div style="font-size:16px;color:rgba(255,255,255,.2);">×</div>
+    <div style="background:rgba(255,193,7,.1);border:1px solid rgba(255,193,7,.25);border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;color:#FFC107;">🏛️ Greek House</div>
+    <span style="margin-left:auto;font-size:10px;color:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:3px 9px;">ПАРТНЕРСЬКА АНАЛІТИКА</span>
+  </div>
+  <div class="hbadge">Червень 2026</div>
+  <h1>Greek House × <span>Bolt Food</span><br>Performance Report</h1>
+  <p class="hero-sub">8 локацій · Kyiv · Червень 2026</p>
+  <div class="kpis">
+    <div class="kpi"><strong>4 749</strong>Доставлено (черв)</div>
+    <div class="kpi"><strong>3 850 124&nbsp;₴</strong>Виручка (черв)</div>
+    <div class="kpi"><strong>811&nbsp;₴</strong>AOV</div>
+    <div class="kpi"><strong>73.6%</strong>Частка промо</div>
+    <div class="kpi"><strong><span style="color:#EF4444;font-size:12px;font-weight:700;">▼8.2%</span></strong>MoM замовлення</div>
+    <div class="kpi"><strong>4.69&nbsp;★</strong>Рейтинг мережі</div>
+    <div class="kpi"><strong>1 357</strong>Bolt+ замовлень</div>
+    <div class="kpi"><strong>1 708</strong>Нових клієнтів</div>
+  </div>
+</div></div>
+
+<!-- OVERVIEW -->
+<div class="sec" style="background:white;" id="overview"><div class="wrap">
+  <div class="sec-t">📊 Мережа Greek House — Огляд червень 2026</div>
+  <div class="sec-s">8 локацій · Kyiv · Повний місяць</div><div class="hr"></div>
+  <div class="g5" style="margin-bottom:22px;">
+    <div class="card"><div class="cl">Доставлено</div><div class="cv" style="color:#1A237E;">4 749</div><div class="cd">черв 2026</div></div>
+    <div class="card"><div class="cl">Виручка до зн.</div><div class="cv">3 850 124&nbsp;₴</div></div>
+    <div class="card"><div class="cl">AOV</div><div class="cv">811&nbsp;₴</div></div>
+    <div class="card"><div class="cl">Промо замовл.</div><div class="cv">3 496</div><div class="cd">73.6% від усіх</div></div>
+    <div class="card"><div class="cl">Bolt+ замовл.</div><div class="cv" style="color:#34D186;">1 357</div><div class="cd">28.6% від усіх</div></div>
+    <div class="card"><div class="cl">Bolt промо ₴</div><div class="cv" style="color:#34D186;">430 887&nbsp;₴</div></div>
+    <div class="card"><div class="cl">Партнер промо ₴</div><div class="cv" style="color:var(--blue);">120 608&nbsp;₴</div></div>
+    <div class="card"><div class="cl">Нових клієнтів</div><div class="cv" style="color:var(--purple);">1 708</div></div>
+    <div class="card"><div class="cl">Рейтинг мережі</div><div class="cv" style="color:#F59E0B;">4.69&nbsp;★</div></div>
+  </div>
+  <div style="overflow-x:auto;"><table><thead><tr>
+    <th>Локація</th><th>Місто</th>
+    <th class="num">Доставлено</th><th class="num">Виручка ₴</th><th class="num">AOV ₴</th>
+    <th class="num">Bolt промо ₴</th><th class="num">Промо %</th>
+    <th class="num">Bolt+</th><th class="num">Нових кл.</th><th class="num">Рейтинг</th><th class="num">MoM</th>
+  </tr></thead><tbody>
+    <tr><td><strong>ТРЦ Smart Plaza</strong></td><td><span class="b bb">Kyiv</span></td><td class="num"><strong>1 552</strong></td><td class="num">1 385 637&nbsp;₴</td><td class="num">893&nbsp;₴</td><td class="num" style="color:#34D186;">158 104&nbsp;₴</td><td class="num"><span class="b bgold">83%</span></td><td class="num">454 <span style="font-size:10px;color:#6B7280;">(29%)</span></td><td class="num">540</td><td class="num"><span style="color:#34D186;font-weight:700;">4.75&nbsp;★</span></td><td class="num"><span style="color:#34D186;font-size:11px;font-weight:700;">▲6.6%</span></td></tr>
+    <tr><td><strong>ТРЦ Piramida</strong></td><td><span class="b bb">Kyiv</span></td><td class="num"><strong>697</strong></td><td class="num">514 497&nbsp;₴</td><td class="num">738&nbsp;₴</td><td class="num" style="color:#34D186;">43 997&nbsp;₴</td><td class="num"><span class="b bgold">68%</span></td><td class="num">167 <span style="font-size:10px;color:#6B7280;">(24%)</span></td><td class="num">240</td><td class="num"><span style="color:#34D186;font-weight:700;">4.79&nbsp;★</span></td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼6.4%</span></td></tr>
+    <tr><td><strong>ТРК Проспект</strong></td><td><span class="b bb">Kyiv</span></td><td class="num"><strong>571</strong></td><td class="num">437 344&nbsp;₴</td><td class="num">766&nbsp;₴</td><td class="num" style="color:#34D186;">43 181&nbsp;₴</td><td class="num"><span class="b bgold">73%</span></td><td class="num">167 <span style="font-size:10px;color:#6B7280;">(29%)</span></td><td class="num">208</td><td class="num"><span style="color:#F59E0B;font-weight:700;">4.71&nbsp;★</span></td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼12.4%</span></td></tr>
+    <tr><td><strong>ТРЦ Respublika Park</strong></td><td><span class="b bb">Kyiv</span></td><td class="num"><strong>566</strong></td><td class="num">455 427&nbsp;₴</td><td class="num">805&nbsp;₴</td><td class="num" style="color:#34D186;">41 852&nbsp;₴</td><td class="num"><span class="b bgold">70%</span></td><td class="num">185 <span style="font-size:10px;color:#6B7280;">(33%)</span></td><td class="num">200</td><td class="num"><span style="color:#F59E0B;font-weight:700;">4.59&nbsp;★</span></td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼9.7%</span></td></tr>
+    <tr><td><strong>ТРЦ Retroville</strong></td><td><span class="b bb">Kyiv</span></td><td class="num"><strong>490</strong></td><td class="num">367 007&nbsp;₴</td><td class="num">749&nbsp;₴</td><td class="num" style="color:#34D186;">35 352&nbsp;₴</td><td class="num"><span class="b bgold">65%</span></td><td class="num">113 <span style="font-size:10px;color:#6B7280;">(23%)</span></td><td class="num">175</td><td class="num"><span style="color:#34D186;font-weight:700;">4.82&nbsp;★</span></td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼4.5%</span></td></tr>
+    <tr><td><strong>ТЦ GLOBUS</strong></td><td><span class="b bb">Kyiv</span></td><td class="num"><strong>452</strong></td><td class="num">354 489&nbsp;₴</td><td class="num">784&nbsp;₴</td><td class="num" style="color:#34D186;">35 264&nbsp;₴</td><td class="num"><span class="b bgold">67%</span></td><td class="num">129 <span style="font-size:10px;color:#6B7280;">(29%)</span></td><td class="num">200</td><td class="num"><span style="color:#F59E0B;font-weight:700;">4.52&nbsp;★</span></td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼24.4%</span></td></tr>
+    <tr><td><strong>ТРЦ Lavina Mall</strong></td><td><span class="b bb">Kyiv</span></td><td class="num"><strong>301</strong></td><td class="num">241 215&nbsp;₴</td><td class="num">801&nbsp;₴</td><td class="num" style="color:#34D186;">22 969&nbsp;₴</td><td class="num"><span class="b bgold">69%</span></td><td class="num">99 <span style="font-size:10px;color:#6B7280;">(33%)</span></td><td class="num">95</td><td class="num"><span style="color:#F59E0B;font-weight:700;">4.61&nbsp;★</span></td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼12.0%</span></td></tr>
+    <tr><td><strong>ТРЦ Sky Mall</strong></td><td><span class="b bb">Kyiv</span></td><td class="num"><strong>120</strong></td><td class="num">94 508&nbsp;₴</td><td class="num">788&nbsp;₴</td><td class="num" style="color:#34D186;">10 168&nbsp;₴</td><td class="num"><span class="b bgold">79%</span></td><td class="num">43 <span style="font-size:10px;color:#6B7280;">(36%)</span></td><td class="num">50</td><td class="num"><span style="color:#EF4444;font-weight:700;">4.19&nbsp;★</span></td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼50.6%</span></td></tr>
+  </tbody><tfoot>
+    <tr style="background:#EEF0FB;font-weight:700;">
+      <td><strong>МЕРЕЖА РАЗОМ</strong></td><td></td>
+      <td class="num"><strong>4 749</strong></td><td class="num"><strong>3 850 124&nbsp;₴</strong></td><td class="num"><strong>811&nbsp;₴</strong></td>
+      <td class="num"><strong style="color:#34D186;">430 887&nbsp;₴</strong></td><td class="num"><strong>73.6%</strong></td>
+      <td class="num"><strong>1 357 (28.6%)</strong></td><td class="num"><strong>1 708</strong></td>
+      <td class="num"><strong>4.69&nbsp;★</strong></td><td class="num"><strong style="color:#EF4444;">▼8.2%</strong></td>
+    </tr>
+  </tfoot></table></div>
+</div></div>
+
+<!-- MoM -->
+<div class="sec" style="background:var(--gray);" id="mom"><div class="wrap">
+  <div class="sec-t">📈 MoM: Травень → Червень 2026</div>
+  <div class="sec-s">Порівняння місячних показників мережі</div><div class="hr"></div>
+  <div class="g4" style="margin-bottom:22px;">
+    <div class="card"><div class="cl">Замовлення черв</div><div class="cv" style="color:#1A237E;">4 749</div><div class="cd">трав: 5 176 <span style="color:#EF4444;font-size:11px;font-weight:700;">▼8.2%</span></div></div>
+    <div class="card"><div class="cl">GMV черв</div><div class="cv">3 850 124&nbsp;₴</div><div class="cd">трав: 4 268 158&nbsp;₴ <span style="color:#EF4444;font-size:11px;font-weight:700;">▼9.8%</span></div></div>
+    <div class="card"><div class="cl">MoM замовлення</div><div class="cv"><span style="color:#EF4444;font-size:18px;font-weight:700;">▼8.2%</span></div><div class="cd">5 176 → 4 749</div></div>
+    <div class="card"><div class="cl">Виняток</div><div class="cv" style="color:#34D186;font-size:18px;">Smart Plaza</div><div class="cd">єдина локація у зростанні +6.6%</div></div>
+  </div>
+  <div style="overflow-x:auto;"><table><thead><tr>
+    <th>Локація</th>
+    <th class="num">Черв</th><th class="num">Трав</th><th class="num">MoM замовл.</th>
+    <th class="num">GMV черв ₴</th><th class="num">GMV трав ₴</th>
+  </tr></thead><tbody>
+    <tr><td><strong>ТРЦ Smart Plaza</strong></td><td class="num"><strong>1 552</strong></td><td class="num">1 456</td><td class="num"><span style="color:#34D186;font-size:11px;font-weight:700;">▲6.6%</span></td><td class="num">1 385 637&nbsp;₴</td><td class="num">1 230 865&nbsp;₴</td></tr>
+    <tr><td><strong>ТРЦ Piramida</strong></td><td class="num"><strong>697</strong></td><td class="num">745</td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼6.4%</span></td><td class="num">514 497&nbsp;₴</td><td class="num">587 352&nbsp;₴</td></tr>
+    <tr><td><strong>ТРК Проспект</strong></td><td class="num"><strong>571</strong></td><td class="num">652</td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼12.4%</span></td><td class="num">437 344&nbsp;₴</td><td class="num">523 119&nbsp;₴</td></tr>
+    <tr><td><strong>ТРЦ Respublika Park</strong></td><td class="num"><strong>566</strong></td><td class="num">627</td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼9.7%</span></td><td class="num">455 427&nbsp;₴</td><td class="num">532 112&nbsp;₴</td></tr>
+    <tr><td><strong>ТРЦ Retroville</strong></td><td class="num"><strong>490</strong></td><td class="num">513</td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼4.5%</span></td><td class="num">367 007&nbsp;₴</td><td class="num">421 849&nbsp;₴</td></tr>
+    <tr><td><strong>ТЦ GLOBUS</strong></td><td class="num"><strong>452</strong></td><td class="num">598</td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼24.4%</span></td><td class="num">354 489&nbsp;₴</td><td class="num">489 962&nbsp;₴</td></tr>
+    <tr><td><strong>ТРЦ Lavina Mall</strong></td><td class="num"><strong>301</strong></td><td class="num">342</td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼12.0%</span></td><td class="num">241 215&nbsp;₴</td><td class="num">275 400&nbsp;₴</td></tr>
+    <tr><td><strong>ТРЦ Sky Mall</strong></td><td class="num"><strong>120</strong></td><td class="num">243</td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼50.6%</span></td><td class="num">94 508&nbsp;₴</td><td class="num">207 499&nbsp;₴</td></tr>
+    <tr style="background:#EEF0FB;font-weight:700;"><td><strong>РАЗОМ</strong></td><td class="num"><strong>4 749</strong></td><td class="num"><strong>5 176</strong></td><td class="num"><strong style="color:#EF4444;">▼8.2%</strong></td><td class="num"><strong>3 850 124&nbsp;₴</strong></td><td class="num"><strong>4 268 158&nbsp;₴</strong></td></tr>
+  </tbody></table></div>
+  <div style="background:#FFF3CD;border:1px solid #FBBF24;border-radius:10px;padding:14px;margin-top:18px;">
+    <div style="font-size:13px;font-weight:700;color:#92400E;margin-bottom:6px;">⚠️ Тренд MoM — аналіз</div>
+    <div style="font-size:12px;color:#78350F;line-height:1.8;">
+      7 із 8 локацій показали зниження MoM. Найбільше падіння — <strong>Sky Mall (▼50.6%)</strong> і <strong>GLOBUS (▼24.4%)</strong>. Єдиний виняток — <strong>Smart Plaza (+6.6%)</strong>, яка демонструє стабільне зростання протягом усього червня. Рекомендуємо проаналізувати причини зниження по GLOBUS та Sky Mall.
+    </div>
+  </div>
+</div></div>
+
+<!-- WEEKLY -->
+<div class="sec" style="background:white;" id="weekly"><div class="wrap">
+  <div class="sec-t">📅 Тижнева динаміка — Червень 2026</div>
+  <div class="sec-s">Динаміка замовлень по тижнях · Greek House мережа · Дані Databricks</div><div class="hr"></div>
+  <div class="g2">
+    <div class="chart-wrap" style="margin-top:0;">
+      <div style="font-size:13px;font-weight:700;margin-bottom:14px;">Замовлення по тижнях (мережа)</div>
+      <canvas id="weekChart" height="200"></canvas>
+    </div>
+    <div>
+      <div style="overflow-x:auto;"><table><thead><tr>
+        <th>Тиждень</th><th class="num">Замовлення</th><th class="num">GMV ₴</th><th class="num">Δ</th>
+      </tr></thead><tbody>
+        <tr><td>Тиж 1 · 2–8 черв</td><td class="num"><strong>1 112</strong></td><td class="num">899 136&nbsp;₴</td><td class="num">—</td></tr>
+        <tr><td>Тиж 2 · 9–15 черв</td><td class="num"><strong>996</strong></td><td class="num">797 204&nbsp;₴</td><td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼10.4%</span></td></tr>
+        <tr><td>Тиж 3 · 16–22 черв</td><td class="num"><strong>1 091</strong></td><td class="num">892 420&nbsp;₴</td><td class="num"><span style="color:#34D186;font-size:11px;font-weight:700;">▲9.5%</span></td></tr>
+        <tr><td>Тиж 4 · 23–29 черв</td><td class="num"><strong>1 235</strong></td><td class="num">1 007 213&nbsp;₴</td><td class="num"><span style="color:#34D186;font-size:11px;font-weight:700;">▲13.2%</span></td></tr>
+        <tr style="background:#EEF0FB;">
+          <td>Тиж 5 · 30 черв – 6 лип <span style="font-size:10px;color:#6B7280;">(повний тиж, вкл. липень)</span></td>
+          <td class="num"><strong>1 096</strong></td>
+          <td class="num">900 947&nbsp;₴</td>
+          <td class="num"><span style="color:#EF4444;font-size:11px;font-weight:700;">▼11.3%</span> <span style="font-size:10px;color:#6B7280;">vs тиж 4</span></td>
+        </tr>
+      </tbody></table></div>
+      <div style="font-size:11px;color:#6B7280;margin-top:6px;padding:0 2px;">* Тиждень 5 охоплює 30 червня – 6 липня. У решті аналітики звіту враховується лише червень.</div>
+      <div style="background:#EEF0FB;border-radius:10px;padding:14px;margin-top:12px;border-left:4px solid #1A237E;">
+        <div style="font-size:12px;font-weight:700;color:#1A237E;margin-bottom:6px;">📌 Ключові спостереження</div>
+        <div style="font-size:12px;color:#374151;line-height:1.8;">
+          • Тижнева динаміка позитивна: тиждень 4 — найкращий червня (1 235 замовлень)<br>
+          • <strong>Smart Plaza</strong> показує впевнене зростання: 297→331→379→432→376 — стабільний лідер<br>
+          • GLOBUS і Sky Mall — основні точки зниження місяця<br>
+          • Тиждень 5 (30 черв – 6 лип): 1 096 замовлень — рівень, близький до середини червня
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-wrap" style="margin-top:20px;">
+    <div style="font-size:13px;font-weight:700;margin-bottom:14px;">Тижнева динаміка по локаціях</div>
+    <canvas id="locWeekChart" height="120"></canvas>
+  </div>
+</div></div>
+
+<!-- CANCELS -->
+<div class="sec" style="background:var(--gray);" id="cancels"><div class="wrap">
+  <div class="sec-t">❌ Скасування — Червень 2026</div>
+  <div class="sec-s">Аналіз причин невиконаних замовлень мережі</div><div class="hr"></div>
+  <div class="g3" style="margin-bottom:22px;">
+    <div class="card"><div class="cl">Доставлено</div><div class="cv" style="color:#34D186;">4 749</div></div>
+    <div class="card"><div class="cl">Скасовано</div><div class="cv" style="color:#EF4444;">57</div></div>
+    <div class="card"><div class="cl">Fail rate</div><div class="cv" style="color:#34D186;">1.2%</div><div class="cd">Відмінний показник</div></div>
+  </div>
+  <div class="g2">
+    <div style="overflow-x:auto;"><table><thead><tr>
+      <th>Причина скасування</th><th class="num">К-сть</th><th class="num">%</th>
+    </tr></thead><tbody>
+      <tr><td>manually_failed_by_user</td><td class="num"><strong>26</strong></td><td class="num">45.6%</td></tr>
+      <tr><td>manually_failed_by_cs</td><td class="num"><strong>31</strong></td><td class="num">54.4%</td></tr>
+    </tbody></table></div>
+    <div style="overflow-x:auto;"><table><thead><tr>
+      <th>Локація</th><th class="num">Скасувань</th><th class="num">Fail rate</th>
+    </tr></thead><tbody>
+      <tr><td>ТРЦ Smart Plaza</td><td class="num"><strong>16</strong></td><td class="num">1.0%</td></tr>
+      <tr><td>ТЦ GLOBUS</td><td class="num"><strong>9</strong></td><td class="num">2.0%</td></tr>
+      <tr><td>ТРЦ Piramida</td><td class="num"><strong>8</strong></td><td class="num">1.1%</td></tr>
+      <tr><td>ТРЦ Lavina Mall</td><td class="num"><strong>7</strong></td><td class="num">2.3%</td></tr>
+      <tr><td>ТРЦ Respublika Park</td><td class="num"><strong>7</strong></td><td class="num">1.2%</td></tr>
+      <tr><td>ТРК Проспект</td><td class="num"><strong>5</strong></td><td class="num">0.9%</td></tr>
+      <tr><td>ТРЦ Retroville</td><td class="num"><strong>4</strong></td><td class="num">0.8%</td></tr>
+      <tr><td>ТРЦ Sky Mall</td><td class="num"><strong>1</strong></td><td class="num">0.8%</td></tr>
+      <tr style="background:#EEF0FB;font-weight:700;"><td>РАЗОМ</td><td class="num"><strong>57</strong></td><td class="num"><strong>1.2%</strong></td></tr>
+    </tbody></table></div>
+  </div>
+  <div style="background:#F0FFF4;border:1px solid #C6F6E4;border-radius:10px;padding:14px;margin-top:16px;">
+    <div style="font-size:12px;color:#374151;line-height:1.8;">
+      <strong style="color:#16a057;">✅ Відмінний показник скасувань:</strong> Fail rate 1.2% — значно нижчий за середнє по категорії (~4–6%). Мережа стабільно приймає та виконує замовлення.
+    </div>
+  </div>
+</div></div>
+
+<!-- DISHES -->
+<div class="sec" style="background:white;" id="dishes"><div class="wrap">
+  <div class="sec-t">🍽️ Топ страви мережі — Червень 2026</div>
+  <div class="sec-s">Найпопулярніші позиції в замовленнях (напої виключені)</div><div class="hr"></div>
+  <div class="g2">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#1</span><div style="flex:1;font-size:13px;font-weight:500;">Класичний Гірос</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:100%;background:#1A237E;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">693</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#2</span><div style="flex:1;font-size:13px;font-weight:500;">Велика Тарілка</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:52%;background:#1A237E;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">357</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#3</span><div style="flex:1;font-size:13px;font-weight:500;">Грецька Курка</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:49%;background:#1A237E;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">336</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#4</span><div style="flex:1;font-size:13px;font-weight:500;">Хрусткий Сет</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:41%;background:#1A237E;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">282</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#5</span><div style="flex:1;font-size:13px;font-weight:500;">Курячий Грецький Комбо</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:39%;background:#1A237E;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">267</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#6</span><div style="flex:1;font-size:13px;font-weight:500;">Картопля Легіонера</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:39%;background:#1A237E;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">267</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#7</span><div style="flex:1;font-size:13px;font-weight:500;">Курка по-Грецьки</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:33%;background:#1A237E;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">232</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#8</span><div style="flex:1;font-size:13px;font-weight:500;">Тарілка</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:30%;background:#1A237E;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">206</span></div>
+    </div>
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#9</span><div style="flex:1;font-size:13px;font-weight:500;">Великий Сет</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:27%;background:#5C6BC0;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">189</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#10</span><div style="flex:1;font-size:13px;font-weight:500;">Класик</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:27%;background:#5C6BC0;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">185</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#11</span><div style="flex:1;font-size:13px;font-weight:500;">Фрі з Батату</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:26%;background:#5C6BC0;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">182</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#12</span><div style="flex:1;font-size:13px;font-weight:500;">Хрусткий Піта</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:25%;background:#5C6BC0;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">175</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#13</span><div style="flex:1;font-size:13px;font-weight:500;">Спартанець</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:25%;background:#5C6BC0;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">171</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#14</span><div style="flex:1;font-size:13px;font-weight:500;">Велике Куряче Меню</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:24%;background:#5C6BC0;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">168</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;"><span style="font-size:11px;color:#6B7280;width:20px;text-align:right;">#15</span><div style="flex:1;font-size:13px;font-weight:500;">Асорті</div><div style="width:100px;"><div class="pb"><div class="pf" style="width:24%;background:#5C6BC0;"></div></div></div><span style="font-size:13px;font-weight:700;color:#1A237E;min-width:30px;text-align:right;">167</span></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- OPS -->
+<div class="sec" style="background:var(--gray);" id="ops"><div class="wrap">
+  <div class="sec-t">⚙️ Операційні метрики — Червень 2026</div>
+  <div class="sec-s">Час приготування та прийому замовлень по локаціях</div><div class="hr"></div>
+  <div class="g4" style="margin-bottom:22px;">
+    <div class="card"><div class="cl">Сер. час приготування</div><div class="cv" style="color:#34D186;">10.8 хв ✅</div><div class="cd">Ціль: менше 15 хв</div></div>
+    <div class="card"><div class="cl">Сер. час прийому</div><div class="cv" style="color:#EF4444;">1.71 хв</div><div class="cd">Ціль: менше 1 хв ⚠️</div></div>
+    <div class="card"><div class="cl">Сер. доступність</div><div class="cv" style="color:#F59E0B;">95.9%</div><div class="cd">Ціль: ≥97% ⚠️</div></div>
+    <div class="card"><div class="cl">Bolt промо витрати</div><div class="cv" style="color:#34D186;">430 887&nbsp;₴</div><div class="cd">Bolt Food інвестиції</div></div>
+  </div>
+  <div style="overflow-x:auto;"><table><thead><tr>
+    <th>Локація</th>
+    <th class="num">Доступність</th>
+    <th class="num">Час приготув.</th>
+    <th class="num">Час прийому</th>
+    <th class="num">Bolt промо ₴</th>
+    <th class="num">Партнер промо ₴</th>
+    <th class="num">Промо замовл.</th>
+  </tr></thead><tbody>
+    <tr><td><strong>ТРЦ Lavina Mall</strong></td><td class="num"><span style="color:#EF4444;font-weight:700;">93.0%</span></td><td class="num"><span style="color:#34D186;font-weight:700;">7.2 хв ✅</span></td><td class="num"><span style="color:#34D186;">1.14 хв</span></td><td class="num" style="color:#34D186;">22 969&nbsp;₴</td><td class="num">737&nbsp;₴</td><td class="num">208</td></tr>
+    <tr><td><strong>ТРЦ Retroville</strong></td><td class="num"><span style="color:#F59E0B;font-weight:700;">96.5%</span></td><td class="num"><span style="color:#34D186;font-weight:700;">9.4 хв ✅</span></td><td class="num"><span style="color:#EF4444;">1.56 хв ⚠️</span></td><td class="num" style="color:#34D186;">35 352&nbsp;₴</td><td class="num">1 232&nbsp;₴</td><td class="num">318</td></tr>
+    <tr><td><strong>ТРЦ Sky Mall</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">97.3%</span></td><td class="num"><span style="color:#34D186;font-weight:700;">10.2 хв ✅</span></td><td class="num"><span style="color:#EF4444;">1.50 хв ⚠️</span></td><td class="num" style="color:#34D186;">10 168&nbsp;₴</td><td class="num">396&nbsp;₴</td><td class="num">95</td></tr>
+    <tr><td><strong>ТРЦ Respublika Park</strong></td><td class="num"><span style="color:#F59E0B;font-weight:700;">96.8%</span></td><td class="num"><span style="color:#34D186;font-weight:700;">10.7 хв ✅</span></td><td class="num"><span style="color:#EF4444;">2.19 хв ⚠️</span></td><td class="num" style="color:#34D186;">41 852&nbsp;₴</td><td class="num">1 186&nbsp;₴</td><td class="num">398</td></tr>
+    <tr><td><strong>ТРК Проспект</strong></td><td class="num"><span style="color:#F59E0B;font-weight:700;">96.2%</span></td><td class="num"><span style="color:#34D186;font-weight:700;">11.5 хв ✅</span></td><td class="num"><span style="color:#EF4444;">1.46 хв ⚠️</span></td><td class="num" style="color:#34D186;">43 181&nbsp;₴</td><td class="num">2 141&nbsp;₴</td><td class="num">418</td></tr>
+    <tr><td><strong>ТРЦ Piramida</strong></td><td class="num"><span style="color:#F59E0B;font-weight:700;">95.6%</span></td><td class="num"><span style="color:#34D186;font-weight:700;">11.6 хв ✅</span></td><td class="num"><span style="color:#EF4444;">2.29 хв ⚠️</span></td><td class="num" style="color:#34D186;">43 997&nbsp;₴</td><td class="num">2 153&nbsp;₴</td><td class="num">474</td></tr>
+    <tr><td><strong>ТЦ GLOBUS</strong></td><td class="num"><span style="color:#F59E0B;font-weight:700;">95.6%</span></td><td class="num"><span style="color:#34D186;font-weight:700;">12.4 хв ✅</span></td><td class="num"><span style="color:#EF4444;">1.48 хв ⚠️</span></td><td class="num" style="color:#34D186;">35 264&nbsp;₴</td><td class="num">1 210&nbsp;₴</td><td class="num">302</td></tr>
+    <tr><td><strong>ТРЦ Smart Plaza</strong></td><td class="num"><span style="color:#F59E0B;font-weight:700;">95.0%</span></td><td class="num"><span style="color:#F59E0B;font-weight:700;">13.2 хв</span></td><td class="num"><span style="color:#EF4444;">2.04 хв ⚠️</span></td><td class="num" style="color:#34D186;">158 104&nbsp;₴</td><td class="num">111 553&nbsp;₴</td><td class="num">1 283</td></tr>
+  </tbody></table></div>
+  <div style="background:#FFF3CD;border:1px solid #FBBF24;border-radius:10px;padding:14px;margin-top:16px;">
+    <div style="font-size:13px;font-weight:700;color:#92400E;margin-bottom:6px;">⚠️ Час прийому замовлень — системна проблема</div>
+    <div style="font-size:12px;color:#78350F;line-height:1.8;">
+      Усі 8 локацій мають час прийому вище цільових 1 хвилини (від 1.14 до 2.29 хв). <strong>Piramida (2.29 хв)</strong> та <strong>Respublika Park (2.19 хв)</strong> — найбільше перевищення. Рекомендуємо налаштувати автоприйом або прискорити процес підтвердження замовлень на планшеті.
+    </div>
+  </div>
+</div></div>
+
+<!-- BOLT+ -->
+<div class="sec" style="background:white;" id="boltplus"><div class="wrap">
+  <div class="sec-t">⚡ Bolt+ — Черв 2026</div>
+  <div class="sec-s">Замовлення підписників Bolt+ (безкоштовна доставка)</div><div class="hr"></div>
+  <div class="g4" style="margin-bottom:22px;">
+    <div class="card"><div class="cl">Bolt+ замовлень</div><div class="cv" style="color:#34D186;">1 357</div><div class="cd">28.6% від усіх</div></div>
+    <div class="card"><div class="cl">Bolt+ частка</div><div class="cv">28.6%</div><div class="cd">ціль &gt;20% ✅</div></div>
+    <div class="card"><div class="cl">Найвища частка</div><div class="cv" style="color:#34D186;">36%</div><div class="cd">Sky Mall</div></div>
+    <div class="card"><div class="cl">Найнижча частка</div><div class="cv" style="color:#F59E0B;">23%</div><div class="cd">Retroville</div></div>
+  </div>
+  <div style="overflow-x:auto;"><table><thead><tr>
+    <th>Локація</th><th class="num">Bolt+ замовл.</th><th class="num">Bolt+ частка</th><th class="num">Bolt+ vs ціль 20%</th>
+  </tr></thead><tbody>
+    <tr><td><strong>ТРЦ Sky Mall</strong></td><td class="num"><strong>43</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">35.8%</span></td><td class="num"><span class="b bg">+15.8%</span></td></tr>
+    <tr><td><strong>ТРЦ Lavina Mall</strong></td><td class="num"><strong>99</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">32.9%</span></td><td class="num"><span class="b bg">+12.9%</span></td></tr>
+    <tr><td><strong>ТРЦ Respublika Park</strong></td><td class="num"><strong>185</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">32.7%</span></td><td class="num"><span class="b bg">+12.7%</span></td></tr>
+    <tr><td><strong>ТРЦ Smart Plaza</strong></td><td class="num"><strong>454</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">29.3%</span></td><td class="num"><span class="b bg">+9.3%</span></td></tr>
+    <tr><td><strong>ТРК Проспект</strong></td><td class="num"><strong>167</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">29.2%</span></td><td class="num"><span class="b bg">+9.2%</span></td></tr>
+    <tr><td><strong>ТЦ GLOBUS</strong></td><td class="num"><strong>129</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">28.5%</span></td><td class="num"><span class="b bg">+8.5%</span></td></tr>
+    <tr><td><strong>ТРЦ Piramida</strong></td><td class="num"><strong>167</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">24.0%</span></td><td class="num"><span class="b bg">+4.0%</span></td></tr>
+    <tr><td><strong>ТРЦ Retroville</strong></td><td class="num"><strong>113</strong></td><td class="num"><span style="color:#F59E0B;font-weight:700;">23.1%</span></td><td class="num"><span class="b bg">+3.1%</span></td></tr>
+  </tbody></table></div>
+</div></div>
+
+<!-- RATINGS -->
+<div class="sec" style="background:var(--gray);" id="ratings"><div class="wrap">
+  <div class="sec-t">⭐ Рейтинги та відгуки — Червень 2026</div>
+  <div class="sec-s">Оцінки клієнтів по локаціях</div><div class="hr"></div>
+  <div class="g3" style="margin-bottom:22px;">
+    <div class="card"><div class="cl">Сер. рейтинг мережі</div><div class="cv" style="color:#F59E0B;">4.69&nbsp;★</div></div>
+    <div class="card"><div class="cl">Всього відгуків</div><div class="cv">1 075</div></div>
+    <div class="card"><div class="cl">Позитивних (≥4★)</div><div class="cv" style="color:#34D186;">987</div></div>
+  </div>
+  <div style="overflow-x:auto;"><table><thead><tr>
+    <th>Локація</th><th class="num">Рейтинг</th>
+    <th class="num">Відгуків</th><th class="num">Позит. (≥4★)</th><th class="num">Негат. (&lt;3★)</th>
+  </tr></thead><tbody>
+    <tr><td><strong>ТРЦ Retroville</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">4.82&nbsp;★</span></td><td class="num">106</td><td class="num"><span class="b bg">100</span></td><td class="num"><span class="b bac" style="background:rgba(52,209,134,.15);color:#16a057;">3</span></td></tr>
+    <tr><td><strong>ТРЦ Piramida</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">4.79&nbsp;★</span></td><td class="num">161</td><td class="num"><span class="b bg">152</span></td><td class="num"><span class="b bac" style="background:rgba(52,209,134,.15);color:#16a057;">5</span></td></tr>
+    <tr><td><strong>ТРЦ Smart Plaza</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">4.75&nbsp;★</span></td><td class="num">360</td><td class="num"><span class="b bg">337</span></td><td class="num"><span class="b bo">19</span></td></tr>
+    <tr><td><strong>ТРК Проспект</strong></td><td class="num"><span style="color:#34D186;font-weight:700;">4.71&nbsp;★</span></td><td class="num">133</td><td class="num"><span class="b bg">125</span></td><td class="num"><span class="b bo">8</span></td></tr>
+    <tr><td><strong>ТРЦ Lavina Mall</strong></td><td class="num"><span style="color:#F59E0B;font-weight:700;">4.61&nbsp;★</span></td><td class="num">75</td><td class="num"><span class="b bg">67</span></td><td class="num"><span class="b bo">6</span></td></tr>
+    <tr><td><strong>ТРЦ Respublika Park</strong></td><td class="num"><span style="color:#F59E0B;font-weight:700;">4.59&nbsp;★</span></td><td class="num">104</td><td class="num"><span class="b bg">92</span></td><td class="num"><span class="b bo">9</span></td></tr>
+    <tr><td><strong>ТЦ GLOBUS</strong></td><td class="num"><span style="color:#F59E0B;font-weight:700;">4.52&nbsp;★</span></td><td class="num">99</td><td class="num"><span class="b bg">84</span></td><td class="num"><span class="b bo">8</span></td></tr>
+    <tr><td><strong>ТРЦ Sky Mall</strong></td><td class="num"><span style="color:#EF4444;font-weight:700;">4.19&nbsp;★</span></td><td class="num">37</td><td class="num"><span class="b bg">30</span></td><td class="num"><span class="b br">6</span></td></tr>
+  </tbody></table></div>
+  <div style="background:#FFF3CD;border:1px solid #FBBF24;border-radius:10px;padding:14px;margin-top:16px;">
+    <div style="font-size:12px;font-weight:700;color:#92400E;margin-bottom:4px;">⚠️ Sky Mall — рейтинг потребує уваги</div>
+    <div style="font-size:12px;color:#78350F;line-height:1.8;">
+      ТРЦ Sky Mall має найнижчий рейтинг мережі (4.19★) та одночасно найбільше падіння MoM (▼50.6%). Необхідно з'ясувати першопричини та вжити заходів для відновлення якості.
+    </div>
+  <div class="g2" style="margin-top:22px;">
+    <div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:10px;color:#34D186;">👍 Позитивні відгуки</div>
+      <div style="background:#F0FFF8;border-radius:8px;padding:10px;border-left:3px solid #34D186;margin-bottom:8px;"><div style="font-size:11px;color:#34D186;font-weight:700;margin-bottom:3px;">5★ · ТРЦ Smart Plaza</div><div style="font-size:12px;color:#374151;">Це вау! А зі знижками взагалі вау вау вау. Дуже якісно і смачно!</div></div>
+      <div style="background:#F0FFF8;border-radius:8px;padding:10px;border-left:3px solid #34D186;margin-bottom:8px;"><div style="font-size:11px;color:#34D186;font-weight:700;margin-bottom:3px;">5★ · ТРЦ Lavina Mall</div><div style="font-size:12px;color:#374151;">Пакування неймовірне. Спеції і смак загалом неперевершений.</div></div>
+      <div style="background:#F0FFF8;border-radius:8px;padding:10px;border-left:3px solid #34D186;margin-bottom:8px;"><div style="font-size:11px;color:#34D186;font-weight:700;margin-bottom:3px;">4★ · ТРЦ Piramida</div><div style="font-size:12px;color:#374151;">Трохи сухувато. Ще пару крапель соусу та буде ідеально.</div></div>
+      <div style="background:#F0FFF8;border-radius:8px;padding:10px;border-left:3px solid #34D186;margin-bottom:8px;"><div style="font-size:11px;color:#34D186;font-weight:700;margin-bottom:3px;">4★ · ТРК Проспект</div><div style="font-size:12px;color:#374151;">Все дуже смачно, але забули покласти напій — трохи неприємно вийшло.</div></div>
+    </div>
+    <div>
+      <div style="font-size:14px;font-weight:700;margin-bottom:10px;color:#EF4444;">👎 Відгуки для опрацювання</div>
+      <div style="background:#FFF5F5;border-radius:8px;padding:10px;border-left:3px solid #EF4444;margin-bottom:8px;"><div style="font-size:11px;color:#EF4444;font-weight:700;margin-bottom:3px;">1★ · ТРЦ Respublika Park</div><div style="font-size:12px;color:#374151;">Не поклали другу булку та окремий соус, що був доданий до замовлення.</div></div>
+      <div style="background:#FFF5F5;border-radius:8px;padding:10px;border-left:3px solid #EF4444;margin-bottom:8px;"><div style="font-size:11px;color:#EF4444;font-weight:700;margin-bottom:3px;">1★ · ТРК Проспект</div><div style="font-size:12px;color:#374151;">Ресторан видав не той заказ і мені нічого не доїхало.</div></div>
+      <div style="background:#FFF5F5;border-radius:8px;padding:10px;border-left:3px solid #EF4444;margin-bottom:8px;"><div style="font-size:11px;color:#EF4444;font-weight:700;margin-bottom:3px;">1★ · ТЦ GLOBUS</div><div style="font-size:12px;color:#374151;">Їжа розпадалась, соус витікав всюди. І не поклали жодної серветки.</div></div>
+      <div style="background:#FFF5F5;border-radius:8px;padding:10px;border-left:3px solid #EF4444;margin-bottom:8px;"><div style="font-size:11px;color:#EF4444;font-weight:700;margin-bottom:3px;">1★ · ТРЦ Sky Mall</div><div style="font-size:12px;color:#374151;">Все охолонуло, страви не підписані. Доставка на 30 хв довше, ніж було вказано.</div></div>
+      <div style="background:#FFF5F5;border-radius:8px;padding:10px;border-left:3px solid #EF4444;margin-bottom:8px;"><div style="font-size:11px;color:#EF4444;font-weight:700;margin-bottom:3px;">3★ · ТРЦ Smart Plaza</div><div style="font-size:12px;color:#374151;">Огірки потекли при пакуванні, витік соус у паперовий пакет — дно розірвалось.</div></div>
+    </div>
+  </div>
+  <div style="background:#FFF3CD;border:1px solid #FBBF24;border-radius:10px;padding:14px;margin-top:16px;">
+    <div style="font-size:13px;font-weight:700;color:#92400E;margin-bottom:6px;">📋 Системні патерни скарг</div>
+    <div style="font-size:12px;color:#78350F;line-height:1.9;">
+      • <strong>Недокладені позиції</strong> — зустрічається в усіх локаціях: соуси, картопля, другий піта, напої<br>
+      • <strong>Проблеми пакування</strong> — Smart Plaza, GLOBUS, Lavina Mall: витікають соуси, розмокають пакети<br>
+      • <strong>Відсутність серветок</strong> — Piramida, GLOBUS: системна скарга<br>
+      • <strong>Підписка страв</strong> — Sky Mall, Проспект: клієнти не розуміють, де яке замовлення
+    </div>
+  </div>
+  </div>
+</div></div>
+
+<!-- SPONSORED LISTING -->
+<div class="sec" style="background:#0d1330;" id="sl"><div class="wrap">
+  <div class="sec-t" style="color:white;">🚀 Sponsored Listing — Рекламна видимість в Bolt Food</div>
+  <div class="sec-s" style="color:rgba(255,255,255,.45);">Що таке Sponsored Listing, скільки коштує, де відображатиметься заклад</div>
+  <div style="height:2px;background:rgba(255,255,255,.1);margin:0 0 26px;"></div>
+
+  <div class="disc-box">
+    <div class="disc-t">💡 Що таке Sponsored Listing?</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;">
+      <div style="background:rgba(255,193,7,.08);border:1px solid rgba(255,193,7,.15);border-radius:10px;padding:14px;">
+        <div style="font-size:18px;margin-bottom:6px;">📌</div>
+        <div style="font-size:12px;font-weight:700;color:white;margin-bottom:4px;">Підняття в топ пошуку</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Заклад відображається першим у результатах пошуку Bolt Food — вище органічної видачі</div>
+      </div>
+      <div style="background:rgba(255,193,7,.08);border:1px solid rgba(255,193,7,.15);border-radius:10px;padding:14px;">
+        <div style="font-size:18px;margin-bottom:6px;">🏠</div>
+        <div style="font-size:12px;font-weight:700;color:white;margin-bottom:4px;">Головна сторінка</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Розміщення у секції "В центрі уваги" на головній — максимальна видимість для всіх клієнтів у зоні</div>
+      </div>
+      <div style="background:rgba(255,193,7,.08);border:1px solid rgba(255,193,7,.15);border-radius:10px;padding:14px;">
+        <div style="font-size:18px;margin-bottom:6px;">📈</div>
+        <div style="font-size:12px;font-weight:700;color:white;margin-bottom:4px;">+40–60% покази</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Середнє зростання показів для закладів із Sponsored Listing порівняно з органічним трафіком</div>
+      </div>
+    </div>
+    <div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:12px;margin-bottom:14px;">
+      <div style="font-size:12px;font-weight:700;color:#f87171;margin-bottom:6px;">📊 Статус греческого хаусу в червні 2026</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;">
+        <strong style="color:white;">Жодна з 8 локацій Greek House не використовувала Sponsored Listing у червні 2026.</strong><br>
+        Це означає, що мережа не отримувала додаткової реклами на платформі Bolt Food. На тлі загального зниження MoM (▼8.2%) — Sponsored Listing є ефективним інструментом відновлення трафіку.
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;">
+      <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:4px;">Вартість</div>
+        <div style="font-size:20px;font-weight:800;color:#FFC107;">75 ₴/день</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.35);">за 1 точку</div>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:4px;">8 локацій × 30 дн.</div>
+        <div style="font-size:20px;font-weight:800;color:white;">18 000 ₴</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.35);">місячний бюджет</div>
+      </div>
+      <div style="background:rgba(52,209,134,.08);border:1px solid rgba(52,209,134,.2);border-radius:8px;padding:12px;text-align:center;">
+        <div style="font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:4px;">Очікуваний ефект</div>
+        <div style="font-size:20px;font-weight:800;color:#34D186;">+40–60%</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.35);">покази у зоні доставки</div>
+      </div>
+    </div>
+    <div style="background:rgba(255,193,7,.08);border:1px solid rgba(255,193,7,.2);border-radius:8px;padding:12px;">
+      <div style="font-size:12px;font-weight:700;color:#FFC107;margin-bottom:6px;">💡 Рекомендовані локації для запуску Sponsored Listing</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.8;">
+        Пріоритет 1 — локації з рейтингом ≥4.5★ і часом прийому &lt;2 хв:<br>
+        <strong style="color:white;">Retroville (4.82★)</strong>, <strong style="color:white;">Piramida (4.79★)</strong>, <strong style="color:white;">Smart Plaza (4.75★)</strong>, <strong style="color:white;">Проспект (4.71★)</strong><br><br>
+        Пріоритет 2 (після покращення рейтингу): Lavina Mall, Respublika Park, GLOBUS<br>
+        Не рекомендовано зараз: <strong style="color:#f87171;">Sky Mall (4.19★)</strong> — спочатку виправити рейтинг
+      </div>
+    </div>
+
+    <div style="margin-top:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px;">
+      <div style="font-size:14px;font-weight:700;color:white;margin-bottom:6px;">📊 Порівняння SL результатів: Партнер В vs інші Партнери</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:14px;">
+        Партнер В порівнюється з двома анонімними партнерами платформи · Партнер X квітень 2026 · Партнер Y травень 2026 · назви брандів не розкриваються
+      </div>
+      <div style="overflow-x:auto;">
+      <table style="color:rgba(255,255,255,.8);min-width:860px;">
+        <thead><tr style="border-bottom:2px solid rgba(255,255,255,.15);">
+          <th style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:left;">Партнер / Місяць</th>
+          <th style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:right;">Днів активно</th>
+          <th style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:right;">Лок.</th>
+          <th style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:right;">Покази</th>
+          <th style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:right;">CTR</th>
+          <th style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:right;">Замовлень</th>
+          <th style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:right;">GMV атриб. ₴</th>
+          <th style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:right;">Витрати ₴</th>
+          <th style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:right;">ROI</th>
+          <th style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);padding:8px 10px;font-size:10px;text-transform:uppercase;text-align:right;">AOV ₴</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.08);">
+            <td style="padding:8px 10px;font-weight:700;color:#F59E0B;">Партнер В — Квітень 2026</td>
+            <td style="padding:8px 10px;text-align:right;color:#F59E0B;font-weight:600;">18 дн.</td>
+            <td style="padding:8px 10px;text-align:right;">8</td>
+            <td style="padding:8px 10px;text-align:right;">40 925</td>
+            <td style="padding:8px 10px;text-align:right;color:#34D186;font-weight:700;">3.76%</td>
+            <td style="padding:8px 10px;text-align:right;">145</td>
+            <td style="padding:8px 10px;text-align:right;">112 724&nbsp;₴</td>
+            <td style="padding:8px 10px;text-align:right;">13 750&nbsp;₴</td>
+            <td style="padding:8px 10px;text-align:right;color:#34D186;font-weight:700;">8.2x</td>
+            <td style="padding:8px 10px;text-align:right;color:#FDE68A;font-weight:600;">715&nbsp;₴</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.08);">
+            <td style="padding:8px 10px;font-weight:700;color:#60A5FA;">Партнер X — Квітень 2026</td>
+            <td style="padding:8px 10px;text-align:right;color:#F59E0B;font-weight:600;">7 дн.</td>
+            <td style="padding:8px 10px;text-align:right;">3</td>
+            <td style="padding:8px 10px;text-align:right;">12 942</td>
+            <td style="padding:8px 10px;text-align:right;color:#34D186;font-weight:700;">2.52%</td>
+            <td style="padding:8px 10px;text-align:right;">18</td>
+            <td style="padding:8px 10px;text-align:right;">25 642&nbsp;₴</td>
+            <td style="padding:8px 10px;text-align:right;">2 625&nbsp;₴</td>
+            <td style="padding:8px 10px;text-align:right;color:#34D186;font-weight:700;">9.77x</td>
+            <td style="padding:8px 10px;text-align:right;color:#FDE68A;font-weight:600;">1 467&nbsp;₴</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.08);">
+            <td style="padding:8px 10px;font-weight:700;color:#A78BFA;">Партнер Y — Травень 2026</td>
+            <td style="padding:8px 10px;text-align:right;color:#F59E0B;font-weight:600;">7 дн.</td>
+            <td style="padding:8px 10px;text-align:right;">5</td>
+            <td style="padding:8px 10px;text-align:right;">46 691</td>
+            <td style="padding:8px 10px;text-align:right;color:#34D186;font-weight:700;">3.91%</td>
+            <td style="padding:8px 10px;text-align:right;">434</td>
+            <td style="padding:8px 10px;text-align:right;">350 993&nbsp;₴</td>
+            <td style="padding:8px 10px;text-align:right;">6 125&nbsp;₴</td>
+            <td style="padding:8px 10px;text-align:right;color:#34D186;font-weight:700;">57.3x</td>
+            <td style="padding:8px 10px;text-align:right;color:#FDE68A;font-weight:600;">743&nbsp;₴</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div style="margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+        <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px;">
+          <div style="font-size:10px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:5px;">Що таке CTR?</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.6);line-height:1.6;">% переходів на меню від показів. Ціль ≥ 2%. Якщо нижче — оновіть фото та назви страв.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px;">
+          <div style="font-size:10px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:5px;">Що таке ROI?</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.6);line-height:1.6;">Атрибутований GMV ÷ Витрати. ROI 3x = на кожну ₴ витрат 3 ₴ замовлень. Ціль ≥ 3x.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px;">
+          <div style="font-size:10px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:5px;">AOV і реклама</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.6);line-height:1.6;">Вищий AOV = більший атрибутований GMV на замовлення. Партнер В має найнижчий середній чек серед порівнюваних — це означає, що при схожому ROI партнерів Партнер В виконує більше замовлень.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px;">
+          <div style="font-size:10px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:5px;">Висновок по квітню</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.6);line-height:1.6;">CTR 3.76% і ROI 8.2x Партнера В у квітні — сильні показники вищі за норму платформи.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<!-- LOCATIONS -->
+<div class="sec" style="background:var(--gray);" id="locations"><div class="wrap">
+  <div class="sec-t">📍 Деталі по локаціях — Червень 2026</div>
+  <div class="sec-s">8 локацій Greek House · Kyiv</div><div class="hr"></div>
+
+  <!-- Smart Plaza -->
+  <div class="loc"><div class="loc-h"><div><div style="font-size:15px;font-weight:800;">Greek House ТРЦ Smart Plaza</div><div style="font-size:11px;color:rgba(255,255,255,.5);">Provider ID: 177094 · Kyiv · Лідер мережі</div></div><div style="text-align:right;"><div style="font-size:22px;font-weight:800;">1 552</div><div style="font-size:11px;color:rgba(255,255,255,.4);">доставлено · <span style="color:#34D186;font-size:11px;font-weight:700;">▲6.6%</span></div></div></div>
+  <div class="loc-b"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+    <div class="card" style="padding:10px;"><div class="cl">Виручка ₴</div><div class="cv" style="font-size:18px;">1 385 637</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">AOV ₴</div><div class="cv" style="font-size:18px;">893</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Bolt промо ₴</div><div class="cv" style="font-size:18px;color:#34D186;">158 104</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Рейтинг</div><div class="cv" style="font-size:18px;"><span style="color:#34D186;font-weight:700;">4.75&nbsp;★</span></div></div>
+  </div><table style="font-size:11px;"><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Промо %</td><td class="num"><strong>83%</strong></td><td style="width:30px;"></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Bolt+</td><td class="num"><strong>454 (29%)</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Нових клієнтів</td><td class="num"><strong>540</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час приготув.</td><td class="num"><strong style="color:#F59E0B;">13.2 хв</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Відгуків</td><td class="num"><strong>360</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час прийому</td><td class="num"><strong style="color:#EF4444;">2.04 хв ⚠️</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Скасувань</td><td class="num"><strong>16</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Партнер промо ₴</td><td class="num"><strong style="color:#3B82F6;">111 553</strong></td></tr></table></div></div>
+
+  <!-- Piramida -->
+  <div class="loc"><div class="loc-h"><div><div style="font-size:15px;font-weight:800;">Greek House ТРЦ Piramida</div><div style="font-size:11px;color:rgba(255,255,255,.5);">Provider ID: 177071 · Kyiv</div></div><div style="text-align:right;"><div style="font-size:22px;font-weight:800;">697</div><div style="font-size:11px;color:rgba(255,255,255,.4);">доставлено · <span style="color:#EF4444;font-size:11px;font-weight:700;">▼6.4%</span></div></div></div>
+  <div class="loc-b"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+    <div class="card" style="padding:10px;"><div class="cl">Виручка ₴</div><div class="cv" style="font-size:18px;">514 497</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">AOV ₴</div><div class="cv" style="font-size:18px;">738</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Bolt промо ₴</div><div class="cv" style="font-size:18px;color:#34D186;">43 997</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Рейтинг</div><div class="cv" style="font-size:18px;"><span style="color:#34D186;font-weight:700;">4.79&nbsp;★</span></div></div>
+  </div><table style="font-size:11px;"><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Промо %</td><td class="num"><strong>68%</strong></td><td style="width:30px;"></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Bolt+</td><td class="num"><strong>167 (24%)</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Нових клієнтів</td><td class="num"><strong>240</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час приготув.</td><td class="num"><strong style="color:#34D186;">11.6 хв ✅</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Відгуків</td><td class="num"><strong>161</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час прийому</td><td class="num"><strong style="color:#EF4444;">2.29 хв ⚠️</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Скасувань</td><td class="num"><strong>8</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Партнер промо ₴</td><td class="num"><strong>2 153</strong></td></tr></table></div></div>
+
+  <!-- Решта 6 локацій — картки -->
+
+  <!-- Проспект -->
+  <div class="loc"><div class="loc-h"><div><div style="font-size:15px;font-weight:800;">Greek House ТРК Проспект</div><div style="font-size:11px;color:rgba(255,255,255,.5);">Provider ID: 177065 · Kyiv</div></div><div style="text-align:right;"><div style="font-size:22px;font-weight:800;">571</div><div style="font-size:11px;color:rgba(255,255,255,.4);">доставлено · <span style="color:#EF4444;font-size:11px;font-weight:700;">▼12.4%</span></div></div></div>
+  <div class="loc-b"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+    <div class="card" style="padding:10px;"><div class="cl">Виручка ₴</div><div class="cv" style="font-size:18px;">437 344</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">AOV ₴</div><div class="cv" style="font-size:18px;">766</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Bolt промо ₴</div><div class="cv" style="font-size:18px;color:#34D186;">43 181</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Рейтинг</div><div class="cv" style="font-size:18px;"><span style="color:#34D186;font-weight:700;">4.71&nbsp;★</span></div></div>
+  </div><table style="font-size:11px;"><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Промо %</td><td class="num"><strong>73%</strong></td><td style="width:30px;"></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Bolt+</td><td class="num"><strong>167 (29%)</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Нових клієнтів</td><td class="num"><strong>208</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час приготув.</td><td class="num"><strong style="color:#34D186;">11.5 хв ✅</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Відгуків</td><td class="num"><strong>133</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час прийому</td><td class="num"><strong style="color:#EF4444;">1.46 хв ⚠️</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Скасувань</td><td class="num"><strong>5</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Партнер промо ₴</td><td class="num"><strong>2 141</strong></td></tr></table></div></div>
+
+  <!-- Respublika Park -->
+  <div class="loc"><div class="loc-h"><div><div style="font-size:15px;font-weight:800;">Greek House ТРЦ Respublika Park</div><div style="font-size:11px;color:rgba(255,255,255,.5);">Provider ID: 177056 · Kyiv</div></div><div style="text-align:right;"><div style="font-size:22px;font-weight:800;">566</div><div style="font-size:11px;color:rgba(255,255,255,.4);">доставлено · <span style="color:#EF4444;font-size:11px;font-weight:700;">▼9.7%</span></div></div></div>
+  <div class="loc-b"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+    <div class="card" style="padding:10px;"><div class="cl">Виручка ₴</div><div class="cv" style="font-size:18px;">455 427</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">AOV ₴</div><div class="cv" style="font-size:18px;">805</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Bolt промо ₴</div><div class="cv" style="font-size:18px;color:#34D186;">41 852</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Рейтинг</div><div class="cv" style="font-size:18px;"><span style="color:#F59E0B;font-weight:700;">4.59&nbsp;★</span></div></div>
+  </div><table style="font-size:11px;"><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Промо %</td><td class="num"><strong>70%</strong></td><td style="width:30px;"></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Bolt+</td><td class="num"><strong>185 (33%)</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Нових клієнтів</td><td class="num"><strong>200</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час приготув.</td><td class="num"><strong style="color:#34D186;">10.7 хв ✅</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Відгуків</td><td class="num"><strong>104</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час прийому</td><td class="num"><strong style="color:#EF4444;">2.19 хв ⚠️</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Скасувань</td><td class="num"><strong>7</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Партнер промо ₴</td><td class="num"><strong>1 186</strong></td></tr></table></div></div>
+
+  <!-- Retroville -->
+  <div class="loc"><div class="loc-h"><div><div style="font-size:15px;font-weight:800;">Greek House ТРЦ Retroville</div><div style="font-size:11px;color:rgba(255,255,255,.5);">Provider ID: 177074 · Kyiv</div></div><div style="text-align:right;"><div style="font-size:22px;font-weight:800;">490</div><div style="font-size:11px;color:rgba(255,255,255,.4);">доставлено · <span style="color:#EF4444;font-size:11px;font-weight:700;">▼4.5%</span></div></div></div>
+  <div class="loc-b"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+    <div class="card" style="padding:10px;"><div class="cl">Виручка ₴</div><div class="cv" style="font-size:18px;">367 007</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">AOV ₴</div><div class="cv" style="font-size:18px;">749</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Bolt промо ₴</div><div class="cv" style="font-size:18px;color:#34D186;">35 352</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Рейтинг</div><div class="cv" style="font-size:18px;"><span style="color:#34D186;font-weight:700;">4.82&nbsp;★</span></div></div>
+  </div><table style="font-size:11px;"><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Промо %</td><td class="num"><strong>65%</strong></td><td style="width:30px;"></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Bolt+</td><td class="num"><strong>113 (23%)</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Нових клієнтів</td><td class="num"><strong>175</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час приготув.</td><td class="num"><strong style="color:#34D186;">9.4 хв ✅</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Відгуків</td><td class="num"><strong>106</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час прийому</td><td class="num"><strong style="color:#EF4444;">1.56 хв ⚠️</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Скасувань</td><td class="num"><strong>4</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Партнер промо ₴</td><td class="num"><strong>1 232</strong></td></tr></table></div></div>
+
+  <!-- GLOBUS -->
+  <div class="loc"><div class="loc-h"><div><div style="font-size:15px;font-weight:800;">Greek House ТЦ GLOBUS</div><div style="font-size:11px;color:rgba(255,255,255,.5);">Provider ID: 177069 · Kyiv</div></div><div style="text-align:right;"><div style="font-size:22px;font-weight:800;">452</div><div style="font-size:11px;color:rgba(255,255,255,.4);">доставлено · <span style="color:#EF4444;font-size:11px;font-weight:700;">▼24.4%</span></div></div></div>
+  <div class="loc-b"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+    <div class="card" style="padding:10px;"><div class="cl">Виручка ₴</div><div class="cv" style="font-size:18px;">354 489</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">AOV ₴</div><div class="cv" style="font-size:18px;">784</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Bolt промо ₴</div><div class="cv" style="font-size:18px;color:#34D186;">35 264</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Рейтинг</div><div class="cv" style="font-size:18px;"><span style="color:#F59E0B;font-weight:700;">4.52&nbsp;★</span></div></div>
+  </div><table style="font-size:11px;"><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Промо %</td><td class="num"><strong>67%</strong></td><td style="width:30px;"></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Bolt+</td><td class="num"><strong>129 (29%)</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Нових клієнтів</td><td class="num"><strong>200</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час приготув.</td><td class="num"><strong style="color:#34D186;">12.4 хв ✅</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Відгуків</td><td class="num"><strong>99</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час прийому</td><td class="num"><strong style="color:#EF4444;">1.48 хв ⚠️</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Скасувань</td><td class="num"><strong>9</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Партнер промо ₴</td><td class="num"><strong>1 210</strong></td></tr></table></div></div>
+
+  <!-- Lavina Mall -->
+  <div class="loc"><div class="loc-h"><div><div style="font-size:15px;font-weight:800;">Greek House ТРЦ Lavina Mall</div><div style="font-size:11px;color:rgba(255,255,255,.5);">Provider ID: 177107 · Kyiv</div></div><div style="text-align:right;"><div style="font-size:22px;font-weight:800;">301</div><div style="font-size:11px;color:rgba(255,255,255,.4);">доставлено · <span style="color:#EF4444;font-size:11px;font-weight:700;">▼12.0%</span></div></div></div>
+  <div class="loc-b"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+    <div class="card" style="padding:10px;"><div class="cl">Виручка ₴</div><div class="cv" style="font-size:18px;">241 215</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">AOV ₴</div><div class="cv" style="font-size:18px;">801</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Bolt промо ₴</div><div class="cv" style="font-size:18px;color:#34D186;">22 969</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Рейтинг</div><div class="cv" style="font-size:18px;"><span style="color:#F59E0B;font-weight:700;">4.61&nbsp;★</span></div></div>
+  </div><table style="font-size:11px;"><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Промо %</td><td class="num"><strong>69%</strong></td><td style="width:30px;"></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Bolt+</td><td class="num"><strong>99 (33%)</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Нових клієнтів</td><td class="num"><strong>95</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час приготув.</td><td class="num"><strong style="color:#34D186;">7.2 хв ✅</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Відгуків</td><td class="num"><strong>75</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час прийому</td><td class="num"><strong style="color:#34D186;">1.14 хв</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Скасувань</td><td class="num"><strong>7</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Партнер промо ₴</td><td class="num"><strong>737</strong></td></tr></table></div></div>
+
+  <!-- Sky Mall -->
+  <div class="loc"><div class="loc-h"><div><div style="font-size:15px;font-weight:800;">Greek House ТРЦ Sky Mall</div><div style="font-size:11px;color:rgba(255,255,255,.5);">Provider ID: 177104 · Kyiv · ⚠️ Потребує уваги</div></div><div style="text-align:right;"><div style="font-size:22px;font-weight:800;">120</div><div style="font-size:11px;color:rgba(255,255,255,.4);">доставлено · <span style="color:#EF4444;font-size:11px;font-weight:700;">▼50.6%</span></div></div></div>
+  <div class="loc-b"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;">
+    <div class="card" style="padding:10px;"><div class="cl">Виручка ₴</div><div class="cv" style="font-size:18px;">94 508</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">AOV ₴</div><div class="cv" style="font-size:18px;">788</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Bolt промо ₴</div><div class="cv" style="font-size:18px;color:#34D186;">10 168</div></div>
+    <div class="card" style="padding:10px;"><div class="cl">Рейтинг</div><div class="cv" style="font-size:18px;"><span style="color:#EF4444;font-weight:700;">4.19&nbsp;★ ⚠️</span></div></div>
+  </div><table style="font-size:11px;"><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Промо %</td><td class="num"><strong>79%</strong></td><td style="width:30px;"></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Bolt+</td><td class="num"><strong>43 (36%)</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Нових клієнтів</td><td class="num"><strong>50</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час приготув.</td><td class="num"><strong style="color:#34D186;">10.2 хв ✅</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Відгуків</td><td class="num"><strong>37</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Час прийому</td><td class="num"><strong style="color:#EF4444;">1.50 хв ⚠️</strong></td></tr><tr><td style="color:var(--muted);padding:3px 8px 3px 0;">Скасувань</td><td class="num"><strong>1</strong></td><td></td><td style="color:var(--muted);padding:3px 8px 3px 0;">Партнер промо ₴</td><td class="num"><strong>396</strong></td></tr></table>
+  <div style="background:#FFF3CD;border:1px solid #FBBF24;border-radius:8px;padding:10px;margin-top:10px;">
+    <div style="font-size:11px;color:#92400E;line-height:1.7;">⚠️ <strong>Sky Mall — пріоритет для відновлення:</strong> Найнижчий рейтинг (4.19★) + найбільше падіння MoM (▼50.6%). Потребує операційного аудиту та коригування якості.</div>
+  </div>
+  </div></div>
+</div></div>
+
+<div style="text-align:center;padding:24px;font-size:11px;color:#6B7280;background:white;border-top:1px solid #E8E8E8;">
+  Bolt Food Ukraine × Greek House · Партнерська аналітика · Червень 2026<br>
+  <span style="font-size:10px;">Конфіденційно · Account Management Team · Databricks bolt-incentives · 10.07.2026</span>
+</div>
+
+<script>
+// Weekly network chart
+const ctx = document.getElementById('weekChart');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Тиж 1 · 2–8 черв', 'Тиж 2 · 9–15 черв', 'Тиж 3 · 16–22 черв', 'Тиж 4 · 23–29 черв', '30 черв'],
+    datasets: [{
+      label: 'Замовлення',
+      data: [1112, 996, 1091, 1235, 315],
+      backgroundColor: ['#1A237E','#1A237E','#1A237E','#1A237E','#5C6BC0'],
+      borderRadius: 6,
+    }]
+  },
+  options: {responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true,grid:{color:'rgba(0,0,0,.06)'}},x:{grid:{display:false}}}}
+});
+
+// Per-location weekly chart
+const ctx2 = document.getElementById('locWeekChart');
+new Chart(ctx2, {
+  type: 'line',
+  data: {
+    labels: ['Тиж 1', 'Тиж 2', 'Тиж 3', 'Тиж 4'],
+    datasets: [
+      {label:'Smart Plaza', data:[297,331,379,432], borderColor:'#1A237E', backgroundColor:'rgba(26,35,126,.1)', tension:.3, fill:true},
+      {label:'Piramida',    data:[184,141,141,185], borderColor:'#FFC107', tension:.3},
+      {label:'Проспект',    data:[140,115,133,144], borderColor:'#34D186', tension:.3},
+      {label:'Respublika',  data:[131,137,134,133], borderColor:'#5C6BC0', tension:.3},
+      {label:'Retroville',  data:[133,92,114,122],  borderColor:'#F59E0B', tension:.3},
+      {label:'GLOBUS',      data:[113,89,104,113],  borderColor:'#EF4444', tension:.3},
+      {label:'Lavina Mall', data:[82,66,59,79],     borderColor:'#7C3AED', tension:.3},
+      {label:'Sky Mall',    data:[32,25,27,27],     borderColor:'#6B7280', tension:.3},
+    ]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{position:'bottom',labels:{boxWidth:12,font:{size:10}}}},
+    scales:{y:{beginAtZero:true,grid:{color:'rgba(0,0,0,.05)'}},x:{grid:{display:false}}}
+  }
+});
+</script>
+</body></html>
