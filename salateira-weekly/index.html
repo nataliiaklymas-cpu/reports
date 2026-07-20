@@ -15,7 +15,12 @@
   .dot { width:7px; height:7px; border-radius:50%; background:var(--green); }
   h1 { font-size:34px; font-weight:800; letter-spacing:-.5px; margin-bottom:6px; }
   .sub { color:rgba(255,255,255,0.6); font-size:15px; margin-bottom:30px; }
-  .empty { background:rgba(255,255,255,0.04); border:1px dashed rgba(255,255,255,0.18); border-radius:14px; padding:28px 20px; text-align:center; color:rgba(255,255,255,0.55); font-size:15px; }
+  .list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+  .list a { display:flex; align-items:center; justify-content:space-between; gap:16px; text-decoration:none; color:#fff;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:18px 20px; transition:all .18s; }
+  .list a:hover { background:rgba(52,209,134,0.12); border-color:rgba(52,209,134,0.4); transform:translateY(-2px); }
+  .list .t { font-weight:600; font-size:16px; }
+  .list .count { color:rgba(255,255,255,0.4); font-weight:400; font-size:13px; }
   .foot { margin-top:36px; font-size:12px; color:rgba(255,255,255,0.35); }
 </style>
 </head>
@@ -23,8 +28,10 @@
   <div class="wrap">
     <div class="badge"><span class="dot"></span> Bolt Food · Weekly Reports</div>
     <h1>Salateira — Weekly Reports</h1>
-    <p class="sub">Щотижневі звіти</p>
-    <div class="empty">Звіти зʼявляться тут найближчим часом.</div>
+    <p class="sub">Щотижневі звіти по локаціях</p>
+    <ul class="list">
+      <li><a href="2026-07-13_19/"><span class="t">13–19 липня 2026</span><span class="count">12 локацій</span></a></li>
+    </ul>
     <div class="foot">Bolt Food · конфіденційно для партнера</div>
   </div>
 </body>
