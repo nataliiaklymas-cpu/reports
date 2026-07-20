@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Огляд — усі мережі</title>
-  <meta name="robots" content="noindex, nofollow">
-  <style>
-    body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 760px; margin: 60px auto; padding: 0 20px; color: #1a1a1a; }
-    h1 { font-size: 28px; }
-    p.note { color: #888; font-size: 14px; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 12px 0; }
-    a { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; background: #f4f4f5; border-radius: 10px; text-decoration: none; color: #0969da; font-weight: 600; transition: background .15s; }
-    a:hover { background: #e6e6e9; }
-    a span.count { color: #888; font-weight: 400; font-size: 13px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Огляд — усі мережі</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root { --green:#34D186; --amber:#f0b429; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #fff; min-height: 100vh; padding: 56px 24px;
+    background: radial-gradient(1000px 700px at 15% 5%, #1b6b47 0%, transparent 58%), radial-gradient(900px 650px at 95% 95%, #0e3d2a 0%, transparent 55%), linear-gradient(135deg, #0c1f16 0%, #0a1712 100%); }
+  .wrap { max-width: 760px; margin: 0 auto; animation: rise .6s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes rise { from { opacity:0; transform: translateY(20px) } to { opacity:1; transform:none } }
+  .badge { display:inline-flex; align-items:center; gap:8px; background:rgba(240,180,41,0.15); color:var(--amber); border:1px solid rgba(240,180,41,0.35); padding:6px 13px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.3px; margin-bottom:18px; }
+  h1 { font-size:34px; font-weight:800; letter-spacing:-.5px; margin-bottom:6px; }
+  .sub { color:rgba(255,255,255,0.6); font-size:15px; margin-bottom:30px; }
+  .list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+  .list a { display:flex; align-items:center; justify-content:space-between; gap:16px; text-decoration:none; color:#fff;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:18px 20px; transition:all .18s; }
+  .list a:hover { background:rgba(52,209,134,0.12); border-color:rgba(52,209,134,0.4); transform:translateY(-2px); }
+  .list .t { font-weight:600; font-size:16px; }
+  .list .count { color:rgba(255,255,255,0.5); font-weight:400; font-size:13px; }
+  .foot { margin-top:36px; font-size:12px; color:rgba(255,255,255,0.35); }
+</style>
 </head>
 <body>
-  <h1>Огляд — усі мережі</h1>
-  <p class="note">Службова сторінка для внутрішнього користування. Не поширювати партнерам.</p>
-  <ul>
-    <li><a href="greek-house/">Greek House <span class="count">2 звіти</span></a></li>
-    <li><a href="salateira/">Salateira <span class="count">1 звіт</span></a></li>
-    <li><a href="muza/">Муза Євгена Клопотенка <span class="count">1 звіт</span></a></li>
-    <li><a href="chornomorka/">Чорноморка <span class="count">1 звіт</span></a></li>
-    <li><a href="internal/">Internal (службове) <span class="count">2 файли</span></a></li>
-  </ul>
+  <div class="wrap">
+    <div class="badge">🔒 Службова сторінка</div>
+    <h1>Огляд — усі мережі</h1>
+    <p class="sub">Для внутрішнього користування. Не поширювати партнерам.</p>
+    <ul class="list">
+      <li><a href="greek-house/"><span class="t">Greek House</span><span class="count">2 звіти</span></a></li>
+      <li><a href="salateira/"><span class="t">Salateira</span><span class="count">1 звіт</span></a></li>
+      <li><a href="muza/"><span class="t">Муза Євгена Клопотенка</span><span class="count">1 звіт</span></a></li>
+      <li><a href="chornomorka/"><span class="t">Чорноморка</span><span class="count">1 звіт</span></a></li>
+      <li><a href="internal/"><span class="t">Internal (службове)</span><span class="count">2 файли</span></a></li>
+    </ul>
+    <div class="foot">Bolt Food · внутрішнє</div>
+  </div>
 </body>
 </html>
