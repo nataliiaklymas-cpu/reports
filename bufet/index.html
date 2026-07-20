@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bufet — Reports</title>
+<style>
+  :root { --green:#34D186; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #fff; min-height: 100vh; padding: 56px 24px;
+    background: radial-gradient(1000px 700px at 15% 5%, #1b6b47 0%, transparent 58%), radial-gradient(900px 650px at 95% 95%, #0e3d2a 0%, transparent 55%), linear-gradient(135deg, #0c1f16 0%, #0a1712 100%); }
+  .wrap { max-width: 720px; margin: 0 auto; animation: rise .6s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes rise { from { opacity:0; transform: translateY(20px) } to { opacity:1; transform:none } }
+  .badge { display:inline-flex; align-items:center; gap:8px; background:rgba(52,209,134,0.15); color:var(--green); border:1px solid rgba(52,209,134,0.35); padding:6px 13px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.3px; margin-bottom:18px; }
+  .dot { width:7px; height:7px; border-radius:50%; background:var(--green); }
+  h1 { font-size:34px; font-weight:800; letter-spacing:-.5px; margin-bottom:6px; }
+  .sub { color:rgba(255,255,255,0.6); font-size:15px; margin-bottom:30px; }
+  .empty { background:rgba(255,255,255,0.04); border:1px dashed rgba(255,255,255,0.18); border-radius:14px; padding:28px 20px; text-align:center; color:rgba(255,255,255,0.55); font-size:15px; }
+  .foot { margin-top:36px; font-size:12px; color:rgba(255,255,255,0.35); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="badge"><span class="dot"></span> Bolt Food · Partner Reports</div>
+    <h1>Bufet</h1>
+    <p class="sub">Звіти та маркетингові плани</p>
+    <div class="empty">Звіти зʼявляться тут найближчим часом.</div>
+    <div class="foot">Bolt Food · конфіденційно для партнера</div>
+  </div>
+</body>
+</html>
