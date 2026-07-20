@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reports Portal</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root { --green:#34D186; --green-d:#1fae6b; --ink:#0f1a14; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #fff;
+    background: radial-gradient(1200px 800px at 20% 10%, #1b6b47 0%, transparent 60%),
+                radial-gradient(1000px 700px at 90% 90%, #0e3d2a 0%, transparent 55%),
+                linear-gradient(135deg, #0c1f16 0%, #0a1712 100%);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 24px; overflow: hidden; position: relative;
+  }
+  .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .35; z-index: 0; }
+  .blob.a { width: 380px; height: 380px; background: var(--green); top: -80px; left: -60px; animation: float1 14s ease-in-out infinite; }
+  .blob.b { width: 300px; height: 300px; background: #29a3ff; bottom: -60px; right: -40px; animation: float2 16s ease-in-out infinite; }
+  @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,30px)} }
+  @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,-40px)} }
+  .card {
+    position: relative; z-index: 1; text-align: center; max-width: 560px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px; padding: 56px 40px; backdrop-filter: blur(14px);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    animation: rise .7s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(24px) } to { opacity: 1; transform: none } }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(52,209,134,0.15); color: var(--green);
+    border: 1px solid rgba(52,209,134,0.35);
+    padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: .3px;
+    margin-bottom: 26px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(52,209,134,.7); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(52,209,134,.6)} 70%{box-shadow:0 0 0 10px rgba(52,209,134,0)} 100%{box-shadow:0 0 0 0 rgba(52,209,134,0)} }
+  h1 { font-size: 44px; line-height: 1.1; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+  h1 .accent { background: linear-gradient(90deg, var(--green), #7ef0b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  p.sub { font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.72); margin-bottom: 30px; }
+  .lock { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 12px 18px; border-radius: 12px; }
+  .foot { margin-top: 34px; font-size: 12px; color: rgba(255,255,255,0.4); }
+  @media (max-width: 560px){ .card{padding:40px 24px} h1{font-size:34px} }
+</style>
+</head>
+<body>
+  <div class="blob a"></div>
+  <div class="blob b"></div>
+  <div class="card">
+    <div class="badge"><span class="dot"></span> Bolt Food · Partner Reports</div>
+    <h1>Reports <span class="accent">Portal</span></h1>
+    <p class="sub">Аналітичні звіти та маркетингові плани для партнерів Bolt Food.</p>
+    <div class="lock">
+      🔒 Доступ до звітів — за персональним посиланням
+    </div>
+    <div class="foot">Якщо ви партнер і не маєте посилання — зверніться до свого менеджера Bolt Food.</div>
+  </div>
+</body>
+</html>
