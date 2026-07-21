@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<!-- saved from url=(0206)file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&%20QBRs%20%202/greek_house_apr_2026_report.html -->
+<html lang="uk"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bolt Food × Greek House — Аналітика Бер–Кві 2026</title>
+<style>
+:root{--green:#34D186;--green-dark:#28a96d;--dark:#1A1A1A;--gray:#F5F5F5;--border:#E8E8E8;--muted:#6B7280;--red:#EF4444;--orange:#F59E0B;--blue:#3B82F6;--shadow:0 2px 12px rgba(0,0,0,.07);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#F8F9FA;color:#1A1A1A;line-height:1.6;margin-left:230px;}
+#sidebar{position:fixed;top:0;left:0;bottom:0;width:230px;background:#111;display:flex;flex-direction:column;z-index:1000;overflow-y:auto;}
+.sb-logos{padding:16px 14px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:8px;}
+.sb-logo{display:flex;align-items:center;gap:9px;border-radius:8px;padding:8px 12px;}
+.sb-logo-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.sb-logo-text b{display:block;font-size:13px;font-weight:800;color:white;}
+.sb-logo-text span{font-size:10px;color:rgba(255,255,255,.4);}
+.sb-partner-label{text-align:center;font-size:9px;color:rgba(255,255,255,.25);letter-spacing:1px;text-transform:uppercase;padding:4px 0;}
+.sb-nav{padding:10px 8px;flex:1;}
+.sb-nav a{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:7px;font-size:12px;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;margin-bottom:2px;transition:background .15s,color .15s;}
+.sb-nav a:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.9);}
+.sb-nav a.active{background:rgba(52,209,134,.14);color:var(--green);font-weight:600;}
+.sb-section-label{font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.2);padding:10px 12px 4px;}
+.sb-footer{padding:10px 14px;border-top:1px solid rgba(255,255,255,.07);font-size:10px;color:rgba(255,255,255,.2);text-align:center;}
+.sb-footer span{color:var(--green);font-weight:700;}
+@media(max-width:900px){body{margin-left:0;}#sidebar{display:none;}}
+.hero{background:linear-gradient(135deg,#1A1A1A 0%,#2D2D2D 100%);color:white;padding:52px 48px 44px;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(52,209,134,.15) 0%,transparent 70%);border-radius:50%;}
+.hero-badge{display:inline-block;background:var(--green);color:#000;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:4px;margin-bottom:16px;}
+.hero h1{font-size:36px;font-weight:800;line-height:1.15;margin-bottom:10px;}
+.hero h1 span{color:var(--green);}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:26px;}
+.hero-kpis{display:flex;gap:26px;flex-wrap:wrap;}
+.hero-kpi{font-size:12px;color:rgba(255,255,255,.45);}
+.hero-kpi strong{display:block;font-size:22px;font-weight:700;color:white;margin-bottom:1px;}
+.container{max-width:1200px;margin:0 auto;padding:0 28px;}
+.section{padding:40px 0;}
+.section-title{font-size:22px;font-weight:700;margin-bottom:6px;}
+.section-sub{font-size:13px;color:var(--muted);margin-bottom:22px;}
+.divider{height:1px;background:var(--border);margin:0 0 26px;}
+.card{background:white;border-radius:12px;padding:20px;box-shadow:var(--shadow);}
+.card-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px;}
+.card-value{font-size:26px;font-weight:800;margin-bottom:2px;}
+.card-delta{font-size:12px;color:var(--muted);}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+@media(max-width:900px){.grid-4,.grid-3,.grid-2{grid-template-columns:1fr 1fr;}}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.tbl th{background:#F8F9FA;padding:9px 12px;text-align:left;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;border-bottom:2px solid var(--border);}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--border);}
+.tbl tr:hover td{background:#FAFAFA;}
+.tbl td.num{text-align:right;}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700;}
+.badge-green{background:rgba(52,209,134,.15);color:#16a057;}
+.badge-orange{background:rgba(245,158,11,.15);color:#b46309;}
+.badge-red{background:rgba(239,68,68,.15);color:#dc2626;}
+.review-card{background:white;border-radius:10px;padding:16px;box-shadow:var(--shadow);border-left:4px solid var(--green);}
+.review-card.neg{border-left-color:var(--red);}
+.review-stars{color:#F59E0B;font-size:14px;margin-bottom:6px;}
+.review-text{font-size:13px;line-height:1.5;color:#374151;}
+.review-meta{font-size:11px;color:var(--muted);margin-top:6px;}
+.loc-card{background:white;border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:18px;}
+.loc-header{background:linear-gradient(135deg,#1A1A1A,#2D2D2D);color:white;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;}
+.loc-body{padding:18px;}
+.progress-bar{height:6px;background:#E8E8E8;border-radius:3px;overflow:hidden;margin-top:3px;}
+.progress-fill{height:100%;border-radius:3px;}
+.tag{display:inline-block;background:rgba(52,209,134,.15);color:var(--green);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;margin:3px 2px;}
+.sponsored-card{background:linear-gradient(135deg,#1A1A1A,#2A2A3A);color:white;border-radius:16px;padding:28px;}
+.sp-step{background:rgba(255,255,255,.05);border-radius:10px;padding:14px;border:1px solid rgba(255,255,255,.08);}
+.sp-step-num{width:26px;height:26px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000;margin-bottom:8px;}
+</style>
+</head>
+<body>
+<nav id="sidebar">
+  <div class="sb-logos">
+    <div class="sb-partner-label">Партнерський звіт</div>
+    <div class="sb-logo" style="background:rgba(52,209,134,.1);border:1px solid rgba(52,209,134,.25);">
+      <div class="sb-logo-icon" style="background:var(--green);">⚡</div>
+      <div class="sb-logo-text"><b>Bolt Food</b><span>Ukraine</span></div>
+    </div>
+    <div class="sb-logo" style="background:rgba(0,150,200,.1);border:1px solid rgba(0,150,200,.25);">
+      <div class="sb-logo-icon" style="background:#0096C8;font-size:13px;font-weight:900;color:white;">G</div>
+      <div class="sb-logo-text"><b>Greek House</b><span>Ukraine · 8 локацій</span></div>
+    </div>
+  </div>
+  <div class="sb-nav">
+    <div class="sb-section-label">Навігація</div>
+    <a href="file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&amp;%20QBRs%20%202/greek_house_apr_2026_report.html#hero" class="active">🏠 Головна</a>
+    <a href="file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&amp;%20QBRs%20%202/greek_house_apr_2026_report.html#network" class="">📊 Мережа</a>
+    <a href="file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&amp;%20QBRs%20%202/greek_house_apr_2026_report.html#locations" class="">📍 Локації</a>
+    <a href="file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&amp;%20QBRs%20%202/greek_house_apr_2026_report.html#bolt-plus" class="">⚡ Bolt+</a>
+    <a href="file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&amp;%20QBRs%20%202/greek_house_apr_2026_report.html#promo" class="">🎯 Промо</a>
+    <a href="file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&amp;%20QBRs%20%202/greek_house_apr_2026_report.html#menu" class="">🥙 Топ меню</a>
+    <a href="file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&amp;%20QBRs%20%202/greek_house_apr_2026_report.html#ops" class="">⚙️ Операційні</a>
+    <a href="file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&amp;%20QBRs%20%202/greek_house_apr_2026_report.html#ratings" class="">⭐ Рейтинг</a>
+    <a href="file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&amp;%20QBRs%20%202/greek_house_apr_2026_report.html#reviews" class="">💬 Відгуки</a>
+    <a href="file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&amp;%20QBRs%20%202/greek_house_apr_2026_report.html#sponsored" class="">🚀 Sponsored Listing</a>
+  </div>
+  <div class="sb-footer">Бер–Кві 2026 · <span>Bolt Food</span></div>
+</nav>
+<div class="hero" id="hero">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:10px;background:rgba(52,209,134,.12);border:1.5px solid rgba(52,209,134,.3);border-radius:10px;padding:10px 16px;">
+        <div style="width:34px;height:34px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;">⚡</div>
+        <div style="line-height:1.2;"><div style="font-size:14px;font-weight:800;color:white;">Bolt Food</div><div style="font-size:11px;color:rgba(255,255,255,.4);">Ukraine</div></div>
+      </div>
+      <div style="font-size:20px;color:rgba(255,255,255,.2);">×</div>
+      <div style="display:flex;align-items:center;gap:10px;background:rgba(0,150,200,.12);border:1.5px solid rgba(0,150,200,.3);border-radius:10px;padding:10px 16px;">
+        <div style="width:34px;height:34px;background:#0096C8;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900;color:white;">G</div>
+        <div style="line-height:1.2;"><div style="font-size:14px;font-weight:800;color:white;">Greek House</div><div style="font-size:11px;color:rgba(255,255,255,.4);">Ukraine Network · 8 локацій</div></div>
+      </div>
+      <div style="margin-left:auto;"><span style="font-size:10px;color:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:4px 10px;letter-spacing:1px;">ПАРТНЕРСЬКА АНАЛІТИКА</span></div>
+    </div>
+    <div class="hero-badge">Березень — 27 квітня 2026</div>
+    <h1>Greek House × <span>Bolt Food</span><br>Performance Review</h1>
+    <p class="hero-sub">Аналітика мережі та операційні показники · 8 локацій Kyiv</p>
+    <div class="hero-kpis">
+      <div class="hero-kpi"><strong>3&nbsp;307&nbsp;+&nbsp;3&nbsp;145</strong>Замовлень Бер + Кві</div>
+      <div class="hero-kpi"><strong>4&nbsp;753&nbsp;095&nbsp;₴</strong>Виручка (до знижок)</div>
+      <div class="hero-kpi"><strong>8</strong>Активних локацій</div>
+      <div class="hero-kpi"><strong>737&nbsp;₴</strong>Середній чек (30д)</div>
+      <div class="hero-kpi"><strong>4.69&nbsp;★</strong>Сер. рейтинг (30д)</div>
+    </div>
+  </div>
+</div>
+<div class="section" style="background:white;" id="network">
+<div class="container">
+  <div class="section-title">📊 Мережа Greek House — Загальний огляд</div>
+  <div class="section-sub">Порівняння березень 2026 vs квітень 2026 (27 днів)</div>
+  <div class="divider"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px;">
+    <div style="background:#F8F9FA;border-radius:14px;padding:22px;border:2px solid #E8E8E8;">
+      <div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;">📅 Березень 2026 · 31 день</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div><div style="font-size:10px;color:var(--muted);">Замовлень</div><div style="font-size:24px;font-weight:800;">3&nbsp;307</div></div>
+        <div><div style="font-size:10px;color:var(--muted);">Виручка до знижок</div><div style="font-size:17px;font-weight:800;">2&nbsp;430&nbsp;549&nbsp;₴</div></div>
+        <div><div style="font-size:10px;color:var(--muted);">Виручка після знижок</div><div style="font-size:17px;font-weight:800;">2&nbsp;165&nbsp;673&nbsp;₴</div></div>
+        <div><div style="font-size:10px;color:var(--muted);">Середній чек</div><div style="font-size:17px;font-weight:800;">735&nbsp;₴</div></div>
+        <div><div style="font-size:10px;color:var(--muted);">Активних клієнтів</div><div style="font-size:17px;font-weight:800;">2&nbsp;345</div></div>
+        <div><div style="font-size:10px;color:var(--muted);">Нових клієнтів</div><div style="font-size:17px;font-weight:800;">1&nbsp;865</div></div>
+      </div>
+    </div>
+    <div style="background:#F0FDF8;border-radius:14px;padding:22px;border:2px solid rgba(52,209,134,.3);">
+      <div style="font-size:12px;font-weight:700;color:var(--green-dark);text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px;">📅 Квітень 2026 · 27 днів &nbsp;<span style="color:#34D186;font-size:11px;">▲9.2%</span>&nbsp;на день</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div><div style="font-size:10px;color:var(--muted);">Замовлень</div><div style="font-size:24px;font-weight:800;">3&nbsp;145</div></div>
+        <div><div style="font-size:10px;color:var(--muted);">Виручка до знижок</div><div style="font-size:17px;font-weight:800;">2&nbsp;322&nbsp;546&nbsp;₴</div></div>
+        <div><div style="font-size:10px;color:var(--muted);">Виручка після знижок</div><div style="font-size:17px;font-weight:800;">2&nbsp;071&nbsp;684&nbsp;₴</div></div>
+        <div><div style="font-size:10px;color:var(--muted);">Середній чек</div><div style="font-size:17px;font-weight:800;">738&nbsp;₴</div></div>
+        <div><div style="font-size:10px;color:var(--muted);">Активних клієнтів</div><div style="font-size:17px;font-weight:800;">2&nbsp;391</div></div>
+        <div><div style="font-size:10px;color:var(--muted);">Нових клієнтів</div><div style="font-size:17px;font-weight:800;">1&nbsp;619</div></div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:15px;font-weight:700;margin-bottom:12px;">Зведена таблиця по локаціях</div>
+  <div style="overflow-x:auto;">
+  <table class="tbl"><thead><tr>
+    <th>Локація</th><th class="num">Бер. замовл.</th><th class="num">Кві. замовл.</th><th class="num">Динаміка</th>
+    <th class="num">Бер. виручка</th><th class="num">Кві. виручка</th><th class="num">AOV Кві.</th>
+    <th class="num">Нові Бер.</th><th class="num">Нові Кві.</th>
+  </tr></thead><tbody>
+<tr>
+      <td><strong>Greek House ТРЦ Smart Plaza</strong></td>
+      <td class="num">844</td>
+      <td class="num">788</td>
+      <td class="num"><span style="color:#EF4444;font-size:11px;">▼6.6%</span></td>
+      <td class="num">663&nbsp;058&nbsp;₴</td>
+      <td class="num">606&nbsp;398&nbsp;₴</td>
+      <td class="num">770&nbsp;₴</td>
+      <td class="num">495</td>
+      <td class="num">400</td>
+    </tr><tr>
+      <td><strong>Greek House ТРЦ Piramida</strong></td>
+      <td class="num">557</td>
+      <td class="num">491</td>
+      <td class="num"><span style="color:#EF4444;font-size:11px;">▼11.8%</span></td>
+      <td class="num">386&nbsp;716&nbsp;₴</td>
+      <td class="num">349&nbsp;471&nbsp;₴</td>
+      <td class="num">712&nbsp;₴</td>
+      <td class="num">302</td>
+      <td class="num">230</td>
+    </tr><tr>
+      <td><strong>Greek House ТРК Проспект</strong></td>
+      <td class="num">435</td>
+      <td class="num">418</td>
+      <td class="num"><span style="color:#EF4444;font-size:11px;">▼3.9%</span></td>
+      <td class="num">304&nbsp;228&nbsp;₴</td>
+      <td class="num">301&nbsp;280&nbsp;₴</td>
+      <td class="num">721&nbsp;₴</td>
+      <td class="num">258</td>
+      <td class="num">215</td>
+    </tr><tr>
+      <td><strong>Greek House ТРЦ Respublika Park</strong></td>
+      <td class="num">412</td>
+      <td class="num">394</td>
+      <td class="num"><span style="color:#EF4444;font-size:11px;">▼4.4%</span></td>
+      <td class="num">308&nbsp;478&nbsp;₴</td>
+      <td class="num">301&nbsp;546&nbsp;₴</td>
+      <td class="num">765&nbsp;₴</td>
+      <td class="num">225</td>
+      <td class="num">212</td>
+    </tr><tr>
+      <td><strong>Greek House ТЦ GLOBUS</strong></td>
+      <td class="num">310</td>
+      <td class="num">357</td>
+      <td class="num"><span style="color:#34D186;font-size:11px;">▲15.2%</span></td>
+      <td class="num">219&nbsp;363&nbsp;₴</td>
+      <td class="num">244&nbsp;361&nbsp;₴</td>
+      <td class="num">684&nbsp;₴</td>
+      <td class="num">197</td>
+      <td class="num">211</td>
+    </tr><tr>
+      <td><strong>Greek House ТРЦ Retroville</strong></td>
+      <td class="num">371</td>
+      <td class="num">337</td>
+      <td class="num"><span style="color:#EF4444;font-size:11px;">▼9.2%</span></td>
+      <td class="num">267&nbsp;614&nbsp;₴</td>
+      <td class="num">243&nbsp;139&nbsp;₴</td>
+      <td class="num">721&nbsp;₴</td>
+      <td class="num">187</td>
+      <td class="num">156</td>
+    </tr><tr>
+      <td><strong>Greek House ТРЦ Lavina Mall</strong></td>
+      <td class="num">217</td>
+      <td class="num">207</td>
+      <td class="num"><span style="color:#EF4444;font-size:11px;">▼4.6%</span></td>
+      <td class="num">152&nbsp;184&nbsp;₴</td>
+      <td class="num">153&nbsp;787&nbsp;₴</td>
+      <td class="num">743&nbsp;₴</td>
+      <td class="num">103</td>
+      <td class="num">99</td>
+    </tr><tr>
+      <td><strong>Greek House ТРЦ Sky Mall</strong></td>
+      <td class="num">161</td>
+      <td class="num">153</td>
+      <td class="num"><span style="color:#EF4444;font-size:11px;">▼5.0%</span></td>
+      <td class="num">128&nbsp;908&nbsp;₴</td>
+      <td class="num">122&nbsp;564&nbsp;₴</td>
+      <td class="num">801&nbsp;₴</td>
+      <td class="num">98</td>
+      <td class="num">96</td>
+    </tr></tbody></table></div></div></div>
+<div class="section" style="background:var(--gray);" id="locations">
+<div class="container">
+  <div class="section-title">📍 Аналітика по локаціях</div>
+  <div class="section-sub">Березень та квітень 2026 · сильні сторони та зони росту</div>
+  <div class="divider"></div>
+<div class="loc-card">
+  <div class="loc-header">
+    <div>
+      <div style="font-size:15px;font-weight:700;">🥙 Greek House ТРЦ Smart Plaza</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">ID: 177094 · Kyiv</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:22px;font-weight:800;color:var(--green);">4.68 ★</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">Рейтинг (30д)</div>
+    </div>
+  </div>
+  <div class="loc-body">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;">
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">844</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F0FDF8;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">788</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Кві. <span style="color:#EF4444;font-size:11px;">▼6.6%</span></div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">663&nbsp;058 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">606&nbsp;398 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">770 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Сер. чек Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">1.36</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл./кл. 30д</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">495</div><div style="font-size:9px;color:var(--muted);">Нових Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">400</div><div style="font-size:9px;color:var(--muted);">Нових Кві.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">600</div><div style="font-size:9px;color:var(--muted);">Активних Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">591</div><div style="font-size:9px;color:var(--muted);">Активних Кві.</div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
+        <span>Доступність платформи (30д)</span>
+        <span style="font-weight:700;color:#F59E0B;">92.8%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:92.8%;background:#F59E0B;"></div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;">🏆 Топ страви (30д)</div>
+      <span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Greek Chicken · 293</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">CLASSIC GYROS · 290</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Legionnaire Potatoes · 265</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Chicken Souvlaki · 233</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:#F0FDF8;border-radius:10px;padding:12px;border-left:4px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:5px;">✅ Сильні сторони</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Лідер мережі за об'ємом замовлень та виручкою. Найбільша база активних клієнтів (600+ на місяць). Найвище залучення до Bolt+ (217 замовлень за 30 днів). Широка аудиторія, стабільне завантаження.</div>
+      </div>
+      <div style="background:#FFF5F5;border-radius:10px;padding:12px;border-left:4px solid var(--red);">
+        <div style="font-size:11px;font-weight:700;color:#DC2626;margin-bottom:5px;">⚠️ Зони росту</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Найбільше негативних відгуків в абсолютному значенні (13 низьких оцінок). Скарги на неповні замовлення та якість пакування. Час доставки 37.6 хв — є простір для покращення.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loc-card">
+  <div class="loc-header">
+    <div>
+      <div style="font-size:15px;font-weight:700;">🥙 Greek House ТРЦ Piramida</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">ID: 177071 · Kyiv</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:22px;font-weight:800;color:var(--green);">4.86 ★</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">Рейтинг (30д)</div>
+    </div>
+  </div>
+  <div class="loc-body">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;">
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">557</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F0FDF8;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">491</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Кві. <span style="color:#EF4444;font-size:11px;">▼11.8%</span></div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">386&nbsp;716 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">349&nbsp;471 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">712 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Сер. чек Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">1.38</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл./кл. 30д</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">302</div><div style="font-size:9px;color:var(--muted);">Нових Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">230</div><div style="font-size:9px;color:var(--muted);">Нових Кві.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">395</div><div style="font-size:9px;color:var(--muted);">Активних Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">370</div><div style="font-size:9px;color:var(--muted);">Активних Кві.</div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
+        <span>Доступність платформи (30д)</span>
+        <span style="font-weight:700;color:#EF4444;">88.6%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:88.6%;background:#EF4444;"></div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;">🏆 Топ страви (30д)</div>
+      <span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Greek Chicken · 181</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Legionnaire Potatoes · 145</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Large Chicken Menu · 94</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Classic Gyros · 84</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:#F0FDF8;border-radius:10px;padding:12px;border-left:4px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:5px;">✅ Сильні сторони</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Найвищий середній рейтинг серед усіх локацій (4.86 зірок). Найшвидший загальний час доставки в мережі (32.8 хв). Добрий ріст активних користувачів та лояльна аудиторія.</div>
+      </div>
+      <div style="background:#FFF5F5;border-radius:10px;padding:12px;border-left:4px solid var(--red);">
+        <div style="font-size:11px;font-weight:700;color:#DC2626;margin-bottom:5px;">⚠️ Зони росту</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Найнижча доступність у мережі (88.6%) — критична зона уваги. Скорочення замовлень квітень vs березень (-12%). Час приготування 11.1 хв — вище середнього по мережі.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loc-card">
+  <div class="loc-header">
+    <div>
+      <div style="font-size:15px;font-weight:700;">🥙 Greek House ТРК Проспект</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">ID: 177065 · Kyiv</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:22px;font-weight:800;color:var(--green);">4.57 ★</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">Рейтинг (30д)</div>
+    </div>
+  </div>
+  <div class="loc-body">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;">
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">435</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F0FDF8;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">418</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Кві. <span style="color:#EF4444;font-size:11px;">▼3.9%</span></div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">304&nbsp;228 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">301&nbsp;280 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">721 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Сер. чек Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">1.35</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл./кл. 30д</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">258</div><div style="font-size:9px;color:var(--muted);">Нових Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">215</div><div style="font-size:9px;color:var(--muted);">Нових Кві.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">329</div><div style="font-size:9px;color:var(--muted);">Активних Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">319</div><div style="font-size:9px;color:var(--muted);">Активних Кві.</div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
+        <span>Доступність платформи (30д)</span>
+        <span style="font-weight:700;color:#F59E0B;">94.3%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:94.3%;background:#F59E0B;"></div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;">🏆 Топ страви (30д)</div>
+      <span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Greek Chicken · 134</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Classic Gyro · 93</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Legionnaire Potatoes · 89</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Chicken Souvlaki · 86</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:#F0FDF8;border-radius:10px;padding:12px;border-left:4px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:5px;">✅ Сильні сторони</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Стабільна локація з рівномірним потоком замовлень. Добра конверсія та база постійних клієнтів. Час доставки 34 хв — один з найкращих показників у мережі.</div>
+      </div>
+      <div style="background:#FFF5F5;border-radius:10px;padding:12px;border-left:4px solid var(--red);">
+        <div style="font-size:11px;font-weight:700;color:#DC2626;margin-bottom:5px;">⚠️ Зони росту</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Одиничний відгук про харчове отруєння потребує уваги до стандартів якості. Скарги на маленькі порції. Відносно невисокий % позитивних оцінок порівняно із загальною кількістю.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loc-card">
+  <div class="loc-header">
+    <div>
+      <div style="font-size:15px;font-weight:700;">🥙 Greek House ТРЦ Respublika Park</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">ID: 177056 · Kyiv</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:22px;font-weight:800;color:var(--green);">4.72 ★</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">Рейтинг (30д)</div>
+    </div>
+  </div>
+  <div class="loc-body">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;">
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">412</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F0FDF8;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">394</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Кві. <span style="color:#EF4444;font-size:11px;">▼4.4%</span></div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">308&nbsp;478 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">301&nbsp;546 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">765 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Сер. чек Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">1.34</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл./кл. 30д</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">225</div><div style="font-size:9px;color:var(--muted);">Нових Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">212</div><div style="font-size:9px;color:var(--muted);">Нових Кві.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">275</div><div style="font-size:9px;color:var(--muted);">Активних Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">306</div><div style="font-size:9px;color:var(--muted);">Активних Кві.</div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
+        <span>Доступність платформи (30д)</span>
+        <span style="font-weight:700;color:#34D186;">95.4%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:95.4%;background:#34D186;"></div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;">🏆 Топ страви (30д)</div>
+      <span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Legionnaire Potatoes · 132</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Greek Chicken · 109</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Chicken Souvlaki · 109</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Classic Gyro · 95</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:#F0FDF8;border-radius:10px;padding:12px;border-left:4px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:5px;">✅ Сильні сторони</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Активна промо-участь — один з лідерів за кількістю промо-замовлень (317 за 30 днів). Хороший AOV (765 грн). Рейтинг 4.72 зірки.</div>
+      </div>
+      <div style="background:#FFF5F5;border-radius:10px;padding:12px;border-left:4px solid var(--red);">
+        <div style="font-size:11px;font-weight:700;color:#DC2626;margin-bottom:5px;">⚠️ Зони росту</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Повторні скарги на холодну їжу — системна проблема пакування або ізоляції. Запит від клієнтів на маркування пакетів при декількох різних позиціях.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loc-card">
+  <div class="loc-header">
+    <div>
+      <div style="font-size:15px;font-weight:700;">🥙 Greek House ТЦ GLOBUS</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">ID: 177069 · Kyiv</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:22px;font-weight:800;color:var(--green);">4.41 ★</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">Рейтинг (30д)</div>
+    </div>
+  </div>
+  <div class="loc-body">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;">
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">310</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F0FDF8;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">357</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Кві. <span style="color:#34D186;font-size:11px;">▲15.2%</span></div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">219&nbsp;363 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">244&nbsp;361 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">684 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Сер. чек Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">1.32</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл./кл. 30д</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">197</div><div style="font-size:9px;color:var(--muted);">Нових Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">211</div><div style="font-size:9px;color:var(--muted);">Нових Кві.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">235</div><div style="font-size:9px;color:var(--muted);">Активних Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">281</div><div style="font-size:9px;color:var(--muted);">Активних Кві.</div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
+        <span>Доступність платформи (30д)</span>
+        <span style="font-weight:700;color:#F59E0B;">93.5%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:93.5%;background:#F59E0B;"></div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;">🏆 Топ страви (30д)</div>
+      <span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Legionnaire Potatoes · 102</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Greek Chicken · 93</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Classic Gyro · 91</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Large Chicken Menu · 66</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:#F0FDF8;border-radius:10px;padding:12px;border-left:4px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:5px;">✅ Сильні сторони</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Динамічне зростання: +15% замовлень квітень vs березень. Хороший приріст нових користувачів (211 нових у квітні). Швидкий час приготування (9.2 хв).</div>
+      </div>
+      <div style="background:#FFF5F5;border-radius:10px;padding:12px;border-left:4px solid var(--red);">
+        <div style="font-size:11px;font-weight:700;color:#DC2626;margin-bottom:5px;">⚠️ Зони росту</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Найнижчий середній рейтинг серед усіх локацій (4.41 зірки). Повторні скарги на холодну їжу та відсутність термосумок у кур'єрів. Найдовший час доставки в мережі (38.5 хв).</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loc-card">
+  <div class="loc-header">
+    <div>
+      <div style="font-size:15px;font-weight:700;">🥙 Greek House ТРЦ Retroville</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">ID: 177074 · Kyiv</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:22px;font-weight:800;color:var(--green);">4.73 ★</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">Рейтинг (30д)</div>
+    </div>
+  </div>
+  <div class="loc-body">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;">
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">371</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F0FDF8;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">337</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Кві. <span style="color:#EF4444;font-size:11px;">▼9.2%</span></div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">267&nbsp;614 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">243&nbsp;139 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">721 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Сер. чек Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">1.4</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл./кл. 30д</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">187</div><div style="font-size:9px;color:var(--muted);">Нових Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">156</div><div style="font-size:9px;color:var(--muted);">Нових Кві.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">260</div><div style="font-size:9px;color:var(--muted);">Активних Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">247</div><div style="font-size:9px;color:var(--muted);">Активних Кві.</div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
+        <span>Доступність платформи (30д)</span>
+        <span style="font-weight:700;color:#F59E0B;">94.5%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:94.5%;background:#F59E0B;"></div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;">🏆 Топ страви (30д)</div>
+      <span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Greek Chicken · 147</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Chicken Souvlaki · 93</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Legionnaire Potatoes · 84</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Classic Gyro · 76</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:#F0FDF8;border-radius:10px;padding:12px;border-left:4px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:5px;">✅ Сильні сторони</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Найкращий показник частоти замовлень (1.40 замовл./клієнта) — найвища лояльність аудиторії в мережі. Найшвидший час приготування (9.3 хв) та загальний час доставки (32.5 хв). Рейтинг 4.73 зірки.</div>
+      </div>
+      <div style="background:#FFF5F5;border-radius:10px;padding:12px;border-left:4px solid var(--red);">
+        <div style="font-size:11px;font-weight:700;color:#DC2626;margin-bottom:5px;">⚠️ Зони росту</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Найменший ріст нових клієнтів (156 нових у квітні). Скарги на неповний склад страв — відсутні соуси та інгредієнти (морква).</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loc-card">
+  <div class="loc-header">
+    <div>
+      <div style="font-size:15px;font-weight:700;">🥙 Greek House ТРЦ Lavina Mall</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">ID: 177107 · Kyiv</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:22px;font-weight:800;color:var(--green);">4.82 ★</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">Рейтинг (30д)</div>
+    </div>
+  </div>
+  <div class="loc-body">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;">
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">217</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F0FDF8;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">207</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Кві. <span style="color:#EF4444;font-size:11px;">▼4.6%</span></div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">152&nbsp;184 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">153&nbsp;787 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">743 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Сер. чек Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">1.43</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл./кл. 30д</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">103</div><div style="font-size:9px;color:var(--muted);">Нових Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">99</div><div style="font-size:9px;color:var(--muted);">Нових Кві.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">139</div><div style="font-size:9px;color:var(--muted);">Активних Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">152</div><div style="font-size:9px;color:var(--muted);">Активних Кві.</div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
+        <span>Доступність платформи (30д)</span>
+        <span style="font-weight:700;color:#34D186;">96.2%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:96.2%;background:#34D186;"></div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;">🏆 Топ страви (30д)</div>
+      <span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Classic Gyro · 106</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Legionnaire Potatoes · 70</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Greek Chicken · 58</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Large Chicken Menu · 57</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:#F0FDF8;border-radius:10px;padding:12px;border-left:4px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:5px;">✅ Сильні сторони</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Найвищий рейтинг у мережі (4.82 зірки). Найкраща частота замовлень (1.43 замовл./клієнта). Найкоротший час приготування (8.1 хв). Мінімальна кількість негативних відгуків.</div>
+      </div>
+      <div style="background:#FFF5F5;border-radius:10px;padding:12px;border-left:4px solid var(--red);">
+        <div style="font-size:11px;font-weight:700;color:#DC2626;margin-bottom:5px;">⚠️ Зони росту</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Найменший обсяг замовлень після Sky Mall. Потенціал зростання через відносно низьке охоплення нових клієнтів. Час очікування кур'єра 3.6 хв — є резерв для скорочення.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="loc-card">
+  <div class="loc-header">
+    <div>
+      <div style="font-size:15px;font-weight:700;">🥙 Greek House ТРЦ Sky Mall</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">ID: 177104 · Kyiv</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-size:22px;font-weight:800;color:var(--green);">4.57 ★</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.45);">Рейтинг (30д)</div>
+    </div>
+  </div>
+  <div class="loc-body">
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px;">
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">161</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F0FDF8;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">153</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл. Кві. <span style="color:#EF4444;font-size:11px;">▼5.0%</span></div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">128&nbsp;908 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Бер.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:15px;font-weight:800;">122&nbsp;564 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Вируч. Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">801 ₴</div>
+        <div style="font-size:9px;color:var(--muted);">Сер. чек Кві.</div>
+      </div>
+      <div style="text-align:center;background:#F8F9FA;border-radius:10px;padding:10px;">
+        <div style="font-size:17px;font-weight:800;">1.26</div>
+        <div style="font-size:9px;color:var(--muted);">Замовл./кл. 30д</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;">
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">98</div><div style="font-size:9px;color:var(--muted);">Нових Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">96</div><div style="font-size:9px;color:var(--muted);">Нових Кві.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">112</div><div style="font-size:9px;color:var(--muted);">Активних Бер.</div></div>
+      <div style="background:#F8F9FA;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:15px;font-weight:700;">125</div><div style="font-size:9px;color:var(--muted);">Активних Кві.</div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
+        <span>Доступність платформи (30д)</span>
+        <span style="font-weight:700;color:#34D186;">97.5%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:97.5%;background:#34D186;"></div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:600;color:var(--muted);margin-bottom:5px;">🏆 Топ страви (30д)</div>
+      <span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Greek Chicken · 65</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Classic Gyro · 62</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Legionnaire Potatoes · 47</span><span style="display:inline-block;background:#F0FDF8;border-radius:8px;padding:3px 9px;font-size:11px;margin:2px;border:1px solid rgba(52,209,134,.2);">Large Chicken Menu · 38</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:#F0FDF8;border-radius:10px;padding:12px;border-left:4px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:5px;">✅ Сильні сторони</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Найвищий середній чек у мережі (801 грн) — преміальний профіль клієнта. Найвища доступність платформи (97.5%). Стабільний рейтинг 4.57 зірки.</div>
+      </div>
+      <div style="background:#FFF5F5;border-radius:10px;padding:12px;border-left:4px solid var(--red);">
+        <div style="font-size:11px;font-weight:700;color:#DC2626;margin-bottom:5px;">⚠️ Зони росту</div>
+        <div style="font-size:11px;color:#374151;line-height:1.5;">Найнижчий обсяг замовлень у мережі (314 total). Скарги на погане пакування та довгий час між приготуванням та доставкою. Найдовший загальний час доставки (39.1 хв).</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div></div>
+<div class="section" style="background:white;" id="bolt-plus">
+<div class="container">
+  <div class="section-title">⚡ Bolt+ — Аналітика підписників (30 днів)</div>
+  <div class="section-sub">28 березня — 27 квітня 2026 · замовлення від підписників Bolt+</div>
+  <div class="divider"></div>
+  <div class="grid-4" style="margin-bottom:28px;">
+    <div class="card"><div class="card-label">Bolt+ замовлень (мережа)</div><div class="card-value" style="color:var(--green);">781</div><div class="card-delta">з 3&nbsp;344 всього</div></div>
+    <div class="card"><div class="card-label">Частка Bolt+ замовлень</div><div class="card-value">23.4%</div><div class="card-delta">від всіх доставлених</div></div>
+    <div class="card"><div class="card-label">Сер. Bolt+ замовл./лок.</div><div class="card-value">98</div><div class="card-delta">за 30 днів</div></div>
+    <div class="card"><div class="card-label">Топ лок. за Bolt+</div><div class="card-value" style="font-size:16px;">Smart Plaza</div><div class="card-delta">217 Bolt+ замовлень</div></div>
+  </div>
+  <div style="overflow-x:auto;">
+  <table class="tbl"><thead><tr>
+    <th>Локація</th><th class="num">Bolt+ замовл.</th><th class="num">Всього замовл.</th><th class="num">Частка Bolt+</th><th class="num">Статус</th>
+  </tr></thead><tbody>
+<tr><td>Greek House ТРЦ Smart Plaza</td>
+      <td class="num"><strong>217</strong></td>
+      <td class="num">848</td>
+      <td class="num">25.6%</td>
+      <td class="num"><span class="badge badge-green">Відмінно</span></td></tr><tr><td>Greek House ТРЦ Piramida</td>
+      <td class="num"><strong>121</strong></td>
+      <td class="num">517</td>
+      <td class="num">23.4%</td>
+      <td class="num"><span class="badge badge-orange">Добре</span></td></tr><tr><td>Greek House ТРЦ Respublika Park</td>
+      <td class="num"><strong>111</strong></td>
+      <td class="num">421</td>
+      <td class="num">26.4%</td>
+      <td class="num"><span class="badge badge-green">Відмінно</span></td></tr><tr><td>Greek House ТРК Проспект</td>
+      <td class="num"><strong>91</strong></td>
+      <td class="num">438</td>
+      <td class="num">20.8%</td>
+      <td class="num"><span class="badge badge-orange">Добре</span></td></tr><tr><td>Greek House ТЦ GLOBUS</td>
+      <td class="num"><strong>90</strong></td>
+      <td class="num">384</td>
+      <td class="num">23.4%</td>
+      <td class="num"><span class="badge badge-orange">Добре</span></td></tr><tr><td>Greek House ТРЦ Retroville</td>
+      <td class="num"><strong>74</strong></td>
+      <td class="num">353</td>
+      <td class="num">21.0%</td>
+      <td class="num"><span class="badge badge-orange">Добре</span></td></tr><tr><td>Greek House ТРЦ Sky Mall</td>
+      <td class="num"><strong>41</strong></td>
+      <td class="num">164</td>
+      <td class="num">25.0%</td>
+      <td class="num"><span class="badge badge-green">Відмінно</span></td></tr><tr><td>Greek House ТРЦ Lavina Mall</td>
+      <td class="num"><strong>36</strong></td>
+      <td class="num">219</td>
+      <td class="num">16.4%</td>
+      <td class="num"><span class="badge badge-red">Ріст</span></td></tr></tbody></table></div></div></div>
+<div class="section" style="background:var(--gray);" id="promo">
+<div class="container">
+  <div class="section-title">🎯 Промо-аналітика (30 днів)</div>
+  <div class="section-sub">28 березня — 27 квітня 2026 · витрати Bolt та партнера</div>
+  <div class="divider"></div>
+  <div class="grid-4" style="margin-bottom:28px;">
+    <div class="card"><div class="card-label">Промо замовлень</div><div class="card-value">2&nbsp;415</div><div class="card-delta">72.2% від усіх замовлень</div></div>
+    <div class="card"><div class="card-label">Витрати Bolt (30д)</div><div class="card-value">192&nbsp;578&nbsp;₴</div><div class="card-delta">на знижки та кампанії</div></div>
+    <div class="card"><div class="card-label">Витрати партнера (30д)</div><div class="card-value">94&nbsp;983&nbsp;₴</div><div class="card-delta">внесок Greek House</div></div>
+    <div class="card"><div class="card-label">Загальні витрати</div><div class="card-value">287&nbsp;561&nbsp;₴</div><div class="card-delta">Bolt + партнер разом</div></div>
+  </div>
+  <div style="overflow-x:auto;">
+  <table class="tbl"><thead><tr>
+    <th>Локація</th><th class="num">Промо замовл.</th><th class="num">% промо</th>
+    <th class="num">Витрати Bolt ₴</th><th class="num">Витрати партнера ₴</th><th class="num">Разом ₴</th>
+  </tr></thead><tbody>
+<tr><td>Greek House ТРЦ Smart Plaza</td>
+      <td class="num">615</td>
+      <td class="num">73%</td>
+      <td class="num">49&nbsp;326&nbsp;₴</td>
+      <td class="num">37&nbsp;810&nbsp;₴</td>
+      <td class="num"><strong>87&nbsp;136&nbsp;₴</strong></td></tr><tr><td>Greek House ТРЦ Piramida</td>
+      <td class="num">365</td>
+      <td class="num">71%</td>
+      <td class="num">27&nbsp;373&nbsp;₴</td>
+      <td class="num">10&nbsp;701&nbsp;₴</td>
+      <td class="num"><strong>38&nbsp;074&nbsp;₴</strong></td></tr><tr><td>Greek House ТРК Проспект</td>
+      <td class="num">331</td>
+      <td class="num">76%</td>
+      <td class="num">25&nbsp;389&nbsp;₴</td>
+      <td class="num">9&nbsp;891&nbsp;₴</td>
+      <td class="num"><strong>35&nbsp;280&nbsp;₴</strong></td></tr><tr><td>Greek House ТРЦ Respublika Park</td>
+      <td class="num">317</td>
+      <td class="num">75%</td>
+      <td class="num">27&nbsp;639&nbsp;₴</td>
+      <td class="num">11&nbsp;328&nbsp;₴</td>
+      <td class="num"><strong>38&nbsp;967&nbsp;₴</strong></td></tr><tr><td>Greek House ТЦ GLOBUS</td>
+      <td class="num">258</td>
+      <td class="num">67%</td>
+      <td class="num">20&nbsp;532&nbsp;₴</td>
+      <td class="num">7&nbsp;012&nbsp;₴</td>
+      <td class="num"><strong>27&nbsp;544&nbsp;₴</strong></td></tr><tr><td>Greek House ТРЦ Retroville</td>
+      <td class="num">251</td>
+      <td class="num">71%</td>
+      <td class="num">18&nbsp;240&nbsp;₴</td>
+      <td class="num">7&nbsp;933&nbsp;₴</td>
+      <td class="num"><strong>26&nbsp;173&nbsp;₴</strong></td></tr><tr><td>Greek House ТРЦ Lavina Mall</td>
+      <td class="num">155</td>
+      <td class="num">71%</td>
+      <td class="num">12&nbsp;109&nbsp;₴</td>
+      <td class="num">5&nbsp;522&nbsp;₴</td>
+      <td class="num"><strong>17&nbsp;631&nbsp;₴</strong></td></tr><tr><td>Greek House ТРЦ Sky Mall</td>
+      <td class="num">123</td>
+      <td class="num">75%</td>
+      <td class="num">11&nbsp;970&nbsp;₴</td>
+      <td class="num">4&nbsp;786&nbsp;₴</td>
+      <td class="num"><strong>16&nbsp;756&nbsp;₴</strong></td></tr></tbody></table></div></div></div>
+<div class="section" style="background:white;" id="menu">
+<div class="container">
+  <div class="section-title">🥙 Топ продаваних позицій меню (30 днів)</div>
+  <div class="section-sub">28 березня — 27 квітня 2026 · мережа та локації</div>
+  <div class="divider"></div>
+<div class="card" style="margin-bottom:22px;">
+  <div style="font-size:15px;font-weight:700;margin-bottom:14px;">🍽️ Топ страви — вся мережа</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
+<div style="background:#F8F9FA;border-radius:10px;padding:10px;text-align:center;">
+    <div style="font-size:10px;color:var(--muted);">#1</div>
+    <div style="font-size:12px;font-weight:700;margin:3px 0;">Greek Chicken</div>
+    <div style="font-size:17px;font-weight:800;color:var(--green);">1080</div>
+    <div style="height:4px;background:#E8E8E8;border-radius:2px;margin-top:5px;"><div style="height:4px;background:var(--green);border-radius:2px;width:100%;"></div></div>
+  </div><div style="background:#F8F9FA;border-radius:10px;padding:10px;text-align:center;">
+    <div style="font-size:10px;color:var(--muted);">#2</div>
+    <div style="font-size:12px;font-weight:700;margin:3px 0;">Legionnaire Potatoes</div>
+    <div style="font-size:17px;font-weight:800;color:var(--green);">934</div>
+    <div style="height:4px;background:#E8E8E8;border-radius:2px;margin-top:5px;"><div style="height:4px;background:var(--green);border-radius:2px;width:86%;"></div></div>
+  </div><div style="background:#F8F9FA;border-radius:10px;padding:10px;text-align:center;">
+    <div style="font-size:10px;color:var(--muted);">#3</div>
+    <div style="font-size:12px;font-weight:700;margin:3px 0;">Large Chicken Menu</div>
+    <div style="font-size:17px;font-weight:800;color:var(--green);">577</div>
+    <div style="height:4px;background:#E8E8E8;border-radius:2px;margin-top:5px;"><div style="height:4px;background:var(--green);border-radius:2px;width:53%;"></div></div>
+  </div><div style="background:#F8F9FA;border-radius:10px;padding:10px;text-align:center;">
+    <div style="font-size:10px;color:var(--muted);">#4</div>
+    <div style="font-size:12px;font-weight:700;margin:3px 0;">Chicken Souvlaki</div>
+    <div style="font-size:17px;font-weight:800;color:var(--green);">561</div>
+    <div style="height:4px;background:#E8E8E8;border-radius:2px;margin-top:5px;"><div style="height:4px;background:var(--green);border-radius:2px;width:51%;"></div></div>
+  </div><div style="background:#F8F9FA;border-radius:10px;padding:10px;text-align:center;">
+    <div style="font-size:10px;color:var(--muted);">#5</div>
+    <div style="font-size:12px;font-weight:700;margin:3px 0;">Classic Gyro</div>
+    <div style="font-size:17px;font-weight:800;color:var(--green);">523</div>
+    <div style="height:4px;background:#E8E8E8;border-radius:2px;margin-top:5px;"><div style="height:4px;background:var(--green);border-radius:2px;width:48%;"></div></div>
+  </div><div style="background:#F8F9FA;border-radius:10px;padding:10px;text-align:center;">
+    <div style="font-size:10px;color:var(--muted);">#6</div>
+    <div style="font-size:12px;font-weight:700;margin:3px 0;">Classic Gyros</div>
+    <div style="font-size:17px;font-weight:800;color:var(--green);">421</div>
+    <div style="height:4px;background:#E8E8E8;border-radius:2px;margin-top:5px;"><div style="height:4px;background:var(--green);border-radius:2px;width:38%;"></div></div>
+  </div><div style="background:#F8F9FA;border-radius:10px;padding:10px;text-align:center;">
+    <div style="font-size:10px;color:var(--muted);">#7</div>
+    <div style="font-size:12px;font-weight:700;margin:3px 0;">Assorted Platter</div>
+    <div style="font-size:17px;font-weight:800;color:var(--green);">420</div>
+    <div style="height:4px;background:#E8E8E8;border-radius:2px;margin-top:5px;"><div style="height:4px;background:var(--green);border-radius:2px;width:38%;"></div></div>
+  </div><div style="background:#F8F9FA;border-radius:10px;padding:10px;text-align:center;">
+    <div style="font-size:10px;color:var(--muted);">#8</div>
+    <div style="font-size:12px;font-weight:700;margin:3px 0;">Greek Chicken Combo</div>
+    <div style="font-size:17px;font-weight:800;color:var(--green);">205</div>
+    <div style="height:4px;background:#E8E8E8;border-radius:2px;margin-top:5px;"><div style="height:4px;background:var(--green);border-radius:2px;width:18%;"></div></div>
+  </div><div style="background:#F8F9FA;border-radius:10px;padding:10px;text-align:center;">
+    <div style="font-size:10px;color:var(--muted);">#9</div>
+    <div style="font-size:12px;font-weight:700;margin:3px 0;">Spartan</div>
+    <div style="font-size:17px;font-weight:800;color:var(--green);">140</div>
+    <div style="height:4px;background:#E8E8E8;border-radius:2px;margin-top:5px;"><div style="height:4px;background:var(--green);border-radius:2px;width:12%;"></div></div>
+  </div><div style="background:#F8F9FA;border-radius:10px;padding:10px;text-align:center;">
+    <div style="font-size:10px;color:var(--muted);">#10</div>
+    <div style="font-size:12px;font-weight:700;margin:3px 0;">Sweet Potato Fries</div>
+    <div style="font-size:17px;font-weight:800;color:var(--green);">140</div>
+    <div style="height:4px;background:#E8E8E8;border-radius:2px;margin-top:5px;"><div style="height:4px;background:var(--green);border-radius:2px;width:12%;"></div></div>
+  </div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;">
+    <div style="background:#F0FDF8;border-radius:10px;padding:12px;border-left:4px solid var(--green);">
+      <div style="font-size:11px;font-weight:700;color:var(--green-dark);margin-bottom:4px;">✅ Сильні позиції</div>
+      <div style="font-size:11px;color:#374151;line-height:1.5;">Greek Chicken та Classic Gyro — стабільні лідери по всіх локаціях. Legionnaire Potatoes рівномірно популярний. Assorted Platter збільшує середній чек через груповий попит.</div>
+    </div>
+    <div style="background:#FFFBEB;border-radius:10px;padding:12px;border-left:4px solid var(--orange);">
+      <div style="font-size:11px;font-weight:700;color:#B45309;margin-bottom:4px;">💡 Зони уваги</div>
+      <div style="font-size:11px;color:#374151;line-height:1.5;">Large Chicken Menu є лише на частині точок — варто стандартизувати. Sweet Potato Fries добре стартував у Smart Plaza, розширення на всю мережу збільшить AOV.</div>
+    </div>
+  </div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px;"><div class="card">
+  <div style="font-size:13px;font-weight:700;margin-bottom:10px;">🥙 Greek House ТРЦ Smart Plaza</div>
+  <div style="font-size:10px;color:var(--muted);margin-bottom:7px;">Топ страви (без напоїв та модифікаторів)</div>
+<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#1</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Greek Chicken</span><span style="font-weight:700;color:var(--green);">293</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#2</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>CLASSIC GYROS</span><span style="font-weight:700;color:var(--green);">290</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:98%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#3</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Legionnaire Potatoes</span><span style="font-weight:700;color:var(--green);">265</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:90%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#4</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Chicken Souvlaki</span><span style="font-weight:700;color:var(--green);">233</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:79%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#5</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Large Chicken Menu</span><span style="font-weight:700;color:var(--green);">178</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:60%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#6</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Sweet Potato Fries</span><span style="font-weight:700;color:var(--green);">140</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:47%;background:var(--green);"></div></div>
+    </div>
+  </div></div><div class="card">
+  <div style="font-size:13px;font-weight:700;margin-bottom:10px;">🥙 Greek House ТРЦ Piramida</div>
+  <div style="font-size:10px;color:var(--muted);margin-bottom:7px;">Топ страви (без напоїв та модифікаторів)</div>
+<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#1</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Greek Chicken</span><span style="font-weight:700;color:var(--green);">181</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#2</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Legionnaire Potatoes</span><span style="font-weight:700;color:var(--green);">145</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:80%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#3</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Large Chicken Menu</span><span style="font-weight:700;color:var(--green);">94</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:51%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#4</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Classic Gyros</span><span style="font-weight:700;color:var(--green);">84</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:46%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#5</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Assorted Platter</span><span style="font-weight:700;color:var(--green);">76</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:41%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#6</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Spartan</span><span style="font-weight:700;color:var(--green);">67</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:37%;background:var(--green);"></div></div>
+    </div>
+  </div></div><div class="card">
+  <div style="font-size:13px;font-weight:700;margin-bottom:10px;">🥙 Greek House ТРК Проспект</div>
+  <div style="font-size:10px;color:var(--muted);margin-bottom:7px;">Топ страви (без напоїв та модифікаторів)</div>
+<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#1</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Greek Chicken</span><span style="font-weight:700;color:var(--green);">134</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#2</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Classic Gyro</span><span style="font-weight:700;color:var(--green);">93</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:69%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#3</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Legionnaire Potatoes</span><span style="font-weight:700;color:var(--green);">89</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:66%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#4</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Chicken Souvlaki</span><span style="font-weight:700;color:var(--green);">86</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:64%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#5</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Large Chicken Menu</span><span style="font-weight:700;color:var(--green);">78</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:58%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#6</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Greek Chicken Combo</span><span style="font-weight:700;color:var(--green);">76</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:56%;background:var(--green);"></div></div>
+    </div>
+  </div></div><div class="card">
+  <div style="font-size:13px;font-weight:700;margin-bottom:10px;">🥙 Greek House ТРЦ Respublika Park</div>
+  <div style="font-size:10px;color:var(--muted);margin-bottom:7px;">Топ страви (без напоїв та модифікаторів)</div>
+<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#1</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Legionnaire Potatoes</span><span style="font-weight:700;color:var(--green);">132</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#2</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Greek Chicken</span><span style="font-weight:700;color:var(--green);">109</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:82%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#3</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Chicken Souvlaki</span><span style="font-weight:700;color:var(--green);">109</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:82%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#4</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Classic Gyro</span><span style="font-weight:700;color:var(--green);">95</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:71%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#5</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Assorted Platter</span><span style="font-weight:700;color:var(--green);">75</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:56%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#6</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Spartan</span><span style="font-weight:700;color:var(--green);">73</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:55%;background:var(--green);"></div></div>
+    </div>
+  </div></div><div class="card">
+  <div style="font-size:13px;font-weight:700;margin-bottom:10px;">🥙 Greek House ТЦ GLOBUS</div>
+  <div style="font-size:10px;color:var(--muted);margin-bottom:7px;">Топ страви (без напоїв та модифікаторів)</div>
+<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#1</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Legionnaire Potatoes</span><span style="font-weight:700;color:var(--green);">102</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#2</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Greek Chicken</span><span style="font-weight:700;color:var(--green);">93</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:91%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#3</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Classic Gyro</span><span style="font-weight:700;color:var(--green);">91</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:89%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#4</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Large Chicken Menu</span><span style="font-weight:700;color:var(--green);">66</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:64%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#5</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Greek Chicken Combo</span><span style="font-weight:700;color:var(--green);">63</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:61%;background:var(--green);"></div></div>
+    </div>
+  </div></div><div class="card">
+  <div style="font-size:13px;font-weight:700;margin-bottom:10px;">🥙 Greek House ТРЦ Retroville</div>
+  <div style="font-size:10px;color:var(--muted);margin-bottom:7px;">Топ страви (без напоїв та модифікаторів)</div>
+<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#1</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Greek Chicken</span><span style="font-weight:700;color:var(--green);">147</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#2</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Chicken Souvlaki</span><span style="font-weight:700;color:var(--green);">93</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:63%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#3</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Legionnaire Potatoes</span><span style="font-weight:700;color:var(--green);">84</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:57%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#4</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Classic Gyro</span><span style="font-weight:700;color:var(--green);">76</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:51%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#5</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Suluguni Cheese</span><span style="font-weight:700;color:var(--green);">71</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:48%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#6</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Large Chicken Menu</span><span style="font-weight:700;color:var(--green);">66</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:44%;background:var(--green);"></div></div>
+    </div>
+  </div></div><div class="card">
+  <div style="font-size:13px;font-weight:700;margin-bottom:10px;">🥙 Greek House ТРЦ Lavina Mall</div>
+  <div style="font-size:10px;color:var(--muted);margin-bottom:7px;">Топ страви (без напоїв та модифікаторів)</div>
+<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#1</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Classic Gyro</span><span style="font-weight:700;color:var(--green);">106</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#2</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Legionnaire Potatoes</span><span style="font-weight:700;color:var(--green);">70</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:66%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#3</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Greek Chicken</span><span style="font-weight:700;color:var(--green);">58</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:54%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#4</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Large Chicken Menu</span><span style="font-weight:700;color:var(--green);">57</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:53%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#5</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Chicken Souvlaki</span><span style="font-weight:700;color:var(--green);">40</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:37%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#6</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Assorted Platter</span><span style="font-weight:700;color:var(--green);">38</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:35%;background:var(--green);"></div></div>
+    </div>
+  </div></div><div class="card">
+  <div style="font-size:13px;font-weight:700;margin-bottom:10px;">🥙 Greek House ТРЦ Sky Mall</div>
+  <div style="font-size:10px;color:var(--muted);margin-bottom:7px;">Топ страви (без напоїв та модифікаторів)</div>
+<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#1</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Greek Chicken</span><span style="font-weight:700;color:var(--green);">65</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#2</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Classic Gyro</span><span style="font-weight:700;color:var(--green);">62</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:95%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#3</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Legionnaire Potatoes</span><span style="font-weight:700;color:var(--green);">47</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:72%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#4</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Large Chicken Menu</span><span style="font-weight:700;color:var(--green);">38</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:58%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#5</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Greek Chicken Combo</span><span style="font-weight:700;color:var(--green);">28</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:43%;background:var(--green);"></div></div>
+    </div>
+  </div><div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+    <span style="font-size:10px;color:var(--muted);width:15px;">#6</span>
+    <div style="flex:1;">
+      <div style="display:flex;justify-content:space-between;font-size:11px;">
+        <span>Assorted Platter</span><span style="font-weight:700;color:var(--green);">26</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:40%;background:var(--green);"></div></div>
+    </div>
+  </div></div></div></div></div>
+<div class="section" style="background:var(--gray);" id="ops">
+<div class="container">
+  <div class="section-title">⚙️ Операційні показники (30 днів)</div>
+  <div class="section-sub">28 березня — 27 квітня 2026 · доступність, швидкість, приготування</div>
+  <div class="divider"></div>
+  <div style="overflow-x:auto;">
+  <table class="tbl"><thead><tr>
+    <th>Локація</th><th class="num">Доступність</th><th class="num">Заг. час доставки</th>
+    <th class="num">Очік. кур'єра в закл.</th><th class="num">Час приготування</th><th class="num">Прийняття замовл.</th><th class="num">Статус</th>
+  </tr></thead><tbody>
+<tr>
+      <td>Greek House ТРЦ Sky Mall</td>
+      <td class="num"><span style="color:#34D186;font-weight:700;">97.5%</span></td>
+      <td class="num"><span class="badge badge-red">39.1 хв</span></td>
+      <td class="num">2.8 хв</td>
+      <td class="num"><span class="badge badge-green">9.2 хв</span></td>
+      <td class="num">1.7 хв</td>
+      <td class="num"><span class="badge badge-green">Добре</span></td>
+    </tr><tr>
+      <td>Greek House ТРЦ Lavina Mall</td>
+      <td class="num"><span style="color:#34D186;font-weight:700;">96.2%</span></td>
+      <td class="num"><span class="badge badge-orange">35.6 хв</span></td>
+      <td class="num">3.6 хв</td>
+      <td class="num"><span class="badge badge-green">8.1 хв</span></td>
+      <td class="num">0.9 хв</td>
+      <td class="num"><span class="badge badge-green">Добре</span></td>
+    </tr><tr>
+      <td>Greek House ТРЦ Respublika Park</td>
+      <td class="num"><span style="color:#34D186;font-weight:700;">95.4%</span></td>
+      <td class="num"><span class="badge badge-orange">37.0 хв</span></td>
+      <td class="num">3.8 хв</td>
+      <td class="num"><span class="badge badge-orange">9.6 хв</span></td>
+      <td class="num">2.5 хв</td>
+      <td class="num"><span class="badge badge-green">Добре</span></td>
+    </tr><tr>
+      <td>Greek House ТРЦ Retroville</td>
+      <td class="num"><span style="color:#F59E0B;font-weight:700;">94.5%</span></td>
+      <td class="num"><span class="badge badge-green">32.5 хв</span></td>
+      <td class="num">2.7 хв</td>
+      <td class="num"><span class="badge badge-green">9.3 хв</span></td>
+      <td class="num">1.6 хв</td>
+      <td class="num"><span class="badge badge-orange">Увага</span></td>
+    </tr><tr>
+      <td>Greek House ТРК Проспект</td>
+      <td class="num"><span style="color:#F59E0B;font-weight:700;">94.3%</span></td>
+      <td class="num"><span class="badge badge-green">34.0 хв</span></td>
+      <td class="num">2.8 хв</td>
+      <td class="num"><span class="badge badge-red">11.2 хв</span></td>
+      <td class="num">1.1 хв</td>
+      <td class="num"><span class="badge badge-orange">Увага</span></td>
+    </tr><tr>
+      <td>Greek House ТЦ GLOBUS</td>
+      <td class="num"><span style="color:#F59E0B;font-weight:700;">93.5%</span></td>
+      <td class="num"><span class="badge badge-red">38.5 хв</span></td>
+      <td class="num">2.9 хв</td>
+      <td class="num"><span class="badge badge-green">9.2 хв</span></td>
+      <td class="num">1.5 хв</td>
+      <td class="num"><span class="badge badge-orange">Увага</span></td>
+    </tr><tr>
+      <td>Greek House ТРЦ Smart Plaza</td>
+      <td class="num"><span style="color:#F59E0B;font-weight:700;">92.8%</span></td>
+      <td class="num"><span class="badge badge-orange">37.6 хв</span></td>
+      <td class="num">3.1 хв</td>
+      <td class="num"><span class="badge badge-orange">11.0 хв</span></td>
+      <td class="num">1.8 хв</td>
+      <td class="num"><span class="badge badge-orange">Увага</span></td>
+    </tr><tr>
+      <td>Greek House ТРЦ Piramida</td>
+      <td class="num"><span style="color:#EF4444;font-weight:700;">88.6%</span></td>
+      <td class="num"><span class="badge badge-green">32.8 хв</span></td>
+      <td class="num">2.9 хв</td>
+      <td class="num"><span class="badge badge-red">11.1 хв</span></td>
+      <td class="num">2.0 хв</td>
+      <td class="num"><span class="badge badge-red">Критично</span></td>
+    </tr></tbody></table></div>
+  <div style="background:white;border-radius:10px;padding:14px;margin-top:14px;border-left:4px solid var(--blue);">
+    <div style="font-size:13px;font-weight:700;color:var(--blue);margin-bottom:4px;">📌 Бенчмарки Bolt Food</div>
+    <div style="font-size:12px;color:#374151;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+      <div><b>Доступність:</b> ≥95% — відмінно</div>
+      <div><b>Час доставки:</b> ≤35 хв — ціль</div>
+      <div><b>Очікування кур'єра:</b> ≤3 хв ціль</div>
+      <div><b>Приготування:</b> ≤10 хв — норма</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="section" style="background:white;" id="ratings">
+<div class="container">
+  <div class="section-title">⭐ Рейтинг (30 днів)</div>
+  <div class="section-sub">28 березня — 27 квітня 2026 · 808 оцінок по мережі</div>
+  <div class="divider"></div>
+  <div class="grid-4" style="margin-bottom:26px;">
+    <div class="card"><div class="card-label">Середній рейтинг мережі</div><div class="card-value" style="color:var(--green);">4.69&nbsp;★</div><div class="card-delta">808 оцінок</div></div>
+    <div class="card"><div class="card-label">5-зіркових оцінок</div><div class="card-value">704</div><div class="card-delta">87% від усіх</div></div>
+    <div class="card"><div class="card-label">Найвищий рейтинг</div><div class="card-value">4.88&nbsp;★</div><div class="card-delta">ТРЦ Piramida</div></div>
+    <div class="card"><div class="card-label">Потребує уваги</div><div class="card-value">4.41&nbsp;★</div><div class="card-delta">ТЦ GLOBUS</div></div>
+  </div>
+  <div style="overflow-x:auto;">
+  <table class="tbl"><thead><tr>
+    <th>Локація</th><th class="num">Сер. рейтинг</th><th class="num">Оцінок</th>
+    <th class="num">5★</th><th class="num">4★</th><th class="num">3★</th><th class="num">1-2★</th><th class="num">Візуалізація</th>
+  </tr></thead><tbody>
+<tr>
+      <td>Greek House ТРЦ Piramida</td>
+      <td class="num"><span class="badge badge-green">4.86&nbsp;★</span></td>
+      <td class="num">137</td>
+      <td class="num" style="color:#F59E0B;font-weight:700;">128</td>
+      <td class="num">4</td>
+      <td class="num">2</td>
+      <td class="num" style="color:var(--red);">3</td>
+      <td class="num" style="min-width:110px;"><div class="progress-bar"><div class="progress-fill" style="width:97%;background:#34D186;"></div></div></td>
+    </tr><tr>
+      <td>Greek House ТРЦ Lavina Mall</td>
+      <td class="num"><span class="badge badge-green">4.82&nbsp;★</span></td>
+      <td class="num">76</td>
+      <td class="num" style="color:#F59E0B;font-weight:700;">68</td>
+      <td class="num">5</td>
+      <td class="num">1</td>
+      <td class="num" style="color:var(--red);">2</td>
+      <td class="num" style="min-width:110px;"><div class="progress-bar"><div class="progress-fill" style="width:96%;background:#34D186;"></div></div></td>
+    </tr><tr>
+      <td>Greek House ТРЦ Retroville</td>
+      <td class="num"><span class="badge badge-green">4.73&nbsp;★</span></td>
+      <td class="num">82</td>
+      <td class="num" style="color:#F59E0B;font-weight:700;">75</td>
+      <td class="num">1</td>
+      <td class="num">1</td>
+      <td class="num" style="color:var(--red);">5</td>
+      <td class="num" style="min-width:110px;"><div class="progress-bar"><div class="progress-fill" style="width:93%;background:#34D186;"></div></div></td>
+    </tr><tr>
+      <td>Greek House ТРЦ Respublika Park</td>
+      <td class="num"><span class="badge badge-green">4.72&nbsp;★</span></td>
+      <td class="num">78</td>
+      <td class="num" style="color:#F59E0B;font-weight:700;">68</td>
+      <td class="num">4</td>
+      <td class="num">3</td>
+      <td class="num" style="color:var(--red);">3</td>
+      <td class="num" style="min-width:110px;"><div class="progress-bar"><div class="progress-fill" style="width:93%;background:#34D186;"></div></div></td>
+    </tr><tr>
+      <td>Greek House ТРЦ Smart Plaza</td>
+      <td class="num"><span class="badge badge-orange">4.68&nbsp;★</span></td>
+      <td class="num">210</td>
+      <td class="num" style="color:#F59E0B;font-weight:700;">183</td>
+      <td class="num">9</td>
+      <td class="num">5</td>
+      <td class="num" style="color:var(--red);">13</td>
+      <td class="num" style="min-width:110px;"><div class="progress-bar"><div class="progress-fill" style="width:92%;background:#F59E0B;"></div></div></td>
+    </tr><tr>
+      <td>Greek House ТРК Проспект</td>
+      <td class="num"><span class="badge badge-orange">4.57&nbsp;★</span></td>
+      <td class="num">109</td>
+      <td class="num" style="color:#F59E0B;font-weight:700;">91</td>
+      <td class="num">4</td>
+      <td class="num">6</td>
+      <td class="num" style="color:var(--red);">8</td>
+      <td class="num" style="min-width:110px;"><div class="progress-bar"><div class="progress-fill" style="width:89%;background:#F59E0B;"></div></div></td>
+    </tr><tr>
+      <td>Greek House ТРЦ Sky Mall</td>
+      <td class="num"><span class="badge badge-orange">4.57&nbsp;★</span></td>
+      <td class="num">42</td>
+      <td class="num" style="color:#F59E0B;font-weight:700;">34</td>
+      <td class="num">3</td>
+      <td class="num">2</td>
+      <td class="num" style="color:var(--red);">3</td>
+      <td class="num" style="min-width:110px;"><div class="progress-bar"><div class="progress-fill" style="width:89%;background:#F59E0B;"></div></div></td>
+    </tr><tr>
+      <td>Greek House ТЦ GLOBUS</td>
+      <td class="num"><span class="badge badge-red">4.41&nbsp;★</span></td>
+      <td class="num">74</td>
+      <td class="num" style="color:#F59E0B;font-weight:700;">57</td>
+      <td class="num">7</td>
+      <td class="num">1</td>
+      <td class="num" style="color:var(--red);">9</td>
+      <td class="num" style="min-width:110px;"><div class="progress-bar"><div class="progress-fill" style="width:85%;background:#EF4444;"></div></div></td>
+    </tr></tbody></table></div></div></div>
+<div class="section" style="background:var(--gray);" id="reviews">
+<div class="container">
+  <div class="section-title">💬 Відгуки користувачів (30 днів)</div>
+  <div class="section-sub">28 березня — 27 квітня 2026 · відібрані коментарі</div>
+  <div class="divider"></div>
+  <div style="margin-bottom:22px;">
+    <div style="font-size:14px;font-weight:700;color:var(--green-dark);margin-bottom:12px;">✅ Позитивні відгуки</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+<div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"В піту краще класти овочі кубиками, а не кільцями — дрібна пропозиція"</div>
+      <div class="review-meta">Greek House ТРК Проспект</div>
+    </div><div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Щиро дякую за смачну їжу та за те, що додаєте сир 😘💜"</div>
+      <div class="review-meta">Greek House ТРЦ Retroville</div>
+    </div><div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">"Все супер!"</div>
+      <div class="review-meta">Greek House ТРЦ Sky Mall</div>
+    </div><div class="review-card">
+      <div class="review-stars">★★★★☆</div>
+      <div class="review-text">"Будь ласка, підписуйте їжу"</div>
+      <div class="review-meta">Greek House ТЦ GLOBUS</div>
+    </div></div></div>
+  <div>
+    <div style="font-size:14px;font-weight:700;color:#DC2626;margin-bottom:12px;">⚠️ Негативні відгуки — зони уваги</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+<div class="review-card neg">
+      <div class="review-stars">★★☆☆☆</div>
+      <div class="review-text">"Погане пакування — холодний напій розірвав пакет, соуси розтеклися"</div>
+      <div class="review-meta">Greek House ТРЦ Sky Mall</div>
+    </div><div class="review-card neg">
+      <div class="review-stars">★☆☆☆☆</div>
+      <div class="review-text">"В шаурмі легіонера є цибуля, хоча в інгредієнтах не вказано"</div>
+      <div class="review-meta">Greek House ТЦ GLOBUS</div>
+    </div><div class="review-card neg">
+      <div class="review-stars">★☆☆☆☆</div>
+      <div class="review-text">"Після вживання їжі в обох людей почався розлад шлунку"</div>
+      <div class="review-meta">Greek House ТРК Проспект</div>
+    </div><div class="review-card neg">
+      <div class="review-stars">★☆☆☆☆</div>
+      <div class="review-text">"Їжа приїхала холодною — доставили не в термосумці"</div>
+      <div class="review-meta">Greek House ТЦ GLOBUS</div>
+    </div></div></div>
+  <div style="background:white;border-radius:12px;padding:18px;margin-top:18px;border-left:4px solid var(--orange);">
+    <div style="font-size:13px;font-weight:700;color:#B45309;margin-bottom:8px;">🔍 Системні патерни у відгуках</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:12px;color:#374151;">
+      <div><b>❄️ Холодна їжа (5 відгуків)</b><br>Системна проблема упаковки та термозберігання при доставці. Потрібні термосумки та перевірка пакування.</div>
+      <div><b>📦 Неповні замовлення (4 відгуки)</b><br>Відсутні позиції або неправильний склад. Рекомендується check-list перед пакуванням.</div>
+      <div><b>🏷️ Маркування замовлень (2 відгуки)</b><br>Клієнти просять підписувати пакети при кількох різних позиціях.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div style="background:#0F0F1A;padding:52px 0;" id="sponsored">
+<div class="container">
+  <div class="section-title" style="color:white;margin-bottom:6px;">🚀 Нова можливість: Sponsored Listing</div>
+  <div class="section-sub" style="color:rgba(255,255,255,.45);margin-bottom:26px;">Рекламна функція Bolt Food · Збільшіть видимість Greek House на платформі</div>
+  <div class="sponsored-card">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:26px;">
+      <div>
+        <div style="font-size:20px;font-weight:800;color:white;margin-bottom:10px;">Що таке Sponsored Listing?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;">
+          Sponsored Listing — рекламний інструмент Bolt Food, який дозволяє вашому закладу з'являтись на
+          <strong style="color:var(--green);">першому місці в результатах пошуку та категоріях</strong>, збільшуючи видимість серед клієнтів платформи.<br><br>
+          Механіка побудована на аукційній системі: ви встановлюєте ставку за клік або показ, а ваш заклад отримує
+          <strong style="color:var(--green);">пріоритетне розміщення</strong> в пошуку, на головному екрані та в тематичних добірках.
+        </div>
+      </div>
+      <div>
+        <div style="font-size:15px;font-weight:700;color:white;margin-bottom:14px;">📈 Ключові переваги</div>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <div style="display:flex;gap:9px;"><span style="color:var(--green);font-size:16px;">✓</span><div style="font-size:12px;color:rgba(255,255,255,.75);"><strong style="color:white;">Більше нових клієнтів</strong> — ваш заклад бачать першим при пошуку грецької кухні або шаурми.</div></div>
+          <div style="display:flex;gap:9px;"><span style="color:var(--green);font-size:16px;">✓</span><div style="font-size:12px;color:rgba(255,255,255,.75);"><strong style="color:white;">Ріст замовлень у слабкі години</strong> — реклама налаштовується на обідній час або будні.</div></div>
+          <div style="display:flex;gap:9px;"><span style="color:var(--green);font-size:16px;">✓</span><div style="font-size:12px;color:rgba(255,255,255,.75);"><strong style="color:white;">Контрольований бюджет</strong> — ви встановлюєте денний ліміт і зупиняєте кампанію в будь-який момент.</div></div>
+          <div style="display:flex;gap:9px;"><span style="color:var(--green);font-size:16px;">✓</span><div style="font-size:12px;color:rgba(255,255,255,.75);"><strong style="color:white;">Вимірюваний результат</strong> — Merchant Portal показує покази, кліки та замовлення від реклами.</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:15px;font-weight:700;color:white;margin-bottom:14px;">🔄 Як це працює?</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px;">
+      <div class="sp-step"><div class="sp-step-num">1</div>
+        <div style="font-size:12px;font-weight:700;color:white;margin-bottom:5px;">Налаштування кампанії</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);line-height:1.5;">У Merchant Portal обираєте тип розміщення (пошук / категорія / головний екран), встановлюєте ставку та денний бюджет.</div>
+      </div>
+      <div class="sp-step"><div class="sp-step-num">2</div>
+        <div style="font-size:12px;font-weight:700;color:white;margin-bottom:5px;">Аукціон за видимість</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);line-height:1.5;">Bolt Food проводить аукціон у реальному часі — ваша ставка + показники якості (рейтинг, доступність) визначають позицію.</div>
+      </div>
+      <div class="sp-step"><div class="sp-step-num">3</div>
+        <div style="font-size:12px;font-weight:700;color:white;margin-bottom:5px;">Результати та оптимізація</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.6);line-height:1.5;">Ви бачите ROI у реальному часі: кількість показів, кліків та замовлень від кампанії. Ставки можна коригувати щодня.</div>
+      </div>
+    </div>
+    <div style="background:rgba(52,209,134,.1);border:1px solid rgba(52,209,134,.2);border-radius:12px;padding:18px;">
+      <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:10px;">💡 Рекомендації для Greek House</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font-size:11px;color:rgba(255,255,255,.65);">
+        <div><span class="tag">ТЦ GLOBUS</span><br><span style="display:block;margin-top:4px;">Найнижчий рейтинг 4.41 — після покращення якості Sponsored Listing допоможе повернути клієнтів.</span></div>
+        <div><span class="tag">ТРЦ Sky Mall</span><br><span style="display:block;margin-top:4px;">Найменший обсяг — реклама прискорить ріст аудиторії у великому торговому центрі.</span></div>
+        <div><span class="tag">ТРЦ Lavina Mall</span><br><span style="display:block;margin-top:4px;">Рейтинг 4.82 ★ — ідеальна база: висока якість добре конвертує рекламні кліки у замовлення.</span></div>
+        <div><span class="tag">ТРЦ Retroville</span><br><span style="display:block;margin-top:4px;">Найвища частота 1.40 — реклама залучить нових клієнтів, яких утримає лояльна аудиторія.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div style="background:#111;padding:28px 0;">
+<div class="container" style="text-align:center;">
+  <div style="font-size:13px;color:rgba(255,255,255,.25);">Bolt Food Ukraine × Greek House · Конфіденційний звіт · 28 бер. — 27 кві. 2026</div>
+  <div style="font-size:11px;color:rgba(255,255,255,.15);margin-top:4px;">Підготовлено Bolt Food Ukraine Account Management Team</div>
+</div>
+</div>
+<script>
+const sids=['hero','network','locations','bolt-plus','promo','menu','ops','ratings','reviews','sponsored'];
+const nl={};
+sids.forEach(id=>{const el=document.getElementById(id);const a=document.querySelector('#sidebar a[href="#'+id+'"]');if(el&&a)nl[id]={el,a};});
+function upd(){const y=window.scrollY+80;let cur=sids[0];sids.forEach(id=>{if(nl[id]&&nl[id].el.offsetTop<=y)cur=id;});Object.values(nl).forEach(({a})=>a.classList.remove('active'));if(nl[cur])nl[cur].a.classList.add('active');}
+document.querySelectorAll('#sidebar a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'});});});
+window.addEventListener('scroll',upd,{passive:true});upd();
+</script>
+
+
+</body></html>
