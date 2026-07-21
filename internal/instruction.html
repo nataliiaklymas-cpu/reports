@@ -27,7 +27,7 @@
 <body>
 
 <h1>Як зробити свій сайт зі звітами на GitHub Pages</h1>
-<p class="lead">Інструкція для колег. Результат: твої HTML-звіти відкриваються за посиланням у браузері (напр. <code>https://ТВІЙ-ЛОГІН.github.io/reports/greek-house/</code>), і кожному партнеру можна дати лише його папку.</p>
+<p class="lead">Результат: твої HTML-звіти відкриваються за посиланням у браузері (напр. <code>https://ТВІЙ-ЛОГІН.github.io/reports/greek-house/</code>), і кожному партнеру можна дати лише його папку.</p>
 
 <hr>
 
@@ -48,7 +48,7 @@
   <li>Відкрий <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> (це <b>Tokens → classic</b>).</li>
   <li><b>Note</b>: <code>cursor-upload</code>.</li>
   <li><b>Expiration</b>: напр. 30 днів.</li>
-  <li><b>Scopes</b>: постав галочку <code>repo</code> (весь блок).</li>
+  <li><b>Scopes</b>: постав галочки <b>на всіх пунктах</b> (не лише на <code>repo</code>).</li>
   <li><b>Generate token</b> → скопіюй (починається з <code>ghp_...</code>).</li>
 </ol>
 <blockquote>⚠️ Токен — це секрет. Нікому не пересилай, не зберігай у файлах. Після роботи можна відкликати на <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a>.</blockquote>
@@ -70,7 +70,17 @@
     </ul>
   </li>
   <li>Захист тримається на тому, що посилання важко вгадати. Для комерційних даних це «захист через неочевидність».</li>
-  <li>Потрібен <b>справжній</b> захист паролем? Тоді використовуй <b>Netlify</b> (безкоштовно) замість GitHub Pages — там можна поставити пароль на сайт.</li>
+  <li>Потрібен <b>справжній</b> захист паролем? Тоді використовуй <b>Netlify</b> (безкоштовно) замість GitHub Pages — там можна поставити пароль на сайт.
+    <p style="margin-top:10px;font-size:15px;">Як це зробити (безкоштовно, через файл <code>_headers</code>):</p>
+    <ol style="font-size:15px;">
+      <li>Зареєструйся на <a href="https://app.netlify.com/signup" target="_blank">app.netlify.com/signup</a> та підключи свій GitHub-репозиторій (<b>Add new site → Import an existing project</b>).</li>
+      <li>У корені репозиторію (поруч із твоїми папками звітів) створи файл із назвою <code>_headers</code> (без розширення).</li>
+      <li>Впиши туди два рядки:<br><code>/*</code><br><code>&nbsp;&nbsp;Basic-Auth: логін:пароль</code></li>
+      <li>Заміни <code>логін</code> і <code>пароль</code> на свої (не використовуй справжні важливі паролі — Netlify зберігає їх у конфігу репозиторію).</li>
+      <li>Заверши деплой (Netlify підхопить файл автоматично при наступному пуші) — тепер при заході на сайт браузер попросить логін і пароль.</li>
+    </ol>
+    <p style="margin-top:8px;font-size:14px;color:var(--muted);">Детальніше: <a href="https://docs.netlify.com/manage/security/secure-access-to-sites/basic-authentication-with-custom-http-headers" target="_blank">офіційна документація Netlify</a>. Готовий дизайн сторінки входу (без стандартного браузерного вікна) доступний тільки на платному Pro-плані Netlify.</p>
+  </li>
 </ul>
 
 <h3>Службова сторінка «всі мережі» (для себе / керівника)</h3>
@@ -78,39 +88,10 @@
 
 <hr>
 
-<h2>Шаблон index.html (для папки партнера)</h2>
-<p>Скопіюй у файл <code>index.html</code> усередині папки партнера, заміни назву й посилання на звіти:</p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="uk"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-  &lt;title&gt;Назва мережі — Reports&lt;/title&gt;
-  &lt;style&gt;
-    body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 720px; margin: 60px auto; padding: 0 20px; color: #1a1a1a; }
-    h1 { font-size: 28px; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 12px 0; }
-    a { display: inline-block; padding: 14px 18px; background: #f4f4f5; border-radius: 10px; text-decoration: none; color: #0969da; font-weight: 600; }
-    a:hover { background: #e6e6e9; }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h1&gt;Назва мережі — Reports&lt;/h1&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href="звіт1.html"&gt;Назва звіту 1&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="звіт2.html"&gt;Назва звіту 2&lt;/a&gt;&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-
-<hr>
-
 <h2>Часті питання</h2>
 <p><b>Скільки коштує?</b> — Безкоштовно (GitHub Pages на публічному репозиторії).</p>
 <p><b>Скільки чекати після завантаження?</b> — Зазвичай 1–2 хвилини, поки сайт «збереться».</p>
 <p><b>Файл не відкривається (404)?</b> — Перевір, що: (1) Pages увімкнено; (2) шлях/назва файлу точні (з урахуванням великих/малих літер); (3) минуло кілька хвилин.</p>
-<p><b>Можна свій домен?</b> — Так, у <b>Settings → Pages → Custom domain</b>, але це вже додаткове налаштування.</p>
 
 </body>
 </html>
