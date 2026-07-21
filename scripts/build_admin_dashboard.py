@@ -36,11 +36,14 @@ def uk_report_word(n):
     return "звітів"
 
 
+REPORT_EXTS = (".html", ".xlsx", ".xls", ".pdf", ".csv", ".pptx")
+
+
 def count_html_files(path):
     if not os.path.isdir(path):
         return 0
     return len([f for f in os.listdir(path)
-                if f.lower().endswith(".html") and f.lower() != "index.html"])
+                if f.lower().endswith(REPORT_EXTS) and f.lower() != "index.html"])
 
 
 def latest_week_dir(path):
