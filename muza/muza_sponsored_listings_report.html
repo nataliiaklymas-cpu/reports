@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Звіт: Sponsored listings — Муза (Київ і Львів)</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a222d;
+      --muted: #8b9cb3;
+      --text: #e8eef5;
+      --accent: #3d9cf5;
+      --accent2: #6bcf7a;
+      --border: #2d3a4d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    h1 { font-size: 1.65rem; font-weight: 700; margin: 0 0 0.5rem; letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); font-size: 0.95rem; }
+    h2 {
+      font-size: 1.15rem;
+      margin: 2.25rem 0 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    h3 { font-size: 1rem; margin: 1.5rem 0 0.6rem; color: var(--text); }
+    p { margin: 0.6rem 0; color: var(--muted); }
+    .badge {
+      display: inline-block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-right: 0.35rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin: 0.75rem 0;
+      background: var(--card);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    th, td { padding: 0.65rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: #222b38; color: var(--muted); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    tr:last-child td { border-bottom: none; }
+    tr.total td { font-weight: 600; color: var(--accent2); background: rgba(107, 207, 122, 0.06); }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    .grid2 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 1rem 0; }
+    .kpi {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+    }
+    .kpi .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .kpi .val { font-size: 1.35rem; font-weight: 700; margin-top: 0.25rem; color: var(--text); }
+    dl.glossary {
+      display: grid;
+      gap: 0.65rem 1.5rem;
+      grid-template-columns: minmax(140px, 220px) 1fr;
+      margin: 0.75rem 0;
+      font-size: 0.9rem;
+    }
+    dl.glossary dt {
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0;
+    }
+    dl.glossary dd { margin: 0; color: var(--muted); }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--muted); }
+    @media print {
+      body { background: #fff; color: #111; }
+      .wrap { max-width: 100%; }
+      :root { --card: #f5f5f5; --border: #ccc; --text: #111; --muted: #444; --accent: #0066cc; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Платне просування: Sponsored listings</h1>
+      <p class="subtitle">Партнер: <strong style="color:var(--text)">Муза від Євгена Клопотенка</strong> — локації в <strong style="color:var(--text)">Києві</strong> та <strong style="color:var(--text)">Львові</strong></p>
+      <p style="margin-top:1rem">
+        <span class="badge">Період (локальний час)</span> 2026-04-08 — 2026-04-25<br />
+        <span class="badge">Країна</span> Ukraine<br />
+        <span class="badge">Плейсмент</span> home_screen<br />
+        <span class="badge">Статус</span> active<br />
+        <span class="badge">Сегмент бізнесу</span> Mid-market (AM Segment)
+      </p>
+    </header>
+
+    <h2>Короткий підсумок по групі бренду</h2>
+    <p>Дані з <code>brand_group_overview.csv</code>. City ID 158 — Київ, 496 — Львів.</p>
+    <div class="grid2">
+      <div class="kpi">
+        <div class="label">Київ — ROAS</div>
+        <div class="val">9.00</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Львів — ROAS</div>
+        <div class="val">4.41</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Витрати Київ / Львів</div>
+        <div class="val">€95.11 / €90.19</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Атрибутований NET дохід</div>
+        <div class="val">€855.65 + €398.16</div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Країна</th>
+          <th>City ID</th>
+          <th>Бренд</th>
+          <th>Група</th>
+          <th class="num">ROAS</th>
+          <th class="num">Витрати (EUR)</th>
+          <th class="num">Provider Net Revenue (атриб., EUR)</th>
+          <th class="num">Замовлення</th>
+          <th class="num">Нові користувачі</th>
+          <th class="num">Покази</th>
+          <th class="num">Кліки</th>
+          <th class="num">CPM</th>
+          <th class="num">CPC</th>
+          <th class="num">Вартість замовл.</th>
+          <th class="num">Вартість нов. кор.</th>
+          <th class="num">CTR %</th>
+          <th class="num">CVR %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ukraine</td>
+          <td>158</td>
+          <td>MUZA BY KLOPOTENKO</td>
+          <td>MUZA GROUP</td>
+          <td class="num">9.00</td>
+          <td class="num">€95.11</td>
+          <td class="num">€855.65</td>
+          <td class="num">75</td>
+          <td class="num">47</td>
+          <td class="num">23,923</td>
+          <td class="num">849</td>
+          <td class="num">€3.98</td>
+          <td class="num">€0.11</td>
+          <td class="num">€1.27</td>
+          <td class="num">€2.02</td>
+          <td class="num">3.5%</td>
+          <td class="num">8.8%</td>
+        </tr>
+        <tr>
+          <td>Ukraine</td>
+          <td>496</td>
+          <td>MUZA BY KLOPOTENKO LVIV</td>
+          <td>MUZA GROUP</td>
+          <td class="num">4.41</td>
+          <td class="num">€90.19</td>
+          <td class="num">€398.16</td>
+          <td class="num">40</td>
+          <td class="num">30</td>
+          <td class="num">11,630</td>
+          <td class="num">439</td>
+          <td class="num">€7.76</td>
+          <td class="num">€0.21</td>
+          <td class="num">€2.25</td>
+          <td class="num">€3.01</td>
+          <td class="num">3.8%</td>
+          <td class="num">9.1%</td>
+        </tr>
+        <tr class="total">
+          <td colspan="17">Зведений рядок з файлу: атрибутований Provider Net Revenue разом <strong>€1,253.80</strong>; нових користувачів <strong>77</strong>.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Деталізація по кожній точці (провайдер)</h2>
+    <p>Дані з <code>detailed_provider_overview.csv</code> та <code>provider_overview.csv</code> (ідентичні рядки, одна таблиця нижче).</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Provider ID</th>
+          <th>Назва локації</th>
+          <th>Місто</th>
+          <th class="num">Витрати</th>
+          <th class="num">ROAS</th>
+          <th class="num">Замовл.</th>
+          <th class="num">NET дохід</th>
+          <th class="num">Покази</th>
+          <th class="num">Кліки</th>
+          <th class="num">CPM</th>
+          <th class="num">CPC</th>
+          <th class="num">€ / замовл.</th>
+          <th class="num">Нові кор.</th>
+          <th class="num">€ / нов. кор.</th>
+          <th class="num">CTR</th>
+          <th class="num">CVR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>140973</td>
+          <td>Муза від Євгена Клопотенка м. Київ, вул. Вінстона Черчиля</td>
+          <td>Київ (158)</td>
+          <td class="num">€31.70</td>
+          <td class="num">11.80</td>
+          <td class="num">35</td>
+          <td class="num">€374.23</td>
+          <td class="num">8,320</td>
+          <td class="num">294</td>
+          <td class="num">€3.81</td>
+          <td class="num">€0.11</td>
+          <td class="num">€0.91</td>
+          <td class="num">24</td>
+          <td class="num">€1.32</td>
+          <td class="num">3.5%</td>
+          <td class="num">11.9%</td>
+        </tr>
+        <tr>
+          <td>177297</td>
+          <td>Муза від Євгена Клопотенка пр-т Європейського Союзу</td>
+          <td>Київ (158)</td>
+          <td class="num">€31.70</td>
+          <td class="num">7.85</td>
+          <td class="num">21</td>
+          <td class="num">€248.79</td>
+          <td class="num">6,319</td>
+          <td class="num">217</td>
+          <td class="num">€5.02</td>
+          <td class="num">€0.15</td>
+          <td class="num">€1.51</td>
+          <td class="num">15</td>
+          <td class="num">€2.11</td>
+          <td class="num">3.4%</td>
+          <td class="num">9.7%</td>
+        </tr>
+        <tr>
+          <td>149712</td>
+          <td>Муза від Євгена Клопотенка вул. Героїв Полку Азов</td>
+          <td>Київ (158)</td>
+          <td class="num">€31.70</td>
+          <td class="num">7.34</td>
+          <td class="num">19</td>
+          <td class="num">€232.63</td>
+          <td class="num">6,649</td>
+          <td class="num">238</td>
+          <td class="num">€4.77</td>
+          <td class="num">€0.13</td>
+          <td class="num">€1.67</td>
+          <td class="num">8</td>
+          <td class="num">€3.96</td>
+          <td class="num">3.6%</td>
+          <td class="num">8.0%</td>
+        </tr>
+        <tr>
+          <td>184854</td>
+          <td>Муза від Євгена Клопотенка Федьковича</td>
+          <td>Львів (496)</td>
+          <td class="num">€31.70</td>
+          <td class="num">5.76</td>
+          <td class="num">22</td>
+          <td class="num">€182.64</td>
+          <td class="num">4,745</td>
+          <td class="num">182</td>
+          <td class="num">€6.68</td>
+          <td class="num">€0.17</td>
+          <td class="num">€1.44</td>
+          <td class="num">19</td>
+          <td class="num">€1.67</td>
+          <td class="num">3.8%</td>
+          <td class="num">12.1%</td>
+        </tr>
+        <tr>
+          <td>169180</td>
+          <td>Муза від Євгена Клопотенка Пекарська</td>
+          <td>Львів (496)</td>
+          <td class="num">€29.24</td>
+          <td class="num">5.73</td>
+          <td class="num">14</td>
+          <td class="num">€167.46</td>
+          <td class="num">2,857</td>
+          <td class="num">128</td>
+          <td class="num">€10.24</td>
+          <td class="num">€0.23</td>
+          <td class="num">€2.09</td>
+          <td class="num">8</td>
+          <td class="num">€3.66</td>
+          <td class="num">4.5%</td>
+          <td class="num">10.9%</td>
+        </tr>
+        <tr>
+          <td>184842</td>
+          <td>Муза від Євгена Клопотенка Чорновола</td>
+          <td>Львів (496)</td>
+          <td class="num">€29.24</td>
+          <td class="num">1.64</td>
+          <td class="num">4</td>
+          <td class="num">€48.05</td>
+          <td class="num">2,785</td>
+          <td class="num">78</td>
+          <td class="num">€10.50</td>
+          <td class="num">€0.37</td>
+          <td class="num">€7.31</td>
+          <td class="num">3</td>
+          <td class="num">€9.75</td>
+          <td class="num">2.8%</td>
+          <td class="num">5.1%</td>
+        </tr>
+        <tr class="total">
+          <td colspan="7">Зведений рядок з <code>detailed_provider_overview.csv</code>: у файлі значення €1,253.80 стоїть у колонці показів, але відповідає сумі атрибутованого NET-доходу по всіх точках</td>
+          <td class="num">€1,253.80</td>
+          <td colspan="8">нових користувачів (у зведеному рядку файлу): 77</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Топ локацій за показами та кліками</h2>
+    <h3>За показами — <code>top_providers_(impressions).csv</code></h3>
+    <table>
+      <thead><tr><th>#</th><th>Локація</th><th class="num">Impressions</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Муза від Євгена Клопотенка м. Київ, вул. Вінстона Черчиля</td><td class="num">8,320</td></tr>
+        <tr><td>2</td><td>Муза від Євгена Клопотенка вул. Героїв Полку Азов</td><td class="num">6,649</td></tr>
+        <tr><td>3</td><td>Муза від Євгена Клопотенка пр-т Європейського Союзу</td><td class="num">6,319</td></tr>
+        <tr><td>4</td><td>Муза від Євгена Клопотенка Федьковича</td><td class="num">4,745</td></tr>
+        <tr><td>5</td><td>Муза від Євгена Клопотенка Пекарська</td><td class="num">2,857</td></tr>
+        <tr><td>6</td><td>Муза від Євгена Клопотенка Чорновола</td><td class="num">2,785</td></tr>
+        <tr class="total"><td colspan="2">Разом</td><td class="num">31,675</td></tr>
+      </tbody>
+    </table>
+    <h3>За кліками — <code>top_providers_(clicks).csv</code></h3>
+    <table>
+      <thead><tr><th>#</th><th>Локація</th><th class="num">Clicks</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Муза від Євгена Клопотенка м. Київ, вул. Вінстона Черчиля</td><td class="num">294</td></tr>
+        <tr><td>2</td><td>Муза від Євгена Клопотенка вул. Героїв Полку Азов</td><td class="num">238</td></tr>
+        <tr><td>3</td><td>Муза від Євгена Клопотенка пр-т Європейського Союзу</td><td class="num">217</td></tr>
+        <tr><td>4</td><td>Муза від Євгена Клопотенка Федьковича</td><td class="num">182</td></tr>
+        <tr><td>5</td><td>Муза від Євгена Клопотенка Пекарська</td><td class="num">128</td></tr>
+        <tr><td>6</td><td>Муза від Євгена Клопотенка Чорновола</td><td class="num">78</td></tr>
+        <tr class="total"><td colspan="2">Разом</td><td class="num">1,137</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Локації без атрибутованих замовлень / кліків</h2>
+    <p>Файли <code>providers_without_attributed_orders.csv</code> та <code>providers_without_attributed_clicks.csv</code> містять лише заголовки колонок — рядків з даними немає. Це означає, що всі перелічені локації Муза за звітний період мали атрибутовані кліки та замовлення.</p>
+
+    <h2>Глосарій показників</h2>
+    <p>Назви метрик такі, як у вихідних CSV; нижче — коротке пояснення українською для звіту з реклами Sponsored listings.</p>
+    <dl class="glossary">
+      <dt>Provider ID</dt>
+      <dd>Унікальний ідентифікатор закладу (точки) у системі.</dd>
+      <dt>Provider Name</dt>
+      <dd>Назва локації партнера, як відображається в даних.</dd>
+      <dt>City ID</dt>
+      <dd>Внутрішній код міста; у цьому звіті 158 відповідає Києву, 496 — Львову (узгоджено з бренд-групою LVIV).</dd>
+      <dt>Country Name</dt>
+      <dd>Країна локації (у даних — Ukraine).</dd>
+      <dt>Business Segment</dt>
+      <dd>Бізнес-сегмент партнера; для Муза в файлах — Mid-market (AM Segment).</dd>
+      <dt>Start / End Date (Local)</dt>
+      <dd>Початок і кінець періоду звітування в локальному часі.</dd>
+      <dt>Placement</dt>
+      <dd>Місце показу оголошення; у даних — home_screen (головний екран застосунку).</dd>
+      <dt>State</dt>
+      <dd>Статус кампанії / розміщення; у даних — active (активне).</dd>
+      <dt>Total Spend (EUR)</dt>
+      <dd>Загальні витрати на рекламу в євро за період.</dd>
+      <dt>ROAS</dt>
+      <dd>Return on Ad Spend — віддача від рекламних витрат; відношення атрибутованого доходу до витрат на рекламу. Чим вище, тим ефективніше окупаються витрати.</dd>
+      <dt>Orders (Attributed)</dt>
+      <dd>Кількість замовлень, приписаних (атрибутованих) цьому рекламному показу за обраною моделлю атрибуції.</dd>
+      <dt>Attributed NET Revenue</dt>
+      <dd>Чистий дохід від атрибутованих замовлень (після віднімань), у євро.</dd>
+      <dt>Provider Net Revenue (Attributed, EUR)</dt>
+      <dd>Аналог доходу на рівні групи бренду: чистий атрибутований дохід провайдера в євро.</dd>
+      <dt>Impressions</dt>
+      <dd>Покази — скільки разів користувачі бачили рекламний банер / картку.</dd>
+      <dt>Clicks</dt>
+      <dd>Кліки — скільки разів користувачі натиснули на рекламне оголошення.</dd>
+      <dt>CPM</dt>
+      <dd>Cost Per Mille — вартість тисячі показів (євро за 1000 impressions).</dd>
+      <dt>CPC</dt>
+      <dd>Cost Per Click — середня вартість одного кліку.</dd>
+      <dt>Cost per order</dt>
+      <dd>Середня вартість реклами на одне атрибутоване замовлення (витрати / замовлення).</dd>
+      <dt>New Users (Attributed)</dt>
+      <dd>Нові користувачі, атрибутовані до цієї реклами (перше замовлення або реєстрація — залежно від визначення у продукті Bolt).</dd>
+      <dt>Cost per new user</dt>
+      <dd>Середня вартість залучення одного нового атрибутованого користувача.</dd>
+      <dt>CTR %</dt>
+      <dd>Click-Through Rate — частка кліків від показів (кліки / покази × 100%). Показує привабливість креативу в стрічці.</dd>
+      <dt>CVR %</dt>
+      <dd>Conversion Rate — частка замовлень від кліків (замовлення / кліки × 100%). Показує, наскільки клік перетворюється на замовлення.</dd>
+      <dt>Brand Name / Group Name</dt>
+      <dd>Назва бренду та об’єднання точок у звіті групи (наприклад, MUZA GROUP).</dd>
+    </dl>
+
+    <footer>
+      Звіт сформовано автоматично з CSV у папці dashboard-sponsored_listings_-_local_teams. Дата формування (локально): <span id="gen"></span>.
+    </footer>
+  </div>
+  <script>
+    document.getElementById("gen").textContent = new Date().toLocaleString("uk-UA");
+  </script>
+</body>
+</html>

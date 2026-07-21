@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<!-- saved from url=(0105)file:///Users/klymasnataliia/Downloads/UA%20AM/Bolt_Food_reports/Muza_Perig_QBR_2026_Jan-Mar_partial.html -->
+<html lang="uk"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBR — Muza &amp; Періг | Неповний Q1 2026</title>
+    <script src="./QBR — Muza &amp; Періг _ Неповний Q1 2026_files/chart.umd.min.js"></script>
+    <style>
+        :root{--bolt-green:#34D186;--bolt-green-dark:#2AB873;--bolt-green-light:#E8FBF1;--bolt-dark:#1B1B1F;--bolt-gray:#6B7280;--bolt-gray-light:#F3F4F6;--bolt-white:#FFFFFF;--bolt-red:#EF4444;--bolt-orange:#F59E0B;--bolt-blue:#3B82F6;--bolt-purple:#8B5CF6;--bolt-cyan:#06B6D4;--muza:#D4A574;--muza-light:#F5EDE4;--perig:#7C9A5E;--perig-light:#E8F0E0;--shadow-sm:0 1px 2px rgba(0,0,0,.05);--shadow-md:0 4px 6px -1px rgba(0,0,0,.1);--radius:12px}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bolt-gray-light);color:var(--bolt-dark);line-height:1.6}
+        .sidebar{position:fixed;left:0;top:0;width:260px;height:100vh;background:var(--bolt-dark);color:var(--bolt-white);padding:24px 0;overflow-y:auto;z-index:100}
+        .sidebar-logo{padding:0 24px 24px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:16px}
+        .sidebar-logo h2{font-size:20px;font-weight:700;color:var(--bolt-green)}
+        .sidebar-logo p{font-size:12px;color:rgba(255,255,255,.5);margin-top:4px}
+        .nav-section{padding:8px 16px;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.35);margin-top:8px}
+        .nav-link{display:flex;align-items:center;gap:10px;padding:10px 24px;color:rgba(255,255,255,.7);text-decoration:none;font-size:13px;transition:all .2s;border-left:3px solid transparent;cursor:pointer}
+        .nav-link:hover,.nav-link.active{background:rgba(255,255,255,.08);color:var(--bolt-white);border-left-color:var(--bolt-green)}
+        .nav-icon{font-size:16px;width:20px;text-align:center}
+        .main{margin-left:260px;padding:32px 40px;max-width:1200px}
+        .header{margin-bottom:32px}
+        .header h1{font-size:28px;font-weight:800;margin-bottom:4px}
+        .header .subtitle{color:var(--bolt-gray);font-size:14px}
+        .header .period-badge{display:inline-block;background:var(--bolt-green-light);color:var(--bolt-green-dark);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-top:8px}
+        .brand-switcher{display:flex;gap:0;margin-bottom:28px;background:var(--bolt-white);border-radius:var(--radius);padding:4px;box-shadow:var(--shadow-md);width:fit-content}
+        .brand-tab{padding:12px 32px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .25s;border:none;background:transparent;color:var(--bolt-gray)}
+        .brand-tab:hover{color:var(--bolt-dark)}
+        .brand-tab.active-muza{background:var(--muza);color:#fff;box-shadow:var(--shadow-sm)}
+        .brand-tab.active-perig{background:var(--perig);color:#fff;box-shadow:var(--shadow-sm)}
+        .brand-tab .brand-sub{font-size:10px;font-weight:400;display:block;opacity:.8;margin-top:2px}
+        .brand-content{display:none}.brand-content.active{display:block}
+        .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-bottom:24px}
+        .kpi-card{background:var(--bolt-white);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.05)}
+        .kpi-card .kpi-label{font-size:12px;color:var(--bolt-gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+        .kpi-card .kpi-value{font-size:26px;font-weight:800;line-height:1.2}
+        .kpi-card .kpi-sub{font-size:12px;color:var(--bolt-gray);margin-top:4px}
+        .kpi-card.highlight-muza{background:linear-gradient(135deg,var(--muza),#C49562);color:#fff}
+        .kpi-card.highlight-muza .kpi-label,.kpi-card.highlight-muza .kpi-sub{color:rgba(255,255,255,.85)}
+        .kpi-card.highlight-perig{background:linear-gradient(135deg,var(--perig),#6B8A4D);color:#fff}
+        .kpi-card.highlight-perig .kpi-label,.kpi-card.highlight-perig .kpi-sub{color:rgba(255,255,255,.85)}
+        .section{background:var(--bolt-white);border-radius:var(--radius);padding:24px;margin-bottom:24px;box-shadow:var(--shadow-sm);border:1px solid rgba(0,0,0,.05)}
+        .section-title{font-size:18px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+        .section-title .icon{font-size:20px}
+        table{width:100%;border-collapse:collapse;font-size:13px}
+        th{background:var(--bolt-gray-light);padding:10px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--bolt-gray);border-bottom:2px solid #E5E7EB}
+        td{padding:10px 12px;border-bottom:1px solid #F3F4F6}
+        tr:hover td{background:#FAFBFC}
+        .num{text-align:right;font-variant-numeric:tabular-nums}
+        .badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600}
+        .badge-green{background:#D1FAE5;color:#065F46}.badge-red{background:#FEE2E2;color:#991B1B}.badge-orange{background:#FEF3C7;color:#92400E}.badge-blue{background:#DBEAFE;color:#1E40AF}
+        .chart-container{position:relative;height:280px;margin:16px 0}
+        .chart-container-sm{position:relative;height:220px;margin:16px 0}
+        .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+        .insight-box{background:linear-gradient(135deg,#FFF7ED,#FEF3C7);border:1px solid #FDE68A;border-radius:var(--radius);padding:16px 20px;margin:16px 0;font-size:13px}
+        .insight-box.green{background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border-color:#6EE7B7}
+        .insight-box.red{background:linear-gradient(135deg,#FEF2F2,#FEE2E2);border-color:#FCA5A5}
+        .insight-box.blue{background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-color:#93C5FD}
+        .insight-box .insight-title{font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+        .rec-card{background:var(--bolt-white);border:1px solid #E5E7EB;border-radius:var(--radius);padding:20px;margin-bottom:12px}
+        .rec-card h4{font-size:15px;font-weight:700;margin-bottom:8px}
+        .rec-card p{font-size:13px;color:var(--bolt-gray);line-height:1.5}
+        .rec-card .priority{display:inline-block;padding:2px 10px;border-radius:12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+        .priority-high{background:#FEE2E2;color:#DC2626}.priority-medium{background:#FEF3C7;color:#D97706}.priority-low{background:#D1FAE5;color:#059669}
+        .bolt-plus-card{background:linear-gradient(135deg,#1B1B1F,#2D2D35);border-radius:var(--radius);padding:24px;color:#fff;margin-bottom:16px}
+        .bolt-plus-card h3{color:var(--bolt-green);font-size:16px;margin-bottom:14px}
+        .bolt-plus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px}
+        .bolt-plus-stat{text-align:center}
+        .bolt-plus-stat .bp-value{font-size:22px;font-weight:800;color:var(--bolt-green)}
+        .bolt-plus-stat .bp-label{font-size:11px;color:rgba(255,255,255,.6);margin-top:4px}
+        .dish-rank{display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:8px;background:var(--bolt-gray-light);margin-bottom:6px}
+        .dish-rank-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0}
+        .dish-rank-num.gold{background:#F59E0B}.dish-rank-num.silver{background:#9CA3AF}.dish-rank-num.bronze{background:#B45309}.dish-rank-num.other{background:var(--bolt-gray)}
+        .dish-info{flex:1}.dish-name{font-weight:700;font-size:13px}.dish-meta{font-size:11px;color:var(--bolt-gray)}
+        .dish-revenue{font-weight:800;font-size:14px;text-align:right}
+        .glossary{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:11px;color:#475569;line-height:1.7}
+        .glossary strong{color:var(--bolt-dark)}
+        .sl-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:18px 0}
+        .sl-card{background:var(--bolt-gray-light);border-radius:10px;padding:16px;border:1px solid #E5E7EB}
+        .sl-card h4{font-size:13px;font-weight:700;margin-bottom:8px;color:var(--bolt-dark)}
+        .sl-card p{font-size:12px;color:var(--bolt-gray);line-height:1.55;margin:0}
+        a.sl-cta{display:inline-flex;align-items:center;gap:8px;margin-top:8px;padding:12px 22px;background:var(--bolt-dark);color:#fff!important;border-radius:10px;text-decoration:none;font-weight:600;font-size:14px}
+        a.sl-cta:hover{opacity:.92}
+        @media(max-width:1024px){.sidebar{display:none}.main{margin-left:0;padding:20px}.grid-2{grid-template-columns:1fr}}
+    </style>
+</head>
+<body>
+
+<nav class="sidebar">
+    <div class="sidebar-logo"><h2>Bolt Food</h2><p>QBR · Muza &amp; Періг</p></div>
+    <div class="nav-section">Огляд</div>
+    <a class="nav-link active" onclick="scrollTo_s(&#39;#title&#39;)"><span class="nav-icon">🏠</span> Титул</a>
+    <a class="nav-link" onclick="scrollConv()"><span class="nav-icon">🔄</span> Конверсія меню</a>
+    <div class="nav-section">Показники</div>
+    <a class="nav-link" onclick="scrollTo_s(&#39;#finance&#39;)"><span class="nav-icon">💰</span> Фінанси</a>
+    <a class="nav-link" onclick="scrollTo_s(&#39;#orders&#39;)"><span class="nav-icon">📦</span> Замовлення</a>
+    <a class="nav-link" onclick="scrollTo_s(&#39;#clients&#39;)"><span class="nav-icon">👥</span> Клієнти</a>
+    <a class="nav-link" onclick="scrollTo_s(&#39;#operations&#39;)"><span class="nav-icon">⚡</span> Операції</a>
+    <a class="nav-link" onclick="scrollTo_s(&#39;#marketing&#39;)"><span class="nav-icon">📣</span> Маркетинг</a>
+    <a class="nav-link" onclick="scrollPromo()"><span class="nav-icon">🎯</span> Промо-замовлення</a>
+    <a class="nav-link" onclick="scrollTo_s(&#39;#boltplus&#39;)"><span class="nav-icon">⚡</span> Bolt+</a>
+    <a class="nav-link" onclick="scrollTo_s(&#39;#dishes&#39;)"><span class="nav-icon">🍽️</span> Топ страви</a>
+    <a class="nav-link" onclick="scrollTo_s(&#39;#recommendations&#39;)"><span class="nav-icon">💡</span> Рекомендації</a>
+    <div class="nav-section">Продукт</div>
+    <a class="nav-link" onclick="scrollTo_s(&#39;#sponsored-listing&#39;)"><span class="nav-icon">🚀</span> Sponsored Listing</a>
+</nav>
+
+<div class="main">
+    <div class="brand-switcher">
+        <button type="button" class="brand-tab active-muza" data-brand="muza" onclick="switchBrand(&#39;muza&#39;)">Muza<span class="brand-sub">by Євген Клопотенко</span></button>
+        <button type="button" class="brand-tab" data-brand="perig" onclick="switchBrand(&#39;perig&#39;)">Періг<span class="brand-sub">Нове слово у світі пирогів</span></button>
+    </div>
+
+    <div class="header" id="title">
+        <h1 id="mainTitle">Quarterly Business Review: Muza</h1>
+        <p class="subtitle" id="mainSubtitle">Muza від Євгена Клопотенка — Київ &amp; Львів · Bolt Food Ukraine</p>
+        <span class="period-badge" id="periodBadge">Січень + Лютий 2026 (повні) · Березень 2026 (зріз ~1-ша пол., експорт 25.03)</span>
+    </div>
+
+    <!-- ========== MUZA ========== -->
+    <div class="brand-content active" id="content-muza">
+
+    <div class="kpi-grid" id="executive">
+        <div class="kpi-card highlight-muza"><div class="kpi-label">Net Sales (OPER, EUR)</div><div class="kpi-value">€45 090</div><div class="kpi-sub">3 397 доставок · 10 локацій у зрізі</div></div>
+        <div class="kpi-card"><div class="kpi-label">Доставлені замовлення</div><div class="kpi-value" style="color:var(--bolt-blue)">3 397</div><div class="kpi-sub">Січ 1 291 → Лют 1 351 → Бер 755</div></div>
+        <div class="kpi-card"><div class="kpi-label">AOV після знижки</div><div class="kpi-value" style="color:var(--bolt-purple)">€13,27</div><div class="kpi-sub">OPER · Average Order Value</div></div>
+        <div class="kpi-card"><div class="kpi-label">Рейтинг (зваж.)</div><div class="kpi-value" style="color:var(--bolt-green-dark)">4,56 ⭐</div><div class="kpi-sub">Acceptance 98,9% · Avail. 92,8%</div></div>
+        <div class="kpi-card"><div class="kpi-label">Нові користувачі</div><div class="kpi-value" style="color:var(--bolt-orange)">95</div><div class="kpi-sub">Σ по локаціях (OPER)</div></div>
+        <div class="kpi-card"><div class="kpi-label">Bolt+ частка</div><div class="kpi-value" style="color:var(--bolt-cyan)">28,7%</div><div class="kpi-sub">937 з 3 270 (Bolt+ зріз)</div></div>
+        <div class="kpi-card"><div class="kpi-label">Промо-замовлення (оцінка)</div><div class="kpi-value" style="color:var(--bolt-cyan);font-size:24px">2 428</div><div class="kpi-sub">з 3 397 доставлених · OPER кампанії</div></div>
+        <div class="kpi-card"><div class="kpi-label">Частка промо від усіх зам.</div><div class="kpi-value" style="color:var(--bolt-blue);font-size:24px">71,5%</div><div class="kpi-sub">зважено по локаціях і місяцях</div></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="icon">📊</span> Executive Summary — Muza</div>
+        <div class="glossary">📖 <strong>Net Sales</strong> — Total Sales After Discount (EUR) у OPER · <strong>AOV</strong> — середній чек після знижки · Дані: неповний Q1 2026</div>
+        <div class="insight-box green">
+            <div class="insight-title">✅ Підсумок періоду</div>
+            <strong>Muza:</strong> за січень — березень (зріз) <strong>3 397</strong> доставлених замовлень, <strong>€45 090</strong> Net Sales. Лютий vs січень: <strong>+4,6%</strong> замовлень; березень неповний — обсяг нижче за лютий (<strong>−44%</strong> до лютого), типово для часткового місяця.
+            Конверсія меню → кошик (зважено): <strong>23,2%</strong>; кошик → замовлення: <strong>62,6%</strong>. Частка <strong>Bolt+</strong> зростає по місяцях у зрізі: <strong>26,4% → 28,8% → 32,2%</strong>.
+            За OPER, замовлення з кампаній партнера (промо): <strong>~2 428</strong> (<strong>71,5%</strong> від усіх доставлених); частка промо зростає від січня до березня в зрізі.
+        </div>
+        <div class="insight-box red">
+            <div class="insight-title">⚠️ Зони уваги</div>
+            <ul style="padding-left:18px;font-size:13px">
+                <li><strong>Львів:</strong> Федьковича та Чорновола — зважена availability <strong>~80–83%</strong> за період; у березні Чорновола <strong>96,8%</strong> (покращення в зрізі).</li>
+                <li><strong>Гарматна:</strong> availability <strong>89,2%</strong> — нижче цілі 95%.</li>
+                <li>Час досвіду (Total Experience) зважений <strong>~34,7 хв</strong> — моніторинг локацій з найвищим ETA.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section conv-section" id="m-conversion">
+        <div class="section-title"><span class="icon">🔄</span> Конверсія: імпресії, меню, кошик</div>
+        <div class="glossary">Показники з OPER (curated_delivery) · Конверсії <strong>зважені</strong> по обсягу сесій перегляду меню та «додано в кошик»</div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+            <div class="kpi-card"><div class="kpi-label">Total Impressions</div><div class="kpi-value" style="font-size:24px">561 831</div><div class="kpi-sub">Σ по мережі Muza</div></div>
+            <div class="kpi-card"><div class="kpi-label">Menu Views (session)</div><div class="kpi-value" style="font-size:24px;color:var(--bolt-green-dark)">23 498</div><div class="kpi-sub">Сесії меню</div></div>
+            <div class="kpi-card"><div class="kpi-label">Меню / імпресії</div><div class="kpi-value" style="font-size:24px">4,2%</div><div class="kpi-sub">Агрегат по звіту</div></div>
+        </div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+            <div class="kpi-card highlight-muza"><div class="kpi-label">Меню → кошик</div><div class="kpi-value">23,2%</div><div class="kpi-sub">Session Added / Menu Viewed</div></div>
+            <div class="kpi-card"><div class="kpi-label">Кошик → замовлення</div><div class="kpi-value" style="color:var(--bolt-blue)">62,6%</div><div class="kpi-sub">Ordered / Added</div></div>
+            <div class="kpi-card"><div class="kpi-label">Меню → замовлення</div><div class="kpi-value" style="color:var(--bolt-purple)">14,5%</div><div class="kpi-sub">Ordered / Viewed</div></div>
+        </div>
+        <div class="chart-container-sm"><canvas id="mConvChart" width="2100" height="440" style="display: block; box-sizing: border-box; height: 220px; width: 1050px;"></canvas></div>
+        <table>
+            <thead><tr><th>Місяць</th><th class="num">Імпресії</th><th class="num">Перегляди меню</th><th class="num">Меню→кошик</th><th class="num">Кошик→зам.</th><th class="num">Меню→зам.</th></tr></thead>
+            <tbody>
+                <tr><td>Січень 2026</td><td class="num">243 239</td><td class="num">9 414</td><td class="num">22,0%</td><td class="num">64,6%</td><td class="num">14,2%</td></tr>
+                <tr><td>Лютий 2026</td><td class="num">210 655</td><td class="num">9 846</td><td class="num">23,5%</td><td class="num">57,8%</td><td class="num">13,6%</td></tr>
+                <tr><td>Березень (зріз)</td><td class="num">107 937</td><td class="num">4 238</td><td class="num">24,9%</td><td class="num">69,2%</td><td class="num">17,3%</td></tr>
+                <tr style="font-weight:700;background:#F0FDF4"><td>Разом (зваж.)</td><td class="num">561 831</td><td class="num">23 498</td><td class="num">23,2%</td><td class="num">62,6%</td><td class="num">14,5%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section" id="finance">
+        <div class="section-title"><span class="icon">💰</span> Фінанси (OPER, EUR)</div>
+        <table>
+            <thead><tr><th>Місяць</th><th class="num">Net Sales €</th><th class="num">Замовлення</th><th class="num">AOV €</th></tr></thead>
+            <tbody>
+                <tr><td>Січень 2026</td><td class="num">17 709</td><td class="num">1 291</td><td class="num">13,72</td></tr>
+                <tr><td>Лютий 2026</td><td class="num">17 091</td><td class="num">1 351</td><td class="num">12,65</td></tr>
+                <tr><td>Березень (зріз)</td><td class="num">10 290</td><td class="num">755</td><td class="num">13,63</td></tr>
+                <tr style="font-weight:700;background:var(--muza-light)"><td>Разом</td><td class="num">45 090</td><td class="num">3 397</td><td class="num">13,27</td></tr>
+            </tbody>
+        </table>
+        <div class="grid-2" style="margin-top:16px">
+            <div class="chart-container-sm"><canvas id="mSalesChart" width="1026" height="440" style="display: block; box-sizing: border-box; height: 220px; width: 513px;"></canvas></div>
+            <div class="chart-container-sm"><canvas id="mOrdersChart" width="1026" height="440" style="display: block; box-sizing: border-box; height: 220px; width: 513px;"></canvas></div>
+        </div>
+    </div>
+
+    <div class="section" id="orders">
+        <div class="section-title"><span class="icon">📦</span> Замовлення</div>
+        <div class="insight-box blue">
+            <div class="insight-title">📈 Динаміка</div>
+            Лідер за обсягом — <strong>Саксаганського</strong> (776 замовлень за період), далі <strong>Коломийський</strong> (548). Березневий зріз коротший — порівняння місяць до місяця для березня умовне.
+        </div>
+    </div>
+
+    <div class="section promo-section" id="promo">
+        <div class="section-title"><span class="icon">🎯</span> Промо-замовлення (кампанії партнера)</div>
+        <div class="glossary">📖 <strong>Provider Campaigns Order from Total Delivered Orders</strong> у OPER — частка доставлених замовлень, пов’язаних із кампаніями партнера. <strong>Кількість промо-замовлень</strong> = сума по локаціях (замовлення × частка / 100); округлення до цілих у рядках, підсумок узгоджений з агрегатом.</div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);max-width:520px">
+            <div class="kpi-card" style="border-left:4px solid var(--bolt-cyan)"><div class="kpi-label">Усього промо-замовлень</div><div class="kpi-value" style="font-size:26px;color:var(--bolt-cyan)">2 428</div><div class="kpi-sub">із 3 397 доставлених</div></div>
+            <div class="kpi-card" style="border-left:4px solid var(--bolt-blue)"><div class="kpi-label">Частка промо</div><div class="kpi-value" style="font-size:26px;color:var(--bolt-blue)">71,5%</div><div class="kpi-sub">від загальної кількості замовлень</div></div>
+        </div>
+        <div class="chart-container-sm"><canvas id="mPromoChart" width="2100" height="440" style="display: block; box-sizing: border-box; height: 220px; width: 1050px;"></canvas></div>
+        <table>
+            <thead><tr><th>Місяць</th><th class="num">Усі доставлені</th><th class="num">Промо-замовл. (оц.)</th><th class="num">Частка промо</th></tr></thead>
+            <tbody>
+                <tr><td>Січень 2026</td><td class="num">1 291</td><td class="num">872</td><td class="num">67,5%</td></tr>
+                <tr><td>Лютий 2026</td><td class="num">1 351</td><td class="num">997</td><td class="num">73,8%</td></tr>
+                <tr><td>Березень (зріз)</td><td class="num">755</td><td class="num">559</td><td class="num">74,1%</td></tr>
+                <tr style="font-weight:700;background:var(--muza-light)"><td>Разом</td><td class="num">3 397</td><td class="num">2 428</td><td class="num">71,5%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section" id="clients">
+        <div class="section-title"><span class="icon">👥</span> Клієнти</div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+            <div class="kpi-card"><div class="kpi-label">Нові користувачі (Σ)</div><div class="kpi-value" style="font-size:22px;color:var(--bolt-blue)">95</div><div class="kpi-sub">Січ 31 · Лют 53 · Бер 11</div></div>
+            <div class="kpi-card"><div class="kpi-label">Σ Active Users (локації)</div><div class="kpi-value" style="font-size:22px">2 586</div><div class="kpi-sub">Без дедуп між точками</div></div>
+            <div class="kpi-card"><div class="kpi-label">Частота (орієнтир)</div><div class="kpi-value" style="font-size:22px;color:var(--bolt-purple)">1,30</div><div class="kpi-sub">Зам. / Σ AU по місяцях</div></div>
+        </div>
+    </div>
+
+    <div class="section" id="operations">
+        <div class="section-title"><span class="icon">⚡</span> Операційні показники по локаціях</div>
+        <p style="font-size:12px;color:var(--bolt-gray);margin-bottom:12px">Зважені середні за період (січ–бер зріз) · Prep = Provider Average Cooking Time · Exp = Total Experience Time</p>
+        <table>
+            <thead><tr><th>Локація</th><th class="num">Зам.</th><th class="num">AOV €</th><th class="num">Accept.</th><th class="num">Avail.</th><th class="num">Prep хв</th><th class="num">Exp хв</th><th class="num">Rating</th><th class="num">Menu conv.</th></tr></thead>
+            <tbody>
+                <tr><td>вул. Саксаганського</td><td class="num">776</td><td class="num">13,39</td><td class="num">99,6%</td><td class="num"><span class="badge badge-green">97,4%</span></td><td class="num">8,5</td><td class="num">35,6</td><td class="num">4,63</td><td class="num">29,6%</td></tr>
+                <tr><td>провулок Коломийський</td><td class="num">548</td><td class="num">13,84</td><td class="num">98,6%</td><td class="num"><span class="badge badge-orange">91,6%</span></td><td class="num">8,1</td><td class="num">31,2</td><td class="num">4,68</td><td class="num">24,4%</td></tr>
+                <tr><td>вул. Срібнокільська</td><td class="num">357</td><td class="num">12,56</td><td class="num">100,0%</td><td class="num"><span class="badge badge-green">97,9%</span></td><td class="num">8,5</td><td class="num">36,2</td><td class="num">4,47</td><td class="num">24,5%</td></tr>
+                <tr><td>вул. Гарматна</td><td class="num">354</td><td class="num">13,13</td><td class="num">99,5%</td><td class="num"><span class="badge badge-orange">89,2%</span></td><td class="num">8,7</td><td class="num">34,1</td><td class="num">4,64</td><td class="num">26,1%</td></tr>
+                <tr><td>пр-т Європейського Союзу</td><td class="num">268</td><td class="num">13,14</td><td class="num">99,3%</td><td class="num"><span class="badge badge-green">97,7%</span></td><td class="num">9,9</td><td class="num">32,7</td><td class="num">4,51</td><td class="num">20,2%</td></tr>
+                <tr><td>Федьковича (Львів)</td><td class="num">267</td><td class="num">13,66</td><td class="num">97,2%</td><td class="num"><span class="badge badge-red">80,4%</span></td><td class="num">14,1</td><td class="num">38,4</td><td class="num">4,39</td><td class="num">16,7%</td></tr>
+                <tr><td>Пекарська (Львів)</td><td class="num">245</td><td class="num">12,83</td><td class="num">97,4%</td><td class="num"><span class="badge badge-orange">91,9%</span></td><td class="num">12,4</td><td class="num">41,8</td><td class="num">4,49</td><td class="num">19,1%</td></tr>
+                <tr><td>вул. Героїв Полку Азов</td><td class="num">239</td><td class="num">12,08</td><td class="num">98,5%</td><td class="num"><span class="badge badge-orange">94,7%</span></td><td class="num">7,8</td><td class="num">31,4</td><td class="num">4,56</td><td class="num">24,9%</td></tr>
+                <tr><td>Чорновола (Львів)</td><td class="num">190</td><td class="num">13,77</td><td class="num">99,5%</td><td class="num"><span class="badge badge-red">83,1%</span></td><td class="num">11,5</td><td class="num">33,5</td><td class="num">4,31</td><td class="num">17,0%</td></tr>
+                <tr><td>вул. Вінстона Черчиля</td><td class="num">153</td><td class="num">14,20</td><td class="num">96,6%</td><td class="num"><span class="badge badge-orange">92,4%</span></td><td class="num">8,5</td><td class="num">32,9</td><td class="num">4,56</td><td class="num">21,2%</td></tr>
+            </tbody>
+        </table>
+        <div class="chart-container-sm" style="margin-top:16px"><canvas id="mAvailChart" width="2100" height="440" style="display: block; box-sizing: border-box; height: 220px; width: 1050px;"></canvas></div>
+    </div>
+
+    <div class="section" id="marketing">
+        <div class="section-title"><span class="icon">📣</span> Маркетинг — витрати на кампанії (OPER, EUR)</div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr)">
+            <div class="kpi-card" style="border-left:4px solid var(--muza)"><div class="kpi-label">Merchant campaign spend</div><div class="kpi-value" style="font-size:22px;color:var(--muza)">€3 691</div><div class="kpi-sub">Σ Provider campaigns (мерчант)</div></div>
+            <div class="kpi-card" style="border-left:4px solid var(--bolt-green)"><div class="kpi-label">Bolt campaign spend</div><div class="kpi-value" style="font-size:22px;color:var(--bolt-green-dark)">€1 940</div><div class="kpi-sub">Σ Bolt spend (OPER)</div></div>
+        </div>
+        <div class="chart-container-sm"><canvas id="mSpendChart" width="2100" height="440" style="display: block; box-sizing: border-box; height: 220px; width: 1050px;"></canvas></div>
+    </div>
+
+    <div class="section" id="boltplus">
+        <div class="section-title"><span class="icon">⚡</span> Bolt+</div>
+        <div class="bolt-plus-card">
+            <h3>Bolt+ — Muza</h3>
+            <div class="bolt-plus-grid">
+                <div class="bolt-plus-stat"><div class="bp-value">28,7%</div><div class="bp-label">Частка Bolt+ (937 / 3 270)</div></div>
+                <div class="bolt-plus-stat"><div class="bp-value">26,4%</div><div class="bp-label">Січень</div></div>
+                <div class="bolt-plus-stat"><div class="bp-value">28,8%</div><div class="bp-label">Лютий</div></div>
+                <div class="bolt-plus-stat"><div class="bp-value">32,2%</div><div class="bp-label">Березень (зріз)</div></div>
+            </div>
+        </div>
+        <div class="chart-container-sm"><canvas id="mBoltChart" width="2100" height="440" style="display: block; box-sizing: border-box; height: 220px; width: 1050px;"></canvas></div>
+    </div>
+
+    <div class="section" id="dishes">
+        <div class="section-title"><span class="icon">🍽️</span> Топ страви за виручкою (₴)</div>
+        <div class="glossary">📖 Order Item Price · об'єднаний витяг по Muza &amp; Періг · період згідно експорту 25.03.2026 · Усього позицій: <strong>10 401</strong> шт · <strong>3 478</strong> зам. · виручка позицій <strong>2 566 971 ₴</strong></div>
+        <div class="grid-2">
+            <div>
+                <div class="dish-rank"><div class="dish-rank-num gold">1</div><div class="dish-info"><div class="dish-name">Traditional Combo Menu</div><div class="dish-meta">Combo Menu · 437 шт</div></div><div class="dish-revenue">227 449 ₴</div></div>
+                <div class="dish-rank"><div class="dish-rank-num silver">2</div><div class="dish-info"><div class="dish-name">Warm Lunch Combo for Two</div><div class="dish-meta">Combo Menu</div></div><div class="dish-revenue">107 000 ₴</div></div>
+                <div class="dish-rank"><div class="dish-rank-num bronze">3</div><div class="dish-info"><div class="dish-name">Traditional Combo Menu</div><div class="dish-meta">Combo menu</div></div><div class="dish-revenue">88 526 ₴</div></div>
+                <div class="dish-rank"><div class="dish-rank-num other">4</div><div class="dish-info"><div class="dish-name">Ukrainian Lunch Combo 2.0</div><div class="dish-meta">Combo Menu</div></div><div class="dish-revenue">84 418 ₴</div></div>
+                <div class="dish-rank"><div class="dish-rank-num other">5</div><div class="dish-info"><div class="dish-name">Crimean Pilaf with Beef</div><div class="dish-meta">Main Courses</div></div><div class="dish-revenue">57 826 ₴</div></div>
+                <div class="dish-rank"><div class="dish-rank-num other">6</div><div class="dish-info"><div class="dish-name">Hearty Menu Combo</div><div class="dish-meta">Combo Menu</div></div><div class="dish-revenue">51 416 ₴</div></div>
+            </div>
+            <div class="chart-container"><canvas id="mDishChart" width="1026" height="560" style="display: block; box-sizing: border-box; height: 280px; width: 513px;"></canvas></div>
+        </div>
+    </div>
+
+    <div class="section" id="recommendations">
+        <div class="section-title"><span class="icon">💡</span> Рекомендації — Muza</div>
+        <div class="rec-card" style="border-left:4px solid var(--bolt-red)"><h4><span class="priority priority-high">Пріоритет 1</span> Availability у Львові</h4><p>Підтримати <strong>Федьковича</strong> та <strong>Чорновола</strong> на рівні <strong>95%+</strong> онлайн-часу; історично найнижчі показники саме тут.</p></div>
+        <div class="rec-card" style="border-left:4px solid var(--bolt-orange)"><h4><span class="priority priority-medium">Пріоритет 2</span> Гарматна · availability 89%</h4><p>Київська локація з високим потенціалом замовлень — закрити розрив до цілі платформи.</p></div>
+        <div class="rec-card" style="border-left:4px solid var(--bolt-green)"><h4><span class="priority priority-low">Пріоритет 3</span> Конверсія та Bolt+</h4><p>Зростаюча частка Bolt+ — масштабувати механіки підписки; тестувати покращення меню там, де Menu Conversion &lt; 22%.</p></div>
+    </div>
+
+    </div><!-- /muza -->
+
+    <!-- ========== PERIG ========== -->
+    <div class="brand-content" id="content-perig">
+
+    <div class="kpi-grid">
+        <div class="kpi-card highlight-perig"><div class="kpi-label">Net Sales (EUR)</div><div class="kpi-value">€992</div><div class="kpi-sub">81 замовлення · 1 локація Київ</div></div>
+        <div class="kpi-card"><div class="kpi-label">Доставлені замовлення</div><div class="kpi-value" style="color:var(--bolt-blue)">81</div><div class="kpi-sub">Січ 60 → Лют 19 → Бер 2</div></div>
+        <div class="kpi-card"><div class="kpi-label">AOV після знижки</div><div class="kpi-value" style="color:var(--bolt-purple)">€12,25</div><div class="kpi-sub">OPER</div></div>
+        <div class="kpi-card"><div class="kpi-label">Рейтинг</div><div class="kpi-value" style="color:var(--bolt-green-dark)">4,71 ⭐</div><div class="kpi-sub">Accept. 96,8% · Avail. 87,5%</div></div>
+        <div class="kpi-card"><div class="kpi-label">Bolt+ частка</div><div class="kpi-value" style="color:var(--bolt-cyan)">22,2%</div><div class="kpi-sub">18 / 81</div></div>
+        <div class="kpi-card"><div class="kpi-label">Нові користувачі</div><div class="kpi-value" style="color:var(--bolt-orange)">0</div><div class="kpi-sub">У зрізі OPER за період</div></div>
+        <div class="kpi-card"><div class="kpi-label">Промо-замовлення (оцінка)</div><div class="kpi-value" style="color:var(--bolt-cyan);font-size:24px">54</div><div class="kpi-sub">з 81 доставлених · OPER</div></div>
+        <div class="kpi-card"><div class="kpi-label">Частка промо від усіх зам.</div><div class="kpi-value" style="color:var(--bolt-blue);font-size:24px">66,7%</div><div class="kpi-sub">сильна волатильність по місяцях</div></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><span class="icon">📊</span> Executive Summary — Періг</div>
+        <div class="insight-box green">
+            <div class="insight-title">📋 Огляд</div>
+            <strong>Періг</strong> (1 локація): <strong>81</strong> доставлене замовлення, <strong>€992</strong> Net Sales за січень — березень (зріз). Високий рейтинг <strong>4,71</strong>. Промо-замовлення (оцінка OPER): <strong>54</strong> (<strong>66,7%</strong> від усіх); у лютому частка промо різко нижча за січень через малу вибірку.
+        </div>
+        <div class="insight-box red">
+            <div class="insight-title">🚨 Критично: березень та availability</div>
+            У березневому зрізі лише <strong>2</strong> замовлення; availability у цьому місяці в OPER — <strong>26,7%</strong>. Потрібна перевірка графіку, інтеграції та видимості на платформі.
+            Лютий vs січень: <strong>60 → 19</strong> замовлень — різке падіння обсягу.
+        </div>
+    </div>
+
+    <div class="section conv-section" id="p-conversion">
+        <div class="section-title"><span class="icon">🔄</span> Конверсія меню та імпресії</div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+            <div class="kpi-card"><div class="kpi-label">Impressions (Σ)</div><div class="kpi-value" style="font-size:22px">70 431</div><div class="kpi-sub">OPER</div></div>
+            <div class="kpi-card"><div class="kpi-label">Menu views</div><div class="kpi-value" style="font-size:22px;color:var(--bolt-green-dark)">1 533</div><div class="kpi-sub">Сесії</div></div>
+            <div class="kpi-card"><div class="kpi-label">Меню → замовл.</div><div class="kpi-value" style="font-size:22px">6,0%</div><div class="kpi-sub">Зважено (Ordered/Viewed)</div></div>
+        </div>
+        <table>
+            <thead><tr><th>Місяць</th><th class="num">Зам.</th><th class="num">Імпресії</th><th class="num">Меню перегл.</th><th class="num">М→кошик</th><th class="num">Кошик→зам.</th><th class="num">М→зам.</th><th class="num">Avail.</th></tr></thead>
+            <tbody>
+                <tr><td>Січень 2026</td><td class="num">60</td><td class="num">52 378</td><td class="num">1 049</td><td class="num">12,0%</td><td class="num">53,2%</td><td class="num">6,4%</td><td class="num">91,5%</td></tr>
+                <tr><td>Лютий 2026</td><td class="num">19</td><td class="num">16 067</td><td class="num">411</td><td class="num">10,2%</td><td class="num">47,6%</td><td class="num">4,9%</td><td class="num">81,1%</td></tr>
+                <tr><td>Березень (зріз)</td><td class="num">2</td><td class="num">1 986</td><td class="num">73</td><td class="num">13,7%</td><td class="num">50,0%</td><td class="num">6,8%</td><td class="num">26,7%</td></tr>
+            </tbody>
+        </table>
+        <div class="chart-container-sm"><canvas id="pConvChart" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas></div>
+    </div>
+
+    <div class="section" id="p-finance">
+        <div class="section-title"><span class="icon">💰</span> Фінанси (EUR)</div>
+        <table>
+            <thead><tr><th>Місяць</th><th class="num">Net Sales €</th><th class="num">Зам.</th><th class="num">AOV €</th></tr></thead>
+            <tbody>
+                <tr><td>Січень 2026</td><td class="num">740</td><td class="num">60</td><td class="num">12,34</td></tr>
+                <tr><td>Лютий 2026</td><td class="num">220</td><td class="num">19</td><td class="num">11,56</td></tr>
+                <tr><td>Березень (зріз)</td><td class="num">32</td><td class="num">2</td><td class="num">16,19</td></tr>
+                <tr style="font-weight:700;background:var(--perig-light)"><td>Разом</td><td class="num">992</td><td class="num">81</td><td class="num">12,25</td></tr>
+            </tbody>
+        </table>
+        <div class="chart-container-sm"><canvas id="pOrdersChart" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas></div>
+    </div>
+
+    <div class="section promo-section" id="p-promo">
+        <div class="section-title"><span class="icon">🎯</span> Промо-замовлення</div>
+        <div class="glossary">Той самий показник OPER, що й для Muza: <strong>Provider Campaigns Order from Total Delivered Orders</strong>.</div>
+        <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);max-width:520px">
+            <div class="kpi-card" style="border-left:4px solid var(--bolt-cyan)"><div class="kpi-label">Усього промо-замовлень</div><div class="kpi-value" style="font-size:26px;color:var(--bolt-cyan)">54</div><div class="kpi-sub">із 81 доставлених</div></div>
+            <div class="kpi-card" style="border-left:4px solid var(--bolt-blue)"><div class="kpi-label">Частка промо</div><div class="kpi-value" style="font-size:26px;color:var(--bolt-blue)">66,7%</div></div>
+        </div>
+        <div class="chart-container-sm"><canvas id="pPromoChart" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas></div>
+        <table>
+            <thead><tr><th>Місяць</th><th class="num">Усі доставлені</th><th class="num">Промо-замовл. (оц.)</th><th class="num">Частка промо</th></tr></thead>
+            <tbody>
+                <tr><td>Січень 2026</td><td class="num">60</td><td class="num">48</td><td class="num">80,0%</td></tr>
+                <tr><td>Лютий 2026</td><td class="num">19</td><td class="num">5</td><td class="num">26,3%</td></tr>
+                <tr><td>Березень (зріз)</td><td class="num">2</td><td class="num">1</td><td class="num">50,0%</td></tr>
+                <tr style="font-weight:700;background:var(--perig-light)"><td>Разом</td><td class="num">81</td><td class="num">54</td><td class="num">66,7%</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section" id="p-bolt">
+        <div class="section-title"><span class="icon">⚡</span> Bolt+ — Періг</div>
+        <div class="bolt-plus-card">
+            <h3>Bolt+</h3>
+            <div class="bolt-plus-grid">
+                <div class="bolt-plus-stat"><div class="bp-value">22,2%</div><div class="bp-label">Усього (18/81)</div></div>
+                <div class="bolt-plus-stat"><div class="bp-value">15,0%</div><div class="bp-label">Січень</div></div>
+                <div class="bolt-plus-stat"><div class="bp-value">36,8%</div><div class="bp-label">Лютий</div></div>
+                <div class="bolt-plus-stat"><div class="bp-value">100%</div><div class="bp-label">Березень (2 зам.)</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="p-dishes-note">
+        <div class="section-title"><span class="icon">🍽️</span> Продажі страв</div>
+        <p style="font-size:13px;color:var(--bolt-gray)">Топ позиції за виручкою наведені у вкладці <strong>Muza</strong> — файл ITEM об'єднує обидва бренди. Для Періг у топі також зустрічаються позиції з «Perig» у назві (див. повний CSV).</p>
+    </div>
+
+    <div class="section" id="p-rec">
+        <div class="section-title"><span class="icon">💡</span> Рекомендації — Періг</div>
+        <div class="rec-card" style="border-left:4px solid var(--bolt-red)"><h4><span class="priority priority-high">Пріоритет 1</span> Availability та обсяг у березні</h4><p>Вирівняти онлайн-час і перевірити причини <strong>2</strong> замовлень у зрізі та падіння з 60 до 19 у лютому.</p></div>
+        <div class="rec-card" style="border-left:4px solid var(--bolt-orange)"><h4><span class="priority priority-medium">Пріоритет 2</span> Воронка меню</h4><p>Конверсія «меню → замовлення» нижча за мережу Muza — посилити фото, описи, промо та видимість.</p></div>
+    </div>
+
+    </div><!-- /perig -->
+
+    <div class="section" id="sponsored-listing" style="border:2px solid var(--bolt-green);background:linear-gradient(180deg,#fff 0%,var(--bolt-green-light) 100%)">
+        <div class="section-title"><span class="icon">🚀</span> Нова реклама: Sponsored Listing</div>
+        <div class="glossary">📖 Опис продукту та умови запуску — за офіційною презентацією Bolt для партнерів (слайд у посиланні нижче). Автоматично витягнути цифри з Google Slides без доступу до акаунту неможливо: конкретні тарифи, приклади бюджету та KPI з вашого слайду підставте з презентації за потреби.</div>
+        <p style="font-size:14px;line-height:1.65;margin-bottom:12px"><strong>Sponsored Listing</strong> — інструмент <strong>платної видимості</strong> ресторану в застосунку Bolt Food: додаткове підсилення в стрічці та на карті вибору закладів із керуванням бюджетом і тривалістю кампанії. Доповнює класичні промо на меню (знижки, free delivery) у <a href="https://food.bolt.eu/portal" target="_blank" rel="noopener">партнерському порталі</a>.</p>
+        <div class="sl-cards">
+            <div class="sl-card"><h4>Кому підходить</h4><p>Новим локаціям, запуску меню, брендам, які хочуть швидко наростити імпресії та замовлення поруч із органічним трафіком — зокрема мережі Muza та окремій точці Періг.</p></div>
+            <div class="sl-card"><h4>Модель оплати</h4><p>Типово — <strong>CPC</strong> (оплата за клік у меню закладу). Деталі ставок і мінімальних бюджетів — на зазначеному слайді презентації.</p></div>
+            <div class="sl-card"><h4>Що відстежувати</h4><p>Імпресії, кліки, CTR, перехід у меню, конверсію в замовлення та AOV у звітності Looker / Merchant dashboard — поруч із KPI цього QBR.</p></div>
+            <div class="sl-card"><h4>Ефективність</h4><p>Найкраще поєднується з промо на страви, сильними фото меню та <strong>доступністю 95%+</strong>; інакше платний трафік гірше конвертує.</p></div>
+            <div class="sl-card"><h4>Орієнтир для тесту</h4><p>У продуктових матеріалах Bolt часто рекомендують тестовий діапазон бюджету порядку <strong>$10–20/день на локацію</strong> — уточніть актуальні рекомендації на слайді.</p></div>
+            <div class="sl-card"><h4>Гнучкість</h4><p>Пауза та зміна бюджету без штрафів; можна комбінувати з кампаніями знижок для синергії.</p></div>
+        </div>
+        <table>
+            <thead><tr><th>Тема на слайді</th><th>Що взяти з презентації</th></tr></thead>
+            <tbody>
+                <tr><td>Формати показів</td><td>Позиції в стрічці, на карті, у пошуку — згідно з макетами на слайді</td></tr>
+                <tr><td>Тарифи / CPC</td><td>Актуальні значення та валюта — зі слайду Bolt</td></tr>
+                <tr><td>ROAS / ефект</td><td>Цільові орієнтири та приклади з кейсів — зі слайду</td></tr>
+                <tr><td>Запуск</td><td>Покроковий сценарій у порталі — зі слайду або підтримка AM</td></tr>
+            </tbody>
+        </table>
+        <p style="margin-top:18px;font-size:13px;color:var(--bolt-gray)">Пряме посилання на слайд презентації:</p>
+        <a class="sl-cta" href="https://docs.google.com/presentation/d/1VX4_mRliyxwnQf1d9V0ZuPu7wK25uH23YOAaTLRnMO8/edit?slide=id.g3434ec78475_0_626#slide=id.g3434ec78475_0_626" target="_blank" rel="noopener">Відкрити Google Slides (Sponsored Listing) →</a>
+    </div>
+
+    <footer style="text-align:center;padding:28px;color:var(--bolt-gray);font-size:11px;line-height:1.8">
+        QBR Muza &amp; Періг · Bolt Food Ukraine · Неповний Q1 2026<br>
+        Джерела (локальні файли, еквівалент експортів Google Drive 25.03.2026):<br>
+        OPER food_providers_metrics_aggregated (у т. ч. промо: Provider Campaigns Order from Total Delivered Orders) · Bolt+ · ITEM<br>
+        Продукт: <a href="https://docs.google.com/presentation/d/1VX4_mRliyxwnQf1d9V0ZuPu7wK25uH23YOAaTLRnMO8/edit?slide=id.g3434ec78475_0_626#slide=id.g3434ec78475_0_626" target="_blank" rel="noopener">Google Slides — Sponsored Listing</a><br>
+        Фінанси в OPER — <strong>EUR</strong>; ITEM — <strong>₴</strong>. Chart.js CDN.
+    </footer>
+</div>
+
+<script>
+const G='#34D186',B='#3B82F6',P='#8B5CF6',O='#F59E0B',R='#EF4444',MZ='#D4A574',PG='#7C9A5E',CY='#06B6D4';
+const dfl={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:'#f0f0f0'},beginAtZero:true}}};
+const dflL={...dfl,plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11}}}}};
+
+document.querySelectorAll('.nav-link').forEach(l=>{
+    l.addEventListener('click',function(){
+        document.querySelectorAll('.nav-link').forEach(n=>n.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+function scrollTo_s(sel){const el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:'smooth'});}
+function scrollConv(){
+    const tab=document.querySelector('.brand-content.active');
+    const sec=tab.querySelector('.conv-section');
+    if(sec)sec.scrollIntoView({behavior:'smooth'});
+}
+function scrollPromo(){
+    const tab=document.querySelector('.brand-content.active');
+    const sec=tab.querySelector('.promo-section');
+    if(sec)sec.scrollIntoView({behavior:'smooth'});
+}
+
+new Chart(document.getElementById('mConvChart'),{
+    type:'line',
+    data:{labels:['Січ','Лют','Бер'],datasets:[
+        {label:'Меню→кошик %',data:[22.0,23.5,24.9],borderColor:G,tension:.35},
+        {label:'Кошик→зам. %',data:[64.6,57.8,69.2],borderColor:B,tension:.35},
+        {label:'Меню→зам. %',data:[14.2,13.6,17.3],borderColor:P,tension:.35}
+    ]},
+    options:{...dflL,plugins:{...dflL.plugins,title:{display:true,text:'Muza: конверсії по місяцях (%)',font:{weight:'bold'}}},scales:{y:{max:80}}}
+});
+new Chart(document.getElementById('mSalesChart'),{
+    type:'bar',
+    data:{labels:['Січ','Лют','Бер'],datasets:[{data:[17709,17091,10290],backgroundColor:MZ,borderRadius:6}]},
+    options:{...dfl,plugins:{title:{display:true,text:'Net Sales € (Muza)',font:{weight:'bold'}}}}
+});
+new Chart(document.getElementById('mOrdersChart'),{
+    type:'bar',
+    data:{labels:['Січ','Лют','Бер'],datasets:[{data:[1291,1351,755],backgroundColor:B,borderRadius:6}]},
+    options:{...dfl,plugins:{title:{display:true,text:'Замовлення (Muza)',font:{weight:'bold'}}}}
+});
+new Chart(document.getElementById('mAvailChart'),{
+    type:'bar',
+    data:{labels:['Саксаг.','Колом.','Срібн.','Гармат.','ЄС','Федьк.','Пекар.','Азов','Чорн.','Черч.'],
+        datasets:[{data:[97.4,91.6,97.9,89.2,97.7,80.4,91.9,94.7,83.1,92.4],
+        backgroundColor:ctx=>{const v=ctx.raw;return v>=95?G:v>=90?O:R},borderRadius:4}]},
+    options:{...dfl,indexAxis:'y',plugins:{title:{display:true,text:'Availability % (Muza)',font:{weight:'bold'}}},scales:{x:{max:100,ticks:{callback:v=>v+'%'}}}}
+});
+new Chart(document.getElementById('mSpendChart'),{
+    type:'bar',
+    data:{labels:['Січ','Лют','Бер'],datasets:[
+        {label:'Merchant €',data:[1533.38,1200.04,957.55],backgroundColor:MZ,borderRadius:4},
+        {label:'Bolt €',data:[539.22,1063.52,337.68],backgroundColor:G,borderRadius:4}
+    ]},
+    options:{...dflL,plugins:{title:{display:true,text:'Кампанії: Merchant vs Bolt (€)',font:{weight:'bold'}}}}
+});
+new Chart(document.getElementById('mPromoChart'),{
+    type:'bar',
+    data:{
+        labels:['Січ','Лют','Бер'],
+        datasets:[
+            {type:'bar',label:'Промо-замовлення',data:[872,997,559],backgroundColor:CY,borderRadius:6,order:2},
+            {type:'line',label:'Частка промо %',data:[67.53,73.79,74.05],borderColor:B,borderWidth:2,yAxisID:'y1',tension:.35,order:1,pointRadius:4}
+        ]
+    },
+    options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11}}},title:{display:true,text:'Muza: промо-замовлення та частка',font:{weight:'bold'}}},
+        scales:{
+            y:{beginAtZero:true,title:{display:true,text:'Кількість'}},
+            y1:{position:'right',beginAtZero:true,max:100,grid:{drawOnChartArea:false},title:{display:true,text:'%'},ticks:{callback:v=>v+'%'}}
+        }
+    }
+});
+new Chart(document.getElementById('mBoltChart'),{
+    type:'line',
+    data:{labels:['Січ','Лют','Бер'],datasets:[{label:'Bolt+ %',data:[26.4,28.8,32.2],borderColor:B,fill:true,backgroundColor:'rgba(59,130,246,0.1)',tension:.35}]},
+    options:{...dflL,plugins:{title:{display:true,text:'Частка Bolt+ (Muza)',font:{weight:'bold'}}},scales:{y:{max:40,ticks:{callback:v=>v+'%'}}}}
+});
+new Chart(document.getElementById('mDishChart'),{
+    type:'doughnut',
+    data:{labels:['Combo','Main','Soups','Інше'],datasets:[{data:[48,22,18,12],backgroundColor:[MZ,B,O,P],borderWidth:2,borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{title:{display:true,text:'Орієнтовна структура топ-категорій (%)',font:{size:12,weight:'bold'}}}}
+});
+
+new Chart(document.getElementById('pConvChart'),{
+    type:'bar',
+    data:{labels:['Січ','Лют','Бер'],datasets:[
+        {label:'Меню→зам. %',data:[6.4,4.9,6.8],backgroundColor:PG,borderRadius:4}
+    ]},
+    options:{...dflL,plugins:{title:{display:true,text:'Періг: Menu→Order %',font:{weight:'bold'}}},scales:{y:{max:15,ticks:{callback:v=>v+'%'}}}}
+});
+new Chart(document.getElementById('pOrdersChart'),{
+    type:'bar',
+    data:{labels:['Січ','Лют','Бер'],datasets:[{data:[60,19,2],backgroundColor:[PG,PG,R],borderRadius:6}]},
+    options:{...dfl,plugins:{title:{display:true,text:'Замовлення (Періг)',font:{weight:'bold'}}}}
+});
+new Chart(document.getElementById('pPromoChart'),{
+    type:'bar',
+    data:{
+        labels:['Січ','Лют','Бер'],
+        datasets:[
+            {type:'bar',label:'Промо-замовлення',data:[48,5,1],backgroundColor:CY,borderRadius:6,order:2},
+            {type:'line',label:'Частка промо %',data:[80.0,26.3,50.0],borderColor:B,borderWidth:2,yAxisID:'y1',tension:.35,order:1,pointRadius:4}
+        ]
+    },
+    options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11}}},title:{display:true,text:'Періг: промо-замовлення та частка',font:{weight:'bold'}}},
+        scales:{
+            y:{beginAtZero:true,title:{display:true,text:'Кількість'}},
+            y1:{position:'right',beginAtZero:true,max:100,grid:{drawOnChartArea:false},title:{display:true,text:'%'},ticks:{callback:v=>v+'%'}}
+        }
+    }
+});
+
+function switchBrand(brand){
+    document.querySelectorAll('.brand-content').forEach(c=>c.classList.remove('active'));
+    document.getElementById('content-'+brand).classList.add('active');
+    document.querySelectorAll('.brand-tab').forEach(t=>t.classList.remove('active-muza','active-perig'));
+    document.querySelector('.brand-tab[data-brand="'+brand+'"]').classList.add(brand==='muza'?'active-muza':'active-perig');
+    const t=document.getElementById('mainTitle'),s=document.getElementById('mainSubtitle');
+    if(brand==='muza'){
+        t.textContent='Quarterly Business Review: Muza';
+        s.textContent='Muza від Євгена Клопотенка — Київ & Львів · Bolt Food Ukraine';
+    }else{
+        t.textContent='Quarterly Business Review: Періг';
+        s.textContent='ПЕРІГ* Нове слово у світі пирогів · Київ · Bolt Food Ukraine';
+    }
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+
+</body></html>
