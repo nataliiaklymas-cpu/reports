@@ -1,0 +1,55 @@
+name: Weekly partner reports
+
+on:
+  schedule:
+    # 05:00 UTC every Monday = 08:00 Kyiv (EEST, summer) / 07:00 Kyiv (EET, winter)
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+    inputs:
+      run_date:
+        description: "Override run date (YYYY-MM-DD). Leave empty to use today (UTC)."
+        required: false
+        default: ""
+      only:
+        description: "Comma-separated partner keys to run (e.g. salateira). Leave empty for all."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r automation/requirements.txt
+
+      - name: Generate weekly reports
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: |
+          python automation/run_weekly_reports.py \
+            --repo-root . \
+            ${{ github.event.inputs.run_date && format('--run-date {0}', github.event.inputs.run_date) || '' }} \
+            ${{ github.event.inputs.only && format('--only {0}', github.event.inputs.only) || '' }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "bolt-reports-bot"
+          git config user.email "actions@github.com"
+          git add salateira-weekly chornomorka-weekly
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto: weekly partner reports $(date -u +%Y-%m-%d)"
+            git push
+          fi
