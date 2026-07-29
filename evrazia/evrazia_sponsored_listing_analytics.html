@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<!-- saved from url=(0197)file:///Users/klymasnataliia/Library/CloudStorage/GoogleDrive-nataliia.klymas@bolt.eu/%D0%9C%D1%96%D0%B8%CC%86%20%D0%B4%D0%B8%D1%81%D0%BA/Cursor/Databricks%20&%20QBRs%20%202/evraziya_sl_report.html -->
+<html lang="uk"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Євразія × Bolt Food — Sponsored Listing аналітика</title>
+<script src="./Євразія × Bolt Food — Sponsored Listing аналітика_files/chart.umd.min.js"></script>
+<script src="./Євразія × Bolt Food — Sponsored Listing аналітика_files/chartjs-plugin-annotation.min.js"></script>
+<style>
+:root{
+  --bg:#F8F9FA;--card:#fff;--green:#2AAF6D;--dark:#0d2a1a;--red:#EF4444;
+  --orange:#F59E0B;--blue:#3B82F6;--muted:#6B7280;--border:#E8E8E8;
+  --sh:0 2px 10px rgba(0,0,0,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+      background:var(--bg);color:#1A1A1A;line-height:1.6;max-width:1100px;margin:0 auto;padding:28px;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0d1f0d 0%,#1a3d1a 60%,#0f2a0f 100%);
+       color:white;border-radius:16px;padding:36px;margin-bottom:24px;position:relative;overflow:hidden;}
+.hero::before{content:"📣";position:absolute;right:28px;bottom:16px;font-size:100px;opacity:.06;}
+.hero-top{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.logo{display:flex;align-items:center;gap:7px;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;}
+.logo-bolt{background:rgba(52,209,134,.12);border:1px solid rgba(52,209,134,.25);color:#34D186;}
+.logo-ev  {background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);color:#C9A84C;}
+.badge{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:700;
+        letter-spacing:1.2px;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:12px;}
+.hero h1{font-size:24px;font-weight:800;line-height:1.2;margin-bottom:6px;}
+.hero h1 span{color:#7ed77e;}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:20px;}
+.hero-kpis{display:flex;gap:20px;flex-wrap:wrap;}
+.hkpi{font-size:11px;color:rgba(255,255,255,.4);}
+.hkpi strong{display:block;font-size:20px;font-weight:700;color:white;margin-bottom:1px;}
+
+/* SECTIONS */
+.sec{background:var(--card);border-radius:14px;padding:22px 24px;margin-bottom:20px;box-shadow:var(--sh);}
+.sec-t{font-size:16px;font-weight:700;margin-bottom:4px;}
+.sec-s{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.hr{height:1px;background:var(--border);margin-bottom:14px;}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+@media(max-width:700px){.g2,.g3,.g4,.g5{grid-template-columns:1fr 1fr;}}
+
+/* CARDS */
+.card{background:#F8F9FA;border-radius:10px;padding:14px;}
+.card.green{background:rgba(42,175,109,.07);border:1px solid rgba(42,175,109,.2);}
+.card.orange{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);}
+.card.red{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);}
+.card.blue{background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.2);}
+.cl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px;}
+.cv{font-size:22px;font-weight:800;margin-bottom:2px;}
+.cd{font-size:11px;color:var(--muted);}
+
+/* COMPARE CARDS */
+.cmp-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.cmp-card{border-radius:12px;padding:18px;}
+.cmp-ads  {background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid var(--green);}
+.cmp-noads{background:#F8F9FA;border:1px solid var(--border);}
+.cmp-t{font-size:13px;font-weight:700;margin-bottom:12px;}
+.cmp-kpi{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.06);}
+.cmp-kpi:last-child{border-bottom:none;}
+.cmp-lbl{color:var(--muted);}
+.cmp-val{font-weight:700;}
+
+/* TABLE */
+.tscroll{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{background:#F8F9FA;padding:8px 10px;text-align:left;font-size:10px;font-weight:700;
+    color:var(--muted);text-transform:uppercase;border-bottom:2px solid var(--border);white-space:nowrap;}
+td{padding:8px 10px;border-bottom:1px solid #F3F4F6;vertical-align:middle;}
+tr:hover td{background:#FAFAFA;}
+.num{text-align:right;white-space:nowrap;}
+.b{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;}
+.bg{background:rgba(42,175,109,.15);color:#16a057;}
+.bo{background:rgba(245,158,11,.15);color:#b46309;}
+.br{background:rgba(239,68,68,.15);color:#dc2626;}
+.bb{background:rgba(59,130,246,.15);color:#1d4ed8;}
+
+/* GLOSSARY */
+.gl-sec{background:linear-gradient(135deg,#f0f4ff,#f8f9ff);border:1px solid #C7D7F4;border-radius:12px;padding:20px 24px;}
+.gl-sec .sec-t{color:#1e40af;}
+.gl-row{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #e0e8f8;font-size:12px;line-height:1.5;}
+.gl-row:last-child{border-bottom:none;}
+.gl-t{font-weight:700;color:#1e3a8a;min-width:185px;flex-shrink:0;}
+.gl-d{color:#374151;}
+
+/* FOOTER */
+.footer{text-align:center;font-size:11px;color:var(--muted);margin-top:24px;padding:16px 0;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="logo logo-bolt">⚡ Bolt Food Ukraine</div>
+    <span style="color:rgba(255,255,255,.2);font-size:16px;">×</span>
+    <div class="logo logo-ev">🍱 Євразія</div>
+    <span style="margin-left:auto;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:3px 10px;font-size:10px;font-weight:700;color:#F59E0B;">📣 SPONSORED LISTING АНАЛІТИКА</span>
+  </div>
+  <div class="badge">Кампанія 25 травня – 8 червня 2026</div>
+  <h1>Sponsored Listing — <span>вплив реклами на Євразію</span></h1>
+  <p class="hero-sub">5 локацій з рекламою · 16 локацій без реклами · Порівняльний аналіз 15+15 днів · Kyiv</p>
+  <div class="hero-kpis">
+    <div class="hkpi"><strong style="color:#7ed77e;">1539</strong>Замовлень (з рекл.)</div>
+    <div class="hkpi"><strong><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲45.2%</span></strong>Зростання замовлень</div>
+    <div class="hkpi"><strong>981</strong>Нових клієнтів (з рекл.)</div>
+    <div class="hkpi"><strong style="color:#fcd34d;">5&nbsp;782 ₴</strong>Витрати на SL</div>
+    <div class="hkpi"><strong>21</strong>Локацій мережі</div>
+  </div>
+</div>
+
+<!-- OVERVIEW KPIs -->
+<div class="sec">
+  <div class="sec-t">📊 Загальне порівняння: 5 локацій З рекламою vs 16 БЕЗ реклами</div>
+  <div class="sec-s">Однаковий календарний відрізок — до реклами (10–24 трав.) і під час реклами (25 трав.–8 черв.)</div>
+  <div class="hr"></div>
+  <div class="cmp-wrap">
+    <div class="cmp-card cmp-ads">
+      <div class="cmp-t" style="color:var(--dark);">🎯 5 локацій — З Sponsored Listing</div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Замовлення ДО</span><span class="cmp-val">1,060</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Замовлення ПІД ЧАС</span><span class="cmp-val" style="color:var(--green);">1,539 <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲45.2%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Нові клієнти ДО</span><span class="cmp-val">773</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Нові клієнти ПІД ЧАС</span><span class="cmp-val" style="color:var(--green);">981 <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲26.9%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частота (ДО)</span><span class="cmp-val">1.37×</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частота (ПІД ЧАС)</span><span class="cmp-val">1.28× <span style="color:#EF4444;font-size:12px;font-weight:700;">▼6.7%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Bolt+ частка (ДО)</span><span class="cmp-val">19.6%</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Bolt+ частка (ПІД ЧАС)</span><span class="cmp-val">17.3% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼11.8%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Виручка ДО</span><span class="cmp-val">919&nbsp;526 ₴</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Виручка ПІД ЧАС</span><span class="cmp-val" style="color:var(--green);">1&nbsp;375&nbsp;124 ₴ <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲49.5%</span></span></div>
+    </div>
+    <div class="cmp-card cmp-noads">
+      <div class="cmp-t" style="color:var(--muted);">📦 16 локацій — Без Sponsored Listing</div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Замовлення ДО</span><span class="cmp-val">3,981</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Замовлення ПІД ЧАС</span><span class="cmp-val">3,712 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼6.8%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Нові клієнти ДО</span><span class="cmp-val">2,829</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Нові клієнти ПІД ЧАС</span><span class="cmp-val">1,808 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼36.1%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частота (ДО)</span><span class="cmp-val">1.41×</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частота (ПІД ЧАС)</span><span class="cmp-val">1.41× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.5%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Bolt+ частка (ДО)</span><span class="cmp-val">23.0%</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Bolt+ частка (ПІД ЧАС)</span><span class="cmp-val">24.0% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲4.7%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Виручка ДО</span><span class="cmp-val">3&nbsp;675&nbsp;317 ₴</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Виручка ПІД ЧАС</span><span class="cmp-val">3&nbsp;320&nbsp;045 ₴ <span style="color:#EF4444;font-size:12px;font-weight:700;">▼9.7%</span></span></div>
+    </div>
+  </div>
+  <div style="background:rgba(42,175,109,.08);border:1px solid rgba(42,175,109,.2);border-radius:10px;padding:14px;font-size:12px;color:#374151;line-height:1.7;">
+    💡 <strong>Ключовий висновок:</strong> Локації з SL-рекламою показали зростання замовлень
+    <strong style="color:var(--green);"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲45.2%</span></strong> (+479 зам.),
+    тоді як локації без реклами змінились на
+    <strong><span style="color:#EF4444;font-size:12px;font-weight:700;">▼6.8%</span></strong>.
+    Різниця в динаміці свідчить про <strong>позитивний ефект Sponsored Listing</strong> на об'єм замовлень.
+  </div>
+</div>
+
+<!-- DAILY CHART -->
+<div class="sec">
+  <div class="sec-t">📅 Денна динаміка замовлень — 10 травня по 8 червня 2026</div>
+  <div class="sec-s">Вертикальна лінія — старт Sponsored Listing (25 травня). Зелений — локації з рекламою, сірий — без реклами.</div>
+  <div class="hr"></div>
+  <canvas id="dailyChart" height="996" style="display: block; box-sizing: border-box; height: 498px; width: 996px;" width="1992"></canvas>
+  <script>
+  Chart.register(window['chartjs-plugin-annotation'] || {});
+  new Chart(document.getElementById('dailyChart'), {
+    type: 'line',
+    data: {
+      labels: ["05-10", "05-11", "05-12", "05-13", "05-14", "05-15", "05-16", "05-17", "05-18", "05-19", "05-20", "05-21", "05-22", "05-23", "05-24", "05-25", "05-26", "05-27", "05-28", "05-29", "05-30", "05-31", "06-01", "06-02", "06-03", "06-04", "06-05", "06-06", "06-07", "06-08"],
+      datasets: [
+        {
+          label: 'З рекламою (5 локацій)',
+          data: [64, 57, 76, 75, 77, 82, 74, 62, 78, 70, 61, 70, 70, 82, 62, 94, 95, 116, 107, 111, 92, 99, 109, 125, 111, 98, 124, 96, 75, 87],
+          borderColor: '#2AAF6D',
+          backgroundColor: 'rgba(42,175,109,.08)',
+          fill: true, tension: 0.3, borderWidth: 2.5, pointRadius: 2
+        },
+        {
+          label: 'Без реклами (16 локацій)',
+          data: [292, 196, 248, 258, 271, 290, 290, 309, 236, 204, 252, 256, 283, 277, 319, 224, 221, 248, 255, 287, 257, 267, 242, 231, 279, 264, 270, 258, 234, 175],
+          borderColor: '#9CA3AF',
+          backgroundColor: 'rgba(156,163,175,.05)',
+          fill: true, tension: 0.3, borderWidth: 1.5, pointRadius: 2,
+          borderDash: [4,3]
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { font: { size: 11 } } },
+        annotation: {
+          annotations: {
+            sl_start: {
+              type: 'line', xMin: '05-25', xMax: '05-25',
+              borderColor: '#F59E0B', borderWidth: 2, borderDash: [5,4],
+              label: { content: '▶ SL старт 25.05', display: true, position: 'start',
+                        backgroundColor: 'rgba(245,158,11,.9)', color: '#fff', font: { size: 10, weight: 700 } }
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 9 }, maxRotation: 45, autoSkip: true, maxTicksLimit: 20 } },
+        y: { beginAtZero: true, ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+  </script>
+</div>
+
+
+<div class="sec" style="border:2px solid #2AAF6D;">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+    <div class="sec-t" style="color:var(--dark);">📊 Дані з Bolt Food Partner Portal — всі 5 рекламних локацій</div>
+    <span style="background:rgba(42,175,109,.15);border:1px solid rgba(42,175,109,.3);border-radius:5px;padding:2px 9px;font-size:10px;font-weight:700;color:#16a057;margin-left:auto;">✅ Реальні дані реклами · 25 трав.–8 черв. 2026</span>
+  </div>
+  <div class="sec-s">Метрики Sponsored Listing з Bolt Merchant Portal. CTR, покази, ROAS недоступні в Databricks — тільки в Partner Portal.</div>
+  <div class="hr"></div>
+  <!-- Summary KPIs -->
+  <div class="g5" style="margin-bottom:16px;">
+    <div class="card green" style="text-align:center;">
+      <div class="cl">Середній ROAS (5 лок.)</div>
+      <div style="font-size:28px;font-weight:900;color:var(--green);">32.59×</div>
+      <div class="cd">середня рентабельність</div>
+    </div>
+    <div class="card green">
+      <div class="cl">Дохід від реклами (тотал)</div>
+      <div class="cv" style="color:var(--green);">413&nbsp;003 ₴</div>
+      <div class="cd">GMV через SL · 5 локацій</div>
+    </div>
+    <div class="card">
+      <div class="cl">Замовлень через SL</div>
+      <div class="cv">674</div>
+      <div class="cd">всі рекламні точки</div>
+    </div>
+    <div class="card">
+      <div class="cl">Охоплення (тотал)</div>
+      <div class="cv">64&nbsp;272</div>
+      <div class="cd">переглянули магазин</div>
+    </div>
+    <div class="card orange">
+      <div class="cl">Витрати SL (тотал)</div>
+      <div class="cv" style="color:var(--orange);">12&nbsp;672 ₴</div>
+      <div class="cd">5 локацій</div>
+    </div>
+  </div>
+  <div class="g4" style="margin-bottom:18px;">
+    <div class="card green">
+      <div class="cl">Збільшення доходу (тотал)</div>
+      <div class="cv" style="color:var(--green);">+330&nbsp;398 ₴</div>
+      <div class="cd">інкрементальний приріст</div>
+    </div>
+    <div class="card green">
+      <div class="cl">Чистий ефект (тотал)</div>
+      <div class="cv" style="color:var(--green);">+400&nbsp;331 ₴</div>
+      <div class="cd">дохід − витрати · всі 5 лок.</div>
+    </div>
+    <div class="card blue">
+      <div class="cl">Середній CTR</div>
+      <div class="cv" style="color:var(--blue);">1.05%</div>
+      <div class="cd">переглядів → замовлень</div>
+    </div>
+    <div class="card blue">
+      <div class="cl">Середня конверсія</div>
+      <div class="cv" style="color:var(--blue);">1.0%</div>
+      <div class="cd">знайшли через SL → замовили</div>
+    </div>
+  </div>
+  <!-- Per-location table -->
+  <div style="font-size:13px;font-weight:700;margin-bottom:10px;">📍 Детальна таблиця по локаціях</div>
+  <div class="tscroll">
+  <table>
+    <thead><tr>
+      <th>Локація</th>
+      <th class="num">ROAS</th>
+      <th class="num">Дохід</th>
+      <th class="num">Замовл.</th>
+      <th class="num">Охоплення</th>
+      <th class="num">CTR</th>
+      <th class="num">Конверсія</th>
+      <th class="num">Витрати SL</th>
+      <th class="num">+Приріст доходу</th>
+      <th class="num">Чистий ефект</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+      <td><strong>Євразія Велика Васильківська</strong></td>
+      <td class="num"><span class="b bg">52.68×</span></td>
+      <td class="num" style="color:var(--green);font-weight:700;">133&nbsp;472 ₴</td>
+      <td class="num">209</td>
+      <td class="num">19&nbsp;033</td>
+      <td class="num">1.1%</td>
+      <td class="num">1.1%</td>
+      <td class="num">2&nbsp;534 ₴</td>
+      <td class="num" style="color:var(--green);font-weight:700;">+106&nbsp;778 ₴</td>
+      <td class="num"><span class="b bg">+130&nbsp;938 ₴</span></td>
+    </tr><tr>
+      <td><strong>Євразія Дмитрівська</strong></td>
+      <td class="num"><span class="b bg">44.33×</span></td>
+      <td class="num" style="color:var(--green);font-weight:700;">112&nbsp;347 ₴</td>
+      <td class="num">190</td>
+      <td class="num">19&nbsp;746</td>
+      <td class="num">0.96%</td>
+      <td class="num">1.0%</td>
+      <td class="num">2&nbsp;535 ₴</td>
+      <td class="num" style="color:var(--green);font-weight:700;">+89&nbsp;876 ₴</td>
+      <td class="num"><span class="b bg">+109&nbsp;812 ₴</span></td>
+    </tr><tr>
+      <td><strong>Євразія Межигірська</strong></td>
+      <td class="num"><span class="b bg">33.37×</span></td>
+      <td class="num" style="color:var(--green);font-weight:700;">84&nbsp;581 ₴</td>
+      <td class="num">135</td>
+      <td class="num">9&nbsp;349</td>
+      <td class="num">1.44%</td>
+      <td class="num">1.4%</td>
+      <td class="num">2&nbsp;535 ₴</td>
+      <td class="num" style="color:var(--green);font-weight:700;">+67&nbsp;664 ₴</td>
+      <td class="num"><span class="b bg">+82&nbsp;046 ₴</span></td>
+    </tr><tr>
+      <td><strong>Євразія ТРЦ Республіка</strong></td>
+      <td class="num"><span class="b bo">22.55×</span></td>
+      <td class="num" style="color:var(--green);font-weight:700;">57&nbsp;145 ₴</td>
+      <td class="num">89</td>
+      <td class="num">10&nbsp;766</td>
+      <td class="num">0.83%</td>
+      <td class="num">0.8%</td>
+      <td class="num">2&nbsp;534 ₴</td>
+      <td class="num" style="color:var(--green);font-weight:700;">+45&nbsp;715 ₴</td>
+      <td class="num"><span class="b bg">+54&nbsp;611 ₴</span></td>
+    </tr><tr>
+      <td><strong>Євразія Яр Вал</strong></td>
+      <td class="num"><span class="b br">10.04×</span></td>
+      <td class="num" style="color:var(--green);font-weight:700;">25&nbsp;458 ₴</td>
+      <td class="num">51</td>
+      <td class="num">5&nbsp;378</td>
+      <td class="num">0.95%</td>
+      <td class="num">0.9%</td>
+      <td class="num">2&nbsp;534 ₴</td>
+      <td class="num" style="color:var(--green);font-weight:700;">+20&nbsp;365 ₴</td>
+      <td class="num"><span class="b bg">+22&nbsp;924 ₴</span></td>
+    </tr>
+      <tr style="background:rgba(42,175,109,.06);font-weight:700;">
+        <td>🌐 ТОТАЛ (5 локацій)</td>
+        <td class="num"><span class="b bg">32.59×</span></td>
+        <td class="num" style="color:var(--green);">413&nbsp;003 ₴</td>
+        <td class="num">674</td>
+        <td class="num">64&nbsp;272</td>
+        <td class="num">1.05%</td>
+        <td class="num">1.0%</td>
+        <td class="num" style="color:var(--orange);">12&nbsp;672 ₴</td>
+        <td class="num" style="color:var(--green);">+330&nbsp;398 ₴</td>
+        <td class="num"><span class="b bg">+400&nbsp;331 ₴</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="font-size:11px;color:var(--muted);margin-top:10px;">
+    Джерело: Bolt Merchant Portal · Sponsored Listing · 25 трав.–8 черв. 2026 · CTR = замовлень / переглядів магазину
+  </div>
+</div>
+<!-- SL CAMPAIGN METRICS -->
+<div class="sec">
+  <div class="sec-t">🎯 Метрики Sponsored Listing — по кожній рекламній локації</div>
+  <div class="sec-s">Порівняння до (10–24 трав.) vs під час (25 трав.–8 черв.) · Обидва відрізки по 15 днів</div>
+  <div class="hr"></div>
+  <div class="tscroll">
+  <table>
+    <thead><tr>
+      <th>Локація</th>
+      <th class="num">Замовлень ДО</th>
+      <th class="num">Замовлень ПІД ЧАС</th>
+      <th class="num">Приріст</th>
+      <th class="num">Інкрем. замовлень</th>
+      <th class="num">Витрати SL ₴</th>
+      <th class="num">Інкрем. виручка ₴</th>
+      <th class="num">Чистий ефект (₴)</th>
+      <th class="num">Мультипл.</th>
+    </tr></thead>
+    <tbody><tr>
+      <td><strong>Євразія Дмитрівська</strong></td>
+      <td class="num">264</td>
+      <td class="num"><strong style="color:#2AAF6D;">411</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲55.7%</span></td>
+      <td class="num">147</td>
+      <td class="num">1&nbsp;157 ₴</td>
+      <td class="num">132&nbsp;618 ₴</td>
+      <td class="num"><span class="b bg">+131&nbsp;462 ₴</span></td>
+      <td class="num" style="color:#9CA3AF;font-size:11px;">114.7x</td>
+    </tr><tr>
+      <td><strong>Євразія ТРЦ Республіка</strong></td>
+      <td class="num">102</td>
+      <td class="num"><strong style="color:#2AAF6D;">159</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲55.9%</span></td>
+      <td class="num">57</td>
+      <td class="num">1&nbsp;157 ₴</td>
+      <td class="num">60&nbsp;896 ₴</td>
+      <td class="num"><span class="b bg">+59&nbsp;740 ₴</span></td>
+      <td class="num" style="color:#9CA3AF;font-size:11px;">52.7x</td>
+    </tr><tr>
+      <td><strong>Євразія Велика Васильківська</strong></td>
+      <td class="num">341</td>
+      <td class="num"><strong style="color:#2AAF6D;">462</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲35.5%</span></td>
+      <td class="num">121</td>
+      <td class="num">1&nbsp;156 ₴</td>
+      <td class="num">104&nbsp;897 ₴</td>
+      <td class="num"><span class="b bg">+103&nbsp;742 ₴</span></td>
+      <td class="num" style="color:#9CA3AF;font-size:11px;">90.7x</td>
+    </tr><tr>
+      <td><strong>Євразія Яр Вал</strong></td>
+      <td class="num">93</td>
+      <td class="num"><strong style="color:#2AAF6D;">150</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲61.3%</span></td>
+      <td class="num">57</td>
+      <td class="num">1&nbsp;157 ₴</td>
+      <td class="num">44&nbsp;770 ₴</td>
+      <td class="num"><span class="b bg">+43&nbsp;614 ₴</span></td>
+      <td class="num" style="color:#9CA3AF;font-size:11px;">38.7x</td>
+    </tr><tr>
+      <td><strong>Євразія Межигірська</strong></td>
+      <td class="num">260</td>
+      <td class="num"><strong style="color:#2AAF6D;">357</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲37.3%</span></td>
+      <td class="num">97</td>
+      <td class="num">1&nbsp;157 ₴</td>
+      <td class="num">81&nbsp;726 ₴</td>
+      <td class="num"><span class="b bg">+80&nbsp;570 ₴</span></td>
+      <td class="num" style="color:#9CA3AF;font-size:11px;">70.7x</td>
+    </tr></tbody>
+  </table>
+  </div>
+  <div style="background:#FFF7ED;border:1px solid #FED7AA;border-radius:9px;padding:12px 14px;margin-top:12px;font-size:11px;color:#374151;line-height:1.6;">
+    ℹ️ <strong>Як читати таблицю:</strong> «Інкрем. виручка» = приріст замовлень × AOV (GMV до знижок). «Чистий ефект» = Інкрем. виручка − витрати на SL (в ₴). «Мультипл.» = Інкрем. виручка / витрати на SL (скільки гривень виручки принесла кожна вкладена гривня).
+  <br><br>📊 <strong>CTR та Impressions:</strong> Ці метрики фіксуються в Bolt Food Partner Portal (рекламна платформа) і <strong>не зберігаються в Databricks</strong>. За результатами MVP-тестування SL по Bolt Food Ukraine: CTR = 8–12%, приріст замовлень = +15–35%.
+  </div>
+</div>
+
+<!-- FREQUENCY ANALYSIS -->
+<div class="sec">
+  <div class="sec-t">🔄 Частота замовлень (замовлень/активний клієнт)</div>
+  <div class="sec-s">Зміна купівельної активності до та під час реклами</div>
+  <div class="hr"></div>
+  <div class="g2">
+    <div>
+      <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:10px;">🎯 Локації З рекламою</div>
+      <table>
+        <thead><tr><th>Локація</th><th class="num">ДО</th><th class="num">ПІД ЧАС</th><th class="num">Зміна</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Євразія Межигірська</td>
+            <td class="num">1.49×</td>
+            <td class="num"><strong>1.42×</strong></td>
+            <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼5.2%</span></td>
+          </tr><tr>
+            <td>Євразія Дмитрівська</td>
+            <td class="num">1.38×</td>
+            <td class="num"><strong>1.25×</strong></td>
+            <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼9.9%</span></td>
+          </tr><tr>
+            <td>Євразія Велика Васильківська</td>
+            <td class="num">1.32×</td>
+            <td class="num"><strong>1.26×</strong></td>
+            <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼5.0%</span></td>
+          </tr><tr>
+            <td>Євразія Яр Вал</td>
+            <td class="num">1.31×</td>
+            <td class="num"><strong>1.36×</strong></td>
+            <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲4.1%</span></td>
+          </tr><tr>
+            <td>Євразія ТРЦ Республіка</td>
+            <td class="num">1.29×</td>
+            <td class="num"><strong>1.11×</strong></td>
+            <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼13.9%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div style="font-size:13px;font-weight:700;color:var(--muted);margin-bottom:10px;">📦 Локації БЕЗ реклами (вибірка)</div>
+      <table>
+        <thead><tr><th>Локація</th><th class="num">ДО</th><th class="num">ПІД ЧАС</th><th class="num">Зміна</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Євразія Лесі Українки</td>
+            <td class="num">1.64×</td>
+            <td class="num"><strong>1.60×</strong></td>
+            <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-2.6%</span></td>
+          </tr><tr>
+            <td>Євразія на Нивках</td>
+            <td class="num">1.37×</td>
+            <td class="num"><strong>1.36×</strong></td>
+            <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-0.5%</span></td>
+          </tr><tr>
+            <td>Євразія Смарт Плаза Оболонь</td>
+            <td class="num">1.28×</td>
+            <td class="num"><strong>1.29×</strong></td>
+            <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.8%</span></td>
+          </tr><tr>
+            <td>Євразія Миколайчука</td>
+            <td class="num">0.00×</td>
+            <td class="num"><strong>0.00×</strong></td>
+            <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.0%</span></td>
+          </tr><tr>
+            <td>Євразія Григоренка</td>
+            <td class="num">1.44×</td>
+            <td class="num"><strong>1.45×</strong></td>
+            <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.4%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- BOLT+ ANALYSIS -->
+<div class="sec">
+  <div class="sec-t">⚡ Bolt+ підписники — частка у виручці</div>
+  <div class="sec-s">Зміна частки замовлень від підписників Bolt+ до та під час реклами</div>
+  <div class="hr"></div>
+  <div class="tscroll">
+  <table>
+    <thead><tr>
+      <th>Локація</th>
+      <th class="num">Bolt+ частка ДО</th>
+      <th class="num">Bolt+ частка ПІД ЧАС</th>
+      <th class="num">Зміна</th>
+      <th>Коментар</th>
+    </tr></thead>
+    <tbody>
+      <tr style="background:rgba(42,175,109,.04);">
+        <td>🎯 <strong>Євразія ТРЦ Республіка</strong></td>
+        <td class="num">24.7%</td>
+        <td class="num"><strong>15.5%</strong></td>
+        <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼37.2%</span></td>
+        <td style="font-size:11px;color:var(--muted);">SL-реклама</td>
+      </tr><tr>
+        <td><strong>Євразія Смарт Плаза Оболонь</strong></td>
+        <td class="num">18.0%</td>
+        <td class="num"><strong>19.7%</strong></td>
+        <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲9.4%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr style="background:rgba(42,175,109,.04);">
+        <td>🎯 <strong>Євразія Яр Вал</strong></td>
+        <td class="num">15.5%</td>
+        <td class="num"><strong>14.0%</strong></td>
+        <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼9.7%</span></td>
+        <td style="font-size:11px;color:var(--muted);">SL-реклама</td>
+      </tr><tr>
+        <td><strong>Євразія Лесі Українки</strong></td>
+        <td class="num">33.1%</td>
+        <td class="num"><strong>35.2%</strong></td>
+        <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲6.3%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr>
+        <td><strong>Євразія Retroville</strong></td>
+        <td class="num">17.9%</td>
+        <td class="num"><strong>21.3%</strong></td>
+        <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲19.0%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr>
+        <td><strong>Євразія на Нивках</strong></td>
+        <td class="num">22.5%</td>
+        <td class="num"><strong>24.1%</strong></td>
+        <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲7.1%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr>
+        <td><strong>Євразія Григоренка</strong></td>
+        <td class="num">21.7%</td>
+        <td class="num"><strong>24.5%</strong></td>
+        <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲12.9%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr>
+        <td><strong>Євразія Окіпної</strong></td>
+        <td class="num">23.8%</td>
+        <td class="num"><strong>20.6%</strong></td>
+        <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼13.4%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr>
+        <td><strong>Євразія Драгоманова</strong></td>
+        <td class="num">26.7%</td>
+        <td class="num"><strong>21.7%</strong></td>
+        <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼18.7%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr>
+        <td><strong>Євразія Червоної Калини 44а</strong></td>
+        <td class="num">20.5%</td>
+        <td class="num"><strong>17.6%</strong></td>
+        <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼14.1%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr>
+        <td><strong>Євразія Червоної Калини 5В</strong></td>
+        <td class="num">20.9%</td>
+        <td class="num"><strong>26.4%</strong></td>
+        <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲26.3%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr style="background:rgba(42,175,109,.04);">
+        <td>🎯 <strong>Євразія Велика Васильківська</strong></td>
+        <td class="num">19.7%</td>
+        <td class="num"><strong>21.7%</strong></td>
+        <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲10.2%</span></td>
+        <td style="font-size:11px;color:var(--muted);">SL-реклама</td>
+      </tr><tr>
+        <td><strong>Євразія Рогнідинська</strong></td>
+        <td class="num">25.0%</td>
+        <td class="num"><strong>29.5%</strong></td>
+        <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲18.0%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr style="background:rgba(42,175,109,.04);">
+        <td>🎯 <strong>Євразія Межигірська</strong></td>
+        <td class="num">21.9%</td>
+        <td class="num"><strong>19.1%</strong></td>
+        <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼12.8%</span></td>
+        <td style="font-size:11px;color:var(--muted);">SL-реклама</td>
+      </tr><tr style="background:rgba(42,175,109,.04);">
+        <td>🎯 <strong>Євразія Дмитрівська</strong></td>
+        <td class="num">16.3%</td>
+        <td class="num"><strong>16.2%</strong></td>
+        <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-0.6%</span></td>
+        <td style="font-size:11px;color:var(--muted);">SL-реклама</td>
+      </tr><tr>
+        <td><strong>Євразія Вишневе</strong></td>
+        <td class="num">18.8%</td>
+        <td class="num"><strong>17.0%</strong></td>
+        <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼9.6%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr>
+        <td><strong>Євразія Університетська (Ірпінь)</strong></td>
+        <td class="num">23.7%</td>
+        <td class="num"><strong>15.9%</strong></td>
+        <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼32.9%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr>
+        <td><strong>Євразія Рудницького</strong></td>
+        <td class="num">27.5%</td>
+        <td class="num"><strong>31.5%</strong></td>
+        <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲14.5%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr>
+        <td><strong>Євразія Мангал</strong></td>
+        <td class="num">28.7%</td>
+        <td class="num"><strong>34.1%</strong></td>
+        <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲18.8%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr><tr>
+        <td><strong>Євразія Експрес</strong></td>
+        <td class="num">38.7%</td>
+        <td class="num"><strong>45.5%</strong></td>
+        <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲17.6%</span></td>
+        <td style="font-size:11px;color:var(--muted);">Без реклами</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ALL LOCATIONS TABLE -->
+<div class="sec">
+  <div class="sec-t">📍 Всі 21 локація — детальна таблиця</div>
+  <div class="sec-s">🎯 = локації з Sponsored Listing · Порівняння до та під час реклами</div>
+  <div class="hr"></div>
+  <div class="tscroll">
+  <table>
+    <thead><tr>
+      <th>Локація</th>
+      <th class="num">Замовлення (ДО → ПІД ЧАС)</th>
+      <th class="num">Приріст</th>
+      <th class="num">Нові клієнти</th>
+      <th class="num">Частота</th>
+      <th class="num">Bolt+ частка</th>
+      <th>Статус</th>
+    </tr></thead>
+    <tbody><tr style="background:rgba(42,175,109,.04);">
+      <td><strong>🎯 Євразія Межигірська</strong></td>
+      <td class="num">260 → <strong>357</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲37.3%</span></td>
+      <td class="num">174 → 198 <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲13.8%</span></td>
+      <td class="num">1.49× → 1.42× <span style="color:#EF4444;font-size:12px;font-weight:700;">▼5.2%</span></td>
+      <td class="num">22% → 19% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼12.8%</span></td>
+      <td class="num"><span class="b bg">З рекламою</span></td>
+    </tr><tr style="background:rgba(42,175,109,.04);">
+      <td><strong>🎯 Євразія Дмитрівська</strong></td>
+      <td class="num">264 → <strong>411</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲55.7%</span></td>
+      <td class="num">191 → 280 <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲46.6%</span></td>
+      <td class="num">1.38× → 1.25× <span style="color:#EF4444;font-size:12px;font-weight:700;">▼9.9%</span></td>
+      <td class="num">16% → 16% <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-0.6%</span></td>
+      <td class="num"><span class="b bg">З рекламою</span></td>
+    </tr><tr style="background:rgba(42,175,109,.04);">
+      <td><strong>🎯 Євразія Велика Васильківська</strong></td>
+      <td class="num">341 → <strong>462</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲35.5%</span></td>
+      <td class="num">258 → 294 <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲14.0%</span></td>
+      <td class="num">1.32× → 1.26× <span style="color:#EF4444;font-size:12px;font-weight:700;">▼5.0%</span></td>
+      <td class="num">20% → 22% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲10.2%</span></td>
+      <td class="num"><span class="b bg">З рекламою</span></td>
+    </tr><tr style="background:rgba(42,175,109,.04);">
+      <td><strong>🎯 Євразія Яр Вал</strong></td>
+      <td class="num">93 → <strong>150</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲61.3%</span></td>
+      <td class="num">71 → 90 <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲26.8%</span></td>
+      <td class="num">1.31× → 1.36× <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲4.1%</span></td>
+      <td class="num">16% → 14% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼9.7%</span></td>
+      <td class="num"><span class="b bg">З рекламою</span></td>
+    </tr><tr style="background:rgba(42,175,109,.04);">
+      <td><strong>🎯 Євразія ТРЦ Республіка</strong></td>
+      <td class="num">102 → <strong>159</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲55.9%</span></td>
+      <td class="num">79 → 119 <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲50.6%</span></td>
+      <td class="num">1.29× → 1.11× <span style="color:#EF4444;font-size:12px;font-weight:700;">▼13.9%</span></td>
+      <td class="num">25% → 16% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼37.2%</span></td>
+      <td class="num"><span class="b bg">З рекламою</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Смарт Плаза Оболонь</strong></td>
+      <td class="num">337 → <strong>319</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼5.3%</span></td>
+      <td class="num">264 → 172 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼34.8%</span></td>
+      <td class="num">1.28× → 1.29× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.8%</span></td>
+      <td class="num">18% → 20% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲9.4%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Лесі Українки</strong></td>
+      <td class="num">485 → <strong>445</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼8.2%</span></td>
+      <td class="num">295 → 185 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼37.3%</span></td>
+      <td class="num">1.64× → 1.60× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-2.6%</span></td>
+      <td class="num">33% → 35% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲6.3%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Retroville</strong></td>
+      <td class="num">158 → <strong>109</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼31.0%</span></td>
+      <td class="num">131 → 50 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼61.8%</span></td>
+      <td class="num">1.21× → 1.47× <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲22.1%</span></td>
+      <td class="num">18% → 21% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲19.0%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія на Нивках</strong></td>
+      <td class="num">531 → <strong>505</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼4.9%</span></td>
+      <td class="num">387 → 255 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼34.1%</span></td>
+      <td class="num">1.37× → 1.36× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-0.5%</span></td>
+      <td class="num">22% → 24% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲7.1%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Миколайчука</strong></td>
+      <td class="num">0 → <strong>0</strong></td>
+      <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.0%</span></td>
+      <td class="num">0 → 0 <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.0%</span></td>
+      <td class="num">0.00× → 0.00× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.0%</span></td>
+      <td class="num">0% → 0% <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.0%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Григоренка</strong></td>
+      <td class="num">493 → <strong>492</strong></td>
+      <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-0.2%</span></td>
+      <td class="num">342 → 233 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼31.9%</span></td>
+      <td class="num">1.44× → 1.45× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.4%</span></td>
+      <td class="num">22% → 24% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲12.9%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Окіпної</strong></td>
+      <td class="num">366 → <strong>336</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼8.2%</span></td>
+      <td class="num">250 → 146 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼41.6%</span></td>
+      <td class="num">1.46× → 1.46× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-0.2%</span></td>
+      <td class="num">24% → 21% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼13.4%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Драгоманова</strong></td>
+      <td class="num">218 → <strong>218</strong></td>
+      <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.0%</span></td>
+      <td class="num">161 → 112 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼30.4%</span></td>
+      <td class="num">1.35× → 1.36× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.6%</span></td>
+      <td class="num">27% → 22% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼18.7%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Червоної Калини 44а</strong></td>
+      <td class="num">181 → <strong>183</strong></td>
+      <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+1.1%</span></td>
+      <td class="num">134 → 88 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼34.3%</span></td>
+      <td class="num">1.35× → 1.38× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+1.9%</span></td>
+      <td class="num">20% → 18% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼14.1%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Червоної Калини 5В</strong></td>
+      <td class="num">189 → <strong>158</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼16.4%</span></td>
+      <td class="num">142 → 85 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼40.1%</span></td>
+      <td class="num">1.33× → 1.31× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-1.9%</span></td>
+      <td class="num">21% → 26% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲26.3%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Рогнідинська</strong></td>
+      <td class="num">131 → <strong>121</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼7.6%</span></td>
+      <td class="num">97 → 54 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼44.3%</span></td>
+      <td class="num">1.35× → 1.49× <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲10.6%</span></td>
+      <td class="num">25% → 30% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲18.0%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Вишневе</strong></td>
+      <td class="num">323 → <strong>320</strong></td>
+      <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-0.9%</span></td>
+      <td class="num">228 → 166 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼27.2%</span></td>
+      <td class="num">1.42× → 1.39× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-2.2%</span></td>
+      <td class="num">19% → 17% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼9.6%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Університетська (Ірпінь)</strong></td>
+      <td class="num">78 → <strong>71</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼9.0%</span></td>
+      <td class="num">60 → 37 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼38.3%</span></td>
+      <td class="num">1.30× → 1.31× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+1.1%</span></td>
+      <td class="num">24% → 16% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼32.9%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Рудницького</strong></td>
+      <td class="num">316 → <strong>290</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼8.2%</span></td>
+      <td class="num">218 → 144 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼33.9%</span></td>
+      <td class="num">1.45× → 1.41× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈-2.4%</span></td>
+      <td class="num">28% → 32% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲14.5%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Мангал</strong></td>
+      <td class="num">43 → <strong>36</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼16.3%</span></td>
+      <td class="num">37 → 28 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼24.3%</span></td>
+      <td class="num">1.16× → 1.12× <span style="color:#EF4444;font-size:12px;font-weight:700;">▼3.2%</span></td>
+      <td class="num">29% → 34% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲18.8%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr><tr style="">
+      <td><strong> Євразія Експрес</strong></td>
+      <td class="num">132 → <strong>109</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼17.4%</span></td>
+      <td class="num">83 → 53 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼36.1%</span></td>
+      <td class="num">1.59× → 1.60× <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.8%</span></td>
+      <td class="num">39% → 46% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲17.6%</span></td>
+      <td class="num"><span class="b">Без реклами</span></td>
+    </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<!-- INSIGHTS -->
+<div class="sec">
+  <div class="sec-t">💡 Ключові висновки кампанії</div>
+  <div class="hr"></div>
+  <div class="g2">
+    <div style="background:#F0FDF4;border-radius:10px;padding:15px;border-left:4px solid var(--green);">
+      <div style="font-size:13px;font-weight:700;color:#065F46;margin-bottom:10px;">✅ Позитивні результати SL</div>
+      <div style="font-size:12px;color:#374151;line-height:1.7;">
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--green);">Локації з рекламою показали <strong>+479 замовлень</strong> (<span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲45.2%</span>) vs попередній період</div>
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--green);">Нових клієнтів стало <strong>+208</strong> (<span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲26.9%</span>)</div>
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--green);">Виручка зросла на <strong><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲49.5%</span></strong></div>
+        <div style="padding-left:8px;border-left:2px solid var(--green);">Без-рекламні локації показали <strong><span style="color:#EF4444;font-size:12px;font-weight:700;">▼6.8%</span></strong> — тобто приріст у рекламних точок вищий</div>
+      </div>
+    </div>
+    <div style="background:#FFF7ED;border-radius:10px;padding:15px;border-left:4px solid var(--orange);">
+      <div style="font-size:13px;font-weight:700;color:#92400E;margin-bottom:10px;">📈 Рекомендації</div>
+      <div style="font-size:12px;color:#374151;line-height:1.7;">
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--orange);">Розширити SL на локації з найбільшим потенціалом: <strong>Нивки, Лесі Українки, Григоренка</strong></div>
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--orange);">Поєднати SL з промо пропозиціями</div>
+        <div style="padding-left:8px;border-left:2px solid var(--orange);">Запустити нову 2-тижневу SL-кампанію після паузи 2–3 тижні для свіжого залучення</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GLOSSARY -->
+<div class="gl-sec">
+  <div class="sec-t">📖 Глосарій показників</div>
+  <div class="sec-s">Пояснення всіх метрик звіту</div>
+  <div class="hr"></div>
+  <div class="gl-row"><span class="gl-t">Sponsored Listing (SL)</span><span class="gl-d">Платний рекламний формат Bolt Food: заклад розміщується на преміум-позиції в пошуку та на головному екрані додатку. Підвищує видимість та кількість переглядів меню.</span></div>
+  <div class="gl-row"><span class="gl-t">Impressions (Покази)</span><span class="gl-d">Кількість разів, коли рекламна картка закладу була показана користувачу в додатку. Відстежується в Partner Portal / Bolt Food Ads Platform, не в Databricks.</span></div>
+  <div class="gl-row"><span class="gl-t">CTR (Click-Through Rate)</span><span class="gl-d">Відсоток користувачів, які натиснули на картку закладу після перегляду реклами. CTR = кліки / покази × 100%. Ціль для SL: 8–12%. Дані з Partner Portal.</span></div>
+  <div class="gl-row"><span class="gl-t">Інкрементальні замовлення</span><span class="gl-d">Додаткові замовлення, що з'явились завдяки рекламі = замовлення під час реклами − замовлення до реклами (при однаковій к-сті днів).</span></div>
+  <div class="gl-row"><span class="gl-t">ROI (Return on Investment)</span><span class="gl-d">Повернення на інвестиції = (інкрем. замовлення × AOV × ставка комісії ~10%) / витрати на SL × 100%. ROI &gt; 100% означає, що реклама окупилась.</span></div>
+  <div class="gl-row"><span class="gl-t">Частота замовлень</span><span class="gl-d">Середня кількість замовлень на одного активного клієнта за 15-денний період = замовлень / унікальних активних клієнтів.</span></div>
+  <div class="gl-row"><span class="gl-t">Нові клієнти</span><span class="gl-d">Унікальні користувачі, для яких даний заклад — перший в їхній замовленні за вказаний 15-денний відрізок.</span></div>
+  <div class="gl-row"><span class="gl-t">Bolt+ частка</span><span class="gl-d">Відсоток GMV (виручки), що генерується підписниками Bolt+ (платна підписка з безкоштовною або зниженою доставкою). Джерело: fact_provider_weekly.bolt_plus_delivery_gmv_share.</span></div>
+  <div class="gl-row"><span class="gl-t">Availability Rate</span><span class="gl-d">Частка часу, коли заклад був відкритий і доступний для прийому замовлень. Ціль ≥ 95%.</span></div>
+  <div class="gl-row"><span class="gl-t">Виручка до знижки</span><span class="gl-d">Загальна сума замовлень за цінами меню (GMV, Gross Merchandise Value) без вирахування будь-яких знижок.</span></div>
+  <div class="gl-row"><span class="gl-t">Виручка після знижки</span><span class="gl-d">Фактична сума замовлень після вирахування всіх промо-знижок (bolt-промо + партнерські знижки).</span></div>
+  <div class="gl-row"><span class="gl-t">Bolt-промо</span><span class="gl-d">Сума витрат Bolt Food на знижки та акції для просування конкретного закладу або категорії замовлень.</span></div>
+  <div class="gl-row"><span class="gl-t">Порівнювальний період</span><span class="gl-d">ДО реклами: 10–24 травня 2026 (15 днів) · ПІД ЧАС реклами: 25 травня – 8 червня 2026 (15 днів). Однакова тривалість забезпечує коректне порівняння.</span></div>
+</div>
+
+<div class="footer">
+  Bolt Food Ukraine × Євразія · Sponsored Listing аналітика · 25 трав.–8 черв. 2026<br>
+  Конфіденційний звіт · Дані: Databricks bolt-incentives<br>
+  <span style="font-size:10px;">etl_delivery_order_monetary_metrics · fact_provider_weekly · ads_reporting_provider_reporting</span>
+</div>
+
+</body></html>
