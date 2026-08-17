@@ -18,6 +18,7 @@ FOLDERS = [
     ("salateira", "files"),
     ("salateira-weekly", "weekly"),
     ("muza", "files"),
+    ("muza-weekly", "weekly"),
     ("chornomorka", "files"),
     ("chornomorka-weekly", "weekly"),
     ("evrazia", "files"),
@@ -39,11 +40,12 @@ def uk_report_word(n):
 REPORT_EXTS = (".html", ".xlsx", ".xls", ".pdf", ".csv", ".pptx")
 
 
-def count_html_files(path):
+def count_html_files(path, exclude_total=False):
     if not os.path.isdir(path):
         return 0
     return len([f for f in os.listdir(path)
-                if f.lower().endswith(REPORT_EXTS) and f.lower() != "index.html"])
+                if f.lower().endswith(REPORT_EXTS) and f.lower() != "index.html"
+                and not (exclude_total and "_total_" in f.lower())])
 
 
 def latest_week_dir(path):
@@ -64,7 +66,7 @@ def build_count(folder_slug, kind):
         wk = latest_week_dir(path)
         if not wk:
             return "—"
-        n = count_html_files(os.path.join(path, wk))
+        n = count_html_files(os.path.join(path, wk), exclude_total=True)
         return "1 тиждень \u00b7 %d локацій" % n if n else "—"
     n = count_html_files(path)
     return "%d %s" % (n, uk_report_word(n)) if n else "—"

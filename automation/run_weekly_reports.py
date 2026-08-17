@@ -32,7 +32,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from dbx import DBX
 from partners_config import PARTNERS
-from report_template import build_report
+from report_template import build_report, build_network_summary
 
 DAY_NAMES_UA = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"]
 
@@ -266,6 +266,7 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
     os.makedirs(week_dir, exist_ok=True)
 
     week_items = []
+    loc_results = []
     for pid, meta in providers.items():
         name = meta["name"]
         brand_label = meta.get("brand", display_name)
@@ -299,9 +300,24 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
         with open(os.path.join(week_dir, fname), "w", encoding="utf-8") as f:
             f.write(html)
         week_items.append((fname, short_name, pid))
+        loc_results.append(dict(pid=pid, name=name, short_name=short_name, city=city, fname=fname, stats=stats))
         print(f"  ok {pid} {name:45s} {stats['delivered']:>4} zam  {stats['gmv']:>8,} UAH".replace(",", " "))
 
-    items_html = "\n".join(
+    # Network-wide total summary (all locations combined)
+    total_fname = f"{display_name.replace(' ', '_')}_TOTAL_{week['week_folder']}.html"
+    total_html, total_stats = build_network_summary(
+        display_name=display_name, emoji=emoji, brand_color=cfg.get("brand_color", "#2AAF6D"),
+        period_label=week["period_label"], period_short=week["period_short"], prev_label=week["prev_label"],
+        days_ua=week["days_ua"], days_iso=week["days_iso"], loc_results=loc_results,
+    )
+    with open(os.path.join(week_dir, total_fname), "w", encoding="utf-8") as f:
+        f.write(total_html)
+    print(f"  -> TOTAL {display_name:20s} {total_stats['delivered']:>5} zam  {total_stats['gmv']:>9,} UAH".replace(",", " "))
+
+    items_html = (
+        f'      <li><a href="{total_fname}" style="border-color:rgba(255,165,0,.35);background:rgba(255,165,0,.08);">'
+        f'<span class="t">🌐 Мережа тотал</span><span class="count">{len(week_items)} локацій</span></a></li>\n'
+    ) + "\n".join(
         f'      <li><a href="{fname}"><span class="t">{short}</span><span class="count">#{pid}</span></a></li>'
         for fname, short, pid in week_items
     )

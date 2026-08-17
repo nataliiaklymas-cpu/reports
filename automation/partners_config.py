@@ -51,6 +51,23 @@ CHORNOMORKA_PROVIDERS = {
     203578: {"name": "Анчоусна від Чорноморки Барикадна", "brand": "Анчоусна", "city": "Дніпро"},
 }
 
+MUZA_PROVIDERS = {
+    129340: {"name": "Муза вул. Саксаганського", "brand": "Муза", "city": "Київ"},
+    132445: {"name": "Муза вул. Срібнокільська", "brand": "Муза", "city": "Київ"},
+    140973: {"name": "Муза вул. Вінстона Черчиля", "brand": "Муза", "city": "Київ"},
+    149712: {"name": "Муза вул. Героїв Полку Азов", "brand": "Муза", "city": "Київ"},
+    156163: {"name": "Муза вул. Гарматна", "brand": "Муза", "city": "Київ"},
+    174670: {"name": "Муза пров. Коломийський", "brand": "Муза", "city": "Київ"},
+    190486: {"name": "Муза вул. Лаврухіна", "brand": "Муза", "city": "Київ"},
+    192157: {"name": "Муза на Бастіонній", "brand": "Муза", "city": "Київ"},
+    892705: {"name": "Муза вул. Олександра Олеся", "brand": "Муза", "city": "Київ"},
+    169180: {"name": "Муза Пекарська", "brand": "Муза", "city": "Львів"},
+    184842: {"name": "Муза Чорновола", "brand": "Муза", "city": "Львів"},
+    184854: {"name": "Муза Федьковича", "brand": "Муза", "city": "Львів"},
+    200335: {"name": "Муза Рівне", "brand": "Муза", "city": "Рівне"},
+    322668: {"name": "Муза пров. Олекси Тихого", "brand": "Муза", "city": "Ірпінь"},
+}
+
 PARTNERS = {
     "salateira": {
         "display_name": "Salateira",
@@ -65,5 +82,12 @@ PARTNERS = {
         "brand_color": "#1565C0",
         "github_folder": "chornomorka-weekly",
         "providers": CHORNOMORKA_PROVIDERS,
+    },
+    "muza": {
+        "display_name": "Муза",
+        "emoji": "🏛️",
+        "brand_color": "#FFA500",
+        "github_folder": "muza-weekly",
+        "providers": MUZA_PROVIDERS,
     },
 }
