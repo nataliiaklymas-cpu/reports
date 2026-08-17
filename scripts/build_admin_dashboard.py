@@ -19,6 +19,7 @@ FOLDERS = [
     ("salateira-weekly", "weekly"),
     ("muza", "files"),
     ("muza-weekly", "weekly"),
+    ("europiano-weekly", "weekly"),
     ("chornomorka", "files"),
     ("chornomorka-weekly", "weekly"),
     ("evrazia", "files"),

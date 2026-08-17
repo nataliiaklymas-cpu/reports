@@ -60,12 +60,25 @@ MUZA_PROVIDERS = {
     174670: {"name": "Муза пров. Коломийський", "brand": "Муза", "city": "Київ"},
     190486: {"name": "Муза вул. Лаврухіна", "brand": "Муза", "city": "Київ"},
     192157: {"name": "Муза на Бастіонній", "brand": "Муза", "city": "Київ"},
+    192171: {"name": "Муза вул. Пилипа Орлика", "brand": "Муза", "city": "Львів"},
     892705: {"name": "Муза вул. Олександра Олеся", "brand": "Муза", "city": "Київ"},
     169180: {"name": "Муза Пекарська", "brand": "Муза", "city": "Львів"},
     184842: {"name": "Муза Чорновола", "brand": "Муза", "city": "Львів"},
     184854: {"name": "Муза Федьковича", "brand": "Муза", "city": "Львів"},
     200335: {"name": "Муза Рівне", "brand": "Муза", "city": "Рівне"},
     322668: {"name": "Муза пров. Олекси Тихого", "brand": "Муза", "city": "Ірпінь"},
+    # Excluded (deleted providers on the platform, confirmed live in Databricks):
+    #   177297 Муза пр-т Європейського Союзу — status "deleted"
+    #   201208 Муза м. Ірпінь — status "deleted" (replaced by 322668 above)
+}
+
+EUROPIANO_PROVIDERS = {
+    412639: {"name": "Європіано пров. Коломийський", "brand": "Європіано", "city": "Київ"},
+    502633: {"name": "Європіано вул. Вінстона Черчилля", "brand": "Європіано", "city": "Київ"},
+    652646: {"name": "Європіано вул. Гарматна", "brand": "Європіано", "city": "Київ"},
+    802633: {"name": "Європіано вул. Героїв Полку Азов", "brand": "Європіано", "city": "Київ"},
+    982639: {"name": "Європіано вул. Саксаганського", "brand": "Європіано", "city": "Київ"},
+    1012643: {"name": "Європіано вул. Бастіонна", "brand": "Європіано", "city": "Київ"},
 }
 
 PARTNERS = {
@@ -89,5 +102,12 @@ PARTNERS = {
         "brand_color": "#FFA500",
         "github_folder": "muza-weekly",
         "providers": MUZA_PROVIDERS,
+    },
+    "europiano": {
+        "display_name": "Європіано by Muza",
+        "emoji": "🎹",
+        "brand_color": "#7C3AED",
+        "github_folder": "europiano-weekly",
+        "providers": EUROPIANO_PROVIDERS,
     },
 }
