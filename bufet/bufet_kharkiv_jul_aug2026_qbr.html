@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Bufet Харків — QBR (липень–серпень 2026)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#F8F9FA;--card:#fff;--green:#2AAF6D;--dark:#0d2a1a;--red:#EF4444;
+  --orange:#F59E0B;--blue:#3B82F6;--muted:#6B7280;--border:#E8E8E8;
+  --sh:0 2px 10px rgba(0,0,0,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+      background:var(--bg);color:#1A1A1A;line-height:1.6;max-width:1140px;margin:0 auto;padding:28px;}
+
+.hero{background:linear-gradient(135deg,#0d1f0d 0%,#1a3d1a 60%,#0f2a0f 100%);
+       color:white;border-radius:16px;padding:36px;margin-bottom:24px;position:relative;overflow:hidden;}
+.hero::before{content:"📊";position:absolute;right:28px;bottom:16px;font-size:100px;opacity:.06;}
+.hero-top{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.logo{display:flex;align-items:center;gap:7px;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;}
+.logo-bolt{background:rgba(52,209,134,.12);border:1px solid rgba(52,209,134,.25);color:#34D186;}
+.logo-bf  {background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);color:#C9A84C;}
+.badge{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:700;
+        letter-spacing:1.2px;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:12px;}
+.hero h1{font-size:24px;font-weight:800;line-height:1.2;margin-bottom:6px;}
+.hero h1 span{color:#7ed77e;}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:20px;}
+.hero-kpis{display:flex;gap:20px;flex-wrap:wrap;}
+.hkpi{font-size:11px;color:rgba(255,255,255,.4);}
+.hkpi strong{display:block;font-size:20px;font-weight:700;color:white;margin-bottom:1px;}
+
+.sec{background:var(--card);border-radius:14px;padding:22px 24px;margin-bottom:20px;box-shadow:var(--sh);}
+.sec-t{font-size:16px;font-weight:700;margin-bottom:4px;}
+.sec-s{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.hr{height:1px;background:var(--border);margin-bottom:14px;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+@media(max-width:700px){.g2,.g3,.g4,.g5{grid-template-columns:1fr 1fr;}}
+
+.card{background:#F8F9FA;border-radius:10px;padding:14px;}
+.card.green{background:rgba(42,175,109,.07);border:1px solid rgba(42,175,109,.2);}
+.card.orange{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);}
+.card.red{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);}
+.card.blue{background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.2);}
+.cl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px;}
+.cv{font-size:22px;font-weight:800;margin-bottom:2px;}
+.cd{font-size:11px;color:var(--muted);}
+
+.cmp-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.cmp-card{border-radius:12px;padding:18px;}
+.cmp-before{background:#F8F9FA;border:1px solid var(--border);}
+.cmp-during{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid var(--green);}
+.cmp-t{font-size:13px;font-weight:700;margin-bottom:12px;}
+.cmp-kpi{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.06);}
+.cmp-kpi:last-child{border-bottom:none;}
+.cmp-lbl{color:var(--muted);}
+.cmp-val{font-weight:700;}
+
+.tscroll{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{background:#F8F9FA;padding:8px 10px;text-align:left;font-size:10px;font-weight:700;
+    color:var(--muted);text-transform:uppercase;border-bottom:2px solid var(--border);white-space:nowrap;}
+td{padding:8px 10px;border-bottom:1px solid #F3F4F6;vertical-align:middle;}
+tr:hover td{background:#FAFAFA;}
+.num{text-align:right;white-space:nowrap;}
+.b{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;}
+.bg{background:rgba(42,175,109,.15);color:#16a057;}
+.bo{background:rgba(245,158,11,.15);color:#b46309;}
+.br{background:rgba(239,68,68,.15);color:#dc2626;}
+.bb{background:rgba(59,130,246,.15);color:#1d4ed8;}
+
+.funnel{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.fstep{background:#F8F9FA;border-radius:10px;padding:12px 16px;text-align:center;flex:1;min-width:110px;}
+.fstep .fv{font-size:18px;font-weight:800;}
+.fstep .fl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+.farw{color:var(--muted);font-size:16px;}
+
+.gl-sec{background:linear-gradient(135deg,#f0f4ff,#f8f9ff);border:1px solid #C7D7F4;border-radius:12px;padding:20px 24px;}
+.gl-sec .sec-t{color:#1e40af;}
+.gl-row{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #e0e8f8;font-size:12px;line-height:1.5;}
+.gl-row:last-child{border-bottom:none;}
+.gl-t{font-weight:700;color:#1e3a8a;min-width:185px;flex-shrink:0;}
+.gl-d{color:#374151;}
+
+.footer{text-align:center;font-size:11px;color:var(--muted);margin-top:24px;padding:16px 0;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="logo logo-bolt">⚡ Bolt Food Ukraine</div>
+    <span style="color:rgba(255,255,255,.2);font-size:16px;">×</span>
+    <div class="logo logo-bf">🍽️ Bufet · Харків</div>
+    <span style="margin-left:auto;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:3px 10px;font-size:10px;font-weight:700;color:#F59E0B;">📊 QBR · 16 ЛОКАЦІЙ</span>
+  </div>
+  <div class="badge">1 липня – 15 серпня 2026</div>
+  <h1>Bufet Харків — <span>QBR з YoY порівнянням</span></h1>
+  <p class="hero-sub">16 локацій · Дані: Databricks (dim_order_delivery, fact_provider_weekly) · Порівняння з 1 липня – 15 серпня 2025</p>
+  <div class="hero-kpis">
+    <div class="hkpi"><strong>20 893</strong>Замовлень <span style="color:#2AAF6D;font-size:11px;font-weight:700;">▲+3.8%</span></div>
+    <div class="hkpi"><strong>245 242 €</strong>GMV до знижок <span style="color:#2AAF6D;font-size:11px;font-weight:700;">▲+5.6%</span></div>
+    <div class="hkpi"><strong>11.74 €</strong>AOV до знижок</div>
+    <div class="hkpi"><strong>6.1%</strong>Частка Bolt+ <span style="color:#2AAF6D;font-size:11px;font-weight:700;">▲+23.5%</span></div>
+    <div class="hkpi"><strong>4 922</strong>Нових клієнтів <span style="color:#EF4444;font-size:11px;font-weight:700;">▼-15.5%</span></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📈 YoY: 1 липня – 15 серпня 2026 vs 1 липня – 15 серпня 2025</div>
+  <div class="sec-s">Порівняння того самого календарного відрізку — мережа Bufet Харків, 16 локацій</div>
+  <div class="hr"></div>
+  <div class="cmp-wrap">
+    <div class="cmp-card cmp-before">
+      <div class="cmp-t" style="color:var(--muted);">📦 1 липня – 15 серпня 2025</div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Замовлення</span><span class="cmp-val">20 135</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">GMV до знижок</span><span class="cmp-val">232 175 €</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">AOV до знижок</span><span class="cmp-val">11.53 €</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Активні клієнти</span><span class="cmp-val">12 082</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Нові клієнти</span><span class="cmp-val">5 822</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частота</span><span class="cmp-val">1.67×</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частка Bolt+</span><span class="cmp-val">4.9%</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частка промо-замовлень</span><span class="cmp-val">59.4%</span></div>
+    </div>
+    <div class="cmp-card cmp-during">
+      <div class="cmp-t" style="color:var(--dark);">🎯 1 липня – 15 серпня 2026</div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Замовлення</span><span class="cmp-val" style="color:var(--green);">20 893 <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+3.8%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">GMV до знижок</span><span class="cmp-val" style="color:var(--green);">245 242 € <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+5.6%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">AOV до знижок</span><span class="cmp-val">11.74 € <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+1.8%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Активні клієнти</span><span class="cmp-val">12 175 <span style="color:#9CA3AF;font-size:12px;font-weight:700;">▲+0.8%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Нові клієнти</span><span class="cmp-val">4 922 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼-15.5%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частота</span><span class="cmp-val">1.72× <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+3.0%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частка Bolt+</span><span class="cmp-val">6.1% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+23.5%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частка промо-замовлень</span><span class="cmp-val">47.4% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼-20.1%</span></span></div>
+    </div>
+  </div>
+  <div style="background:rgba(42,175,109,.08);border:1px solid rgba(42,175,109,.2);border-radius:10px;padding:14px;font-size:12px;color:#374151;line-height:1.7;">
+    💡 <strong>Ключовий висновок:</strong> Замовлення YoY <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+3.8%</span>,
+    GMV до знижок — <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+5.6%</span>, AOV — <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+1.8%</span>.
+    Частка Bolt+ зросла до <strong>6.1%</strong> (<span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+23.5%</span>),
+    а залежність від промо знизилась — частка промо-замовлень <span style="color:#EF4444;font-size:12px;font-weight:700;">▼-20.1%</span>.
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📅 Денна динаміка замовлень — 1 липня – 15 серпня 2026 vs 1 липня – 15 серпня 2025</div>
+  <div class="sec-s">Вісь X — день періоду (1 липня = день 1). Зелений — 2026, сірий — 2025.</div>
+  <div class="hr"></div>
+  <canvas id="dailyChart" height="130"></canvas>
+  <script>
+  new Chart(document.getElementById('dailyChart'), {
+    type: 'line',
+    data: {
+      labels: ["01.07", "02.07", "03.07", "04.07", "05.07", "06.07", "07.07", "08.07", "09.07", "10.07", "11.07", "12.07", "13.07", "14.07", "15.07", "16.07", "17.07", "18.07", "19.07", "20.07", "21.07", "22.07", "23.07", "24.07", "25.07", "26.07", "27.07", "28.07", "29.07", "30.07", "31.07", "01.08", "02.08", "03.08", "04.08", "05.08", "06.08", "07.08", "08.08", "09.08", "10.08", "11.08", "12.08", "13.08", "14.08", "15.08"],
+      datasets: [
+        { label: '2026', data: [490, 483, 505, 497, 500, 422, 386, 448, 435, 456, 425, 486, 472, 411, 409, 408, 458, 482, 539, 428, 422, 432, 417, 443, 456, 432, 403, 404, 412, 431, 456, 483, 489, 458, 404, 430, 518, 508, 576, 460, 461, 428, 433, 433, 471, 493], borderColor: '#2AAF6D', backgroundColor: 'rgba(42,175,109,.08)',
+           fill: true, tension: 0.25, borderWidth: 2.5, pointRadius: 0 },
+        { label: '2025', data: [390, 430, 380, 431, 403, 479, 426, 432, 442, 463, 444, 470, 490, 458, 418, 396, 395, 438, 418, 434, 385, 333, 390, 376, 425, 417, 462, 461, 407, 486, 477, 450, 446, 581, 390, 416, 461, 469, 486, 482, 482, 465, 413, 433, 455, 450], borderColor: '#9CA3AF', backgroundColor: 'transparent',
+           fill: false, tension: 0.25, borderWidth: 1.5, pointRadius: 0, borderDash: [4,3] }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { position: 'top', labels: { font: { size: 11 } } } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 8 }, maxRotation: 60, autoSkip: true, maxTicksLimit: 23 } },
+        y: { beginAtZero: true, ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+  </script>
+</div>
+
+<div class="sec">
+  <div class="sec-t">💶 Фінанси & AOV — по місяцях 2026</div>
+  <div class="sec-s">Мережа Bufet Харків, 16 локацій</div>
+  <div class="hr"></div>
+  <div class="tscroll">
+  <table>
+    <thead><tr>
+      <th>Місяць</th><th class="num">Замовлення</th><th class="num">GMV до знижок (₴)</th>
+      <th class="num">AOV (₴)</th><th class="num">Частка Bolt+</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>Липень 2026 (повний)</td><td class="num">13 848</td><td class="num">8 278 888 ₴</td><td class="num">597.84 ₴</td><td class="num">6.3%</td></tr>
+      <tr><td>Серпень 2026 (1–15)</td><td class="num">7 045</td><td class="num">4 280 990 ₴</td><td class="num">607.66 ₴</td><td class="num">5.7%</td></tr>
+      <tr style="background:rgba(42,175,109,.06);font-weight:700;"><td>Разом (зріз)</td><td class="num">20 893</td><td class="num">12 559 878 ₴</td><td class="num">601.15 ₴</td><td class="num">6.1%</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">⏱️ Операції: рейтинг, acceptance, час приготування</div>
+  <div class="sec-s">Джерело: fact_provider_weekly · зважені середні за 1 липня – 15 серпня 2026 vs 1 липня – 15 серпня 2025 (6 тижнів кожен рік)</div>
+  <div class="hr"></div>
+  <div class="g4" style="margin-bottom:14px;">
+    <div class="card" style="text-align:center;">
+      <div class="cl">Рейтинг (зваж.)</div>
+      <div class="cv">4.89 ⭐</div>
+      <div class="cd">2025: 4.87 <span style="color:#9CA3AF;font-size:12px;font-weight:700;">▲+0.4%</span></div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="cl">Provider acceptance</div>
+      <div class="cv">97.9%</div>
+      <div class="cd">2025: 97.0% <span style="color:#9CA3AF;font-size:12px;font-weight:700;">▲+1.0%</span></div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="cl">Courier acceptance</div>
+      <div class="cv">76.2%</div>
+      <div class="cd">2025: 73.9% <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+3.1%</span></div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="cl">Час приготування</div>
+      <div class="cv">9.7 хв</div>
+      <div class="cd">2025: 9.5 хв <span style="color:#EF4444;font-size:12px;font-weight:700;">▲+2.7%</span></div>
+    </div>
+  </div>
+  <div style="font-size:11px;color:var(--muted);">Джерело: Databricks · ng_delivery_spark.fact_provider_weekly, зважено по обсягу замовлень щотижня.</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🔄 Конверсія: імпресії → меню → кошик → замовлення</div>
+  <div class="sec-s">Session-based funnel · 1 липня – 15 серпня 2026 (зелений) vs 1 липня – 15 серпня 2025 (сірий, у дужках)</div>
+  <div class="hr"></div>
+  <div class="funnel">
+    <div class="fstep"><div class="fv">173 366</div><div class="fl">Імпресії (сесії)</div></div>
+    <div class="farw">→</div>
+    <div class="fstep"><div class="fv">37 563</div><div class="fl">Перегляд меню</div></div>
+    <div class="farw">→</div>
+    <div class="fstep"><div class="fv">23 930</div><div class="fl">Додано в кошик</div></div>
+    <div class="farw">→</div>
+    <div class="fstep" style="background:rgba(42,175,109,.1);"><div class="fv" style="color:var(--green);">17 554</div><div class="fl">Замовлення</div></div>
+  </div>
+  <div class="tscroll">
+  <table>
+    <thead><tr>
+      <th>Період</th><th class="num">Імпресії→меню</th><th class="num">Меню→кошик</th>
+      <th class="num">Кошик→замовл.</th><th class="num">Меню→замовл. (E2E)</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>1 липня – 15 серпня 2025</td><td class="num">17.0%</td><td class="num">55.0%</td><td class="num">70.1%</td><td class="num">38.5%</td></tr>
+      <tr style="background:rgba(42,175,109,.06);font-weight:700;"><td>1 липня – 15 серпня 2026</td><td class="num">21.7% <span style="color:#2AAF6D;font-size:10px;font-weight:700;">▲+27.2%</span></td><td class="num">63.7% <span style="color:#2AAF6D;font-size:10px;font-weight:700;">▲+15.9%</span></td><td class="num">73.4% <span style="color:#2AAF6D;font-size:10px;font-weight:700;">▲+4.7%</span></td><td class="num">46.7% <span style="color:#2AAF6D;font-size:10px;font-weight:700;">▲+21.3%</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📣 Маркетинг: витрати Bolt на кампанії</div>
+  <div class="sec-s">Джерело: fact_provider_weekly, total_campaign_spend_bolt/provider_eur</div>
+  <div class="hr"></div>
+  <div class="g3">
+    <div class="card orange" style="text-align:center;">
+      <div class="cl">Витрати Bolt на кампанії</div>
+      <div class="cv" style="color:var(--orange);">€21 152</div>
+      <div class="cd">2025: €32 742 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼-35.4%</span></div>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="cl">Витрати партнера на кампанії</div>
+      <div class="cv">€5</div>
+      <div class="cd">2025: €0</div>
+    </div>
+    <div class="card green" style="text-align:center;">
+      <div class="cl">Частка промо-замовлень</div>
+      <div class="cv" style="color:var(--green);">47.4%</div>
+      <div class="cd">2025: 59.4% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼-20.1%</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🎯 Промо по локаціях — 1 липня – 15 серпня 2026</div>
+  <div class="sec-s">Частка замовлень зі знижкою (campaign discount) по кожній локації</div>
+  <div class="hr"></div>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Локація</th><th class="num">Замовлень</th><th class="num">Промо зам.</th><th class="num">% Промо</th><th>Рівень</th></tr></thead>
+    <tbody><tr>
+      <td>Bufet пров. Костюринський</td>
+      <td class="num">3 534</td>
+      <td class="num">1 772</td>
+      <td class="num">50.1%</td>
+      <td class="num"><span class="b br">Високий</span></td>
+    </tr><tr>
+      <td>Bufet вул. Валентинівська</td>
+      <td class="num">2 777</td>
+      <td class="num">1 535</td>
+      <td class="num">55.3%</td>
+      <td class="num"><span class="b br">Високий</span></td>
+    </tr><tr>
+      <td>Bufet пр-т Героїв Харкова</td>
+      <td class="num">2 042</td>
+      <td class="num">1 269</td>
+      <td class="num">62.1%</td>
+      <td class="num"><span class="b br">Високий</span></td>
+    </tr><tr>
+      <td>Bufet вул. Академіка Павлова</td>
+      <td class="num">1 928</td>
+      <td class="num">1 011</td>
+      <td class="num">52.4%</td>
+      <td class="num"><span class="b br">Високий</span></td>
+    </tr><tr>
+      <td>Bufet вул. Полтавський шлях</td>
+      <td class="num">1 665</td>
+      <td class="num">646</td>
+      <td class="num">38.8%</td>
+      <td class="num"><span class="b bg">Норма</span></td>
+    </tr><tr>
+      <td>Bufet вул. 23 серпня</td>
+      <td class="num">1 346</td>
+      <td class="num">642</td>
+      <td class="num">47.7%</td>
+      <td class="num"><span class="b bo">Середній</span></td>
+    </tr><tr>
+      <td>Bufet пр-т Аерокосмічний</td>
+      <td class="num">1 163</td>
+      <td class="num">252</td>
+      <td class="num">21.7%</td>
+      <td class="num"><span class="b bg">Норма</span></td>
+    </tr><tr>
+      <td>Bufet пр-т Науки</td>
+      <td class="num">1 098</td>
+      <td class="num">479</td>
+      <td class="num">43.6%</td>
+      <td class="num"><span class="b bo">Середній</span></td>
+    </tr><tr>
+      <td>Bufet Салтівське шосе</td>
+      <td class="num">1 016</td>
+      <td class="num">492</td>
+      <td class="num">48.4%</td>
+      <td class="num"><span class="b br">Високий</span></td>
+    </tr><tr>
+      <td>Bufet вул. Сковороди 40</td>
+      <td class="num">941</td>
+      <td class="num">374</td>
+      <td class="num">39.7%</td>
+      <td class="num"><span class="b bg">Норма</span></td>
+    </tr><tr>
+      <td>Bufet пр-т Архітектора Альошина</td>
+      <td class="num">721</td>
+      <td class="num">295</td>
+      <td class="num">40.9%</td>
+      <td class="num"><span class="b bo">Середній</span></td>
+    </tr><tr>
+      <td>Bufet вул. Культури</td>
+      <td class="num">622</td>
+      <td class="num">292</td>
+      <td class="num">46.9%</td>
+      <td class="num"><span class="b bo">Середній</span></td>
+    </tr><tr>
+      <td>Bufet пр-т Любові Малої</td>
+      <td class="num">613</td>
+      <td class="num">264</td>
+      <td class="num">43.1%</td>
+      <td class="num"><span class="b bo">Середній</span></td>
+    </tr><tr>
+      <td>Bufet пр-т Незалежності</td>
+      <td class="num">557</td>
+      <td class="num">209</td>
+      <td class="num">37.5%</td>
+      <td class="num"><span class="b bg">Норма</span></td>
+    </tr><tr>
+      <td>Bufet вул. Сумська</td>
+      <td class="num">547</td>
+      <td class="num">216</td>
+      <td class="num">39.5%</td>
+      <td class="num"><span class="b bg">Норма</span></td>
+    </tr><tr>
+      <td>Bufet вул. Сковороди 92</td>
+      <td class="num">323</td>
+      <td class="num">163</td>
+      <td class="num">50.5%</td>
+      <td class="num"><span class="b br">Високий</span></td>
+    </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">⚡ Bolt+ — топ локацій за кількістю доставок з підпискою</div>
+  <div class="sec-s">1 липня – 15 серпня 2026 · частка мережі: 6.1%</div>
+  <div class="hr"></div>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Локація</th><th class="num">Bolt+ доставок</th><th class="num">% від замовлень локації</th></tr></thead>
+    <tbody><tr>
+      <td>Bufet пров. Костюринський</td>
+      <td class="num">198</td>
+      <td class="num">5.6%</td>
+    </tr><tr>
+      <td>Bufet вул. Валентинівська</td>
+      <td class="num">190</td>
+      <td class="num">6.8%</td>
+    </tr><tr>
+      <td>Bufet пр-т Героїв Харкова</td>
+      <td class="num">182</td>
+      <td class="num">8.9%</td>
+    </tr><tr>
+      <td>Bufet вул. 23 серпня</td>
+      <td class="num">110</td>
+      <td class="num">8.2%</td>
+    </tr><tr>
+      <td>Bufet вул. Академіка Павлова</td>
+      <td class="num">103</td>
+      <td class="num">5.3%</td>
+    </tr><tr>
+      <td>Bufet вул. Полтавський шлях</td>
+      <td class="num">100</td>
+      <td class="num">6.0%</td>
+    </tr><tr>
+      <td>Bufet пр-т Незалежності</td>
+      <td class="num">62</td>
+      <td class="num">11.1%</td>
+    </tr><tr>
+      <td>Bufet пр-т Аерокосмічний</td>
+      <td class="num">52</td>
+      <td class="num">4.5%</td>
+    </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📍 Всі 16 локацій — замовлення YoY</div>
+  <div class="sec-s">1 липня – 15 серпня 2025 → 1 липня – 15 серпня 2026</div>
+  <div class="hr"></div>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Локація</th><th class="num">Замовлення (2025 → 2026)</th><th class="num">YoY</th><th class="num">GMV до знижок (₴)</th><th class="num">YoY</th></tr></thead>
+    <tbody><tr>
+      <td><strong>Bufet пров. Костюринський</strong></td>
+      <td class="num">3 439 → <strong>3 534</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+2.8%</span></td>
+      <td class="num">1 897 896 → 2 116 970 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+11.5%</span></td>
+    </tr><tr>
+      <td><strong>Bufet вул. Валентинівська</strong></td>
+      <td class="num">2 643 → <strong>2 777</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+5.1%</span></td>
+      <td class="num">1 487 940 → 1 728 827 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+16.2%</span></td>
+    </tr><tr>
+      <td><strong>Bufet пр-т Героїв Харкова</strong></td>
+      <td class="num">2 056 → <strong>2 042</strong></td>
+      <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:700;">▼-0.7%</span></td>
+      <td class="num">1 288 574 → 1 337 795 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+3.8%</span></td>
+    </tr><tr>
+      <td><strong>Bufet вул. Академіка Павлова</strong></td>
+      <td class="num">1 840 → <strong>1 928</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+4.8%</span></td>
+      <td class="num">1 015 342 → 1 166 164 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+14.9%</span></td>
+    </tr><tr>
+      <td><strong>Bufet вул. Полтавський шлях</strong></td>
+      <td class="num">1 669 → <strong>1 665</strong></td>
+      <td class="num"><span style="color:#9CA3AF;font-size:12px;font-weight:700;">▼-0.2%</span></td>
+      <td class="num">940 059 → 972 062 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+3.4%</span></td>
+    </tr><tr>
+      <td><strong>Bufet вул. 23 серпня</strong></td>
+      <td class="num">1 145 → <strong>1 346</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+17.6%</span></td>
+      <td class="num">600 598 → 785 105 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+30.7%</span></td>
+    </tr><tr>
+      <td><strong>Bufet пр-т Аерокосмічний</strong></td>
+      <td class="num">1 250 → <strong>1 163</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼-7.0%</span></td>
+      <td class="num">716 018 → 671 011 ₴</td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼-6.3%</span></td>
+    </tr><tr>
+      <td><strong>Bufet пр-т Науки</strong></td>
+      <td class="num">844 → <strong>1 098</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+30.1%</span></td>
+      <td class="num">435 209 → 602 532 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+38.4%</span></td>
+    </tr><tr>
+      <td><strong>Bufet Салтівське шосе</strong></td>
+      <td class="num">943 → <strong>1 016</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+7.7%</span></td>
+      <td class="num">522 696 → 625 642 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+19.7%</span></td>
+    </tr><tr>
+      <td><strong>Bufet вул. Сковороди 40</strong></td>
+      <td class="num">1 158 → <strong>941</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼-18.7%</span></td>
+      <td class="num">643 605 → 537 991 ₴</td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼-16.4%</span></td>
+    </tr><tr>
+      <td><strong>Bufet пр-т Архітектора Альошина</strong></td>
+      <td class="num">779 → <strong>721</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼-7.4%</span></td>
+      <td class="num">414 134 → 425 818 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+2.8%</span></td>
+    </tr><tr>
+      <td><strong>Bufet вул. Культури</strong></td>
+      <td class="num">630 → <strong>622</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼-1.3%</span></td>
+      <td class="num">337 735 → 359 253 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+6.4%</span></td>
+    </tr><tr>
+      <td><strong>Bufet пр-т Любові Малої</strong></td>
+      <td class="num">444 → <strong>613</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+38.1%</span></td>
+      <td class="num">262 634 → 391 651 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+49.1%</span></td>
+    </tr><tr>
+      <td><strong>Bufet пр-т Незалежності</strong></td>
+      <td class="num">584 → <strong>557</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼-4.6%</span></td>
+      <td class="num">331 585 → 335 188 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+1.1%</span></td>
+    </tr><tr>
+      <td><strong>Bufet вул. Сумська</strong></td>
+      <td class="num">429 → <strong>547</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+27.5%</span></td>
+      <td class="num">241 032 → 301 201 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+25.0%</span></td>
+    </tr><tr>
+      <td><strong>Bufet вул. Сковороди 92</strong></td>
+      <td class="num">282 → <strong>323</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+14.5%</span></td>
+      <td class="num">151 101 → 202 666 ₴</td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+34.1%</span></td>
+    </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">🍽️ Меню: топ-15 позицій за виручкою</div>
+  <div class="sec-s">1 липня – 15 серпня 2026 · dim_basket_item_delivery, лише страви (is_dish)</div>
+  <div class="hr"></div>
+  <div class="tscroll">
+  <table>
+    <thead><tr><th>Позиція</th><th class="num">К-ть, шт</th><th class="num">Замовлень</th><th class="num">Виручка</th></tr></thead>
+    <tbody><tr>
+      <td>Окрошка</td>
+      <td class="num">17 450</td>
+      <td class="num">10 614</td>
+      <td class="num" style="color:var(--green);font-weight:700;">1 582 755 ₴</td>
+    </tr><tr>
+      <td>Піца Фірмова</td>
+      <td class="num">6 016</td>
+      <td class="num">5 429</td>
+      <td class="num" style="color:var(--green);font-weight:700;">1 161 006 ₴</td>
+    </tr><tr>
+      <td>Пiца з куркою та ананасами</td>
+      <td class="num">5 534</td>
+      <td class="num">5 030</td>
+      <td class="num" style="color:var(--green);font-weight:700;">1 000 170 ₴</td>
+    </tr><tr>
+      <td>Пiца з шинкою</td>
+      <td class="num">3 838</td>
+      <td class="num">3 518</td>
+      <td class="num" style="color:var(--green);font-weight:700;">653 020 ₴</td>
+    </tr><tr>
+      <td>Пiца з куркою та грибами</td>
+      <td class="num">3 532</td>
+      <td class="num">3 228</td>
+      <td class="num" style="color:var(--green);font-weight:700;">640 957 ₴</td>
+    </tr><tr>
+      <td>Пiца з салямi</td>
+      <td class="num">2 895</td>
+      <td class="num">2 738</td>
+      <td class="num" style="color:var(--green);font-weight:700;">525 512 ₴</td>
+    </tr><tr>
+      <td>Пiца з яловичиною</td>
+      <td class="num">2 257</td>
+      <td class="num">2 113</td>
+      <td class="num" style="color:var(--green);font-weight:700;">436 673 ₴</td>
+    </tr><tr>
+      <td>Гратен</td>
+      <td class="num">3 311</td>
+      <td class="num">2 726</td>
+      <td class="num" style="color:var(--green);font-weight:700;">345 815 ₴</td>
+    </tr><tr>
+      <td>Чiзбургер з ЯЛОВИЧИНОЮ ТА БЕКОНОМ</td>
+      <td class="num">2 090</td>
+      <td class="num">1 696</td>
+      <td class="num" style="color:var(--green);font-weight:700;">277 980 ₴</td>
+    </tr><tr>
+      <td>Нагетси</td>
+      <td class="num">2 603</td>
+      <td class="num">2 289</td>
+      <td class="num" style="color:var(--green);font-weight:700;">270 284 ₴</td>
+    </tr><tr>
+      <td>Картопля фрі Air</td>
+      <td class="num">3 697</td>
+      <td class="num">2 921</td>
+      <td class="num" style="color:var(--green);font-weight:700;">243 795 ₴</td>
+    </tr><tr>
+      <td>Буфрол</td>
+      <td class="num">2 073</td>
+      <td class="num">1 744</td>
+      <td class="num" style="color:var(--green);font-weight:700;">226 924 ₴</td>
+    </tr><tr>
+      <td>Салат Цезар</td>
+      <td class="num">1 960</td>
+      <td class="num">1 663</td>
+      <td class="num" style="color:var(--green);font-weight:700;">213 350 ₴</td>
+    </tr><tr>
+      <td>Пiца Баварська</td>
+      <td class="num">1 009</td>
+      <td class="num">962</td>
+      <td class="num" style="color:var(--green);font-weight:700;">182 232 ₴</td>
+    </tr><tr>
+      <td>Чізбургер з КУРКОЮ</td>
+      <td class="num">1 651</td>
+      <td class="num">1 348</td>
+      <td class="num" style="color:var(--green);font-weight:700;">181 546 ₴</td>
+    </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">💡 Рекомендації та підсумок</div>
+  <div class="hr"></div>
+  <div class="g2">
+    <div style="background:#F0FDF4;border-radius:10px;padding:15px;border-left:4px solid var(--green);">
+      <div style="font-size:13px;font-weight:700;color:#065F46;margin-bottom:10px;">✅ Сильні сторони (YoY)</div>
+      <div style="font-size:12px;color:#374151;line-height:1.7;">
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--green);">Замовлення <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+3.8%</span> та GMV до знижок <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+5.6%</span> vs 1 липня – 15 серпня 2025</div>
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--green);">Частка Bolt+ зросла до <strong>6.1%</strong> (<span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲+23.5%</span>)</div>
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--green);">Конверсія «меню → замовлення» покращилась до <strong>46.7%</strong> (було 38.5%)</div>
+        <div style="padding-left:8px;border-left:2px solid var(--green);">Рейтинг стабільно високий — <strong>4.89⭐</strong>, при цьому залежність від промо знизилась (<span style="color:#EF4444;font-size:12px;font-weight:700;">▼-20.1%</span>)</div>
+      </div>
+    </div>
+    <div style="background:#FFF7ED;border-radius:10px;padding:15px;border-left:4px solid var(--orange);">
+      <div style="font-size:13px;font-weight:700;color:#92400E;margin-bottom:10px;">⚠️ Зони уваги</div>
+      <div style="font-size:12px;color:#374151;line-height:1.7;">
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--orange);">Нові клієнти впали <span style="color:#EF4444;font-size:12px;font-weight:700;">▼-15.5%</span> YoY — варто перевірити активність залучення нових користувачів у Харкові</div>
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--orange);">Витрати Bolt на кампанії скоротились <span style="color:#EF4444;font-size:12px;font-weight:700;">▼-35.4%</span> — менше платного просування мережі порівняно з 2025</div>
+        <div style="padding-left:8px;border-left:2px solid var(--orange);">Локації з високим % промо (&gt;32%) — контролювати залежність від знижок, балансувати органічну видимість</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="gl-sec">
+  <div class="sec-t">📖 Глосарій показників</div>
+  <div class="sec-s">Пояснення всіх метрик звіту</div>
+  <div class="hr"></div>
+  <div class="gl-row"><span class="gl-t">GMV до знижок</span><span class="gl-d">Загальна сума замовлень за цінами меню, без вирахування знижок (order_gmv).</span></div>
+  <div class="gl-row"><span class="gl-t">AOV</span><span class="gl-d">Average Order Value — середній чек = GMV до знижок / кількість замовлень.</span></div>
+  <div class="gl-row"><span class="gl-t">Нові клієнти</span><span class="gl-d">Унікальні користувачі, для яких дане замовлення — перше в цьому закладі (first_order_created_same_provider_ts).</span></div>
+  <div class="gl-row"><span class="gl-t">Частота</span><span class="gl-d">Замовлень на одного активного клієнта за період.</span></div>
+  <div class="gl-row"><span class="gl-t">Bolt+ частка</span><span class="gl-d">Частка доставок, оформлених підписниками Bolt+.</span></div>
+  <div class="gl-row"><span class="gl-t">Провайдер/courier acceptance</span><span class="gl-d">Частка замовлень, прийнятих закладом/курʼєром без відмови (зважено по обсягу тижня).</span></div>
+  <div class="gl-row"><span class="gl-t">Session-funnel</span><span class="gl-d">Impressions → перегляд меню → додано в кошик → замовлення, на основі сесій користувачів у застосунку.</span></div>
+  <div class="gl-row"><span class="gl-t">Промо-замовлення</span><span class="gl-d">Замовлення зі знижкою по товару або campaign_discount &gt; 0.</span></div>
+  <div class="gl-row"><span class="gl-t">Період порівняння</span><span class="gl-d">1 липня – 15 серпня 2026 vs 1 липня – 15 серпня 2025 — той самий календарний відрізок рік до року.</span></div>
+</div>
+
+<div class="footer">
+  Bolt Food Ukraine × Bufet Харків · QBR · 1 липня – 15 серпня 2026<br>
+  Конфіденційний звіт · Дані: Databricks bolt-incentives<br>
+  <span style="font-size:10px;">dim_order_delivery · fact_provider_weekly · dim_basket_item_delivery</span>
+</div>
+</body>
+</html>
