@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Pesto Cafe × Bolt Food — Sponsored Listing аналітика (3–9 серпня)</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+<style>
+:root{
+  --bg:#F8F9FA;--card:#fff;--green:#2AAF6D;--dark:#0d2a1a;--red:#EF4444;
+  --orange:#F59E0B;--blue:#3B82F6;--muted:#6B7280;--border:#E8E8E8;
+  --sh:0 2px 10px rgba(0,0,0,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+      background:var(--bg);color:#1A1A1A;line-height:1.6;max-width:1100px;margin:0 auto;padding:28px;}
+
+.hero{background:linear-gradient(135deg,#0d1f0d 0%,#1a3d1a 60%,#0f2a0f 100%);
+       color:white;border-radius:16px;padding:36px;margin-bottom:24px;position:relative;overflow:hidden;}
+.hero::before{content:"📣";position:absolute;right:28px;bottom:16px;font-size:100px;opacity:.06;}
+.hero-top{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.logo{display:flex;align-items:center;gap:7px;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;}
+.logo-bolt{background:rgba(52,209,134,.12);border:1px solid rgba(52,209,134,.25);color:#34D186;}
+.logo-pc  {background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);color:#C9A84C;}
+.badge{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:700;
+        letter-spacing:1.2px;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:12px;}
+.hero h1{font-size:24px;font-weight:800;line-height:1.2;margin-bottom:6px;}
+.hero h1 span{color:#7ed77e;}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:20px;}
+.hero-kpis{display:flex;gap:20px;flex-wrap:wrap;}
+.hkpi{font-size:11px;color:rgba(255,255,255,.4);}
+.hkpi strong{display:block;font-size:20px;font-weight:700;color:white;margin-bottom:1px;}
+
+.sec{background:var(--card);border-radius:14px;padding:22px 24px;margin-bottom:20px;box-shadow:var(--sh);}
+.sec-t{font-size:16px;font-weight:700;margin-bottom:4px;}
+.sec-s{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.hr{height:1px;background:var(--border);margin-bottom:14px;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+@media(max-width:700px){.g2,.g3,.g4,.g5{grid-template-columns:1fr 1fr;}}
+
+.card{background:#F8F9FA;border-radius:10px;padding:14px;}
+.card.green{background:rgba(42,175,109,.07);border:1px solid rgba(42,175,109,.2);}
+.card.orange{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);}
+.card.red{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);}
+.card.blue{background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.2);}
+.cl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px;}
+.cv{font-size:22px;font-weight:800;margin-bottom:2px;}
+.cd{font-size:11px;color:var(--muted);}
+
+.cmp-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.cmp-card{border-radius:12px;padding:18px;}
+.cmp-before{background:#F8F9FA;border:1px solid var(--border);}
+.cmp-during{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid var(--green);}
+.cmp-t{font-size:13px;font-weight:700;margin-bottom:12px;}
+.cmp-kpi{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid rgba(0,0,0,.06);}
+.cmp-kpi:last-child{border-bottom:none;}
+.cmp-lbl{color:var(--muted);}
+.cmp-val{font-weight:700;}
+
+.tscroll{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th{background:#F8F9FA;padding:8px 10px;text-align:left;font-size:10px;font-weight:700;
+    color:var(--muted);text-transform:uppercase;border-bottom:2px solid var(--border);white-space:nowrap;}
+td{padding:8px 10px;border-bottom:1px solid #F3F4F6;vertical-align:middle;}
+tr:hover td{background:#FAFAFA;}
+.num{text-align:right;white-space:nowrap;}
+.b{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;}
+.bg{background:rgba(42,175,109,.15);color:#16a057;}
+.bo{background:rgba(245,158,11,.15);color:#b46309;}
+.br{background:rgba(239,68,68,.15);color:#dc2626;}
+.bb{background:rgba(59,130,246,.15);color:#1d4ed8;}
+
+.gl-sec{background:linear-gradient(135deg,#f0f4ff,#f8f9ff);border:1px solid #C7D7F4;border-radius:12px;padding:20px 24px;}
+.gl-sec .sec-t{color:#1e40af;}
+.gl-row{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid #e0e8f8;font-size:12px;line-height:1.5;}
+.gl-row:last-child{border-bottom:none;}
+.gl-t{font-weight:700;color:#1e3a8a;min-width:185px;flex-shrink:0;}
+.gl-d{color:#374151;}
+
+.footer{text-align:center;font-size:11px;color:var(--muted);margin-top:24px;padding:16px 0;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="logo logo-bolt">⚡ Bolt Food Ukraine</div>
+    <span style="color:rgba(255,255,255,.2);font-size:16px;">×</span>
+    <div class="logo logo-pc">☕️ Pesto Cafe</div>
+    <span style="margin-left:auto;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:3px 10px;font-size:10px;font-weight:700;color:#F59E0B;">📣 SPONSORED LISTING АНАЛІТИКА</span>
+  </div>
+  <div class="badge">Кампанія 3–9 серпня 2026</div>
+  <h1>Sponsored Listing — <span>вплив реклами на 3 локації Pesto Cafe</span></h1>
+  <p class="hero-sub">3 локації з рекламою · Порівняльний аналіз 7+7 днів · Kyiv</p>
+  <div class="hero-kpis">
+    <div class="hkpi"><strong style="color:#7ed77e;">41</strong>Замовлень (7 днів реклами)</div>
+    <div class="hkpi"><strong><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+2.5%</span></strong>Зростання замовлень</div>
+    <div class="hkpi"><strong>14</strong>Нових клієнтів (7 днів реклами)</div>
+    <div class="hkpi"><strong style="color:#fcd34d;">3 150 ₴</strong>Витрати на SL</div>
+    <div class="hkpi"><strong>3</strong>Локації у кампанії</div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📊 Загальне порівняння: 3 локації ДО і ПІД ЧАС Sponsored Listing</div>
+  <div class="sec-s">Однаковий календарний відрізок — до реклами (27 липня – 2 серпня 2026) і під час реклами (3–9 серпня 2026)</div>
+  <div class="hr"></div>
+  <div class="cmp-wrap">
+    <div class="cmp-card cmp-before">
+      <div class="cmp-t" style="color:var(--muted);">📦 ДО Sponsored Listing</div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Замовлення</span><span class="cmp-val">40</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Нові клієнти</span><span class="cmp-val">13</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частота</span><span class="cmp-val">1.14×</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Bolt+ частка</span><span class="cmp-val">30.1%</span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Виручка (GMV)</span><span class="cmp-val">47 033 ₴</span></div>
+    </div>
+    <div class="cmp-card cmp-during">
+      <div class="cmp-t" style="color:var(--dark);">🎯 ПІД ЧАС Sponsored Listing</div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Замовлення</span><span class="cmp-val" style="color:var(--green);">41 <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+2.5%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Нові клієнти</span><span class="cmp-val" style="color:var(--green);">14 <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲7.7%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Частота</span><span class="cmp-val">1.21× <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲5.5%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Bolt+ частка</span><span class="cmp-val">14.4% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼52.1%</span></span></div>
+      <div class="cmp-kpi"><span class="cmp-lbl">Виручка (GMV)</span><span class="cmp-val" style="color:var(--green);">49 060 ₴ <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲4.3%</span></span></div>
+    </div>
+  </div>
+  <div style="background:rgba(42,175,109,.08);border:1px solid rgba(42,175,109,.2);border-radius:10px;padding:14px;font-size:12px;color:#374151;line-height:1.7;">
+    💡 <strong>Ключовий висновок:</strong> За тиждень із Sponsored Listing замовлення по всіх 3 локаціях
+    змінились на <strong style="color:var(--green);"><span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+2.5%</span></strong>
+    (+1 зам.), нові клієнти —
+    <strong><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲7.7%</span></strong>,
+    виручка — <strong><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲4.3%</span></strong>.
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📅 Денна динаміка замовлень — 27 липня по 9 серпня 2026</div>
+  <div class="sec-s">Вертикальна лінія — старт Sponsored Listing (3 серпня). Сума замовлень по всіх 3 локаціях.</div>
+  <div class="hr"></div>
+  <canvas id="dailyChart" height="140"></canvas>
+  <script>
+  Chart.register(window['chartjs-plugin-annotation'] || {});
+  new Chart(document.getElementById('dailyChart'), {
+    type: 'line',
+    data: {
+      labels: ["07-27", "07-28", "07-29", "07-30", "07-31", "08-01", "08-02", "08-03", "08-04", "08-05", "08-06", "08-07", "08-08", "08-09"],
+      datasets: [
+        {
+          label: '3 локації Pesto Cafe — замовлень/день',
+          data: [6, 6, 9, 5, 5, 4, 5, 6, 10, 4, 6, 4, 9, 2],
+          borderColor: '#2AAF6D',
+          backgroundColor: 'rgba(42,175,109,.08)',
+          fill: true, tension: 0.3, borderWidth: 2.5, pointRadius: 3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { font: { size: 11 } } },
+        annotation: {
+          annotations: {
+            sl_start: {
+              type: 'line', xMin: '08-03', xMax: '08-03',
+              borderColor: '#F59E0B', borderWidth: 2, borderDash: [5,4],
+              label: { content: '▶ SL старт 03.08', display: true, position: 'start',
+                        backgroundColor: 'rgba(245,158,11,.9)', color: '#fff', font: { size: 10, weight: 700 } }
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 9 }, maxRotation: 45 } },
+        y: { beginAtZero: true, ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+  </script>
+</div>
+
+<div class="sec" style="border:2px solid #2AAF6D;">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+    <div class="sec-t" style="color:var(--dark);">📊 Реальні дані Sponsored Listing — всі 3 локації (Databricks)</div>
+    <span style="background:rgba(42,175,109,.15);border:1px solid rgba(42,175,109,.3);border-radius:5px;padding:2px 9px;font-size:10px;font-weight:700;color:#16a057;margin-left:auto;">✅ ads_reporting · 3–9 серпня 2026</span>
+  </div>
+  <div class="sec-s">Метрики Sponsored Listing з mart_sponsored_listing_provider_listing_results: impressions, clicks, атрибутовані замовлення, витрати на розміщення.</div>
+  <div class="hr"></div>
+  <div class="g5" style="margin-bottom:16px;">
+    <div class="card green" style="text-align:center;">
+      <div class="cl">Середній ROAS (3 лок.)</div>
+      <div style="font-size:28px;font-weight:900;color:var(--green);">4.21×</div>
+      <div class="cd">середня рентабельність</div>
+    </div>
+    <div class="card green">
+      <div class="cl">Дохід атрибутований SL</div>
+      <div class="cv" style="color:var(--green);">13 248 ₴</div>
+      <div class="cd">GMV через SL · 3 локації</div>
+    </div>
+    <div class="card">
+      <div class="cl">Замовлень через SL</div>
+      <div class="cv">19</div>
+      <div class="cd">атрибутовані рекламі</div>
+    </div>
+    <div class="card">
+      <div class="cl">Охоплення (тотал)</div>
+      <div class="cv">6 299</div>
+      <div class="cd">показів картки</div>
+    </div>
+    <div class="card orange">
+      <div class="cl">Витрати SL (тотал)</div>
+      <div class="cv" style="color:var(--orange);">3 150 ₴</div>
+      <div class="cd">3 локації · 7 днів</div>
+    </div>
+  </div>
+  <div class="g4" style="margin-bottom:18px;">
+    <div class="card green">
+      <div class="cl">Чистий ефект (тотал)</div>
+      <div class="cv" style="color:var(--green);">+10 099 ₴</div>
+      <div class="cd">дохід − витрати · всі 3 лок.</div>
+    </div>
+    <div class="card blue">
+      <div class="cl">Середній CTR</div>
+      <div class="cv" style="color:var(--blue);">3.03%</div>
+      <div class="cd">кліки / покази</div>
+    </div>
+    <div class="card blue">
+      <div class="cl">Нових клієнтів через SL</div>
+      <div class="cv" style="color:var(--blue);">10</div>
+      <div class="cd">атрибутовано рекламі</div>
+    </div>
+    <div class="card">
+      <div class="cl">Середні витрати/лок.</div>
+      <div class="cv">1 050 ₴</div>
+      <div class="cd">за 7 днів</div>
+    </div>
+  </div>
+  <div style="font-size:13px;font-weight:700;margin-bottom:10px;">📍 Детальна таблиця по локаціях</div>
+  <div class="tscroll">
+  <table>
+    <thead><tr>
+      <th>Локація</th>
+      <th class="num">ROAS</th>
+      <th class="num">Дохід SL</th>
+      <th class="num">Замовл. SL</th>
+      <th class="num">Покази</th>
+      <th class="num">CTR</th>
+      <th class="num">Нові клієнти SL</th>
+      <th class="num">Витрати SL</th>
+      <th class="num">Чистий ефект</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+      <td><strong>Pesto Cafe Лобановського</strong></td>
+      <td class="num"><span class="b br">4.84×</span></td>
+      <td class="num" style="color:var(--green);font-weight:700;">5 079 ₴</td>
+      <td class="num">7</td>
+      <td class="num">3 340</td>
+      <td class="num">2.46%</td>
+      <td class="num">4</td>
+      <td class="num">1 050 ₴</td>
+      <td class="num"><span class="b bg">+4 029 ₴</span></td>
+    </tr><tr>
+      <td><strong>Pesto Cafe Івасюка</strong></td>
+      <td class="num"><span class="b br">4.19×</span></td>
+      <td class="num" style="color:var(--green);font-weight:700;">4 401 ₴</td>
+      <td class="num">5</td>
+      <td class="num">1 199</td>
+      <td class="num">3.92%</td>
+      <td class="num">2</td>
+      <td class="num">1 050 ₴</td>
+      <td class="num"><span class="b bg">+3 351 ₴</span></td>
+    </tr><tr>
+      <td><strong>Pesto Cafe Іоанна Павла</strong></td>
+      <td class="num"><span class="b br">3.59×</span></td>
+      <td class="num" style="color:var(--green);font-weight:700;">3 768 ₴</td>
+      <td class="num">7</td>
+      <td class="num">1 760</td>
+      <td class="num">3.52%</td>
+      <td class="num">4</td>
+      <td class="num">1 050 ₴</td>
+      <td class="num"><span class="b bg">+2 719 ₴</span></td>
+    </tr>
+      <tr style="background:rgba(42,175,109,.06);font-weight:700;">
+        <td>🌐 ТОТАЛ (3 локації)</td>
+        <td class="num"><span class="b bg">4.21×</span></td>
+        <td class="num" style="color:var(--green);">13 248 ₴</td>
+        <td class="num">19</td>
+        <td class="num">6 299</td>
+        <td class="num">3.03%</td>
+        <td class="num">10</td>
+        <td class="num" style="color:var(--orange);">3 150 ₴</td>
+        <td class="num"><span class="b bg">+10 099 ₴</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="font-size:11px;color:var(--muted);margin-top:10px;">
+    Джерело: Databricks · mart_sponsored_listing_provider_listing_results · 3–9 серпня 2026 · CTR = кліки / покази
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📍 Всі 3 локації — детальна таблиця «до/під час»</div>
+  <div class="sec-s">Порівняння загального обсягу замовлень (весь трафік локації, не лише через SL) до та під час реклами</div>
+  <div class="hr"></div>
+  <div class="tscroll">
+  <table>
+    <thead><tr>
+      <th>Локація</th>
+      <th class="num">Замовлення (ДО → ПІД ЧАС)</th>
+      <th class="num">Приріст</th>
+      <th class="num">Нові клієнти</th>
+      <th class="num">Частота</th>
+      <th class="num">Bolt+ частка</th>
+    </tr></thead>
+    <tbody><tr>
+      <td><strong>🎯 Pesto Cafe Лобановського</strong></td>
+      <td class="num">19 → <strong>14</strong></td>
+      <td class="num"><span style="color:#EF4444;font-size:12px;font-weight:700;">▼26.3%</span></td>
+      <td class="num">7 → 8 <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲14.3%</span></td>
+      <td class="num">1.12× → 1.00× <span style="color:#EF4444;font-size:12px;font-weight:700;">▼10.5%</span></td>
+      <td class="num">50% → 41% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼18.3%</span></td>
+    </tr><tr>
+      <td><strong>🎯 Pesto Cafe Івасюка</strong></td>
+      <td class="num">8 → <strong>12</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲50.0%</span></td>
+      <td class="num">1 → 2 <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲100.0%</span></td>
+      <td class="num">1.60× → 1.50× <span style="color:#EF4444;font-size:12px;font-weight:700;">▼6.3%</span></td>
+      <td class="num">0% → 0% <span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+0.0%</span></td>
+    </tr><tr>
+      <td><strong>🎯 Pesto Cafe Іоанна Павла</strong></td>
+      <td class="num">13 → <strong>15</strong></td>
+      <td class="num"><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲15.4%</span></td>
+      <td class="num">5 → 4 <span style="color:#EF4444;font-size:12px;font-weight:700;">▼20.0%</span></td>
+      <td class="num">1.00× → 1.25× <span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲25.0%</span></td>
+      <td class="num">21% → 0% <span style="color:#EF4444;font-size:12px;font-weight:700;">▼100.0%</span></td>
+    </tr></tbody>
+  </table>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">💡 Ключові висновки кампанії</div>
+  <div class="hr"></div>
+  <div class="g2">
+    <div style="background:#F0FDF4;border-radius:10px;padding:15px;border-left:4px solid var(--green);">
+      <div style="font-size:13px;font-weight:700;color:#065F46;margin-bottom:10px;">✅ Результати SL (3–9 серпня)</div>
+      <div style="font-size:12px;color:#374151;line-height:1.7;">
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--green);">Всі 3 локації показали <strong>+1 замовлень</strong> (<span style="color:#9CA3AF;font-size:12px;font-weight:600;">≈+2.5%</span>) vs тиждень без SL</div>
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--green);">Нових клієнтів стало <strong>+1</strong> (<span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲7.7%</span>)</div>
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--green);">Виручка змінилась на <strong><span style="color:#2AAF6D;font-size:12px;font-weight:700;">▲4.3%</span></strong></div>
+        <div style="padding-left:8px;border-left:2px solid var(--green);">Середній ROAS по мережі — <strong>4.21×</strong>, чистий ефект — <strong>+10 099 ₴</strong> за 3 150 ₴ витрат</div>
+      </div>
+    </div>
+    <div style="background:#FFF7ED;border-radius:10px;padding:15px;border-left:4px solid var(--orange);">
+      <div style="font-size:13px;font-weight:700;color:#92400E;margin-bottom:10px;">📈 Рекомендації</div>
+      <div style="font-size:12px;color:#374151;line-height:1.7;">
+        <div style="margin-bottom:6px;padding-left:8px;border-left:2px solid var(--orange);">Продовжити SL на локаціях з найвищим ROAS — вони дають найбільшу віддачу на бюджет</div>
+        <div style="padding-left:8px;border-left:2px solid var(--orange);">Для локацій з нижчим ROAS — переглянути формат розміщення (search_result / home_screen) або меню</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="gl-sec">
+  <div class="sec-t">📖 Глосарій показників</div>
+  <div class="sec-s">Пояснення всіх метрик звіту</div>
+  <div class="hr"></div>
+  <div class="gl-row"><span class="gl-t">Sponsored Listing (SL)</span><span class="gl-d">Платний рекламний формат Bolt Food: заклад розміщується на преміум-позиції в пошуку та на головному екрані додатку. Ціна — за локацію/день.</span></div>
+  <div class="gl-row"><span class="gl-t">Impressions (Покази)</span><span class="gl-d">Кількість разів, коли рекламна картка закладу була показана користувачу в додатку.</span></div>
+  <div class="gl-row"><span class="gl-t">CTR (Click-Through Rate)</span><span class="gl-d">Відсоток користувачів, які натиснули на картку закладу після перегляду реклами. CTR = кліки / покази × 100%.</span></div>
+  <div class="gl-row"><span class="gl-t">ROAS</span><span class="gl-d">Return on Ad Spend = атрибутований SL-дохід / витрати на SL. ROAS &gt; 1× означає, що реклама принесла більше доходу, ніж коштувала.</span></div>
+  <div class="gl-row"><span class="gl-t">Атрибутовані замовлення/дохід</span><span class="gl-d">Замовлення та виручка, які система пов'язує безпосередньо з переглядом/кліком по рекламній картці (attr_* поля Databricks).</span></div>
+  <div class="gl-row"><span class="gl-t">Частота замовлень</span><span class="gl-d">Середня кількість замовлень на одного активного клієнта за період = замовлень / унікальних активних клієнтів.</span></div>
+  <div class="gl-row"><span class="gl-t">Нові клієнти</span><span class="gl-d">Унікальні користувачі, для яких даний заклад — перше замовлення (is_first_provider_order).</span></div>
+  <div class="gl-row"><span class="gl-t">Bolt+ частка</span><span class="gl-d">Відсоток GMV, що генерується підписниками Bolt+ (платна підписка з безкоштовною/зниженою доставкою).</span></div>
+  <div class="gl-row"><span class="gl-t">Виручка (GMV)</span><span class="gl-d">Загальна сума замовлень за цінами меню (Gross Merchandise Value), без вирахування знижок.</span></div>
+  <div class="gl-row"><span class="gl-t">Порівнювальний період</span><span class="gl-d">ДО реклами: 27 липня – 2 серпня 2026 (7 днів) · ПІД ЧАС реклами: 3–9 серпня 2026 (7 днів). Однакова тривалість забезпечує коректне порівняння.</span></div>
+</div>
+
+<div class="footer">
+  Bolt Food Ukraine × Pesto Cafe · Sponsored Listing аналітика · 3–9 серпня 2026<br>
+  Конфіденційний звіт · Дані: Databricks bolt-incentives<br>
+  <span style="font-size:10px;">dim_order_delivery · mart_sponsored_listing_provider_listing_results</span>
+</div>
+</body>
+</html>
