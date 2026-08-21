@@ -81,6 +81,17 @@ EUROPIANO_PROVIDERS = {
     1012643: {"name": "Європіано вул. Бастіонна", "brand": "Європіано", "city": "Київ"},
 }
 
+GREEK_HOUSE_PROVIDERS = {
+    177104: {"name": "Greek House ТРЦ Sky Mall", "brand": "Greek House", "city": "Київ"},
+    177065: {"name": "Greek House ТРК Проспект", "brand": "Greek House", "city": "Київ"},
+    177094: {"name": "Greek House ТРЦ Smart Plaza", "brand": "Greek House", "city": "Київ"},
+    177056: {"name": "Greek House ТРЦ Respublika Park", "brand": "Greek House", "city": "Київ"},
+    177074: {"name": "Greek House ТРЦ Retroville", "brand": "Greek House", "city": "Київ"},
+    177069: {"name": "Greek House ТЦ GLOBUS", "brand": "Greek House", "city": "Київ"},
+    177071: {"name": "Greek House ТРЦ Piramida", "brand": "Greek House", "city": "Київ"},
+    177107: {"name": "Greek House ТРЦ Lavina Mall", "brand": "Greek House", "city": "Київ"},
+}
+
 PARTNERS = {
     "salateira": {
         "display_name": "Salateira",
@@ -109,5 +120,12 @@ PARTNERS = {
         "brand_color": "#7C3AED",
         "github_folder": "europiano-weekly",
         "providers": EUROPIANO_PROVIDERS,
+    },
+    "greek_house": {
+        "display_name": "Greek House",
+        "emoji": "🏛️",
+        "brand_color": "#0C2C1C",
+        "github_folder": "greek-house-weekly",
+        "providers": GREEK_HOUSE_PROVIDERS,
     },
 }
