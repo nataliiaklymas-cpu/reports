@@ -11,6 +11,120 @@ import math
 
 UAH = 42.0
 
+# UI copy. Partners default to "uk"; set locale="en" in PARTNERS to switch.
+STRINGS = {
+    "uk": {
+        "html_lang": "uk",
+        "weekly_badge": "ТИЖНЕВИЙ ЗВІТ",
+        "delivered": "Доставлено",
+        "revenue": "Виручка",
+        "rating": "Рейтинг",
+        "wow_orders": "WoW замовлення",
+        "week_metrics": "Показники тижня",
+        "delivered_note": "* «Доставлено» = усі виконані замовлення (доставка курʼєром + самовивіз), співставно з Looker",
+        "vs_prev": "vs пр. тиж.",
+        "revenue_uah": "Виручка ₴",
+        "bolt_promo": "Bolt промо ₴",
+        "new_customers": "Нових клієнтів",
+        "bolt_plus_orders": "Bolt+ замовл.",
+        "promo_orders": "Промо замовл.",
+        "wow_comparison": "WoW порівняння",
+        "prev_week": "Попередній тиж.",
+        "curr_week": "Поточний тиж.",
+        "daily_trend": "Денна динаміка",
+        "top_dishes": "Топ страви тижня",
+        "no_dishes": "Даних по стравах немає",
+        "ops": "Операційні метрики",
+        "availability": "Доступність",
+        "prep_time": "Час приготув.",
+        "accept_time": "Час прийому",
+        "min": "хв",
+        "target_prep_ok": "Ціль &lt;15 хв ✅",
+        "target_prep": "Ціль &lt;15 хв",
+        "target_accept_ok": "Ціль &lt;1 хв ✅",
+        "target_accept": "Ціль &lt;1 хв",
+        "no_cancels": "Скасувань не зафіксовано",
+        "cancelled": "Скасовано замовлень: {n}",
+        "rating_reviews": "Рейтинг та відгуки",
+        "reviews_count": "Оцінок",
+        "promo_pct": "Промо %",
+        "no_comments": "Текстових відгуків немає",
+        "confidential": "Конфіденційно",
+        "network_total": "Мережа тотал",
+        "summary_network": "ЗВЕДЕНИЙ ЗВІТ · МЕРЕЖА",
+        "network_total_title": "{name} — тотал мережі, {n} локацій",
+        "active_locations": "Активних локацій",
+        "avg_rating": "Сер. рейтинг",
+        "network_kpis": "Мережа тотал — ключові показники",
+        "compared_prev": "Порівняння з попереднім тижнем",
+        "cancelled_short": "Скасовано",
+        "avg_availability": "Сер. доступність",
+        "network_daily": "Денна динаміка мережі",
+        "network_daily_sub": "Сума доставлених замовлень по всіх локаціях, по днях",
+        "network_locations": "Локації мережі",
+        "click_location": "Клікніть на назву локації, щоб відкрити її детальний тижневий звіт",
+        "location": "Локація",
+        "onboarding": "онбордінг",
+        "network_footer": "Зведений звіт по мережі",
+        "network_html_title": "{name} · Мережа тотал · Bolt Food · {period} {year}",
+    },
+    "en": {
+        "html_lang": "en",
+        "weekly_badge": "WEEKLY REPORT",
+        "delivered": "Delivered",
+        "revenue": "Revenue",
+        "rating": "Rating",
+        "wow_orders": "WoW orders",
+        "week_metrics": "Week metrics",
+        "delivered_note": "* “Delivered” = all completed orders (courier delivery + pickup), comparable with Looker",
+        "vs_prev": "vs prev. week",
+        "revenue_uah": "Revenue ₴",
+        "bolt_promo": "Bolt promo ₴",
+        "new_customers": "New customers",
+        "bolt_plus_orders": "Bolt+ orders",
+        "promo_orders": "Promo orders",
+        "wow_comparison": "WoW comparison",
+        "prev_week": "Previous week",
+        "curr_week": "Current week",
+        "daily_trend": "Daily trend",
+        "top_dishes": "Top dishes this week",
+        "no_dishes": "No dish data",
+        "ops": "Operations",
+        "availability": "Availability",
+        "prep_time": "Prep time",
+        "accept_time": "Accept time",
+        "min": "min",
+        "target_prep_ok": "Target &lt;15 min ✅",
+        "target_prep": "Target &lt;15 min",
+        "target_accept_ok": "Target &lt;1 min ✅",
+        "target_accept": "Target &lt;1 min",
+        "no_cancels": "No cancellations",
+        "cancelled": "Cancelled orders: {n}",
+        "rating_reviews": "Rating and reviews",
+        "reviews_count": "Reviews",
+        "promo_pct": "Promo %",
+        "no_comments": "No written reviews",
+        "confidential": "Confidential",
+        "network_total": "Network total",
+        "summary_network": "SUMMARY · NETWORK",
+        "network_total_title": "{name} — network total, {n} locations",
+        "active_locations": "Active locations",
+        "avg_rating": "Avg. rating",
+        "network_kpis": "Network total — key metrics",
+        "compared_prev": "Compared with previous week",
+        "cancelled_short": "Cancelled",
+        "avg_availability": "Avg. availability",
+        "network_daily": "Network daily trend",
+        "network_daily_sub": "Sum of delivered orders across all locations, by day",
+        "network_locations": "Network locations",
+        "click_location": "Click a location name to open its weekly report",
+        "location": "Location",
+        "onboarding": "onboarding",
+        "network_footer": "Network summary report",
+        "network_html_title": "{name} · Network total · Bolt Food · {period} {year}",
+    },
+}
+
 CSS = """*{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#F8F9FA;color:#1A1A1A;line-height:1.6;max-width:900px;margin:0 auto;padding:0 0 40px;}
 .hero{color:white;padding:28px 28px 22px;position:relative;overflow:hidden;}
@@ -108,7 +222,9 @@ def build_report(
     rating_row,
     comments_pos,
     comments_neg,
+    locale="uk",
 ):
+    s = STRINGS.get(locale) or STRINGS["uk"]
     c = cur_row
     delivered = int(sf(delivered_total, 0))
     failed = int(sf(c.get("failed", 0)))
@@ -159,16 +275,16 @@ def build_report(
             for d in dishes
         )
     else:
-        dishes_html = '<div style="font-size:11px;color:#9CA3AF;">Даних по стравах немає</div>'
+        dishes_html = '<div style="font-size:11px;color:#9CA3AF;">' + s["no_dishes"] + "</div>"
 
     avail_pct = round(avail * 100, 1)
     avc = avail_color(avail)
     prep_c = "#34D186" if prep_min <= 15 else ("#F59E0B" if prep_min <= 20 else "#EF4444")
-    prep_note = "Ціль &lt;15 хв ✅" if prep_min <= 15 else "Ціль &lt;15 хв"
+    prep_note = s["target_prep_ok"] if prep_min <= 15 else s["target_prep"]
     acc_c = "#34D186" if accept_min < 1 else "#F59E0B"
-    acc_note = "Ціль &lt;1 хв ✅" if accept_min < 1 else "Ціль &lt;1 хв"
+    acc_note = s["target_accept_ok"] if accept_min < 1 else s["target_accept"]
     bad_c = "#34D186" if bad_pct < 10 else "#EF4444"
-    cancel_note = "Скасувань не зафіксовано" if failed == 0 else f"Скасовано замовлень: {failed}"
+    cancel_note = s["no_cancels"] if failed == 0 else s["cancelled"].format(n=failed)
 
     if comments_pos or comments_neg:
         rev_html = ""
@@ -185,12 +301,12 @@ def build_report(
                 f'<div style="font-size:11px;color:#374151;">«{cmt}»</div></div>'
             )
     else:
-        rev_html = '<div style="font-size:11px;color:#9CA3AF;">Текстових відгуків немає</div>'
+        rev_html = '<div style="font-size:11px;color:#9CA3AF;">' + s["no_comments"] + "</div>"
 
-    wow_hero = f'<div class="kpi"><strong>{wow_span(wow_ord)}</strong>WoW замовлення</div>' if wow_ord is not None else ""
+    wow_hero = f'<div class="kpi"><strong>{wow_span(wow_ord)}</strong>{s["wow_orders"]}</div>' if wow_ord is not None else ""
 
     html = f"""<!DOCTYPE html>
-<html lang="uk"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<html lang="{s['html_lang']}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>{name} · Bolt Food · {period_short} 2026</title>
 <style>
 {CSS}
@@ -201,88 +317,88 @@ def build_report(
     <div style="background:rgba(52,209,134,.15);border:1px solid rgba(52,209,134,.25);border-radius:6px;padding:4px 9px;font-size:10px;font-weight:700;color:#2AAF6D;">⚡ Bolt Food Ukraine</div>
     <div style="font-size:12px;color:rgba(255,255,255,.2);">×</div>
     <div style="background:rgba(42,175,109,.15);border:1px solid rgba(42,175,109,.3);border-radius:6px;padding:4px 9px;font-size:10px;font-weight:700;color:#2AAF6D;">{partner_emoji} {brand_label}</div>
-    <span style="margin-left:auto;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:2px 8px;font-size:9px;font-weight:700;color:#F59E0B;">ТИЖНЕВИЙ ЗВІТ</span>
+    <span style="margin-left:auto;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:2px 8px;font-size:9px;font-weight:700;color:#F59E0B;">{s['weekly_badge']}</span>
   </div>
   <div class="badge" style="background:#2AAF6D;color:#fff;">{period_label}</div>
   <h1>{name}</h1>
   <p class="hero-sub">📍 {city} · ID: {pid} · {period_label}</p>
   <div class="kpis">
-    <div class="kpi"><strong>{delivered}</strong>Доставлено</div>
-    <div class="kpi"><strong>{fmt(gmv)}&nbsp;₴</strong>Виручка</div>
+    <div class="kpi"><strong>{delivered}</strong>{s['delivered']}</div>
+    <div class="kpi"><strong>{fmt(gmv)}&nbsp;₴</strong>{s['revenue']}</div>
     <div class="kpi"><strong>{fmt(aov)}&nbsp;₴</strong>AOV</div>
-    <div class="kpi"><strong style="color:{rt_c};">{rt_str}</strong>Рейтинг</div>
+    <div class="kpi"><strong style="color:{rt_c};">{rt_str}</strong>{s['rating']}</div>
     {wow_hero}
   </div>
 </div>
 <div class="wrap">
 
 <div class="sec">
-  <div class="sec-t">📊 Показники тижня — {period_label}</div><div class="hr"></div>
-  <div style="font-size:10px;color:#9CA3AF;margin-bottom:8px;">* «Доставлено» = усі виконані замовлення (доставка курʼєром + самовивіз), співставно з Looker</div>
+  <div class="sec-t">📊 {s['week_metrics']} — {period_label}</div><div class="hr"></div>
+  <div style="font-size:10px;color:#9CA3AF;margin-bottom:8px;">{s['delivered_note']}</div>
   <div class="g4" style="margin-bottom:10px;">
-    <div class="card"><div class="cl">Доставлено</div><div class="cv" style="color:#2AAF6D;">{delivered}</div><div class="cd">{wow_span(wow_ord)} vs пр. тиж.</div></div>
-    <div class="card"><div class="cl">Виручка ₴</div><div class="cv">{fmt(gmv)}</div><div class="cd">{wow_span(wow_gmv)} vs пр. тиж.</div></div>
+    <div class="card"><div class="cl">{s['delivered']}</div><div class="cv" style="color:#2AAF6D;">{delivered}</div><div class="cd">{wow_span(wow_ord)} {s['vs_prev']}</div></div>
+    <div class="card"><div class="cl">{s['revenue_uah']}</div><div class="cv">{fmt(gmv)}</div><div class="cd">{wow_span(wow_gmv)} {s['vs_prev']}</div></div>
     <div class="card"><div class="cl">AOV ₴</div><div class="cv">{fmt(aov)}</div></div>
-    <div class="card"><div class="cl">Bolt промо ₴</div><div class="cv" style="color:#2AAF6D;">{fmt(bolt_promo)}</div></div>
+    <div class="card"><div class="cl">{s['bolt_promo']}</div><div class="cv" style="color:#2AAF6D;">{fmt(bolt_promo)}</div></div>
   </div>
   <div class="g4">
-    <div class="card"><div class="cl">Нових клієнтів</div><div class="cv" style="color:#7C3AED;">{new_u}</div></div>
-    <div class="card"><div class="cl">Bolt+ замовл.</div><div class="cv" style="color:#34D186;">{bp_ord}</div><div class="cd">{bp_sh}%</div></div>
-    <div class="card"><div class="cl">Промо замовл.</div><div class="cv">{promo_ord}</div><div class="cd">{promo_sh}%</div></div>
+    <div class="card"><div class="cl">{s['new_customers']}</div><div class="cv" style="color:#7C3AED;">{new_u}</div></div>
+    <div class="card"><div class="cl">{s['bolt_plus_orders']}</div><div class="cv" style="color:#34D186;">{bp_ord}</div><div class="cd">{bp_sh}%</div></div>
+    <div class="card"><div class="cl">{s['promo_orders']}</div><div class="cv">{promo_ord}</div><div class="cd">{promo_sh}%</div></div>
     <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:{bad_c};">{bad_orders}</div><div class="cd">{bad_pct}%</div></div>
   </div>
 </div>
 
 <div class="sec">
-  <div class="sec-t">📈 WoW порівняння</div><div class="hr"></div>
+  <div class="sec-t">📈 {s['wow_comparison']}</div><div class="hr"></div>
   <div class="g2">
     <div class="card" style="border-left:3px solid #BFDBFE;background:#EFF6FF;">
-      <div style="font-size:10px;font-weight:700;color:#1e40af;text-transform:uppercase;margin-bottom:6px;">📅 Попередній тиж. {prev_label}</div>
-      <div style="font-size:11px;color:#374151;">Доставлено: <strong>{prev_del}</strong> · GMV: <strong>{fmt(prev_gmv)}&nbsp;₴</strong></div>
+      <div style="font-size:10px;font-weight:700;color:#1e40af;text-transform:uppercase;margin-bottom:6px;">📅 {s['prev_week']} {prev_label}</div>
+      <div style="font-size:11px;color:#374151;">{s['delivered']}: <strong>{prev_del}</strong> · GMV: <strong>{fmt(prev_gmv)}&nbsp;₴</strong></div>
     </div>
     <div class="card" style="border-left:3px solid #BBF7D0;background:#F0FFF8;">
-      <div style="font-size:10px;font-weight:700;color:#065F46;text-transform:uppercase;margin-bottom:6px;">📅 Поточний тиж. {period_short} {wow_span(wow_ord)}</div>
-      <div style="font-size:11px;color:#374151;">Доставлено: <strong>{delivered}</strong> · GMV: <strong>{fmt(gmv)}&nbsp;₴</strong></div>
-      <div style="font-size:10px;color:#6B7280;margin-top:2px;">Нових клієнтів: {new_u} · Bolt+: {bp_ord}</div>
+      <div style="font-size:10px;font-weight:700;color:#065F46;text-transform:uppercase;margin-bottom:6px;">📅 {s['curr_week']} {period_short} {wow_span(wow_ord)}</div>
+      <div style="font-size:11px;color:#374151;">{s['delivered']}: <strong>{delivered}</strong> · GMV: <strong>{fmt(gmv)}&nbsp;₴</strong></div>
+      <div style="font-size:10px;color:#6B7280;margin-top:2px;">{s['new_customers']}: {new_u} · Bolt+: {bp_ord}</div>
     </div>
   </div>
 </div>
 
 <div class="sec">
-  <div class="sec-t">📅 Денна динаміка — {period_short}</div><div class="hr"></div>
+  <div class="sec-t">📅 {s['daily_trend']} — {period_short}</div><div class="hr"></div>
   <div class="day-row">{cells}</div>
 </div>
 
 <div class="sec">
-  <div class="sec-t">{partner_emoji} Топ страви тижня</div><div class="hr"></div>
+  <div class="sec-t">{partner_emoji} {s['top_dishes']}</div><div class="hr"></div>
   {dishes_html}
 </div>
 
 <div class="sec">
-  <div class="sec-t">⚙️ Операційні метрики</div><div class="hr"></div>
+  <div class="sec-t">⚙️ {s['ops']}</div><div class="hr"></div>
   <div class="g3">
-    <div class="card"><div class="cl">Доступність</div><div class="cv" style="color:{avc};">{avail_pct}%</div>
+    <div class="card"><div class="cl">{s['availability']}</div><div class="cv" style="color:{avc};">{avail_pct}%</div>
       <div class="pb"><div class="pf" style="width:{avail_pct}%;background:{avc};"></div></div></div>
-    <div class="card"><div class="cl">Час приготув.</div><div class="cv" style="color:{prep_c};">{prep_min} хв</div><div class="cd">{prep_note}</div></div>
-    <div class="card"><div class="cl">Час прийому</div><div class="cv" style="color:{acc_c};">{accept_min} хв</div><div class="cd">{acc_note}</div></div>
+    <div class="card"><div class="cl">{s['prep_time']}</div><div class="cv" style="color:{prep_c};">{prep_min} {s['min']}</div><div class="cd">{prep_note}</div></div>
+    <div class="card"><div class="cl">{s['accept_time']}</div><div class="cv" style="color:{acc_c};">{accept_min} {s['min']}</div><div class="cd">{acc_note}</div></div>
   </div>
   <div style="margin-top:8px;"><div style="font-size:11px;color:#9CA3AF;">{cancel_note}</div></div>
 </div>
 
 <div class="sec">
-  <div class="sec-t">⭐ Рейтинг та відгуки</div><div class="hr"></div>
+  <div class="sec-t">⭐ {s['rating_reviews']}</div><div class="hr"></div>
   <div class="g4" style="margin-bottom:10px;">
-    <div class="card" style="border-left:3px solid {rt_c};"><div class="cl">Рейтинг</div><div class="cv" style="color:{rt_c};">{rt_str}</div></div>
-    <div class="card"><div class="cl">Оцінок</div><div class="cv">{review_cnt}</div></div>
+    <div class="card" style="border-left:3px solid {rt_c};"><div class="cl">{s['rating']}</div><div class="cv" style="color:{rt_c};">{rt_str}</div></div>
+    <div class="card"><div class="cl">{s['reviews_count']}</div><div class="cv">{review_cnt}</div></div>
     <div class="card"><div class="cl">Bad rate</div><div class="cv" style="color:{'#34D186' if r_bad_pct<10 else '#EF4444'};">{r_bad_pct}%</div></div>
-    <div class="card"><div class="cl">Промо %</div><div class="cv">{promo_sh}%</div></div>
+    <div class="card"><div class="cl">{s['promo_pct']}</div><div class="cv">{promo_sh}%</div></div>
   </div>
   {rev_html}
 </div>
 
 </div>
 
-<div class="footer">Bolt Food Ukraine × {name} · {period_label} · Конфіденційно · ID: {pid}</div>
+<div class="footer">Bolt Food Ukraine × {name} · {period_label} · {s['confidential']} · ID: {pid}</div>
 </body></html>"""
     return html, dict(
         delivered=delivered, gmv=gmv, wow_ord=wow_ord, wow_gmv=wow_gmv,
@@ -343,8 +459,10 @@ def build_network_summary(
     days_ua,
     days_iso,
     loc_results,
+    locale="uk",
 ):
     """loc_results: list of dicts with keys pid, name, short_name, city, fname, stats (from build_report)."""
+    s = STRINGS.get(locale) or STRINGS["uk"]
     n_loc = len(loc_results)
     net_delivered = sum(r["stats"]["delivered"] for r in loc_results)
     net_gmv = sum(r["stats"]["gmv"] for r in loc_results)
@@ -390,24 +508,24 @@ def build_network_summary(
     rows_sorted = sorted(loc_results, key=lambda r: -r["stats"]["delivered"])
     loc_rows = ""
     for r in rows_sorted:
-        s = r["stats"]
-        rc = rat_color(s["rating"])
-        rt_str = f'{s["rating"]:.2f}&nbsp;★' if s["rating"] else "—"
-        onb = '<span class="b bo" style="margin-left:6px;">онбордінг</span>' if s["delivered"] == 0 else ""
+        st = r["stats"]
+        rc = rat_color(st["rating"])
+        rt_str = f'{st["rating"]:.2f}&nbsp;★' if st["rating"] else "—"
+        onb = f'<span class="b bo" style="margin-left:6px;">{s["onboarding"]}</span>' if st["delivered"] == 0 else ""
         loc_rows += (
             f'<tr><td><a class="loclink" href="{r["fname"]}">{r["short_name"]}</a>{onb}<br>'
             f'<span style="font-size:10px;color:#9CA3AF;">ID {r["pid"]} · {r["city"]}</span></td>'
-            f'<td class="num"><strong>{fmt(s["delivered"])}</strong> {wow_span(s["wow_ord"])}</td>'
-            f'<td class="num">{fmt(s["gmv"])}&nbsp;₴</td>'
+            f'<td class="num"><strong>{fmt(st["delivered"])}</strong> {wow_span(st["wow_ord"])}</td>'
+            f'<td class="num">{fmt(st["gmv"])}&nbsp;₴</td>'
             f'<td class="num"><span style="color:{rc};font-weight:700;">{rt_str}</span></td>'
-            f'<td class="num">{fmt(s["bp_ord"])}</td>'
-            f'<td class="num">{round(s["avail"]*100,1) if s.get("avail") else "—"}%</td>'
+            f'<td class="num">{fmt(st["bp_ord"])}</td>'
+            f'<td class="num">{round(st["avail"]*100,1) if st.get("avail") else "—"}%</td>'
             f"</tr>"
         )
 
     html = f"""<!DOCTYPE html>
-<html lang="uk"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>{display_name} · Мережа тотал · Bolt Food · {period_short} 2026</title>
+<html lang="{s['html_lang']}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>{s['network_html_title'].format(name=display_name, period=period_short, year=2026)}</title>
 <style>
 {NETWORK_CSS}
 </style></head><body>
@@ -417,53 +535,53 @@ def build_network_summary(
     <div style="background:rgba(52,209,134,.15);border:1px solid rgba(52,209,134,.25);border-radius:6px;padding:5px 11px;font-size:11px;font-weight:700;color:#2AAF6D;">⚡ Bolt Food Ukraine</div>
     <div style="font-size:13px;color:rgba(255,255,255,.2);">×</div>
     <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:5px 11px;font-size:11px;font-weight:700;color:{brand_color};">{emoji} {display_name}</div>
-    <span style="margin-left:auto;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:3px 9px;font-size:10px;font-weight:700;color:#F59E0B;">ЗВЕДЕНИЙ ЗВІТ · МЕРЕЖА</span>
+    <span style="margin-left:auto;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:4px;padding:3px 9px;font-size:10px;font-weight:700;color:#F59E0B;">{s['summary_network']}</span>
   </div>
   <div class="badge" style="background:{brand_color};color:#1A1A1A;">{period_label}</div>
-  <h1>{display_name} — тотал мережі, {n_loc} локацій</h1>
-  <p class="hero-sub">Активних локацій: {active_loc}/{n_loc} · {period_label}</p>
+  <h1>{s['network_total_title'].format(name=display_name, n=n_loc)}</h1>
+  <p class="hero-sub">{s['active_locations']}: {active_loc}/{n_loc} · {period_label}</p>
   <div class="kpis">
-    <div class="kpi"><strong>{fmt(net_delivered)}</strong>Доставлено {wow_span(wow_ord)}</div>
-    <div class="kpi"><strong>{fmt(net_gmv)}&nbsp;₴</strong>Виручка {wow_span(wow_gmv)}</div>
+    <div class="kpi"><strong>{fmt(net_delivered)}</strong>{s['delivered']} {wow_span(wow_ord)}</div>
+    <div class="kpi"><strong>{fmt(net_gmv)}&nbsp;₴</strong>{s['revenue']} {wow_span(wow_gmv)}</div>
     <div class="kpi"><strong>{fmt(net_aov)}&nbsp;₴</strong>AOV</div>
-    <div class="kpi"><strong style="color:{rat_color(net_rating)};">{f'{net_rating:.2f} ★' if net_rating else '—'}</strong>Сер. рейтинг</div>
-    <div class="kpi"><strong>{fmt(net_new_u)}</strong>Нових клієнтів</div>
+    <div class="kpi"><strong style="color:{rat_color(net_rating)};">{f'{net_rating:.2f} ★' if net_rating else '—'}</strong>{s['avg_rating']}</div>
+    <div class="kpi"><strong>{fmt(net_new_u)}</strong>{s['new_customers']}</div>
   </div>
 </div>
 <div class="wrap">
 
 <div class="sec">
-  <div class="sec-t">📊 Мережа тотал — ключові показники, {period_label}</div>
-  <div class="sec-s">Порівняння з попереднім тижнем: {prev_label}</div><div class="hr"></div>
+  <div class="sec-t">📊 {s['network_kpis']}, {period_label}</div>
+  <div class="sec-s">{s['compared_prev']}: {prev_label}</div><div class="hr"></div>
   <div class="g6" style="margin-bottom:14px;">
-    <div class="card"><div class="cl">Доставлено</div><div class="cv" style="color:{brand_color};">{fmt(net_delivered)}</div><div class="cd">{wow_span(wow_ord)} vs пр. тиж.</div></div>
-    <div class="card"><div class="cl">Виручка ₴</div><div class="cv">{fmt(net_gmv)}</div><div class="cd">{wow_span(wow_gmv)}</div></div>
+    <div class="card"><div class="cl">{s['delivered']}</div><div class="cv" style="color:{brand_color};">{fmt(net_delivered)}</div><div class="cd">{wow_span(wow_ord)} {s['vs_prev']}</div></div>
+    <div class="card"><div class="cl">{s['revenue_uah']}</div><div class="cv">{fmt(net_gmv)}</div><div class="cd">{wow_span(wow_gmv)}</div></div>
     <div class="card"><div class="cl">AOV ₴</div><div class="cv">{fmt(net_aov)}</div></div>
-    <div class="card"><div class="cl">Bolt промо ₴</div><div class="cv" style="color:#2AAF6D;">{fmt(net_bolt_promo)}</div></div>
-    <div class="card"><div class="cl">Bolt+ замовл.</div><div class="cv" style="color:#34D186;">{fmt(net_bp_ord)}</div><div class="cd">{bp_sh}%</div></div>
-    <div class="card"><div class="cl">Промо замовл.</div><div class="cv">{fmt(net_promo_ord)}</div><div class="cd">{promo_sh}%</div></div>
+    <div class="card"><div class="cl">{s['bolt_promo']}</div><div class="cv" style="color:#2AAF6D;">{fmt(net_bolt_promo)}</div></div>
+    <div class="card"><div class="cl">{s['bolt_plus_orders']}</div><div class="cv" style="color:#34D186;">{fmt(net_bp_ord)}</div><div class="cd">{bp_sh}%</div></div>
+    <div class="card"><div class="cl">{s['promo_orders']}</div><div class="cv">{fmt(net_promo_ord)}</div><div class="cd">{promo_sh}%</div></div>
   </div>
   <div class="g4">
-    <div class="card"><div class="cl">Нових клієнтів</div><div class="cv" style="color:#7C3AED;">{fmt(net_new_u)}</div></div>
-    <div class="card"><div class="cl">Скасовано</div><div class="cv" style="color:{'#EF4444' if net_failed else '#9CA3AF'};">{fmt(net_failed)}</div></div>
+    <div class="card"><div class="cl">{s['new_customers']}</div><div class="cv" style="color:#7C3AED;">{fmt(net_new_u)}</div></div>
+    <div class="card"><div class="cl">{s['cancelled_short']}</div><div class="cv" style="color:{'#EF4444' if net_failed else '#9CA3AF'};">{fmt(net_failed)}</div></div>
     <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:{'#34D186' if net_bad_orders==0 else '#EF4444'};">{fmt(net_bad_orders)}</div></div>
-    <div class="card"><div class="cl">Сер. доступність</div><div class="cv" style="color:{avail_color(net_avail)};">{round(net_avail*100,1)}%</div></div>
+    <div class="card"><div class="cl">{s['avg_availability']}</div><div class="cv" style="color:{avail_color(net_avail)};">{round(net_avail*100,1)}%</div></div>
   </div>
 </div>
 
 <div class="sec">
-  <div class="sec-t">📅 Денна динаміка мережі — {period_short}</div>
-  <div class="sec-s">Сума доставлених замовлень по всіх локаціях, по днях</div><div class="hr"></div>
+  <div class="sec-t">📅 {s['network_daily']} — {period_short}</div>
+  <div class="sec-s">{s['network_daily_sub']}</div><div class="hr"></div>
   <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;">{day_cells}</div>
 </div>
 
 <div class="sec">
-  <div class="sec-t">📍 Локації мережі — {period_label}</div>
-  <div class="sec-s">Клікніть на назву локації, щоб відкрити її детальний тижневий звіт</div><div class="hr"></div>
+  <div class="sec-t">📍 {s['network_locations']} — {period_label}</div>
+  <div class="sec-s">{s['click_location']}</div><div class="hr"></div>
   <div style="overflow-x:auto;">
   <table><thead><tr>
-    <th>Локація</th><th class="num">Доставлено</th><th class="num">Виручка ₴</th>
-    <th class="num">Рейтинг</th><th class="num">Bolt+</th><th class="num">Доступність</th>
+    <th>{s['location']}</th><th class="num">{s['delivered']}</th><th class="num">{s['revenue_uah']}</th>
+    <th class="num">{s['rating']}</th><th class="num">Bolt+</th><th class="num">{s['availability']}</th>
   </tr></thead><tbody>
     {loc_rows}
   </tbody></table>
@@ -471,6 +589,6 @@ def build_network_summary(
 </div>
 
 </div>
-<div class="footer">Bolt Food Ukraine × {display_name} · Зведений звіт по мережі · {period_label} · Конфіденційно</div>
+<div class="footer">Bolt Food Ukraine × {display_name} · {s['network_footer']} · {period_label} · {s['confidential']}</div>
 </body></html>"""
     return html, dict(delivered=net_delivered, gmv=net_gmv, rating=net_rating)

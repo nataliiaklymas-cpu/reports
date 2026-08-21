@@ -2,8 +2,9 @@
 Registry of partners with active weekly-report automation.
 
 To onboard a new partner: add an entry to PARTNERS with its provider_id -> name/city
-mapping and a couple of style params. No other code changes are needed —
-run_weekly_reports.py loops over this dict.
+mapping and a couple of style params. Optional `locale="en"` switches the weekly
+HTML (and index pages) to English; default is Ukrainian.
+No other code changes are needed — run_weekly_reports.py loops over this dict.
 """
 
 SALATEIRA_PROVIDERS = {
@@ -93,12 +94,12 @@ GREEK_HOUSE_PROVIDERS = {
 }
 
 HESBURGER_PROVIDERS = {
-    98398: {"name": "Hesburger Вишневе", "brand": "Hesburger", "city": "Київ"},
-    98329: {"name": "Hesburger Павла Полуботка", "brand": "Hesburger", "city": "Київ"},
-    98397: {"name": "Hesburger вул. Здолбунівська", "brand": "Hesburger", "city": "Київ"},
-    98399: {"name": "Hesburger вул. Київська", "brand": "Hesburger", "city": "Бровари"},
-    98280: {"name": "Hesburger Шевченка", "brand": "Hesburger", "city": "Ірпінь"},
-    98298: {"name": "Hesburger Київський Шлях", "brand": "Hesburger", "city": "Бориспіль"},
+    98398: {"name": "Hesburger Vyshneve", "brand": "Hesburger", "city": "Kyiv"},
+    98329: {"name": "Hesburger Pavla Polubotka", "brand": "Hesburger", "city": "Kyiv"},
+    98397: {"name": "Hesburger Zdolbunivska", "brand": "Hesburger", "city": "Kyiv"},
+    98399: {"name": "Hesburger Kyivska", "brand": "Hesburger", "city": "Brovary"},
+    98280: {"name": "Hesburger Shevchenka", "brand": "Hesburger", "city": "Irpin"},
+    98298: {"name": "Hesburger Kyivskyi Shliakh", "brand": "Hesburger", "city": "Boryspil"},
 }
 
 PARTNERS = {
@@ -143,5 +144,6 @@ PARTNERS = {
         "brand_color": "#FFC72C",
         "github_folder": "hesburger-weekly",
         "providers": HESBURGER_PROVIDERS,
+        "locale": "en",
     },
 }

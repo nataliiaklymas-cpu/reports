@@ -34,12 +34,60 @@ from dbx import DBX
 from partners_config import PARTNERS
 from report_template import build_report, build_network_summary
 
-DAY_NAMES_UA = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"]
+DAY_NAMES = {
+    "uk": ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"],
+    "en": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+}
+MONTHS = {
+    "uk": ["", "січня", "лютого", "березня", "квітня", "травня", "червня",
+           "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"],
+    "en": ["", "January", "February", "March", "April", "May", "June",
+           "July", "August", "September", "October", "November", "December"],
+}
+MONTHS_SHORT = {
+    "uk": ["", "січ", "лют", "бер", "кві", "трав", "черв",
+           "лип", "серп", "вер", "жовт", "лист", "груд"],
+    "en": ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+}
+
+INDEX_I18N = {
+    "uk": {
+        "html_lang": "uk",
+        "root_sub": "Щотижневі звіти по локаціях",
+        "foot": "Bolt Food · конфіденційно для партнера",
+        "back": "← Усі тижні",
+        "week_sub": "Звіти по локаціях ({count})",
+        "network_total": "🌐 Мережа тотал",
+        "n_locations": "{n} локацій",
+    },
+    "en": {
+        "html_lang": "en",
+        "root_sub": "Weekly reports by location",
+        "foot": "Bolt Food · confidential — for the partner",
+        "back": "← All weeks",
+        "week_sub": "Location reports ({count})",
+        "network_total": "🌐 Network total",
+        "n_locations": "{n} locations",
+    },
+}
 
 
 def slugify(name: str) -> str:
     s = re.sub(r"[^\w]+", "_", name, flags=re.UNICODE).strip("_")
     return s
+
+
+def _period_labels(cur_mon, cur_sun, months, months_short):
+    if cur_mon.month == cur_sun.month:
+        period_label = f"{cur_mon.day}–{cur_sun.day} {months[cur_sun.month]} {cur_sun.year}"
+        period_short = f"{cur_mon.day}–{cur_sun.day} {months_short[cur_sun.month]}"
+    else:
+        period_label = (f"{cur_mon.day} {months[cur_mon.month]} – "
+                        f"{cur_sun.day} {months[cur_sun.month]} {cur_sun.year}")
+        period_short = (f"{cur_mon.day} {months_short[cur_mon.month]} – "
+                        f"{cur_sun.day} {months_short[cur_sun.month]}")
+    return period_label, period_short
 
 
 def compute_week(run_date: datetime.date):
@@ -50,33 +98,35 @@ def compute_week(run_date: datetime.date):
     cur_end = this_monday  # exclusive upper bound (== start of run week)
     prev_mon = cur_mon - datetime.timedelta(days=7)
     cur_sun = cur_end - datetime.timedelta(days=1)
-
-    months_ua = ["", "січня", "лютого", "березня", "квітня", "травня", "червня",
-                 "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"]
-    months_ua_short = ["", "січ", "лют", "бер", "кві", "трав", "черв",
-                        "лип", "серп", "вер", "жовт", "лист", "груд"]
-
-    if cur_mon.month == cur_sun.month:
-        period_label = f"{cur_mon.day}–{cur_sun.day} {months_ua[cur_sun.month]} {cur_sun.year}"
-        period_short = f"{cur_mon.day}–{cur_sun.day} {months_ua_short[cur_sun.month]}"
-    else:
-        period_label = (f"{cur_mon.day} {months_ua[cur_mon.month]} – "
-                         f"{cur_sun.day} {months_ua[cur_sun.month]} {cur_sun.year}")
-        period_short = (f"{cur_mon.day} {months_ua_short[cur_mon.month]} – "
-                         f"{cur_sun.day} {months_ua_short[cur_sun.month]}")
-
     prev_sun = cur_mon - datetime.timedelta(days=1)
-    prev_label = f"{prev_mon.day}–{prev_sun.day} {months_ua_short[prev_sun.month]}"
 
-    days_ua = [f"{DAY_NAMES_UA[i]}<br>{(cur_mon + datetime.timedelta(days=i)).strftime('%d.%m')}" for i in range(7)]
+    labels = {}
+    for loc in ("uk", "en"):
+        period_label, period_short = _period_labels(cur_mon, cur_sun, MONTHS[loc], MONTHS_SHORT[loc])
+        prev_label = f"{prev_mon.day}–{prev_sun.day} {MONTHS_SHORT[loc][prev_sun.month]}"
+        days = [
+            f"{DAY_NAMES[loc][i]}<br>{(cur_mon + datetime.timedelta(days=i)).strftime('%d.%m')}"
+            for i in range(7)
+        ]
+        labels[loc] = dict(
+            period_label=period_label,
+            period_short=period_short,
+            prev_label=prev_label,
+            days=days,
+        )
+
     days_iso = [(cur_mon + datetime.timedelta(days=i)).isoformat() for i in range(7)]
-
     week_folder = f"{cur_mon.isoformat()}_{cur_sun.strftime('%d')}"
 
     return dict(
         cur_mon=cur_mon.isoformat(), cur_end=cur_end.isoformat(), prev_mon=prev_mon.isoformat(),
-        period_label=period_label, period_short=period_short, prev_label=prev_label,
-        days_ua=days_ua, days_iso=days_iso, week_folder=week_folder,
+        period_label=labels["uk"]["period_label"],
+        period_short=labels["uk"]["period_short"],
+        prev_label=labels["uk"]["prev_label"],
+        days_ua=labels["uk"]["days"],
+        days_iso=days_iso,
+        week_folder=week_folder,
+        labels=labels,
     )
 
 
@@ -92,7 +142,7 @@ def row(df, pid):
 
 
 ROOT_INDEX_TEMPLATE = """<!DOCTYPE html>
-<html lang="uk">
+<html lang="{html_lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -120,18 +170,18 @@ ROOT_INDEX_TEMPLATE = """<!DOCTYPE html>
   <div class="wrap">
     <div class="badge"><span class="dot"></span> Bolt Food · Weekly Reports</div>
     <h1>{display_name} — Weekly Reports</h1>
-    <p class="sub">Щотижневі звіти по локаціях</p>
+    <p class="sub">{root_sub}</p>
     <ul class="list">
 {items}
     </ul>
-    <div class="foot">Bolt Food · конфіденційно для партнера</div>
+    <div class="foot">{foot}</div>
   </div>
 </body>
 </html>
 """
 
 WEEK_INDEX_TEMPLATE = """<!DOCTYPE html>
-<html lang="uk">
+<html lang="{html_lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -159,14 +209,14 @@ WEEK_INDEX_TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
   <div class="wrap">
-    <a class="back" href="../">← Усі тижні</a>
+    <a class="back" href="../">{back}</a>
     <div class="badge"><span class="dot"></span> Bolt Food · Weekly Reports</div>
     <h1>{display_name} · {period_label}</h1>
-    <p class="sub">Звіти по локаціях ({count})</p>
+    <p class="sub">{week_sub}</p>
     <ul class="list">
 {items}
     </ul>
-    <div class="foot">Bolt Food · конфіденційно для партнера</div>
+    <div class="foot">{foot}</div>
   </div>
 </body>
 </html>
@@ -179,8 +229,11 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
     display_name = cfg["display_name"]
     emoji = cfg["emoji"]
     github_folder = cfg["github_folder"]
+    locale = cfg.get("locale", "uk")
+    lbl = week["labels"][locale]
+    ix = INDEX_I18N[locale]
 
-    print(f"\n=== {display_name} ({len(providers)} locations) — {week['period_label']} ===")
+    print(f"\n=== {display_name} ({len(providers)} locations) — {lbl['period_label']} [{locale}] ===")
 
     with DBX() as dbx:
         cur_df = dbx.query(f"""
@@ -270,7 +323,7 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
     for pid, meta in providers.items():
         name = meta["name"]
         brand_label = meta.get("brand", display_name)
-        city = meta.get("city", "Київ")
+        city = meta.get("city", "Kyiv" if locale == "en" else "Київ")
 
         daily_map = {}
         sub = daily_df[daily_df["provider_id"] == pid]
@@ -285,13 +338,14 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
 
         html, stats = build_report(
             pid=pid, name=name, brand_label=brand_label, partner_emoji=emoji, city=city,
-            period_label=week["period_label"], period_short=week["period_short"], prev_label=week["prev_label"],
-            days_ua=week["days_ua"], days_iso=week["days_iso"],
+            period_label=lbl["period_label"], period_short=lbl["period_short"], prev_label=lbl["prev_label"],
+            days_ua=lbl["days"], days_iso=week["days_iso"],
             cur_row=row(cur_df, pid), prev_row=row(prev_df, pid),
             delivered_total=row(total_del_cur_df, pid).get("delivered_total", 0),
             prev_delivered_total=row(total_del_prev_df, pid).get("delivered_total", 0),
             daily_map=daily_map, dishes=dishes,
             rating_row=row(rat_df, pid), comments_pos=pos, comments_neg=neg,
+            locale=locale,
         )
 
         short_name = name.replace(brand_label, "").strip()
@@ -307,8 +361,9 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
     total_fname = f"{display_name.replace(' ', '_')}_TOTAL_{week['week_folder']}.html"
     total_html, total_stats = build_network_summary(
         display_name=display_name, emoji=emoji, brand_color=cfg.get("brand_color", "#2AAF6D"),
-        period_label=week["period_label"], period_short=week["period_short"], prev_label=week["prev_label"],
-        days_ua=week["days_ua"], days_iso=week["days_iso"], loc_results=loc_results,
+        period_label=lbl["period_label"], period_short=lbl["period_short"], prev_label=lbl["prev_label"],
+        days_ua=lbl["days"], days_iso=week["days_iso"], loc_results=loc_results,
+        locale=locale,
     )
     with open(os.path.join(week_dir, total_fname), "w", encoding="utf-8") as f:
         f.write(total_html)
@@ -316,22 +371,31 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
 
     items_html = (
         f'      <li><a href="{total_fname}" style="border-color:rgba(255,165,0,.35);background:rgba(255,165,0,.08);">'
-        f'<span class="t">🌐 Мережа тотал</span><span class="count">{len(week_items)} локацій</span></a></li>\n'
+        f'<span class="t">{ix["network_total"]}</span>'
+        f'<span class="count">{ix["n_locations"].format(n=len(week_items))}</span></a></li>\n'
     ) + "\n".join(
         f'      <li><a href="{fname}"><span class="t">{short}</span><span class="count">#{pid}</span></a></li>'
         for fname, short, pid in week_items
     )
     with open(os.path.join(week_dir, "index.html"), "w", encoding="utf-8") as f:
         f.write(WEEK_INDEX_TEMPLATE.format(
-            display_name=display_name, period_short=week["period_short"], period_label=week["period_label"],
-            count=len(week_items), items=items_html,
+            html_lang=ix["html_lang"], display_name=display_name,
+            period_short=lbl["period_short"], period_label=lbl["period_label"],
+            week_sub=ix["week_sub"].format(count=len(week_items)),
+            back=ix["back"], foot=ix["foot"], items=items_html,
         ))
+
+    keep = {fname for fname, _, _ in week_items} | {total_fname, "index.html"}
+    for existing in os.listdir(week_dir):
+        if existing.endswith(".html") and existing not in keep:
+            os.remove(os.path.join(week_dir, existing))
+            print(f"  rm stale {existing}")
 
     root_dir = os.path.join(repo_root, github_folder)
     root_index_path = os.path.join(root_dir, "index.html")
     week_entry = (
-        f'      <li><a href="{week["week_folder"]}/"><span class="t">{week["period_label"]}</span>'
-        f'<span class="count">{len(week_items)} локацій</span></a></li>'
+        f'      <li><a href="{week["week_folder"]}/"><span class="t">{lbl["period_label"]}</span>'
+        f'<span class="count">{ix["n_locations"].format(n=len(week_items))}</span></a></li>'
     )
     existing_entries = []
     if os.path.exists(root_index_path):
@@ -342,7 +406,10 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
                 existing_entries.append("      " + m.group(0))
     all_entries = [week_entry] + existing_entries  # newest first
     with open(root_index_path, "w", encoding="utf-8") as f:
-        f.write(ROOT_INDEX_TEMPLATE.format(display_name=display_name, items="\n".join(all_entries)))
+        f.write(ROOT_INDEX_TEMPLATE.format(
+            html_lang=ix["html_lang"], display_name=display_name,
+            root_sub=ix["root_sub"], foot=ix["foot"], items="\n".join(all_entries),
+        ))
 
     print(f"  -> {len(week_items)} reports written to {week_dir}")
 
