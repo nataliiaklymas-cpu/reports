@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to publish your reports site on GitHub Pages</title>
+<style>
+  :root { --bg:#ffffff; --fg:#1a1a1a; --muted:#6b7280; --brand:#0969da; --card:#f6f8fa; --border:#e5e7eb; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--fg); background: var(--bg); line-height: 1.65; max-width: 820px; margin: 0 auto; padding: 48px 24px 96px; }
+  h1 { font-size: 32px; line-height: 1.2; margin: 0 0 8px; }
+  h2 { font-size: 24px; margin: 44px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+  h3 { font-size: 18px; margin: 28px 0 8px; }
+  p, li { font-size: 16px; }
+  a { color: var(--brand); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { background: var(--card); border: 1px solid var(--border); border-radius: 5px; padding: 1px 6px; font-size: 14px; font-family: "SF Mono", Menlo, Consolas, monospace; }
+  pre { background: #0d1117; color: #e6edf3; padding: 18px; border-radius: 10px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+  pre code { background: none; border: none; color: inherit; padding: 0; }
+  blockquote { margin: 16px 0; padding: 12px 16px; background: #fff8e6; border-left: 4px solid #f0b429; border-radius: 6px; color: #6b5200; }
+  .lead { font-size: 17px; color: var(--muted); margin-bottom: 8px; }
+  .lang { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+  .lang a { font-weight: 600; }
+  .lang .cur { color: var(--fg); font-weight: 700; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+  ol li, ul li { margin: 6px 0; }
+  @media (max-width: 620px) { body { padding: 32px 18px 64px; } }
+</style>
+</head>
+<body>
+
+<p class="lang"><a href="instruction.html">UA</a> · <span class="cur">EN</span></p>
+
+<h1>How to publish your reports site on GitHub Pages</h1>
+<p class="lead">Result: your HTML reports open in the browser via a link (e.g. <code>https://YOUR-USERNAME.github.io/reports/greek-house/</code>), and each partner only gets their own folder.</p>
+
+<hr>
+
+<h2>Step 0. Create a GitHub account (one-time)</h2>
+<ol>
+  <li>Go to <a href="https://github.com" target="_blank">github.com</a> → <b>Sign up</b>.</li>
+  <li>Create an account (email, username, password). Your username becomes the site address (<code>https://USERNAME.github.io/...</code>).</li>
+  <li>Confirm your email.</li>
+</ol>
+
+<hr>
+
+<h2>How to upload reports with Cursor AI</h2>
+<p>The AI will create the repository, upload the files, enable GitHub Pages, and give you the ready links.</p>
+
+<h3>1. Create a token (Personal Access Token)</h3>
+<ol>
+  <li>Open <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> (this is <b>Tokens → classic</b>).</li>
+  <li><b>Note</b>: <code>cursor-upload</code>.</li>
+  <li><b>Expiration</b>: e.g. 30 days.</li>
+  <li><b>Scopes</b>: check <b>every box</b> (not only <code>repo</code>).</li>
+  <li><b>Generate token</b> → copy it (it starts with <code>ghp_...</code>).</li>
+</ol>
+<blockquote>⚠️ The token is a secret. Do not send it to anyone and do not save it in files. After you are done, you can revoke it at <a href="https://github.com/settings/tokens" target="_blank">github.com/settings/tokens</a>.</blockquote>
+
+<h3>2. Give the task to the AI in Cursor</h3>
+<p>Write something like this:</p>
+<blockquote>“Here is my token <code>ghp_...</code>. Create a public repository <code>reports</code>, put these HTML files into folders <code>greek-house/</code>, <code>salateira/</code>, etc., enable GitHub Pages, and give me a link to each folder.”</blockquote>
+<p>The AI will do the rest and return the ready links.</p>
+
+<hr>
+
+<h2>Privacy — what you need to know</h2>
+<ul>
+  <li>The site is <b>public</b>: anyone with the link can open it. There is no login or password.</li>
+  <li>Partners will not see each other <b>if</b> you:
+    <ul>
+      <li>Do NOT create a homepage that lists every partner (the root <code>/reports/</code> then returns 404);</li>
+      <li>Give each partner a link to <b>their</b> folder only.</li>
+    </ul>
+  </li>
+  <li>Protection relies on the links being hard to guess. For commercial data, this is security through obscurity.</li>
+  <li>Need <b>real</b> password protection? Use <b>Netlify</b> (free) instead of GitHub Pages — you can put a password on the site.
+    <p style="margin-top:10px;font-size:15px;">How to do it (free, via a <code>_headers</code> file):</p>
+    <ol style="font-size:15px;">
+      <li>Sign up at <a href="https://app.netlify.com/signup" target="_blank">app.netlify.com/signup</a> and connect your GitHub repository (<b>Add new site → Import an existing project</b>).</li>
+      <li>In the repository root (next to your report folders) create a file named <code>_headers</code> (no extension).</li>
+      <li>Put these two lines in it:<br><code>/*</code><br><code>&nbsp;&nbsp;Basic-Auth: username:password</code></li>
+      <li>Replace <code>username</code> and <code>password</code> with your own (do not use important real passwords — Netlify stores them in the repository config).</li>
+      <li>Finish the deploy (Netlify picks up the file automatically on the next push) — the browser will now ask for a username and password when someone opens the site.</li>
+    </ol>
+    <p style="margin-top:8px;font-size:14px;color:var(--muted);">More detail: <a href="https://docs.netlify.com/manage/security/secure-access-to-sites/basic-authentication-with-custom-http-headers" target="_blank">official Netlify docs</a>. A custom login page (instead of the default browser prompt) is only available on Netlify’s paid Pro plan.</p>
+  </li>
+</ul>
+
+<h3>Internal “all networks” page (for you / a manager)</h3>
+<p>You can create a file with a <b>random name</b> (e.g. <code>admin-3e561cef51.html</code>) in the repository root, listing every folder. Because the name is hard to guess and is not linked anywhere, only people you send it to will have it. Do not give this to partners.</p>
+
+<hr>
+
+<h2>FAQ</h2>
+<p><b>How much does it cost?</b> — Free (GitHub Pages on a public repository).</p>
+<p><b>How long after upload?</b> — Usually 1–2 minutes while the site builds.</p>
+<p><b>The file does not open (404)?</b> — Check that: (1) Pages is enabled; (2) the path and file name are exact (including upper/lower case); (3) a few minutes have passed.</p>
+
+</body>
+</html>
