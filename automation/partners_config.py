@@ -92,6 +92,15 @@ GREEK_HOUSE_PROVIDERS = {
     177107: {"name": "Greek House ТРЦ Lavina Mall", "brand": "Greek House", "city": "Київ"},
 }
 
+HESBURGER_PROVIDERS = {
+    98398: {"name": "Hesburger Вишневе", "brand": "Hesburger", "city": "Київ"},
+    98329: {"name": "Hesburger Павла Полуботка", "brand": "Hesburger", "city": "Київ"},
+    98397: {"name": "Hesburger вул. Здолбунівська", "brand": "Hesburger", "city": "Київ"},
+    98399: {"name": "Hesburger вул. Київська", "brand": "Hesburger", "city": "Бровари"},
+    98280: {"name": "Hesburger Шевченка", "brand": "Hesburger", "city": "Ірпінь"},
+    98298: {"name": "Hesburger Київський Шлях", "brand": "Hesburger", "city": "Бориспіль"},
+}
+
 PARTNERS = {
     "salateira": {
         "display_name": "Salateira",
@@ -127,5 +136,12 @@ PARTNERS = {
         "brand_color": "#0C2C1C",
         "github_folder": "greek-house-weekly",
         "providers": GREEK_HOUSE_PROVIDERS,
+    },
+    "hesburger": {
+        "display_name": "Hesburger",
+        "emoji": "🍔",
+        "brand_color": "#FFC72C",
+        "github_folder": "hesburger-weekly",
+        "providers": HESBURGER_PROVIDERS,
     },
 }
