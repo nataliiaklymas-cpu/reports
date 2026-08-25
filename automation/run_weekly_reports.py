@@ -78,6 +78,17 @@ def slugify(name: str) -> str:
     return s
 
 
+def short_location_name(name: str, brand_label: str) -> str:
+    short = re.sub(
+        rf"^{re.escape(brand_label)}\s*",
+        "",
+        name,
+        count=1,
+        flags=re.IGNORECASE,
+    ).strip()
+    return short or name
+
+
 def _period_labels(cur_mon, cur_sun, months, months_short):
     if cur_mon.month == cur_sun.month:
         period_label = f"{cur_mon.day}–{cur_sun.day} {months[cur_sun.month]} {cur_sun.year}"
@@ -230,6 +241,7 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
     emoji = cfg["emoji"]
     github_folder = cfg["github_folder"]
     locale = cfg.get("locale", "uk")
+    show_daily_comparison_chart = cfg.get("daily_comparison_chart", False)
     lbl = week["labels"][locale]
     ix = INDEX_I18N[locale]
 
@@ -285,6 +297,18 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
               AND order_created_date_local < DATE('{week["cur_end"]}')
             GROUP BY provider_id, order_created_date_local
         """)
+        prev_daily_df = None
+        if show_daily_comparison_chart:
+            prev_daily_df = dbx.query(f"""
+                SELECT provider_id,
+                    DATEDIFF(order_created_date_local, DATE('{week["prev_mon"]}')) AS day_index,
+                    COUNT(CASE WHEN order_state='delivered' THEN 1 END) AS delivered
+                FROM ng_delivery_spark.dim_order_delivery
+                WHERE provider_id IN ({ids_str})
+                  AND order_created_date_local >= DATE('{week["prev_mon"]}')
+                  AND order_created_date_local < DATE('{week["cur_mon"]}')
+                GROUP BY provider_id, order_created_date_local
+            """)
         dish_df = dbx.query(f"""
             SELECT provider_id, basket_item_name, COUNT(*) AS qty
             FROM ng_delivery_spark.dim_basket_item_delivery
@@ -330,6 +354,12 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
         for _, r in sub.iterrows():
             daily_map[str(r["day"])[:10]] = int(sf(r["delivered"]))
 
+        prev_daily_map = {}
+        if prev_daily_df is not None:
+            prev_sub = prev_daily_df[prev_daily_df["provider_id"] == pid]
+            for _, r in prev_sub.iterrows():
+                prev_daily_map[int(sf(r["day_index"]))] = int(sf(r["delivered"]))
+
         dishes = [str(r["basket_item_name"]) for _, r in dish_df[dish_df["provider_id"] == pid].head(5).iterrows()]
 
         cm = cmt_df[cmt_df["provider_id"] == pid]
@@ -343,12 +373,14 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
             cur_row=row(cur_df, pid), prev_row=row(prev_df, pid),
             delivered_total=row(total_del_cur_df, pid).get("delivered_total", 0),
             prev_delivered_total=row(total_del_prev_df, pid).get("delivered_total", 0),
-            daily_map=daily_map, dishes=dishes,
+            daily_map=daily_map, prev_daily_map=prev_daily_map,
+            show_daily_comparison_chart=show_daily_comparison_chart,
+            dishes=dishes,
             rating_row=row(rat_df, pid), comments_pos=pos, comments_neg=neg,
             locale=locale,
         )
 
-        short_name = name.replace(brand_label, "").strip()
+        short_name = short_location_name(name, brand_label)
         slug = slugify(short_name)
         fname = f"{brand_label.replace(' ', '_')}_{slug}_{week['week_folder']}.html".replace("__", "_")
         with open(os.path.join(week_dir, fname), "w", encoding="utf-8") as f:
@@ -363,6 +395,7 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
         display_name=display_name, emoji=emoji, brand_color=cfg.get("brand_color", "#2AAF6D"),
         period_label=lbl["period_label"], period_short=lbl["period_short"], prev_label=lbl["prev_label"],
         days_ua=lbl["days"], days_iso=week["days_iso"], loc_results=loc_results,
+        show_daily_comparison_chart=show_daily_comparison_chart,
         locale=locale,
     )
     with open(os.path.join(week_dir, total_fname), "w", encoding="utf-8") as f:

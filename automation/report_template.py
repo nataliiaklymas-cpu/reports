@@ -7,6 +7,7 @@ ops metrics + ratings/reviews), parameterized by partner branding
 so it works for any partner registered in partners_config.py.
 """
 
+import html
 import math
 
 UAH = 42.0
@@ -32,6 +33,8 @@ STRINGS = {
         "prev_week": "Попередній тиж.",
         "curr_week": "Поточний тиж.",
         "daily_trend": "Денна динаміка",
+        "daily_comparison": "Динаміка замовлень за днями",
+        "daily_comparison_sub": "Звітний тиждень у порівнянні з попереднім",
         "top_dishes": "Топ страви тижня",
         "no_dishes": "Даних по стравах немає",
         "ops": "Операційні метрики",
@@ -87,6 +90,8 @@ STRINGS = {
         "prev_week": "Previous week",
         "curr_week": "Current week",
         "daily_trend": "Daily trend",
+        "daily_comparison": "Daily order trend",
+        "daily_comparison_sub": "Reporting week compared with the previous week",
         "top_dishes": "Top dishes this week",
         "no_dishes": "No dish data",
         "ops": "Operations",
@@ -125,7 +130,8 @@ STRINGS = {
     },
 }
 
-CSS = """*{box-sizing:border-box;margin:0;padding:0;}
+CSS = """:root{--color-content-action-primary:#2A9C64;--color-content-tertiary:#5F6563;--color-border-separator:#DEE2E1;--color-layer-floor-1:#FFFFFF;}
+*{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#F8F9FA;color:#1A1A1A;line-height:1.6;max-width:900px;margin:0 auto;padding:0 0 40px;}
 .hero{color:white;padding:28px 28px 22px;position:relative;overflow:hidden;}
 .hero::before{content:"";position:absolute;top:-50px;right:-50px;width:260px;height:260px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%;}
@@ -159,6 +165,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .rv{background:white;border-radius:8px;padding:10px;box-shadow:0 1px 4px rgba(0,0,0,.05);margin-bottom:6px;}
 .rv.neg{border-left:3px solid #EF4444;}
 .rv.pos{border-left:3px solid #2AAF6D;}
+.trend-chart{background:var(--color-layer-floor-1);border-radius:16px;padding:14px 14px 8px;overflow:hidden;}
+.trend-chart svg{display:block;width:100%;height:auto;min-height:220px;}
+.trend-legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 8px;font-size:11px;color:var(--color-content-tertiary);}
+.trend-key{display:inline-flex;align-items:center;gap:6px;}
+.trend-line{width:22px;height:3px;border-radius:600rem;background:var(--color-content-action-primary);}
+.trend-line.prev{height:0;border-top:2px dashed var(--color-content-tertiary);background:none;}
 .footer{background:#0d2a1a;color:rgba(255,255,255,.3);text-align:center;padding:14px;font-size:10px;margin-top:24px;}"""
 
 
@@ -201,6 +213,79 @@ def rat_color(r):
     return "#EF4444"
 
 
+def build_daily_comparison_chart(days, current, previous, current_label, previous_label):
+    """Responsive inline SVG comparing delivered orders by weekday."""
+    width, height = 760, 280
+    left, right, top, bottom = 54, 20, 24, 52
+    plot_w = width - left - right
+    plot_h = height - top - bottom
+    max_value = max(current + previous + [1])
+    y_max = max(5, int(math.ceil(max_value / 5.0) * 5))
+
+    def point(i, value):
+        x = left + (plot_w * i / 6 if len(days) > 1 else plot_w / 2)
+        y = top + plot_h * (1 - value / y_max)
+        return x, y
+
+    current_points = [point(i, value) for i, value in enumerate(current)]
+    previous_points = [point(i, value) for i, value in enumerate(previous)]
+    current_polyline = " ".join(f"{x:.1f},{y:.1f}" for x, y in current_points)
+    previous_polyline = " ".join(f"{x:.1f},{y:.1f}" for x, y in previous_points)
+
+    grid = []
+    for step in range(5):
+        value = round(y_max * step / 4)
+        y = top + plot_h * (1 - step / 4)
+        grid.append(
+            f'<line x1="{left}" y1="{y:.1f}" x2="{width-right}" y2="{y:.1f}" '
+            'stroke="var(--color-border-separator)" stroke-width="1"/>'
+            f'<text x="{left-10}" y="{y+4:.1f}" text-anchor="end" '
+            f'fill="var(--color-content-tertiary)" font-size="10">{value}</text>'
+        )
+
+    x_labels = []
+    point_marks = []
+    for i, label in enumerate(days):
+        x, _ = current_points[i]
+        day_name = str(label).split("<br>", 1)[0]
+        x_labels.append(
+            f'<text x="{x:.1f}" y="{height-18}" text-anchor="middle" '
+            'fill="var(--color-content-tertiary)" font-size="11">'
+            f"{html.escape(day_name)}</text>"
+        )
+        cx, cy = current_points[i]
+        px, py = previous_points[i]
+        point_marks.append(
+            f'<circle cx="{px:.1f}" cy="{py:.1f}" r="4" fill="var(--color-layer-floor-1)" '
+            'stroke="var(--color-content-tertiary)" stroke-width="2"/>'
+            f'<text x="{px:.1f}" y="{min(height-bottom-5, py+17):.1f}" text-anchor="middle" '
+            'fill="var(--color-content-tertiary)" font-size="10">'
+            f"{previous[i]}</text>"
+            f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="4.5" fill="var(--color-content-action-primary)"/>'
+            f'<text x="{cx:.1f}" y="{max(top+10, cy-9):.1f}" text-anchor="middle" '
+            'fill="var(--color-content-action-primary)" font-size="10" font-weight="700">'
+            f"{current[i]}</text>"
+        )
+
+    return (
+        '<div class="trend-chart">'
+        '<div class="trend-legend">'
+        f'<span class="trend-key"><span class="trend-line"></span>{html.escape(current_label)}</span>'
+        f'<span class="trend-key"><span class="trend-line prev"></span>{html.escape(previous_label)}</span>'
+        '</div>'
+        f'<svg viewBox="0 0 {width} {height}" role="img" '
+        f'aria-label="{html.escape(current_label)} vs {html.escape(previous_label)}">'
+        + "".join(grid)
+        + f'<polyline points="{previous_polyline}" fill="none" stroke="var(--color-content-tertiary)" '
+          'stroke-width="2.5" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"/>'
+        + f'<polyline points="{current_polyline}" fill="none" stroke="var(--color-content-action-primary)" '
+          'stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>'
+        + "".join(point_marks)
+        + "".join(x_labels)
+        + "</svg></div>"
+    )
+
+
 def build_report(
     *,
     pid,
@@ -218,6 +303,8 @@ def build_report(
     delivered_total,
     prev_delivered_total,
     daily_map,
+    prev_daily_map=None,
+    show_daily_comparison_chart=False,
     dishes,
     rating_row,
     comments_pos,
@@ -257,6 +344,9 @@ def build_report(
     r_bad_pct = round(bad_cnt / max(review_cnt, 1) * 100, 1) if review_cnt else 0.0
 
     daily = [daily_map.get(dd, 0) for dd in days_iso]
+    previous_daily = []
+    if prev_daily_map:
+        previous_daily = [prev_daily_map.get(i, 0) for i in range(7)]
     peak = max(daily) if daily else 0
     cells = ""
     for i in range(7):
@@ -268,6 +358,21 @@ def build_report(
             f'<div class="pb"><div class="pf" style="width:{w}%;background:#2AAF6D;"></div></div>'
             f"</div>"
         )
+
+    comparison_chart_html = ""
+    if show_daily_comparison_chart:
+        comparison_chart_html = f"""
+<div class="sec">
+  <div class="sec-t">{s['daily_comparison']}</div>
+  <div class="sec-s">{s['daily_comparison_sub']}</div><div class="hr"></div>
+  {build_daily_comparison_chart(
+      days_ua,
+      daily,
+      previous_daily or [0] * 7,
+      f"{s['curr_week']} {period_short}",
+      f"{s['prev_week']} {prev_label}",
+  )}
+</div>"""
 
     if dishes:
         dishes_html = "".join(
@@ -369,6 +474,8 @@ def build_report(
   <div class="day-row">{cells}</div>
 </div>
 
+{comparison_chart_html}
+
 <div class="sec">
   <div class="sec-t">{partner_emoji} {s['top_dishes']}</div><div class="hr"></div>
   {dishes_html}
@@ -406,10 +513,12 @@ def build_report(
         promo_ord=promo_ord, bolt_promo=bolt_promo, bad_orders=bad_orders,
         review_cnt=review_cnt, bad_cnt=bad_cnt, failed=failed,
         prev_delivered=prev_del, prev_gmv=prev_gmv, daily=daily,
+        previous_daily=previous_daily,
     )
 
 
-NETWORK_CSS = """*{box-sizing:border-box;margin:0;padding:0;}
+NETWORK_CSS = """:root{--color-content-action-primary:#2A9C64;--color-content-tertiary:#5F6563;--color-border-separator:#DEE2E1;--color-layer-floor-1:#FFFFFF;}
+*{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#F8F9FA;color:#1A1A1A;line-height:1.6;max-width:1100px;margin:0 auto;padding:0 0 40px;}
 .hero{color:white;padding:36px 36px 28px;position:relative;overflow:hidden;}
 .hero::before{content:"";position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,.1) 0%,transparent 70%);border-radius:50%;}
@@ -445,7 +554,13 @@ tr:hover td{background:#FAFAFA;}
 .dish-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
 .footer{background:#0d2a1a;color:rgba(255,255,255,.3);text-align:center;padding:16px;font-size:11px;margin-top:28px;}
 a.loclink{color:inherit;text-decoration:none;font-weight:600;}
-a.loclink:hover{text-decoration:underline;}"""
+a.loclink:hover{text-decoration:underline;}
+.trend-chart{background:var(--color-layer-floor-1);border-radius:16px;padding:14px 14px 8px;overflow:hidden;}
+.trend-chart svg{display:block;width:100%;height:auto;min-height:220px;}
+.trend-legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 8px;font-size:11px;color:var(--color-content-tertiary);}
+.trend-key{display:inline-flex;align-items:center;gap:6px;}
+.trend-line{width:22px;height:3px;border-radius:600rem;background:var(--color-content-action-primary);}
+.trend-line.prev{height:0;border-top:2px dashed var(--color-content-tertiary);background:none;}"""
 
 
 def build_network_summary(
@@ -459,6 +574,7 @@ def build_network_summary(
     days_ua,
     days_iso,
     loc_results,
+    show_daily_comparison_chart=False,
     locale="uk",
 ):
     """loc_results: list of dicts with keys pid, name, short_name, city, fname, stats (from build_report)."""
@@ -488,10 +604,14 @@ def build_network_summary(
 
     # Network daily dynamics (sum of per-location daily arrays, aligned to days_iso)
     net_daily = [0] * len(days_iso)
+    net_previous_daily = [0] * len(days_iso)
     for r in loc_results:
         daily = r["stats"].get("daily") or []
+        previous_daily = r["stats"].get("previous_daily") or []
         for i in range(min(len(daily), len(net_daily))):
             net_daily[i] += daily[i]
+        for i in range(min(len(previous_daily), len(net_previous_daily))):
+            net_previous_daily[i] += previous_daily[i]
     peak = max(net_daily) if net_daily else 0
     day_cells = ""
     for i in range(len(days_iso)):
@@ -503,6 +623,21 @@ def build_network_summary(
             f'<div class="pb"><div class="pf" style="width:{w}%;background:{brand_color};"></div></div>'
             f"</div>"
         )
+
+    network_comparison_chart_html = ""
+    if show_daily_comparison_chart:
+        network_comparison_chart_html = f"""
+<div class="sec">
+  <div class="sec-t">{s['daily_comparison']}</div>
+  <div class="sec-s">{s['daily_comparison_sub']}</div><div class="hr"></div>
+  {build_daily_comparison_chart(
+      days_ua,
+      net_daily,
+      net_previous_daily,
+      f"{s['curr_week']} {period_short}",
+      f"{s['prev_week']} {prev_label}",
+  )}
+</div>"""
 
     # Location breakdown table, sorted by delivered desc
     rows_sorted = sorted(loc_results, key=lambda r: -r["stats"]["delivered"])
@@ -574,6 +709,8 @@ def build_network_summary(
   <div class="sec-s">{s['network_daily_sub']}</div><div class="hr"></div>
   <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;">{day_cells}</div>
 </div>
+
+{network_comparison_chart_html}
 
 <div class="sec">
   <div class="sec-t">📍 {s['network_locations']} — {period_label}</div>

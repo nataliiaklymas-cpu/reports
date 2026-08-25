@@ -102,6 +102,14 @@ HESBURGER_PROVIDERS = {
     98298: {"name": "Hesburger Kyivskyi Shliakh", "brand": "Hesburger", "city": "Boryspil"},
 }
 
+ROCO_SUSHI_PROVIDERS = {
+    8075: {"name": "ROCO Sushi Липківського", "brand": "Roco Sushi", "city": "Київ"},
+    11758: {"name": "Roco Sushi на Федора Ернста", "brand": "Roco Sushi", "city": "Київ"},
+    20749: {"name": "ROCO Sushi Соборності", "brand": "Roco Sushi", "city": "Київ"},
+    33803: {"name": "ROCO Sushi Тираспільська", "brand": "Roco Sushi", "city": "Київ"},
+    77873: {"name": "ROCO Sushi Василя Тютюнника", "brand": "Roco Sushi", "city": "Київ"},
+}
+
 PARTNERS = {
     "salateira": {
         "display_name": "Salateira",
@@ -145,5 +153,13 @@ PARTNERS = {
         "github_folder": "hesburger-weekly",
         "providers": HESBURGER_PROVIDERS,
         "locale": "en",
+    },
+    "roco_sushi": {
+        "display_name": "Roco Sushi",
+        "emoji": "",
+        "brand_color": "#2A9C64",
+        "github_folder": "roco-sushi-weekly",
+        "providers": ROCO_SUSHI_PROVIDERS,
+        "daily_comparison_chart": True,
     },
 }

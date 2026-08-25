@@ -46,7 +46,7 @@ jobs:
         run: |
           git config user.name "bolt-reports-bot"
           git config user.email "actions@github.com"
-          git add salateira-weekly chornomorka-weekly muza-weekly europiano-weekly greek-house-weekly hesburger-weekly
+          git add salateira-weekly chornomorka-weekly muza-weekly europiano-weekly greek-house-weekly hesburger-weekly roco-sushi-weekly
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
