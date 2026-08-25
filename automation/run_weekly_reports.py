@@ -33,6 +33,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from dbx import DBX
 from partners_config import PARTNERS
 from report_template import build_report, build_network_summary
+from reviews_template import build_reviews_report
 
 DAY_NAMES = {
     "uk": ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"],
@@ -60,6 +61,12 @@ INDEX_I18N = {
         "week_sub": "Звіти по локаціях ({count})",
         "network_total": "🌐 Мережа тотал",
         "n_locations": "{n} локацій",
+        "reviews_link": "Відгуки мережі",
+        "reviews_link_sub": "оцінки, коментарі, коди замовлень",
+        "reviews_count": "{n} оцінок",
+        "reviews_week_sub": "Відгуки та оцінки по локаціях ({count})",
+        "reviews_network": "Усі локації",
+        "back_partner": "← Тижневі звіти",
     },
     "en": {
         "html_lang": "en",
@@ -69,8 +76,16 @@ INDEX_I18N = {
         "week_sub": "Location reports ({count})",
         "network_total": "🌐 Network total",
         "n_locations": "{n} locations",
+        "reviews_link": "Network reviews",
+        "reviews_link_sub": "ratings, comments, order codes",
+        "reviews_count": "{n} ratings",
+        "reviews_week_sub": "Reviews and ratings by location ({count})",
+        "reviews_network": "All locations",
+        "back_partner": "← Weekly reports",
     },
 }
+
+WEEK_FOLDER_RE = re.compile(r"^\d{4}-\d{2}-\d{2}_\d{2}$")
 
 
 def slugify(name: str) -> str:
@@ -435,16 +450,194 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
         with open(root_index_path, "r", encoding="utf-8") as f:
             existing_html = f.read()
         for m in re.finditer(r'<li><a href="([^/]+)/">.*?</a></li>', existing_html):
-            if m.group(1) != week["week_folder"]:
-                existing_entries.append("      " + m.group(0))
+            href = m.group(1)
+            if href == week["week_folder"] or not WEEK_FOLDER_RE.match(href):
+                continue
+            existing_entries.append("      " + m.group(0))
+    reviews_cfg = cfg.get("reviews") or {}
+    reviews_entry = ""
+    if reviews_cfg:
+        reviews_entry = (
+            f'      <li><a href="{reviews_cfg["subfolder"]}/" '
+            f'style="border-color:rgba(255,165,0,.35);background:rgba(255,165,0,.08);">'
+            f'<span class="t">{ix["reviews_link"]}</span>'
+            f'<span class="count">{ix["reviews_link_sub"]}</span></a></li>\n'
+        )
     all_entries = [week_entry] + existing_entries  # newest first
     with open(root_index_path, "w", encoding="utf-8") as f:
         f.write(ROOT_INDEX_TEMPLATE.format(
             html_lang=ix["html_lang"], display_name=display_name,
-            root_sub=ix["root_sub"], foot=ix["foot"], items="\n".join(all_entries),
+            root_sub=ix["root_sub"], foot=ix["foot"],
+            items=reviews_entry + "\n".join(all_entries),
         ))
 
     print(f"  -> {len(week_items)} reports written to {week_dir}")
+
+
+def _to_int_or_none(v):
+    if v is None or (isinstance(v, float) and math.isnan(v)):
+        return None
+    try:
+        return int(v)
+    except (TypeError, ValueError):
+        return None
+
+
+def run_partner_reviews(partner_key: str, cfg: dict, week: dict, repo_root: str):
+    reviews_cfg = cfg.get("reviews") or {}
+    if not reviews_cfg:
+        return
+
+    providers = cfg["providers"]
+    ids_str = ",".join(str(p) for p in providers)
+    display_name = cfg["display_name"]
+    github_folder = cfg["github_folder"]
+    subfolder = reviews_cfg["subfolder"]
+    locale = cfg.get("locale", "uk")
+    lbl = week["labels"][locale]
+    ix = INDEX_I18N[locale]
+    brand_default = next(iter(providers.values())).get("brand", display_name)
+
+    print(f"\n=== {display_name} reviews — {lbl['period_label']} [{locale}] ===")
+
+    with DBX() as dbx:
+        rat_df = dbx.query(f"""
+            SELECT provider_id, order_id, rating_value AS rating, comment, created
+            FROM ng_delivery_spark.delivery_rating_provider_rating_history
+            WHERE provider_id IN ({ids_str})
+              AND created_date >= DATE('{week["cur_mon"]}')
+              AND created_date < DATE('{week["cur_end"]}')
+              AND (rater_actor_type IS NULL OR rater_actor_type = 'eater')
+              AND (ignore_rating IS NULL OR ignore_rating = false)
+            ORDER BY created DESC
+        """)
+        order_ids = sorted({
+            int(v) for v in rat_df["order_id"].tolist()
+            if v is not None and not (isinstance(v, float) and math.isnan(v))
+        }) if not rat_df.empty else []
+        ord_df = None
+        if order_ids:
+            ids_chunk = ",".join(str(i) for i in order_ids)
+            ord_df = dbx.query(f"""
+                SELECT order_id, order_reference_id, order_created_ts_local, order_gmv_local
+                FROM ng_delivery_spark.dim_order_delivery
+                WHERE order_id IN ({ids_chunk})
+                  AND provider_id IN ({ids_str})
+                  AND order_created_date_local >= DATE_ADD(DATE('{week["cur_mon"]}'), -21)
+                  AND order_created_date_local < DATE('{week["cur_end"]}')
+            """)
+
+    orders = {}
+    if ord_df is not None and not ord_df.empty:
+        for _, r in ord_df.iterrows():
+            orders[int(r["order_id"])] = r.to_dict()
+
+    def rows_for(pid=None):
+        if rat_df.empty:
+            return []
+        subset = rat_df if pid is None else rat_df[rat_df["provider_id"] == pid]
+        out = []
+        for _, r in subset.iterrows():
+            meta = providers.get(int(r["provider_id"]), {})
+            name = meta.get("name", display_name)
+            oid = _to_int_or_none(r.get("order_id"))
+            o = orders.get(oid, {}) if oid is not None else {}
+            comment = r.get("comment")
+            out.append(dict(
+                location=name,
+                rating=_to_int_or_none(r.get("rating")),
+                comment="" if comment is None or (isinstance(comment, float) and math.isnan(comment)) else str(comment),
+                order_code=o.get("order_reference_id") or (str(oid) if oid is not None else "—"),
+                order_dt=o.get("order_created_ts_local") or r.get("created"),
+                amount=o.get("order_gmv_local"),
+            ))
+        return out
+
+    reviews_root = os.path.join(repo_root, github_folder, subfolder)
+    week_dir = os.path.join(reviews_root, week["week_folder"])
+    os.makedirs(week_dir, exist_ok=True)
+
+    all_reviews = rows_for()
+    total_fname = f"{display_name.replace(' ', '_')}_vidhuky_TOTAL_{week['week_folder']}.html"
+    with open(os.path.join(week_dir, total_fname), "w", encoding="utf-8") as f:
+        f.write(build_reviews_report(
+            display_name=display_name,
+            period_label=lbl["period_label"],
+            period_short=lbl["period_short"],
+            reviews=all_reviews,
+            locale=locale,
+        ))
+
+    week_items = []
+    for pid, meta in providers.items():
+        name = meta["name"]
+        brand_label = meta.get("brand", brand_default)
+        loc_reviews = rows_for(pid)
+        short_name = short_location_name(name, brand_label)
+        slug = slugify(short_name)
+        fname = f"{brand_label.replace(' ', '_')}_{slug}_vidhuky_{week['week_folder']}.html".replace("__", "_")
+        with open(os.path.join(week_dir, fname), "w", encoding="utf-8") as f:
+            f.write(build_reviews_report(
+                display_name=display_name,
+                period_label=lbl["period_label"],
+                period_short=lbl["period_short"],
+                reviews=loc_reviews,
+                location_name=name,
+                locale=locale,
+            ))
+        week_items.append((fname, short_name, pid, len(loc_reviews)))
+        print(f"  reviews {pid} {name:45s} {len(loc_reviews):>3} ratings")
+
+    items_html = (
+        f'      <li><a href="{total_fname}" style="border-color:rgba(255,165,0,.35);background:rgba(255,165,0,.08);">'
+        f'<span class="t">{ix["reviews_network"]}</span>'
+        f'<span class="count">{ix["reviews_count"].format(n=len(all_reviews))}</span></a></li>\n'
+    ) + "\n".join(
+        f'      <li><a href="{fname}"><span class="t">{short}</span>'
+        f'<span class="count">{ix["reviews_count"].format(n=n)}</span></a></li>'
+        for fname, short, pid, n in week_items
+    )
+    with open(os.path.join(week_dir, "index.html"), "w", encoding="utf-8") as f:
+        f.write(WEEK_INDEX_TEMPLATE.format(
+            html_lang=ix["html_lang"], display_name=f"{display_name} · {reviews_cfg['display_name']}",
+            period_short=lbl["period_short"], period_label=lbl["period_label"],
+            week_sub=ix["reviews_week_sub"].format(count=len(week_items)),
+            back=ix["back"], foot=ix["foot"], items=items_html,
+        ))
+
+    keep = {fname for fname, _, _, _ in week_items} | {total_fname, "index.html"}
+    for existing in os.listdir(week_dir):
+        if existing.endswith(".html") and existing not in keep:
+            os.remove(os.path.join(week_dir, existing))
+
+    root_index_path = os.path.join(reviews_root, "index.html")
+    week_entry = (
+        f'      <li><a href="{week["week_folder"]}/"><span class="t">{lbl["period_label"]}</span>'
+        f'<span class="count">{ix["reviews_count"].format(n=len(all_reviews))}</span></a></li>'
+    )
+    existing_entries = []
+    if os.path.exists(root_index_path):
+        with open(root_index_path, "r", encoding="utf-8") as f:
+            existing_html = f.read()
+        for m in re.finditer(r'<li><a href="([^/]+)/">.*?</a></li>', existing_html):
+            if WEEK_FOLDER_RE.match(m.group(1)) and m.group(1) != week["week_folder"]:
+                existing_entries.append("      " + m.group(0))
+    # Point the back link on the reviews root to the partner weekly folder.
+    reviews_root_html = ROOT_INDEX_TEMPLATE.format(
+        html_lang=ix["html_lang"],
+        display_name=f"{display_name} · {reviews_cfg['display_name']}",
+        root_sub=ix["reviews_link"],
+        foot=ix["foot"],
+        items="\n".join([week_entry] + existing_entries),
+    ).replace(
+        '<div class="badge">',
+        f'<a class="back" href="../" style="color:rgba(255,255,255,0.55);text-decoration:none;font-size:14px;display:inline-block;margin-bottom:16px;">{ix["back_partner"]}</a>\n    <div class="badge">',
+        1,
+    )
+    with open(root_index_path, "w", encoding="utf-8") as f:
+        f.write(reviews_root_html)
+
+    print(f"  -> {len(all_reviews)} ratings written to {week_dir}")
 
 
 def main():
@@ -467,6 +660,7 @@ def main():
         if only and key not in only:
             continue
         run_partner(key, cfg, week, args.repo_root)
+        run_partner_reviews(key, cfg, week, args.repo_root)
 
     print("\nAll done.")
 

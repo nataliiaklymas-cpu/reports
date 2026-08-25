@@ -145,6 +145,10 @@ PARTNERS = {
         "brand_color": "#0C2C1C",
         "github_folder": "greek-house-weekly",
         "providers": GREEK_HOUSE_PROVIDERS,
+        "reviews": {
+            "subfolder": "vidhuky-merezhi",
+            "display_name": "Відгуки мережі",
+        },
     },
     "hesburger": {
         "display_name": "Hesburger",
