@@ -2,6 +2,7 @@
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Hesburger Pavla Polubotka · Bolt Food · 17–23 Aug 2026</title>
 <style>
+:root{--color-content-action-primary:#2A9C64;--color-content-tertiary:#5F6563;--color-border-separator:#DEE2E1;--color-layer-floor-1:#FFFFFF;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#F8F9FA;color:#1A1A1A;line-height:1.6;max-width:900px;margin:0 auto;padding:0 0 40px;}
 .hero{color:white;padding:28px 28px 22px;position:relative;overflow:hidden;}
@@ -36,6 +37,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .rv{background:white;border-radius:8px;padding:10px;box-shadow:0 1px 4px rgba(0,0,0,.05);margin-bottom:6px;}
 .rv.neg{border-left:3px solid #EF4444;}
 .rv.pos{border-left:3px solid #2AAF6D;}
+.trend-chart{background:var(--color-layer-floor-1);border-radius:16px;padding:14px 14px 8px;overflow:hidden;}
+.trend-chart svg{display:block;width:100%;height:auto;min-height:220px;}
+.trend-legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 8px;font-size:11px;color:var(--color-content-tertiary);}
+.trend-key{display:inline-flex;align-items:center;gap:6px;}
+.trend-line{width:22px;height:3px;border-radius:600rem;background:var(--color-content-action-primary);}
+.trend-line.prev{height:0;border-top:2px dashed var(--color-content-tertiary);background:none;}
 .footer{background:#0d2a1a;color:rgba(255,255,255,.3);text-align:center;padding:14px;font-size:10px;margin-top:24px;}
 </style></head><body>
 
@@ -51,8 +58,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
   <p class="hero-sub">📍 Kyiv · ID: 98329 · 17–23 August 2026</p>
   <div class="kpis">
     <div class="kpi"><strong>47</strong>Delivered</div>
-    <div class="kpi"><strong>22 231&nbsp;₴</strong>Revenue</div>
-    <div class="kpi"><strong>473&nbsp;₴</strong>AOV</div>
+    <div class="kpi"><strong>26 278&nbsp;₴</strong>Revenue</div>
+    <div class="kpi"><strong>559&nbsp;₴</strong>AOV</div>
     <div class="kpi"><strong style="color:#34D186;">4.83 ★</strong>Rating</div>
     <div class="kpi"><strong><span style="color:#EF4444;font-size:10px;font-weight:700;">▼23.0%</span></strong>WoW orders</div>
   </div>
@@ -64,15 +71,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
   <div style="font-size:10px;color:#9CA3AF;margin-bottom:8px;">* “Delivered” = all completed orders (courier delivery + pickup), comparable with Looker</div>
   <div class="g4" style="margin-bottom:10px;">
     <div class="card"><div class="cl">Delivered</div><div class="cv" style="color:#2AAF6D;">47</div><div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼23.0%</span> vs prev. week</div></div>
-    <div class="card"><div class="cl">Revenue ₴</div><div class="cv">22 231</div><div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼41.9%</span> vs prev. week</div></div>
-    <div class="card"><div class="cl">AOV ₴</div><div class="cv">473</div></div>
-    <div class="card"><div class="cl">Bolt promo ₴</div><div class="cv" style="color:#2AAF6D;">1 983</div></div>
+    <div class="card"><div class="cl">Revenue ₴</div><div class="cv">26 278</div><div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼31.3%</span> vs prev. week</div></div>
+    <div class="card"><div class="cl">AOV ₴</div><div class="cv">559</div></div>
+    <div class="card"><div class="cl">Promo orders</div><div class="cv">27</div><div class="cd">57%</div></div>
   </div>
-  <div class="g4">
-    <div class="card"><div class="cl">New customers</div><div class="cv" style="color:#7C3AED;">15</div></div>
-    <div class="card"><div class="cl">Bolt+ orders</div><div class="cv" style="color:#34D186;">14</div><div class="cd">30%</div></div>
-    <div class="card"><div class="cl">Promo orders</div><div class="cv">24</div><div class="cd">51%</div></div>
-    <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:#34D186;">1</div><div class="cd">2.4%</div></div>
+  <div class="g3" style="margin-bottom:10px;">
+    <div class="card"><div class="cl">Bolt promo ₴</div><div class="cv" style="color:#2AAF6D;">2 241</div></div>
+    <div class="card"><div class="cl">Partner promo ₴</div><div class="cv" style="color:#F59E0B;">0</div></div>
+    <div class="card"><div class="cl">Promo total ₴</div><div class="cv">2 241</div></div>
+  </div>
+  <div style="font-size:10px;color:#9CA3AF;margin-bottom:10px;">Promo spend: discounts and delivery are funded by Bolt and the partner separately, “total” is the sum of both</div>
+  <div class="g3">
+    <div class="card"><div class="cl">New customers</div><div class="cv" style="color:#7C3AED;">17</div></div>
+    <div class="card"><div class="cl">Bolt+ orders</div><div class="cv" style="color:#34D186;">15</div><div class="cd">32%</div></div>
+    <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:#34D186;">1</div><div class="cd">2.1%</div></div>
   </div>
 </div>
 
@@ -85,8 +97,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
     </div>
     <div class="card" style="border-left:3px solid #BBF7D0;background:#F0FFF8;">
       <div style="font-size:10px;font-weight:700;color:#065F46;text-transform:uppercase;margin-bottom:6px;">📅 Current week 17–23 Aug <span style="color:#EF4444;font-size:10px;font-weight:700;">▼23.0%</span></div>
-      <div style="font-size:11px;color:#374151;">Delivered: <strong>47</strong> · GMV: <strong>22 231&nbsp;₴</strong></div>
-      <div style="font-size:10px;color:#6B7280;margin-top:2px;">New customers: 15 · Bolt+: 14</div>
+      <div style="font-size:11px;color:#374151;">Delivered: <strong>47</strong> · GMV: <strong>26 278&nbsp;₴</strong></div>
+      <div style="font-size:10px;color:#6B7280;margin-top:2px;">New customers: 17 · Bolt+: 15</div>
     </div>
   </div>
 </div>
@@ -96,18 +108,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
   <div class="day-row"><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Mon<br>17.08</div><div class="dv" style="color:#2AAF6D;">7</div><div class="pb"><div class="pf" style="width:58%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Tue<br>18.08</div><div class="dv" style="color:#2AAF6D;">7</div><div class="pb"><div class="pf" style="width:58%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Wed<br>19.08</div><div class="dv" style="color:#2AAF6D;">4</div><div class="pb"><div class="pf" style="width:33%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Thu<br>20.08</div><div class="dv" style="color:#2AAF6D;">12</div><div class="pb"><div class="pf" style="width:100%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Fri<br>21.08</div><div class="dv" style="color:#2AAF6D;">6</div><div class="pb"><div class="pf" style="width:50%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Sat<br>22.08</div><div class="dv" style="color:#2AAF6D;">6</div><div class="pb"><div class="pf" style="width:50%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Sun<br>23.08</div><div class="dv" style="color:#2AAF6D;">5</div><div class="pb"><div class="pf" style="width:41%;background:#2AAF6D;"></div></div></div></div>
 </div>
 
+
+
 <div class="sec">
   <div class="sec-t">🍔 Top dishes this week</div><div class="hr"></div>
-  <div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🍔 Hesburger large meal</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🍔 Double Cheeseburger large meal</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🍔 Bacon Burger large meal</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🍔 French Fries</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🍔 Cheeseburger large meal</div>
+  <div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🍔 Hesburger large meal</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🍔 Double Cheeseburger large meal</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🍔 Bacon Burger large meal</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🍔 Cheeseburger large meal</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🍔 French Fries</div>
 </div>
 
 <div class="sec">
   <div class="sec-t">⚙️ Operations</div><div class="hr"></div>
   <div class="g3">
-    <div class="card"><div class="cl">Availability</div><div class="cv" style="color:#EF4444;">81.5%</div>
-      <div class="pb"><div class="pf" style="width:81.5%;background:#EF4444;"></div></div></div>
-    <div class="card"><div class="cl">Prep time</div><div class="cv" style="color:#34D186;">7.3 min</div><div class="cd">Target &lt;15 min ✅</div></div>
-    <div class="card"><div class="cl">Accept time</div><div class="cv" style="color:#34D186;">0.22 min</div><div class="cd">Target &lt;1 min ✅</div></div>
+    <div class="card"><div class="cl">Availability</div><div class="cv" style="color:#EF4444;">84.3%</div>
+      <div class="pb"><div class="pf" style="width:84.3%;background:#EF4444;"></div></div></div>
+    <div class="card"><div class="cl">Prep time</div><div class="cv" style="color:#34D186;">7.4 min</div><div class="cd">Target &lt;15 min ✅</div></div>
+    <div class="card"><div class="cl">Accept time</div><div class="cv" style="color:#34D186;">0.23 min</div><div class="cd">Target &lt;1 min ✅</div></div>
   </div>
   <div style="margin-top:8px;"><div style="font-size:11px;color:#9CA3AF;">No cancellations</div></div>
 </div>
@@ -118,7 +132,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
     <div class="card" style="border-left:3px solid #34D186;"><div class="cl">Rating</div><div class="cv" style="color:#34D186;">4.83 ★</div></div>
     <div class="card"><div class="cl">Reviews</div><div class="cv">12</div></div>
     <div class="card"><div class="cl">Bad rate</div><div class="cv" style="color:#34D186;">0.0%</div></div>
-    <div class="card"><div class="cl">Promo %</div><div class="cv">51%</div></div>
+    <div class="card"><div class="cl">Promo %</div><div class="cv">57%</div></div>
   </div>
   <div style="font-size:11px;color:#9CA3AF;">No written reviews</div>
 </div>

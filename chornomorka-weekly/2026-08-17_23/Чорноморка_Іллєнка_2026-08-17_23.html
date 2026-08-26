@@ -2,6 +2,7 @@
 <html lang="uk"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Чорноморка Іллєнка · Bolt Food · 17–23 серп 2026</title>
 <style>
+:root{--color-content-action-primary:#2A9C64;--color-content-tertiary:#5F6563;--color-border-separator:#DEE2E1;--color-layer-floor-1:#FFFFFF;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#F8F9FA;color:#1A1A1A;line-height:1.6;max-width:900px;margin:0 auto;padding:0 0 40px;}
 .hero{color:white;padding:28px 28px 22px;position:relative;overflow:hidden;}
@@ -36,6 +37,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .rv{background:white;border-radius:8px;padding:10px;box-shadow:0 1px 4px rgba(0,0,0,.05);margin-bottom:6px;}
 .rv.neg{border-left:3px solid #EF4444;}
 .rv.pos{border-left:3px solid #2AAF6D;}
+.trend-chart{background:var(--color-layer-floor-1);border-radius:16px;padding:14px 14px 8px;overflow:hidden;}
+.trend-chart svg{display:block;width:100%;height:auto;min-height:220px;}
+.trend-legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 8px;font-size:11px;color:var(--color-content-tertiary);}
+.trend-key{display:inline-flex;align-items:center;gap:6px;}
+.trend-line{width:22px;height:3px;border-radius:600rem;background:var(--color-content-action-primary);}
+.trend-line.prev{height:0;border-top:2px dashed var(--color-content-tertiary);background:none;}
 .footer{background:#0d2a1a;color:rgba(255,255,255,.3);text-align:center;padding:14px;font-size:10px;margin-top:24px;}
 </style></head><body>
 
@@ -66,12 +73,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
     <div class="card"><div class="cl">Доставлено</div><div class="cv" style="color:#2AAF6D;">2</div><div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼71.4%</span> vs пр. тиж.</div></div>
     <div class="card"><div class="cl">Виручка ₴</div><div class="cv">1 313</div><div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼78.9%</span> vs пр. тиж.</div></div>
     <div class="card"><div class="cl">AOV ₴</div><div class="cv">656</div></div>
-    <div class="card"><div class="cl">Bolt промо ₴</div><div class="cv" style="color:#2AAF6D;">117</div></div>
+    <div class="card"><div class="cl">Промо замовл.</div><div class="cv">2</div><div class="cd">100%</div></div>
   </div>
-  <div class="g4">
+  <div class="g3" style="margin-bottom:10px;">
+    <div class="card"><div class="cl">Bolt промо ₴</div><div class="cv" style="color:#2AAF6D;">117</div></div>
+    <div class="card"><div class="cl">Партнер промо ₴</div><div class="cv" style="color:#F59E0B;">0</div></div>
+    <div class="card"><div class="cl">Промо разом ₴</div><div class="cv">117</div></div>
+  </div>
+  <div style="font-size:10px;color:#9CA3AF;margin-bottom:10px;">Промо-витрати: знижки та доставку фінансують Bolt і партнер окремо, «разом» — сума обох</div>
+  <div class="g3">
     <div class="card"><div class="cl">Нових клієнтів</div><div class="cv" style="color:#7C3AED;">2</div></div>
     <div class="card"><div class="cl">Bolt+ замовл.</div><div class="cv" style="color:#34D186;">0</div><div class="cd">0%</div></div>
-    <div class="card"><div class="cl">Промо замовл.</div><div class="cv">2</div><div class="cd">100%</div></div>
     <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:#34D186;">0</div><div class="cd">0.0%</div></div>
   </div>
 </div>
@@ -96,9 +108,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
   <div class="day-row"><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Пн<br>17.08</div><div class="dv" style="color:#2AAF6D;">0</div><div class="pb"><div class="pf" style="width:0%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Вт<br>18.08</div><div class="dv" style="color:#2AAF6D;">0</div><div class="pb"><div class="pf" style="width:0%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Ср<br>19.08</div><div class="dv" style="color:#2AAF6D;">0</div><div class="pb"><div class="pf" style="width:0%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Чт<br>20.08</div><div class="dv" style="color:#2AAF6D;">2</div><div class="pb"><div class="pf" style="width:100%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Пт<br>21.08</div><div class="dv" style="color:#2AAF6D;">0</div><div class="pb"><div class="pf" style="width:0%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Сб<br>22.08</div><div class="dv" style="color:#2AAF6D;">0</div><div class="pb"><div class="pf" style="width:0%;background:#2AAF6D;"></div></div></div><div class="day-cell" style="border-top-color:#2AAF6D;"><div class="dn">Нд<br>23.08</div><div class="dv" style="color:#2AAF6D;">0</div><div class="pb"><div class="pf" style="width:0%;background:#2AAF6D;"></div></div></div></div>
 </div>
 
+
+
 <div class="sec">
   <div class="sec-t">🐟 Топ страви тижня</div><div class="hr"></div>
-  <div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🐟 Odesa-style Forshmak with croutons</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🐟 Thai-style fried rice with shrimp</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🐟 Young cabbage salad with cucumber and oil</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🐟 COLD OKROSHKA WITH SHRIMP</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🐟 Matyas herring with new potatoes</div>
+  <div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🐟 Odesa-style Forshmak with croutons</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🐟 Thai-style fried rice with shrimp</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🐟 COLD OKROSHKA WITH SHRIMP</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🐟 Matyas herring with new potatoes</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🐟 Young cabbage salad with cucumber and oil</div>
 </div>
 
 <div class="sec">

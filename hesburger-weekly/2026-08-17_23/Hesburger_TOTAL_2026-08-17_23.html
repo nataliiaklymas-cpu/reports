@@ -2,6 +2,7 @@
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Hesburger · Network total · Bolt Food · 17–23 Aug 2026</title>
 <style>
+:root{--color-content-action-primary:#2A9C64;--color-content-tertiary:#5F6563;--color-border-separator:#DEE2E1;--color-layer-floor-1:#FFFFFF;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#F8F9FA;color:#1A1A1A;line-height:1.6;max-width:1100px;margin:0 auto;padding:0 0 40px;}
 .hero{color:white;padding:36px 36px 28px;position:relative;overflow:hidden;}
@@ -39,6 +40,12 @@ tr:hover td{background:#FAFAFA;}
 .footer{background:#0d2a1a;color:rgba(255,255,255,.3);text-align:center;padding:16px;font-size:11px;margin-top:28px;}
 a.loclink{color:inherit;text-decoration:none;font-weight:600;}
 a.loclink:hover{text-decoration:underline;}
+.trend-chart{background:var(--color-layer-floor-1);border-radius:16px;padding:14px 14px 8px;overflow:hidden;}
+.trend-chart svg{display:block;width:100%;height:auto;min-height:220px;}
+.trend-legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 8px;font-size:11px;color:var(--color-content-tertiary);}
+.trend-key{display:inline-flex;align-items:center;gap:6px;}
+.trend-line{width:22px;height:3px;border-radius:600rem;background:var(--color-content-action-primary);}
+.trend-line.prev{height:0;border-top:2px dashed var(--color-content-tertiary);background:none;}
 </style></head><body>
 
 <div class="hero" style="background:linear-gradient(135deg,#0d2a1a 0%,#1a4d32 100%);">
@@ -53,10 +60,10 @@ a.loclink:hover{text-decoration:underline;}
   <p class="hero-sub">Active locations: 6/6 · 17–23 August 2026</p>
   <div class="kpis">
     <div class="kpi"><strong>253</strong>Delivered <span style="color:#EF4444;font-size:10px;font-weight:700;">▼37.2%</span></div>
-    <div class="kpi"><strong>114 351&nbsp;₴</strong>Revenue <span style="color:#EF4444;font-size:10px;font-weight:700;">▼53.2%</span></div>
-    <div class="kpi"><strong>452&nbsp;₴</strong>AOV</div>
+    <div class="kpi"><strong>139 416&nbsp;₴</strong>Revenue <span style="color:#EF4444;font-size:10px;font-weight:700;">▼42.9%</span></div>
+    <div class="kpi"><strong>551&nbsp;₴</strong>AOV</div>
     <div class="kpi"><strong style="color:#F59E0B;">4.57 ★</strong>Avg. rating</div>
-    <div class="kpi"><strong>72</strong>New customers</div>
+    <div class="kpi"><strong>85</strong>New customers</div>
   </div>
 </div>
 <div class="wrap">
@@ -66,18 +73,21 @@ a.loclink:hover{text-decoration:underline;}
   <div class="sec-s">Compared with previous week: 10–16 Aug</div><div class="hr"></div>
   <div class="g6" style="margin-bottom:14px;">
     <div class="card"><div class="cl">Delivered</div><div class="cv" style="color:#FFC72C;">253</div><div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼37.2%</span> vs prev. week</div></div>
-    <div class="card"><div class="cl">Revenue ₴</div><div class="cv">114 351</div><div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼53.2%</span></div></div>
-    <div class="card"><div class="cl">AOV ₴</div><div class="cv">452</div></div>
-    <div class="card"><div class="cl">Bolt promo ₴</div><div class="cv" style="color:#2AAF6D;">9 939</div></div>
-    <div class="card"><div class="cl">Bolt+ orders</div><div class="cv" style="color:#34D186;">42</div><div class="cd">17%</div></div>
-    <div class="card"><div class="cl">Promo orders</div><div class="cv">125</div><div class="cd">49%</div></div>
+    <div class="card"><div class="cl">Revenue ₴</div><div class="cv">139 416</div><div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼42.9%</span></div></div>
+    <div class="card"><div class="cl">AOV ₴</div><div class="cv">551</div></div>
+    <div class="card"><div class="cl">Bolt promo ₴</div><div class="cv" style="color:#2AAF6D;">12 345</div></div>
+    <div class="card"><div class="cl">Partner promo ₴</div><div class="cv" style="color:#F59E0B;">0</div></div>
+    <div class="card"><div class="cl">Promo total ₴</div><div class="cv">12 345</div></div>
   </div>
-  <div class="g4">
-    <div class="card"><div class="cl">New customers</div><div class="cv" style="color:#7C3AED;">72</div></div>
+  <div class="g6">
+    <div class="card"><div class="cl">Bolt+ orders</div><div class="cv" style="color:#34D186;">51</div><div class="cd">20%</div></div>
+    <div class="card"><div class="cl">Promo orders</div><div class="cv">151</div><div class="cd">60%</div></div>
+    <div class="card"><div class="cl">New customers</div><div class="cv" style="color:#7C3AED;">85</div></div>
     <div class="card"><div class="cl">Cancelled</div><div class="cv" style="color:#EF4444;">2</div></div>
     <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:#EF4444;">8</div></div>
-    <div class="card"><div class="cl">Avg. availability</div><div class="cv" style="color:#EF4444;">74.7%</div></div>
+    <div class="card"><div class="cl">Avg. availability</div><div class="cv" style="color:#EF4444;">76.3%</div></div>
   </div>
+  <div style="font-size:11px;color:#9CA3AF;margin-top:12px;">Promo spend: discounts and delivery are funded by Bolt and the partner separately, “total” is the sum of both</div>
 </div>
 
 <div class="sec">
@@ -86,15 +96,18 @@ a.loclink:hover{text-decoration:underline;}
   <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;"><div style="text-align:center;background:white;border-radius:8px;padding:8px 4px;border-top:3px solid #FFC72C;box-shadow:0 1px 4px rgba(0,0,0,.05);"><div style="font-size:9px;color:#9CA3AF;margin-bottom:2px;">Mon<br>17.08</div><div style="font-size:16px;font-weight:800;color:#FFC72C;">46</div><div class="pb"><div class="pf" style="width:100%;background:#FFC72C;"></div></div></div><div style="text-align:center;background:white;border-radius:8px;padding:8px 4px;border-top:3px solid #FFC72C;box-shadow:0 1px 4px rgba(0,0,0,.05);"><div style="font-size:9px;color:#9CA3AF;margin-bottom:2px;">Tue<br>18.08</div><div style="font-size:16px;font-weight:800;color:#FFC72C;">30</div><div class="pb"><div class="pf" style="width:65%;background:#FFC72C;"></div></div></div><div style="text-align:center;background:white;border-radius:8px;padding:8px 4px;border-top:3px solid #FFC72C;box-shadow:0 1px 4px rgba(0,0,0,.05);"><div style="font-size:9px;color:#9CA3AF;margin-bottom:2px;">Wed<br>19.08</div><div style="font-size:16px;font-weight:800;color:#FFC72C;">35</div><div class="pb"><div class="pf" style="width:76%;background:#FFC72C;"></div></div></div><div style="text-align:center;background:white;border-radius:8px;padding:8px 4px;border-top:3px solid #FFC72C;box-shadow:0 1px 4px rgba(0,0,0,.05);"><div style="font-size:9px;color:#9CA3AF;margin-bottom:2px;">Thu<br>20.08</div><div style="font-size:16px;font-weight:800;color:#FFC72C;">25</div><div class="pb"><div class="pf" style="width:54%;background:#FFC72C;"></div></div></div><div style="text-align:center;background:white;border-radius:8px;padding:8px 4px;border-top:3px solid #FFC72C;box-shadow:0 1px 4px rgba(0,0,0,.05);"><div style="font-size:9px;color:#9CA3AF;margin-bottom:2px;">Fri<br>21.08</div><div style="font-size:16px;font-weight:800;color:#FFC72C;">42</div><div class="pb"><div class="pf" style="width:91%;background:#FFC72C;"></div></div></div><div style="text-align:center;background:white;border-radius:8px;padding:8px 4px;border-top:3px solid #FFC72C;box-shadow:0 1px 4px rgba(0,0,0,.05);"><div style="font-size:9px;color:#9CA3AF;margin-bottom:2px;">Sat<br>22.08</div><div style="font-size:16px;font-weight:800;color:#FFC72C;">37</div><div class="pb"><div class="pf" style="width:80%;background:#FFC72C;"></div></div></div><div style="text-align:center;background:white;border-radius:8px;padding:8px 4px;border-top:3px solid #FFC72C;box-shadow:0 1px 4px rgba(0,0,0,.05);"><div style="font-size:9px;color:#9CA3AF;margin-bottom:2px;">Sun<br>23.08</div><div style="font-size:16px;font-weight:800;color:#FFC72C;">38</div><div class="pb"><div class="pf" style="width:82%;background:#FFC72C;"></div></div></div></div>
 </div>
 
+
+
 <div class="sec">
   <div class="sec-t">📍 Network locations — 17–23 August 2026</div>
   <div class="sec-s">Click a location name to open its weekly report</div><div class="hr"></div>
   <div style="overflow-x:auto;">
   <table><thead><tr>
     <th>Location</th><th class="num">Delivered</th><th class="num">Revenue ₴</th>
-    <th class="num">Rating</th><th class="num">Bolt+</th><th class="num">Availability</th>
+    <th class="num">Rating</th><th class="num">Promo ₴</th>
+    <th class="num">Bolt+</th><th class="num">Availability</th>
   </tr></thead><tbody>
-    <tr><td><a class="loclink" href="Hesburger_Shevchenka_2026-08-17_23.html">Shevchenka</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98280 · Irpin</span></td><td class="num"><strong>56</strong> <span style="color:#34D186;font-size:10px;font-weight:700;">▲5.7%</span></td><td class="num">21 626&nbsp;₴</td><td class="num"><span style="color:#34D186;font-weight:700;">4.90&nbsp;★</span></td><td class="num">5</td><td class="num">80.6%</td></tr><tr><td><a class="loclink" href="Hesburger_Vyshneve_2026-08-17_23.html">Vyshneve</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98398 · Kyiv</span></td><td class="num"><strong>55</strong> <span style="color:#EF4444;font-size:10px;font-weight:700;">▼51.3%</span></td><td class="num">29 340&nbsp;₴</td><td class="num"><span style="color:#EF4444;font-weight:700;">4.38&nbsp;★</span></td><td class="num">13</td><td class="num">85.7%</td></tr><tr><td><a class="loclink" href="Hesburger_Kyivskyi_Shliakh_2026-08-17_23.html">Kyivskyi Shliakh</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98298 · Boryspil</span></td><td class="num"><strong>52</strong> <span style="color:#EF4444;font-size:10px;font-weight:700;">▼27.8%</span></td><td class="num">18 169&nbsp;₴</td><td class="num"><span style="color:#EF4444;font-weight:700;">4.17&nbsp;★</span></td><td class="num">3</td><td class="num">60.2%</td></tr><tr><td><a class="loclink" href="Hesburger_Pavla_Polubotka_2026-08-17_23.html">Pavla Polubotka</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98329 · Kyiv</span></td><td class="num"><strong>47</strong> <span style="color:#EF4444;font-size:10px;font-weight:700;">▼23.0%</span></td><td class="num">22 231&nbsp;₴</td><td class="num"><span style="color:#34D186;font-weight:700;">4.83&nbsp;★</span></td><td class="num">14</td><td class="num">81.5%</td></tr><tr><td><a class="loclink" href="Hesburger_Zdolbunivska_2026-08-17_23.html">Zdolbunivska</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98397 · Kyiv</span></td><td class="num"><strong>22</strong> <span style="color:#EF4444;font-size:10px;font-weight:700;">▼63.3%</span></td><td class="num">13 218&nbsp;₴</td><td class="num"><span style="color:#F59E0B;font-weight:700;">4.43&nbsp;★</span></td><td class="num">4</td><td class="num">79.2%</td></tr><tr><td><a class="loclink" href="Hesburger_Kyivska_2026-08-17_23.html">Kyivska</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98399 · Brovary</span></td><td class="num"><strong>21</strong> <span style="color:#EF4444;font-size:10px;font-weight:700;">▼52.3%</span></td><td class="num">9 767&nbsp;₴</td><td class="num"><span style="color:#34D186;font-weight:700;">4.71&nbsp;★</span></td><td class="num">3</td><td class="num">61.0%</td></tr>
+    <tr><td><a class="loclink" href="Hesburger_Shevchenka_2026-08-17_23.html">Shevchenka</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98280 · Irpin</span></td><td class="num"><strong>56</strong> <span style="color:#34D186;font-size:10px;font-weight:700;">▲5.7%</span></td><td class="num">28 291&nbsp;₴</td><td class="num"><span style="color:#34D186;font-weight:700;">4.90&nbsp;★</span></td><td class="num">3 283&nbsp;₴<br><span style="font-size:9px;color:#9CA3AF;">Bolt 3 283 · partner 0</span></td><td class="num">6</td><td class="num">83.9%</td></tr><tr><td><a class="loclink" href="Hesburger_Vyshneve_2026-08-17_23.html">Vyshneve</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98398 · Kyiv</span></td><td class="num"><strong>55</strong> <span style="color:#EF4444;font-size:10px;font-weight:700;">▼51.3%</span></td><td class="num">34 854&nbsp;₴</td><td class="num"><span style="color:#EF4444;font-weight:700;">4.38&nbsp;★</span></td><td class="num">3 592&nbsp;₴<br><span style="font-size:9px;color:#9CA3AF;">Bolt 3 592 · partner 0</span></td><td class="num">18</td><td class="num">88.5%</td></tr><tr><td><a class="loclink" href="Hesburger_Kyivskyi_Shliakh_2026-08-17_23.html">Kyivskyi Shliakh</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98298 · Boryspil</span></td><td class="num"><strong>52</strong> <span style="color:#EF4444;font-size:10px;font-weight:700;">▼27.8%</span></td><td class="num">23 521&nbsp;₴</td><td class="num"><span style="color:#EF4444;font-weight:700;">4.17&nbsp;★</span></td><td class="num">779&nbsp;₴<br><span style="font-size:9px;color:#9CA3AF;">Bolt 779 · partner 0</span></td><td class="num">5</td><td class="num">66.1%</td></tr><tr><td><a class="loclink" href="Hesburger_Pavla_Polubotka_2026-08-17_23.html">Pavla Polubotka</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98329 · Kyiv</span></td><td class="num"><strong>47</strong> <span style="color:#EF4444;font-size:10px;font-weight:700;">▼23.0%</span></td><td class="num">26 278&nbsp;₴</td><td class="num"><span style="color:#34D186;font-weight:700;">4.83&nbsp;★</span></td><td class="num">2 241&nbsp;₴<br><span style="font-size:9px;color:#9CA3AF;">Bolt 2 241 · partner 0</span></td><td class="num">15</td><td class="num">84.3%</td></tr><tr><td><a class="loclink" href="Hesburger_Zdolbunivska_2026-08-17_23.html">Zdolbunivska</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98397 · Kyiv</span></td><td class="num"><strong>22</strong> <span style="color:#EF4444;font-size:10px;font-weight:700;">▼63.3%</span></td><td class="num">13 218&nbsp;₴</td><td class="num"><span style="color:#F59E0B;font-weight:700;">4.43&nbsp;★</span></td><td class="num">814&nbsp;₴<br><span style="font-size:9px;color:#9CA3AF;">Bolt 814 · partner 0</span></td><td class="num">4</td><td class="num">68.0%</td></tr><tr><td><a class="loclink" href="Hesburger_Kyivska_2026-08-17_23.html">Kyivska</a><br><span style="font-size:10px;color:#9CA3AF;">ID 98399 · Brovary</span></td><td class="num"><strong>21</strong> <span style="color:#EF4444;font-size:10px;font-weight:700;">▼52.3%</span></td><td class="num">13 254&nbsp;₴</td><td class="num"><span style="color:#34D186;font-weight:700;">4.71&nbsp;★</span></td><td class="num">1 636&nbsp;₴<br><span style="font-size:9px;color:#9CA3AF;">Bolt 1 636 · partner 0</span></td><td class="num">3</td><td class="num">66.9%</td></tr>
   </tbody></table>
   </div>
 </div>

@@ -26,6 +26,11 @@ STRINGS = {
         "vs_prev": "vs пр. тиж.",
         "revenue_uah": "Виручка ₴",
         "bolt_promo": "Bolt промо ₴",
+        "partner_promo": "Партнер промо ₴",
+        "promo_total": "Промо разом ₴",
+        "promo_uah": "Промо ₴",
+        "partner_short": "партнер",
+        "promo_note": "Промо-витрати: знижки та доставку фінансують Bolt і партнер окремо, «разом» — сума обох",
         "new_customers": "Нових клієнтів",
         "bolt_plus_orders": "Bolt+ замовл.",
         "promo_orders": "Промо замовл.",
@@ -83,6 +88,11 @@ STRINGS = {
         "vs_prev": "vs prev. week",
         "revenue_uah": "Revenue ₴",
         "bolt_promo": "Bolt promo ₴",
+        "partner_promo": "Partner promo ₴",
+        "promo_total": "Promo total ₴",
+        "promo_uah": "Promo ₴",
+        "partner_short": "partner",
+        "promo_note": "Promo spend: discounts and delivery are funded by Bolt and the partner separately, “total” is the sum of both",
         "new_customers": "New customers",
         "bolt_plus_orders": "Bolt+ orders",
         "promo_orders": "Promo orders",
@@ -317,6 +327,8 @@ def build_report(
     failed = int(sf(c.get("failed", 0)))
     gmv = round(sf(c.get("gmv_eur", 0)) * UAH)
     bolt_promo = round(sf(c.get("bolt_promo", 0)) * UAH)
+    part_promo = round(sf(c.get("part_promo", 0)) * UAH)
+    promo_total = bolt_promo + part_promo
     promo_ord = int(sf(c.get("promo_ord", 0)))
     bp_ord = int(sf(c.get("bp_ord", 0)))
     new_u = int(sf(c.get("new_u", 0)))
@@ -444,12 +456,17 @@ def build_report(
     <div class="card"><div class="cl">{s['delivered']}</div><div class="cv" style="color:#2AAF6D;">{delivered}</div><div class="cd">{wow_span(wow_ord)} {s['vs_prev']}</div></div>
     <div class="card"><div class="cl">{s['revenue_uah']}</div><div class="cv">{fmt(gmv)}</div><div class="cd">{wow_span(wow_gmv)} {s['vs_prev']}</div></div>
     <div class="card"><div class="cl">AOV ₴</div><div class="cv">{fmt(aov)}</div></div>
-    <div class="card"><div class="cl">{s['bolt_promo']}</div><div class="cv" style="color:#2AAF6D;">{fmt(bolt_promo)}</div></div>
+    <div class="card"><div class="cl">{s['promo_orders']}</div><div class="cv">{promo_ord}</div><div class="cd">{promo_sh}%</div></div>
   </div>
-  <div class="g4">
+  <div class="g3" style="margin-bottom:10px;">
+    <div class="card"><div class="cl">{s['bolt_promo']}</div><div class="cv" style="color:#2AAF6D;">{fmt(bolt_promo)}</div></div>
+    <div class="card"><div class="cl">{s['partner_promo']}</div><div class="cv" style="color:#F59E0B;">{fmt(part_promo)}</div></div>
+    <div class="card"><div class="cl">{s['promo_total']}</div><div class="cv">{fmt(promo_total)}</div></div>
+  </div>
+  <div style="font-size:10px;color:#9CA3AF;margin-bottom:10px;">{s['promo_note']}</div>
+  <div class="g3">
     <div class="card"><div class="cl">{s['new_customers']}</div><div class="cv" style="color:#7C3AED;">{new_u}</div></div>
     <div class="card"><div class="cl">{s['bolt_plus_orders']}</div><div class="cv" style="color:#34D186;">{bp_ord}</div><div class="cd">{bp_sh}%</div></div>
-    <div class="card"><div class="cl">{s['promo_orders']}</div><div class="cv">{promo_ord}</div><div class="cd">{promo_sh}%</div></div>
     <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:{bad_c};">{bad_orders}</div><div class="cd">{bad_pct}%</div></div>
   </div>
 </div>
@@ -510,7 +527,8 @@ def build_report(
     return html, dict(
         delivered=delivered, gmv=gmv, wow_ord=wow_ord, wow_gmv=wow_gmv,
         rating=week_rat, new_u=new_u, avail=avail, bp_ord=bp_ord,
-        promo_ord=promo_ord, bolt_promo=bolt_promo, bad_orders=bad_orders,
+        promo_ord=promo_ord, bolt_promo=bolt_promo, part_promo=part_promo,
+        promo_total=promo_total, bad_orders=bad_orders,
         review_cnt=review_cnt, bad_cnt=bad_cnt, failed=failed,
         prev_delivered=prev_del, prev_gmv=prev_gmv, daily=daily,
         previous_daily=previous_daily,
@@ -585,6 +603,8 @@ def build_network_summary(
     net_prev_del = sum(r["stats"]["prev_delivered"] for r in loc_results)
     net_prev_gmv = sum(r["stats"]["prev_gmv"] for r in loc_results)
     net_bolt_promo = sum(r["stats"]["bolt_promo"] for r in loc_results)
+    net_part_promo = sum(r["stats"].get("part_promo", 0) for r in loc_results)
+    net_promo_total = net_bolt_promo + net_part_promo
     net_promo_ord = sum(r["stats"]["promo_ord"] for r in loc_results)
     net_bp_ord = sum(r["stats"]["bp_ord"] for r in loc_results)
     net_new_u = sum(r["stats"]["new_u"] for r in loc_results)
@@ -653,6 +673,9 @@ def build_network_summary(
             f'<td class="num"><strong>{fmt(st["delivered"])}</strong> {wow_span(st["wow_ord"])}</td>'
             f'<td class="num">{fmt(st["gmv"])}&nbsp;₴</td>'
             f'<td class="num"><span style="color:{rc};font-weight:700;">{rt_str}</span></td>'
+            f'<td class="num">{fmt(st.get("promo_total", st["bolt_promo"]))}&nbsp;₴<br>'
+            f'<span style="font-size:9px;color:#9CA3AF;">Bolt {fmt(st["bolt_promo"])} · '
+            f'{s["partner_short"]} {fmt(st.get("part_promo", 0))}</span></td>'
             f'<td class="num">{fmt(st["bp_ord"])}</td>'
             f'<td class="num">{round(st["avail"]*100,1) if st.get("avail") else "—"}%</td>'
             f"</tr>"
@@ -693,15 +716,18 @@ def build_network_summary(
     <div class="card"><div class="cl">{s['revenue_uah']}</div><div class="cv">{fmt(net_gmv)}</div><div class="cd">{wow_span(wow_gmv)}</div></div>
     <div class="card"><div class="cl">AOV ₴</div><div class="cv">{fmt(net_aov)}</div></div>
     <div class="card"><div class="cl">{s['bolt_promo']}</div><div class="cv" style="color:#2AAF6D;">{fmt(net_bolt_promo)}</div></div>
+    <div class="card"><div class="cl">{s['partner_promo']}</div><div class="cv" style="color:#F59E0B;">{fmt(net_part_promo)}</div></div>
+    <div class="card"><div class="cl">{s['promo_total']}</div><div class="cv">{fmt(net_promo_total)}</div></div>
+  </div>
+  <div class="g6">
     <div class="card"><div class="cl">{s['bolt_plus_orders']}</div><div class="cv" style="color:#34D186;">{fmt(net_bp_ord)}</div><div class="cd">{bp_sh}%</div></div>
     <div class="card"><div class="cl">{s['promo_orders']}</div><div class="cv">{fmt(net_promo_ord)}</div><div class="cd">{promo_sh}%</div></div>
-  </div>
-  <div class="g4">
     <div class="card"><div class="cl">{s['new_customers']}</div><div class="cv" style="color:#7C3AED;">{fmt(net_new_u)}</div></div>
     <div class="card"><div class="cl">{s['cancelled_short']}</div><div class="cv" style="color:{'#EF4444' if net_failed else '#9CA3AF'};">{fmt(net_failed)}</div></div>
     <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:{'#34D186' if net_bad_orders==0 else '#EF4444'};">{fmt(net_bad_orders)}</div></div>
     <div class="card"><div class="cl">{s['avg_availability']}</div><div class="cv" style="color:{avail_color(net_avail)};">{round(net_avail*100,1)}%</div></div>
   </div>
+  <div style="font-size:11px;color:#9CA3AF;margin-top:12px;">{s['promo_note']}</div>
 </div>
 
 <div class="sec">
@@ -718,7 +744,8 @@ def build_network_summary(
   <div style="overflow-x:auto;">
   <table><thead><tr>
     <th>{s['location']}</th><th class="num">{s['delivered']}</th><th class="num">{s['revenue_uah']}</th>
-    <th class="num">{s['rating']}</th><th class="num">Bolt+</th><th class="num">{s['availability']}</th>
+    <th class="num">{s['rating']}</th><th class="num">{s['promo_uah']}</th>
+    <th class="num">Bolt+</th><th class="num">{s['availability']}</th>
   </tr></thead><tbody>
     {loc_rows}
   </tbody></table>

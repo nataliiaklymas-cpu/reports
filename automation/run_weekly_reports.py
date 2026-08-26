@@ -268,6 +268,7 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
                 failed_orders_count AS failed,
                 total_gmv_before_discounts_eur AS gmv_eur,
                 total_campaign_spend_bolt_eur AS bolt_promo,
+                total_campaign_spend_provider_eur AS part_promo,
                 campaign_orders_count AS promo_ord,
                 delivered_bolt_plus_orders_count AS bp_ord,
                 users_activated_provider_count AS new_u,
