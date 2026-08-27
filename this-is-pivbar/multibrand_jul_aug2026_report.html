@@ -74,7 +74,7 @@ tr:hover td{background:#FAFAFA;}
       <div><div style="font-size:13px;font-weight:800;color:white;">Bolt Food</div><div style="font-size:10px;color:rgba(255,255,255,.4);">Ukraine · Київ</div></div>
     </div>
   </div>
-  <div class="sb-nav"><div class="sb-brand-nav" id="sb-nav-pivbar" style="display:none;">
+  <div class="sb-nav"><div class="sb-brand-nav" id="sb-nav-pivbar" style="display:block;">
     <div class="sb-lbl" style="color:#E8A20088;">This is Pivbar</div>
     <a href="#pivbar_hero" class="nav-link" data-brand="pivbar">Головна</a><a href="#pivbar_overview" class="nav-link" data-brand="pivbar">Огляд липень</a><a href="#pivbar_mom" class="nav-link" data-brand="pivbar">MoM черв→лип</a><a href="#pivbar_august" class="nav-link" data-brand="pivbar">Серпень 1–23</a><a href="#pivbar_weekly" class="nav-link" data-brand="pivbar">Тижнева динаміка</a><a href="#pivbar_dishes" class="nav-link" data-brand="pivbar">Топ страви</a><a href="#pivbar_ops" class="nav-link" data-brand="pivbar">Операційна</a><a href="#pivbar_avail" class="nav-link" data-brand="pivbar">Доступність / Bolt+</a><a href="#pivbar_ratings" class="nav-link" data-brand="pivbar">Рейтинги</a><a href="#pivbar_impressions" class="nav-link" data-brand="pivbar">Перегляди</a><a href="#pivbar_locations" class="nav-link" data-brand="pivbar">Локації</a>
   </div><div class="sb-brand-nav" id="sb-nav-nunu" style="display:none;">
@@ -90,9 +90,9 @@ tr:hover td{background:#FAFAFA;}
   <div class="sb-ft">Лип–серп 2026 · <span style="color:#34D186;font-weight:700;">Bolt Food</span></div>
 </nav>
 
-<div class="brand-tabs"><button class="brand-tab" data-brand="pivbar" style="--tab-color:#E8A200">This is Pivbar</button><button class="brand-tab" data-brand="nunu" style="--tab-color:#E63946">NUNU</button><button class="brand-tab" data-brand="teplyi" style="--tab-color:#FF6B35">Теплий</button><button class="brand-tab" data-brand="khvylya" style="--tab-color:#06B6D4">Хвиля</button></div>
+<div class="brand-tabs"><button class="brand-tab active" data-brand="pivbar" style="--tab-color:#E8A200">This is Pivbar</button><button class="brand-tab" data-brand="nunu" style="--tab-color:#E63946">NUNU</button><button class="brand-tab" data-brand="teplyi" style="--tab-color:#FF6B35">Теплий</button><button class="brand-tab" data-brand="khvylya" style="--tab-color:#06B6D4">Хвиля</button></div>
 
-<div class="brand-content" id="brand-pivbar"><div class="hero" id="pivbar_hero" style="background:linear-gradient(135deg,#1a1400 0%,#1a1400dd 60%,#1a1400aa 100%);">
+<div class="brand-content active" id="brand-pivbar"><div class="hero" id="pivbar_hero" style="background:linear-gradient(135deg,#1a1400 0%,#1a1400dd 60%,#1a1400aa 100%);">
 <div class="wrap">
   <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
     <div style="background:rgba(52,209,134,.15);border:1px solid rgba(52,209,134,.25);border-radius:7px;padding:6px 12px;font-size:12px;font-weight:700;color:#34D186;">Bolt Food Ukraine</div>
@@ -1915,26 +1915,25 @@ tr:hover td{background:#FAFAFA;}
 
 <script>
 (function(){
-  var currentBrand = Object.keys(BRANDS)[0];
   var BRANDS_js = ["pivbar", "nunu", "teplyi", "khvylya"];
+  var currentBrand = BRANDS_js[0];
 
   function switchBrand(bkey) {
+    if (!bkey) return;
     currentBrand = bkey;
-    // tabs
     document.querySelectorAll('.brand-tab').forEach(function(t){ t.classList.remove('active'); });
-    document.querySelector('.brand-tab[data-brand="'+bkey+'"]').classList.add('active');
-    // content
+    var tab = document.querySelector('.brand-tab[data-brand="'+bkey+'"]');
+    if (tab) tab.classList.add('active');
     document.querySelectorAll('.brand-content').forEach(function(c){ c.classList.remove('active'); });
-    document.getElementById('brand-'+bkey).classList.add('active');
-    // sidebar
+    var panel = document.getElementById('brand-'+bkey);
+    if (panel) panel.classList.add('active');
     document.querySelectorAll('.sb-brand-nav').forEach(function(n){ n.style.display='none'; });
-    document.getElementById('sb-nav-'+bkey).style.display='block';
-    // scroll to top
+    var nav = document.getElementById('sb-nav-'+bkey);
+    if (nav) nav.style.display='block';
     window.scrollTo(0,0);
     updateActive();
   }
 
-  // Init
   document.querySelectorAll('.brand-tab').forEach(function(btn){
     btn.addEventListener('click', function(){ switchBrand(this.dataset.brand); });
   });
