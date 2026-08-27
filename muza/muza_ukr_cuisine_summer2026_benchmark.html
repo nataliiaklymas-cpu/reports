@@ -161,7 +161,6 @@ a{color:inherit;text-decoration:none}
   <a href="#funnel">Воронка</a>
   <a href="#locs">Локації</a>
   <a href="#why">Гіпотези</a>
-  <a href="#next">Наступні кроки</a>
 </div></nav>
 
 <main class="wrap">
@@ -173,7 +172,7 @@ a{color:inherit;text-decoration:none}
   </div>
   <div class="verdict">
     <h3>Муза просідає сильніше за сегмент і платформу</h3>
-    <p>Червень → липень: замовлення Музи <b>−32.5%</b>, peers української кухні <b>−15%</b>, увесь UA food <b>−18%</b>. З кінця червня тижневий індекс Музи розходиться вниз, тоді як peers і платформа в серпні вже вище бази початку червня. Проблема не в «літньому ринку» загалом — Муза втрачає частку всередині сегменту.</p>
+    <p>Червень → липень: замовлення Музи <b>−32.5%</b>, peers української кухні <b>−15%</b>. З кінця червня тижневий індекс Музи розходиться вниз, тоді як peers і платформа в серпні вже вище бази початку червня. Проблема не в «літньому ринку» загалом — Муза втрачає частку всередині сегменту.</p>
   </div>
 </section>
 
@@ -181,7 +180,7 @@ a{color:inherit;text-decoration:none}
   <div class="sec-h">
     <div class="kicker">Trend</div>
     <h2>Динаміка замовлень</h2>
-    <p>Індекс тижневих доставок (база = тиждень 1–7 червня = 100). Серпень у місячних KPI неповний (до 26.08) — для серпня орієнтуйтесь на тижневий графік.</p>
+    <p>Відносна динаміка (база = тиждень 1–7 червня = 100). Без абсолютних обсягів — лише форма тренду по кривих.</p>
   </div>
   <div class="g2">
     <div class="chart-box">
@@ -191,7 +190,7 @@ a{color:inherit;text-decoration:none}
       <canvas id="cRating"></canvas>
     </div>
   </div>
-  <p class="chart-cap">Зліва: індексовані замовлення. Справа: середній рейтинг відгуків. Джерело: Databricks · fact_provider_weekly / rating history.</p>
+  <p class="chart-cap">Зліва: відносна динаміка (індекс). Справа: середній рейтинг відгуків. Джерело: Databricks · fact_provider_weekly / rating history.</p>
 </section>
 
 <section class="sec" id="gaps">
@@ -298,22 +297,10 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
-<section class="sec" id="next">
-  <div class="sec-h">
-    <div class="kicker">Actions</div>
-    <h2>Що перевірити далі</h2>
-  </div>
-  <div class="next">
-    <h3>Рекомендовані наступні кроки</h3>
-    <ol>
-      <li><b>Аудит топ-страв</b> з негативними згадками + mystery shop на 5–7 київських точок.</li>
-      <li><b>Закрити / полагодити</b> offline і low-avail локації (пр-т ЄС, Олеся, Орлика).</li>
-      <li><b>Порівняти меню-ціни й фото</b> з Mama Vdoma / Halya Baluvana / Kotleta Pokyivsky.</li>
-      <li><b>Тест літніх промо</b> лише на точках з рейтингом ≥4.5 — не розмазувати бюджет по слабких локаціях.</li>
-    </ol>
-  </div>
-  <p class="chart-cap" style="margin-top:16px">Методологія: peers = UA food з тегом Ukrainian + (Traditional/Comfort food або curated бренди), без Bufet і salad/kebab dark kitchens. GMV — before discounts. Дані Databricks · main.ng_delivery.</p>
-</section>
+<p class="chart-cap" style="margin-top:16px">Методологія: peers = UA food з тегом Ukrainian + (Traditional/Comfort food або curated бренди), без Bufet і salad/kebab dark kitchens. GMV — before discounts. Дані Databricks · main.ng_delivery.</p>
+
+
+
 
 </main>
 
@@ -347,7 +334,7 @@ new Chart(document.getElementById("cIndex"), {
   options:{
     responsive:true, maintainAspectRatio:false,
     plugins:{legend:{labels:{font:{family:"Inter", size:12}, boxWidth:12}},
-             title:{display:true, text:"Індекс тижневих замовлень (1 чер = 100)", align:"start", color:"#191F1C", font:{family:"Inter", size:13, weight:"650"}, padding:{bottom:12}}},
+             title:{display:true, text:"Відносна динаміка замовлень (1 чер = 100)", align:"start", color:"#191F1C", font:{family:"Inter", size:13, weight:"650"}, padding:{bottom:12}}},
     scales:{x:{grid:{display:false}, ticks}, y:{grid:{color:grid.color}, ticks, suggestedMin:70, suggestedMax:135}}
   }
 });
