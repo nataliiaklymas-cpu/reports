@@ -277,20 +277,20 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
                 provider_processing_minutes_per_order_value AS prep_min,
                 bad_provider_rating_rate_value AS bad_rt,
                 provider_active_rate_value AS avail
-            FROM ng_delivery_spark.fact_provider_weekly
+            FROM main.ng_delivery.fact_provider_weekly
             WHERE provider_id IN ({ids_str})
               AND metric_timestamp_partition = DATE('{week["cur_mon"]}')
         """)
         prev_df = dbx.query(f"""
             SELECT provider_id,
                 total_gmv_before_discounts_eur AS gmv_eur
-            FROM ng_delivery_spark.fact_provider_weekly
+            FROM main.ng_delivery.fact_provider_weekly
             WHERE provider_id IN ({ids_str})
               AND metric_timestamp_partition = DATE('{week["prev_mon"]}')
         """)
         total_del_cur_df = dbx.query(f"""
             SELECT provider_id, COUNT(*) AS delivered_total
-            FROM ng_delivery_spark.dim_order_delivery
+            FROM main.ng_delivery.dim_order_delivery
             WHERE provider_id IN ({ids_str})
               AND order_created_date_local >= DATE('{week["cur_mon"]}') AND order_created_date_local < DATE('{week["cur_end"]}')
               AND order_state = 'delivered'
@@ -298,7 +298,7 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
         """)
         total_del_prev_df = dbx.query(f"""
             SELECT provider_id, COUNT(*) AS delivered_total
-            FROM ng_delivery_spark.dim_order_delivery
+            FROM main.ng_delivery.dim_order_delivery
             WHERE provider_id IN ({ids_str})
               AND order_created_date_local >= DATE('{week["prev_mon"]}') AND order_created_date_local < DATE('{week["cur_mon"]}')
               AND order_state = 'delivered'
@@ -307,7 +307,7 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
         daily_df = dbx.query(f"""
             SELECT provider_id, order_created_date_local AS day,
                 COUNT(CASE WHEN order_state='delivered' THEN 1 END) AS delivered
-            FROM ng_delivery_spark.dim_order_delivery
+            FROM main.ng_delivery.dim_order_delivery
             WHERE provider_id IN ({ids_str})
               AND order_created_date_local >= DATE('{week["cur_mon"]}')
               AND order_created_date_local < DATE('{week["cur_end"]}')
@@ -319,7 +319,7 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
                 SELECT provider_id,
                     DATEDIFF(order_created_date_local, DATE('{week["prev_mon"]}')) AS day_index,
                     COUNT(CASE WHEN order_state='delivered' THEN 1 END) AS delivered
-                FROM ng_delivery_spark.dim_order_delivery
+                FROM main.ng_delivery.dim_order_delivery
                 WHERE provider_id IN ({ids_str})
                   AND order_created_date_local >= DATE('{week["prev_mon"]}')
                   AND order_created_date_local < DATE('{week["cur_mon"]}')
@@ -327,7 +327,7 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
             """)
         dish_df = dbx.query(f"""
             SELECT provider_id, basket_item_name, COUNT(*) AS qty
-            FROM ng_delivery_spark.dim_basket_item_delivery
+            FROM main.ng_delivery.dim_basket_item_delivery
             WHERE provider_id IN ({ids_str})
               AND order_created_date_local >= DATE('{week["cur_mon"]}')
               AND order_created_date_local < DATE('{week["cur_end"]}')
@@ -341,14 +341,14 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
                 ROUND(AVG(rating_value),2) AS avg_rating,
                 COUNT(*) AS review_cnt,
                 SUM(CASE WHEN rating_value<=2 THEN 1 ELSE 0 END) AS bad_cnt
-            FROM ng_delivery_spark.delivery_rating_provider_rating_history
+            FROM main.ng_delivery.delivery_rating_provider_rating_history
             WHERE provider_id IN ({ids_str})
               AND created_date >= DATE('{week["cur_mon"]}') AND created_date < DATE('{week["cur_end"]}')
             GROUP BY provider_id
         """)
         cmt_df = dbx.query(f"""
             SELECT provider_id, rating_value AS rating, comment
-            FROM ng_delivery_spark.delivery_rating_provider_rating_history
+            FROM main.ng_delivery.delivery_rating_provider_rating_history
             WHERE provider_id IN ({ids_str})
               AND created_date >= DATE('{week["cur_mon"]}') AND created_date < DATE('{week["cur_end"]}')
               AND comment IS NOT NULL AND TRIM(comment) != ''
@@ -504,7 +504,7 @@ def run_partner_reviews(partner_key: str, cfg: dict, week: dict, repo_root: str)
     with DBX() as dbx:
         rat_df = dbx.query(f"""
             SELECT provider_id, order_id, rating_value AS rating, comment, created
-            FROM ng_delivery_spark.delivery_rating_provider_rating_history
+            FROM main.ng_delivery.delivery_rating_provider_rating_history
             WHERE provider_id IN ({ids_str})
               AND created_date >= DATE('{week["cur_mon"]}')
               AND created_date < DATE('{week["cur_end"]}')
@@ -521,7 +521,7 @@ def run_partner_reviews(partner_key: str, cfg: dict, week: dict, repo_root: str)
             ids_chunk = ",".join(str(i) for i in order_ids)
             ord_df = dbx.query(f"""
                 SELECT order_id, order_reference_id, order_created_ts_local, order_gmv_local
-                FROM ng_delivery_spark.dim_order_delivery
+                FROM main.ng_delivery.dim_order_delivery
                 WHERE order_id IN ({ids_chunk})
                   AND provider_id IN ({ids_str})
                   AND order_created_date_local >= DATE_ADD(DATE('{week["cur_mon"]}'), -21)

@@ -110,6 +110,22 @@ ROCO_SUSHI_PROVIDERS = {
     77873: {"name": "ROCO Sushi Василя Тютюнника", "brand": "Roco Sushi", "city": "Київ"},
 }
 
+PIVBAR_GROUP_PROVIDERS = {
+    98367: {"name": "This is Pivbar пл. Контрактова", "brand": "This is Pivbar", "city": "Київ"},
+    98368: {"name": "This is Pivbar вул. Тростянецька", "brand": "This is Pivbar", "city": "Київ"},
+    98369: {"name": "This is Pivbar вул. Лісківська", "brand": "This is Pivbar", "city": "Київ"},
+    98372: {"name": "This is Pivbar бул. Лесі Українки", "brand": "This is Pivbar", "city": "Київ"},
+    98373: {"name": "This is Pivbar вул. Левка Лук'яненка", "brand": "This is Pivbar", "city": "Київ"},
+    82751: {"name": "NUNU Княжий Затон", "brand": "NUNU", "city": "Київ"},
+    93116: {"name": "NUNU Ярославів Вал", "brand": "NUNU", "city": "Київ"},
+    118105: {"name": "NUNU Костянтинівська", "brand": "NUNU", "city": "Київ"},
+    122167: {"name": "NUNU гамбургерна на Оболоні", "brand": "NUNU", "city": "Київ"},
+    122169: {"name": "NUNU Оболонь стрітфуд", "brand": "NUNU", "city": "Київ"},
+    124032: {"name": "NUNU гамбургерна Тростянецька", "brand": "NUNU", "city": "Київ"},
+    113217: {"name": "Теплий вул. Лісківська", "brand": "Теплий", "city": "Київ"},
+    114063: {"name": "Хвиля Басейна", "brand": "Хвиля", "city": "Київ"},
+}
+
 PARTNERS = {
     "salateira": {
         "display_name": "Salateira",
@@ -165,5 +181,12 @@ PARTNERS = {
         "github_folder": "roco-sushi-weekly",
         "providers": ROCO_SUSHI_PROVIDERS,
         "daily_comparison_chart": True,
+    },
+    "pivbar_group": {
+        "display_name": "Pivbar group",
+        "emoji": "",
+        "brand_color": "#E8A200",
+        "github_folder": "this-is-pivbar/pivbar-group-weekly",
+        "providers": PIVBAR_GROUP_PROVIDERS,
     },
 }

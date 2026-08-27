@@ -15,7 +15,7 @@ from databricks import sql
 import pandas as pd
 
 SERVER_HOSTNAME = os.environ.get("DATABRICKS_SERVER_HOSTNAME", "bolt-incentives.cloud.databricks.com")
-HTTP_PATH = os.environ.get("DATABRICKS_HTTP_PATH", "sql/protocolv1/o/2472566184436351/0221-081903-9ag4bh69")
+HTTP_PATH = os.environ.get("DATABRICKS_HTTP_PATH", "sql/protocolv1/o/2472566184436351/0505-112942-d3yviznw")
 
 
 def _load_token() -> str:
@@ -42,6 +42,8 @@ class DBX:
             http_path=http_path or HTTP_PATH,
             access_token=_load_token(),
         )
+        with self.conn.cursor() as cur:
+            cur.execute("USE CATALOG main")
 
     def __enter__(self):
         return self
