@@ -110,12 +110,22 @@ a:hover { text-decoration: underline; }
   background: rgba(244, 246, 233, 0.08);
   color: var(--color-content-primary-inverted);
 }
-.wrap { max-width: 880px; margin: 0 auto; padding: 28px 24px 80px; }
+html { scroll-padding-top: 4.75rem; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 20px 24px 80px; }
+.toc-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--color-layer-floor-0-grouped);
+  padding: 10px 0 12px;
+}
 .toc {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 0 0 28px;
 }
 .toc a {
   background: var(--color-layer-floor-1);
@@ -131,6 +141,7 @@ a:hover { text-decoration: underline; }
   border-radius: var(--corner-radius-l);
   padding: 28px 32px;
   margin: 0 0 16px;
+  scroll-margin-top: 4.75rem;
 }
 h2 {
   font: 650 1.5rem/1.875rem var(--font);
@@ -249,7 +260,7 @@ li { margin: 0 0 8px; }
 }
 @media print {
   .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .toc { display: none; }
+  .toc-bar { display: none; }
   .card { break-inside: avoid; }
 }
 </style>
@@ -277,19 +288,19 @@ li { margin: 0 0 8px; }
   </div>
 </header>
 
-<main class="wrap">
-  <nav class="toc" aria-label="Зміст">
+<nav class="toc-bar" aria-label="Зміст">
+  <div class="toc">
     <a href="#short">Коротко</a>
     <a href="#how">Як працює</a>
     <a href="#on">Як увімкнути</a>
     <a href="#mall">ТРЦ Києва</a>
     <a href="#rec">Рекомендація</a>
-    <a href="#talk">Питання до розмови</a>
-  </nav>
+  </div>
+</nav>
 
+<main class="wrap">
   <section class="card" id="short">
-    <h2>Навіщо цей документ</h2>
-    <p>Щоб шерити колезі й разом вирішити: <strong>чи просити Merchant Support увімкнути фічу не лише McDonald’s, а всім food-закладам Bolt Food у ТРЦ Києва.</strong></p>
+    <h2>Коротко</h2>
     <p class="muted">Фіча жива і стабільна. Канал <code>#feature-delivery-mcd-ua-airalarms</code> архівований 27 липня 2026 як rolled out. Підтримка — <code>#dev-delivery-merchant-support</code>.</p>
     <div class="callout">
       <h3>Одне речення</h3>
@@ -301,6 +312,7 @@ li { margin: 0 0 8px; }
     <h2>Як це працює</h2>
     <p><strong>Сигнал.</strong> Офіційний Ukrainian Air Alarm API (<a href="https://api.ukrainealarm.com/" target="_blank" rel="noopener">api.ukrainealarm.com</a>; історія на <a href="https://alerts.in.ua/en" target="_blank" rel="noopener">alerts.in.ua</a>). Тривога приходить по адміністративному регіону: область / район / громада — не по адресі ТРЦ і не по GPS закладу.</p>
     <p><strong>Хто потрапляє під автозакриття.</strong> Не всі заклади міста. Є <strong>ручний мапінг</strong> <code>regionID → provider ID</code> у <a href="https://docs.google.com/spreadsheets/d/18bGUXZC0KtKNx3Fvho_KLnsEY_egW95YNLMe82JJKIM" target="_blank" rel="noopener">цій таблиці</a>. Зараз у конфігу — <strong>McD UA</strong>. Geo-мапінг «усі мерчанти в полігоні тривоги» планували як наступний етап і не зробили.</p>
+    <p><strong>Інтеграція не потрібна.</strong> Фіча працює на боці Bolt: статус закладу в системі + екран у Merchant App на планшеті. POS-підключення не обов’язкове — неінтегрованим партнерам її теж можна ввімкнути. Окремий запит McD «передати скасування в їхню касу» так і не зробили; на саму автозакриття це не блокує.</p>
 
     <h3>У момент сигналу</h3>
     <ol class="steps">
@@ -331,7 +343,7 @@ li { margin: 0 0 8px; }
 
   <section class="card" id="on">
     <h2>Як увімкнути</h2>
-    <p>Це <strong>не</strong> тумблер в адмінці чи Partner Portal. Вмикає Merchant Engagement (Shyngys Satkan / Tanel Koha).</p>
+    <p>Вмикає Merchant Engagement (Shyngys Satkan / Tanel Koha).</p>
 
     <h3>Нова локація McD — відпрацьований процес</h3>
     <ol>
@@ -342,7 +354,7 @@ li { margin: 0 0 8px; }
     <p class="tiny">Гайд: <a href="https://taxify.atlassian.net/wiki/spaces/~7120208101c9d2ef5046e5ac53f9ea834cf349/pages/7519437129/Enabling+Air+Alert+auto+deactivation+feature+for+new+providers+UA+McD" target="_blank" rel="noopener">Enabling Air Alert auto deactivation for new providers (UA McD)</a>.</p>
 
     <h3>SMB / інша мережа</h3>
-    <p>Готового self-serve шляху немає. Той самий тікет і явний запит: чи можуть додати цих провайдерів у мапінг. MVP зробили ручним списком, бо auto-accept / SOP були під McD. Масштаб на всіх мерчантів — окремий geo-проєкт (полігони регіонів), його не запускали. Нові точки <strong>не</strong> підхоплюються самі — навіть нові McD кілька разів «випадали», бо їх забули додати в таблицю.</p>
+    <p>Готового self-serve шляху немає. Той самий тікет і явний запит: чи можуть додати цих провайдерів у мапінг. MVP зробили ручним списком, бо auto-accept / SOP були під McD. Масштаб на всіх мерчантів — окремий geo-проєкт (полігони регіонів), його не запускали. Нові точки <strong>не</strong> підхоплюються самі.</p>
 
     <h3>Що сказати партнеру після увімкнення</h3>
     <ul>
@@ -362,7 +374,7 @@ li { margin: 0 0 8px; }
           Плюси
         </h3>
         <ul>
-          <li>Персонал іде в укриття, не шукаючи кнопку. Urgent shutdown лишається як запасний варіант, але на ній зривались.</li>
+          <li>Персонал іде в укриття, не шукаючи кнопку на планшеті. У Merchant App лишається ручна кнопка Urgent shutdown: заклад іде offline і скасовуються замовлення, які ще не почали готувати. Автоматику зробили саме тому, що під сирену люди часто не встигали її натиснути.</li>
           <li>Нові замовлення не заходять одразу після сигналу.</li>
           <li>Через 5 хв самі фейляться замовлення, які вже не встигнуть забрати.</li>
           <li>Менше ручних скасувань CS, порожніх поїздок кур’єра, компенсацій McD (бізнес-кейс: знизити comp з 50% до 30% вартості замовлення).</li>
@@ -372,14 +384,17 @@ li { margin: 0 0 8px; }
       <div class="col minus">
         <h3>
           <svg class="ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill="currentColor" d="M22.6638 18L13.6638 2C13.2638 1.4 12.6638 1 11.9638 1C11.2638 1 10.5638 1.4 10.2638 2L1.26383 18C0.863826 18.6 0.963826 19.4 1.26383 20C1.66383 20.6 2.26383 21 2.96383 21H20.9638C21.6638 21 22.3638 20.6 22.6638 20C23.0638 19.4 23.0638 18.7 22.6638 18ZM10.9992 12.8L10.77 8.59814C10.7316 7.89296 11.293 7.30005 11.9992 7.30005C12.7055 7.30005 13.2669 7.89296 13.2285 8.59814L12.9992 12.8C12.9992 13.4 12.5992 13.8 11.9992 13.8C11.3992 13.8 10.9992 13.4 10.9992 12.8ZM12 17.6C12.6904 17.6 13.25 17.0404 13.25 16.35C13.25 15.6597 12.6904 15.1 12 15.1C11.3096 15.1 10.75 15.6597 10.75 16.35C10.75 17.0404 11.3096 17.6 12 17.6Z"/></svg>
-          Мінуси і дірки
+          Мінуси
         </h3>
         <ul>
           <li>Зараз це McD-only. SMB / KFC / інші мережі за замовчуванням не в фічі.</li>
           <li>Немає «тримаємо offline, поки тривога активна».</li>
           <li>Немає пінгу «тривога скінчилась, увімкніть себе» (McD просили — не зроблено).</li>
           <li>Waiting Pickup після березня теж фейлиться: частина замовлень уже може бути в руках кур’єра. Comp часто лише якщо проїхав &gt;2 км і сам написав.</li>
-          <li>Два планшети, слабкий auth вебхука, немає POS-скасування McD, спайк CS під час тривоги.</li>
+          <li>Якщо в закладі два планшети: закрити сповіщення на одному не закриває на другому (offline на бекенді все одно стане).</li>
+          <li>Сигнал тривоги приходить на наш сервер без нормальної перевірки «хто надіслав» — теоретично можна підсунути фейкову тривогу.</li>
+          <li>Для McD так і не зробили скасування в їхній касі (POS): на кухні / в обліку можуть лишатися «висячі» чеки. У неінтегрованих партнерів каса — це наш планшет, тож цього мінуса немає.</li>
+          <li>Під час тривоги CS ловить багато тікетів: закриття, затримки, скасування.</li>
         </ul>
       </div>
     </div>
@@ -408,7 +423,6 @@ li { margin: 0 0 8px; }
           <li>Менше замовлень, які їдуть у вже зачинений молл: failed, CS, courier pay «в нікуди», удар по CPO.</li>
           <li>Клієнт не бачить «відкриті» бренди фудкорту, поки сирена і охорона не пускає.</li>
           <li>Менше кур’єрів у паркінгу / на фудкорті під час тривоги.</li>
-          <li>Однакова поведінка з McD у тому ж ТРЦ — менше «чому Мак закритий, а сусід відкритий».</li>
           <li>Менше stranded Waiting Pickup на фудкорті, які все одно не заберуть.</li>
         </ul>
       </div>
@@ -421,7 +435,6 @@ li { margin: 0 0 8px; }
           <li>Втрачений GMV, якщо частина фудкорту / кухонь із чорного ходу реально працює, а конкурент лишається онлайн.</li>
           <li>Немає авто-відкриття: після відбою ще 15–30+ хв діри. Молл часто відкривається повільніше за вулицю (охорона, рішення адміністрації).</li>
           <li>Тригер лише на старті: якщо заклад натиснув Online під час тривоги — visibilty повертається, автоматика мовчить.</li>
-          <li>Ручний мапінг не масштабується: 140+ не-McD ID, нові орендарі, забуті рядки. Поля «це ТРЦ» в адмінці немає.</li>
           <li>Київська тривога гасить усі замаплені молли разом — різке просідання supply в місті.</li>
           <li>SMB без SOP: хто після відбою тисне Online, якщо касир ще в укритті / молл закритий?</li>
         </ul>
@@ -429,13 +442,13 @@ li { margin: 0 0 8px; }
     </div>
 
     <div class="callout">
-      <h3>Важливо не змішати з іншими важелями</h3>
-      <p>COps і так міняє міські налаштування після повітряної тривоги. Air Alarm — це per-provider offline + автоскасування, не city pause. Два важелі одночасно можуть «подвоїти» діру в availability, якщо їх не розвести.</p>
+      <h3>Не плутати з паузою по місту</h3>
+      <p>Окремо від цієї фічі команда COps після повітряної тривоги може змінювати налаштування всього міста — наприклад, паузу доставки по Києву. Air Alarm працює інакше: вимикає конкретний заклад і скасовує його замовлення. Якщо спрацюють обидва одночасно, заклад може лишитися закритим довше, ніж треба.</p>
     </div>
   </section>
 
   <section class="card" id="rec">
-    <h2>Рекомендація до розмови</h2>
+    <h2>Рекомендація</h2>
     <p><strong>Не вмикати за замовчуванням усі 151 локацію ТРЦ Києва.</strong> Фіча живе як whitelist під McD SOP. Для SMB немає ні автоонбордингу, ні пінгу після відбою, ні «тримати offline до відбою».</p>
     <p>Якщо все ж пілотувати — не «всі ТРЦ», а явний список:</p>
     <ul>
@@ -445,20 +458,6 @@ li { margin: 0 0 8px; }
       <li>Комунікація партнерам українською: сирена = не чіпати планшет; відбій = самі Online, коли кухня готова.</li>
       <li>Дивитись два вікна: ранок після нічної тривоги і Online посеред тривоги.</li>
     </ul>
-    <p class="muted">Geo «всі мерчанти в полігоні» — окремий інженірний запит, не конфіг у таблиці.</p>
-  </section>
-
-  <section class="card" id="talk">
-    <h2>Питання, щоб порадитися</h2>
-    <p class="muted">Можна йти по пунктах на короткому дзвінку.</p>
-    <div class="q"><span class="box" aria-hidden="true"></span><div><strong>1. Яка ціль?</strong> Безпека кур’єра і персоналу — чи утримати GMV, поки конкурент лишається відкритим?</div></div>
-    <div class="q"><span class="box" aria-hidden="true"></span><div><strong>2. SOP після відбою.</strong> Хто в SMB тисне Online, якщо молл ще закритий, а персонал в укритті?</div></div>
-    <div class="q"><span class="box" aria-hidden="true"></span><div><strong>3. Пілот чи все місто?</strong> Один ТРЦ, кілька мереж, чи одразу всі 20 молів?</div></div>
-    <div class="q"><span class="box" aria-hidden="true"></span><div><strong>4. Фудкорт vs увесь ТРЦ.</strong> Чи є кухні з окремим входом, які реально працюють під тривогу?</div></div>
-    <div class="q"><span class="box" aria-hidden="true"></span><div><strong>5. Хто веде мапінг?</strong> Нова точка в Gulliver через місяць — хто додає рядок, щоб вона знову не «випала»?</div></div>
-    <div class="q"><span class="box" aria-hidden="true"></span><div><strong>6. Дірка «Online під час тривоги».</strong> Чи ок, що заклад може повернутися в апку, доки сирена ще йде?</div></div>
-    <div class="q"><span class="box" aria-hidden="true"></span><div><strong>7. Чи просимо eng допиляти фічу</strong> (тримати offline до відбою / пінг після відбою), перш ніж масштабувати на SMB?</div></div>
-    <div class="q"><span class="box" aria-hidden="true"></span><div><strong>8. Комунікація.</strong> Хто пише партнерам? Без цього касири тиснуть Online «бо планшет пише offline» — і автоскасування зривається.</div></div>
   </section>
 
   <section class="card">
