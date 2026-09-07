@@ -111,6 +111,17 @@ h2 {
   font-feature-settings: "tnum", "cv03", "cv04";
   color: var(--color-content-action-primary);
 }
+.qa { margin: 0; }
+.qa dt {
+  font: 650 1.0625rem/1.4 "InterVariable", sans-serif;
+  margin: 20px 0 8px;
+}
+.qa dt:first-child { margin-top: 0; }
+.qa dd {
+  margin: 0;
+  font: 450 1.125rem/1.55 "InterVariable", sans-serif;
+  color: var(--color-content-secondary);
+}
 .foot {
   text-align: center;
   color: var(--color-content-tertiary);
@@ -140,6 +151,7 @@ section { scroll-margin-top: 72px; }
       <a href="#s3">3</a>
       <a href="#s4">4</a>
       <a href="#s5">5</a>
+      <a href="#qa">Q&amp;A</a>
     </div>
   </nav>
 
@@ -214,6 +226,27 @@ section { scroll-margin-top: 72px; }
         <p>Отже. Серпень: наша команда вище цілей, Україна друга серед країн, Bolt+ уже в комісії. Вересень: скейл, раніше renegotiations, дисципліна по інвестиціях.</p>
         <p>Дякую.</p>
       </div>
+    </section>
+
+    <section class="card" id="qa">
+      <p class="kicker">Якщо спитають</p>
+      <h2>Q&amp;A</h2>
+      <dl class="qa">
+        <dt>Чому churn жовтий?</dt>
+        <dd>1.9% це +0.9 п.п. вище цілі. Траєкторія 4.6 → 2.0 → 1.9: відтік не розганяється, просто ще не в таргеті. Далі якість портфеля і renegotiations, не більше промо.</dd>
+        <dt>Чому 360 після 479?</dt>
+        <dd>Липень був піком. Таргет серпня все одно перевищили вчетверо. Далі не женемо обсяг заради обсягу: Q4 renegotiations по MM і ENT починаємо вже у вересні, щоб зима не прийшла разом із ціллю.</dd>
+        <dt>Чому 61%, а не 83%?</dt>
+        <dd>Opt-outs плюс 1 055 ресторанів, яких навмисно не чіпали. Bolt+ лишаємо як важіль для кількох великих угод. Масову хвилю вже зняли.</dd>
+        <dt>2 528 чи 4.6 тисячі?</dt>
+        <dd>Різні зрізи. 2 528 — MM+ENT у country KPI. ~4.6K — усі активні UA merchants на Bolt+ після хвилі, включно зі SMB.</dd>
+        <dt>Чому cost-share 18%?</dt>
+        <dd>У серпні самі дофінансували activation. Партнери ко-фандять engagement. У вересні це аргумент затиснути AM campaigns і CM2.</dd>
+        <dt>Різати AM campaigns і ростити Smart Promo?</dt>
+        <dd>Різні важелі. Smart Promo скелиться на боці мерчанта. AM campaigns — наш ULC. Серпень показав, що перше може рости, а друге треба ставити вибірковіше.</dd>
+        <dt>McDonald’s / тривоги</dt>
+        <dd>Не йди в розбір рефандів без питання. Серпень, особливо кінець місяця в Києві, дав ops-стрес. У вересні — операційна модель, не міський прайс на всіх.</dd>
+      </dl>
     </section>
 
   </main>
