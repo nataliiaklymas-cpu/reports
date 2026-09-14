@@ -1,38 +1,58 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pesto Cafe — Reports</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pesto Cafe · Pasta&amp;Pizza · Mister Twister — звіти Bolt Food</title>
 <style>
-  :root { --green:#34D186; }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #fff; min-height: 100vh; padding: 56px 24px;
-    background: radial-gradient(1000px 700px at 15% 5%, #1b6b47 0%, transparent 58%), radial-gradient(900px 650px at 95% 95%, #0e3d2a 0%, transparent 55%), linear-gradient(135deg, #0c1f16 0%, #0a1712 100%); }
-  .wrap { max-width: 720px; margin: 0 auto; animation: rise .6s cubic-bezier(.2,.8,.2,1) both; }
-  @keyframes rise { from { opacity:0; transform: translateY(20px) } to { opacity:1; transform:none } }
-  .badge { display:inline-flex; align-items:center; gap:8px; background:rgba(52,209,134,0.15); color:var(--green); border:1px solid rgba(52,209,134,0.35); padding:6px 13px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.3px; margin-bottom:18px; }
-  .dot { width:7px; height:7px; border-radius:50%; background:var(--green); }
-  h1 { font-size:34px; font-weight:800; letter-spacing:-.5px; margin-bottom:6px; }
-  .sub { color:rgba(255,255,255,0.6); font-size:15px; margin-bottom:30px; }
-  .list { list-style:none; display:flex; flex-direction:column; gap:12px; }
-  .list a { display:flex; align-items:center; justify-content:space-between; gap:16px; text-decoration:none; color:#fff;
-    background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:18px 20px; transition:all .18s; }
-  .list a:hover { background:rgba(52,209,134,0.12); border-color:rgba(52,209,134,0.4); transform:translateY(-2px); }
-  .list .t { font-weight:600; font-size:16px; }
-  .list .arw { color:var(--green); font-size:18px; }
-  .foot { margin-top:36px; font-size:12px; color:rgba(255,255,255,0.35); }
+@font-face { font-family:"InterVariable"; src:url(Inter.woff2) format("woff2");
+  font-weight:100 900; font-style:normal; font-display:swap; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:#0C2C1C; color:rgba(253,255,254,.93); min-height:100vh; padding:72px 24px;
+  font:450 1rem/1.5rem "InterVariable", -apple-system, sans-serif;
+  font-feature-settings:"cv03","cv04"; -webkit-font-smoothing:antialiased; }
+.wrap { max-width:720px; margin:0 auto; }
+.kicker { font:650 .6875rem/.875rem "InterVariable",sans-serif; letter-spacing:.08em;
+  text-transform:uppercase; color:rgba(119,248,176,.9); }
+h1 { font:650 2.5rem/3rem "InterVariable",sans-serif; letter-spacing:-.024em; margin-top:12px; }
+.sub { font:450 1.0625rem/1.625rem "InterVariable",sans-serif; color:rgba(229,253,245,.62);
+  margin-top:12px; }
+.list { list-style:none; display:grid; gap:12px; margin-top:36px; }
+.list a { display:flex; align-items:center; justify-content:space-between; gap:20px;
+  text-decoration:none; color:inherit; background:rgba(241,250,243,.08); border-radius:16px;
+  padding:22px 24px; transition:background .16s; }
+.list a:hover { background:rgba(0,255,110,.12); }
+.t { font:650 1.0625rem/1.5rem "InterVariable",sans-serif; }
+.d { font:450 .875rem/1.25rem "InterVariable",sans-serif; color:rgba(229,253,245,.58);
+  margin-top:4px; }
+.arw { flex:0 0 auto; color:#77F8B0; }
+.tag { display:inline-flex; border-radius:600rem; padding:3px 10px; background:rgba(0,255,110,.14);
+  color:#77F8B0; font:650 .6875rem/1.125rem "InterVariable",sans-serif; letter-spacing:.04em;
+  text-transform:uppercase; margin-bottom:8px; }
+.foot { margin-top:44px; font:450 .8125rem/1.375rem "InterVariable",sans-serif;
+  color:rgba(229,253,245,.42); }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="badge"><span class="dot"></span> Bolt Food · Partner Reports</div>
-    <h1>Pesto Cafe</h1>
-    <p class="sub">Звіти та маркетингові плани</p>
+    <div class="kicker">Bolt Food Ukraine · партнерські звіти</div>
+    <h1>Pesto Cafe, Pasta&amp;Pizza та Mister Twister</h1>
+    <p class="sub">Аналітика по мережі на Bolt Food: обсяг, виручка, операційна ефективність,
+    рейтинги та результати рекламних кампаній.</p>
     <ul class="list">
-      <li><a href="pesto_cafe_sl_3_9aug_report.html"><span class="t">Sponsored Listing — 3 локації, 3–9 серпня 2026</span><span class="arw">→</span></a></li>
+      <li><a href="pesto_group_aug2026_report.html">
+        <div><span class="tag">Новий</span>
+        <div class="t">Повний звіт за серпень 2026</div>
+        <div class="d">26 локацій · три бренди · Sponsored Listing і план масштабування на вересень</div></div>
+        <svg class="arw" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13.2 4.8l7.2 7.2-7.2 7.2-1.7-1.7 4.3-4.3H3.6v-2.4h12.2l-4.3-4.3 1.7-1.7z"/></svg>
+      </a></li>
+      <li><a href="pesto_cafe_sl_3_9aug_report.html">
+        <div><div class="t">Sponsored Listing — тест на 3 локаціях</div>
+        <div class="d">Pesto Cafe · кампанія 3–9 серпня 2026 · ROAS 4.21×</div></div>
+        <svg class="arw" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13.2 4.8l7.2 7.2-7.2 7.2-1.7-1.7 4.3-4.3H3.6v-2.4h12.2l-4.3-4.3 1.7-1.7z"/></svg>
+      </a></li>
     </ul>
-    <div class="foot">Bolt Food · конфіденційно для партнера</div>
+    <div class="foot">Конфіденційно для партнера · Account Management Team, Bolt Food Ukraine</div>
   </div>
 </body>
 </html>
