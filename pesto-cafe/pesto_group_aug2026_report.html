@@ -301,7 +301,7 @@ h1, h2, h3 { margin: 0; letter-spacing: -.02em; }
 .cover-hi .txt b { font-weight: 650; color: #fff; }
 
 /* ── NAV ─────────────────────────────────────────────── */
-.nav { position: sticky; top: 0; z-index: 40; background: rgba(255,255,255,.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--color-border-separator); }
+.nav { position: sticky; top: 0; z-index: 40; background: var(--color-layer-floor-1); border-bottom: 1px solid var(--color-border-separator); }
 .nav-in { display: flex; gap: 6px; overflow-x: auto; padding: 12px 24px; max-width: 1180px; margin: 0 auto; scrollbar-width: none; }
 .nav-in::-webkit-scrollbar { display: none; }
 .nav a {
@@ -2257,18 +2257,38 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
 </footer>
 
 <script>
-const links = [...document.querySelectorAll('.nav a')];
-const secs = links.map(a => document.getElementById(a.dataset.nav));
-const io = new IntersectionObserver(es => {
-  es.forEach(e => {
-    if (e.isIntersecting) {
-      links.forEach(l => l.classList.toggle('on', l.dataset.nav === e.target.id));
-      const on = document.querySelector('.nav a.on');
-      if (on) on.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+(function () {
+  const bar = document.querySelector('.nav-in');
+  const links = [...document.querySelectorAll('.nav a')];
+  const items = links
+    .map(link => ({ link: link, el: document.getElementById(link.dataset.nav) }))
+    .filter(it => it.el);
+  if (!bar || !items.length) return;
+
+  let activeId = null, queued = false;
+
+  function apply() {
+    queued = false;
+    const y = window.scrollY + 140;
+    let cur = items[0];
+    for (const it of items) if (it.el.offsetTop <= y) cur = it;
+    if (cur.link.dataset.nav === activeId) return;
+    activeId = cur.link.dataset.nav;
+    links.forEach(l => l.classList.toggle('on', l === cur.link));
+    // Центруємо активну пігулку лише всередині смуги навігації.
+    // scrollIntoView тут використовувати не можна — він прокручує й сам документ.
+    if (bar.scrollWidth > bar.clientWidth) {
+      const left = cur.link.offsetLeft - (bar.clientWidth - cur.link.offsetWidth) / 2;
+      bar.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
     }
-  });
-}, { rootMargin: '-90px 0px -70% 0px' });
-secs.forEach(s => s && io.observe(s));
+  }
+
+  addEventListener('scroll', function () {
+    if (!queued) { queued = true; requestAnimationFrame(apply); }
+  }, { passive: true });
+  addEventListener('resize', apply, { passive: true });
+  apply();
+})();
 </script>
 </body>
 </html>
