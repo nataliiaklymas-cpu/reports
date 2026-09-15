@@ -3,7 +3,9 @@ Registry of partners with active weekly-report automation.
 
 To onboard a new partner: add an entry to PARTNERS with its provider_id -> name/city
 mapping and a couple of style params. Optional `locale="en"` switches the weekly
-HTML (and index pages) to English; default is Ukrainian.
+HTML (and index pages) to English; default is Ukrainian. Optional
+`show_brand_in_index=True` prefixes the brand to location names in the week index
+and network summary — потрібно для мереж, де вулиці повторюються між брендами.
 No other code changes are needed — run_weekly_reports.py loops over this dict.
 """
 
@@ -126,6 +128,36 @@ PIVBAR_GROUP_PROVIDERS = {
     114063: {"name": "Хвиля Басейна", "brand": "Хвиля", "city": "Київ"},
 }
 
+PESTO_GROUP_PROVIDERS = {
+    80449: {"name": "Pesto Cafe Лобановського", "brand": "Pesto Cafe", "city": "Київ"},
+    80447: {"name": "Pesto Cafe Овруцька", "brand": "Pesto Cafe", "city": "Київ"},
+    80450: {"name": "Pesto Cafe Глушкова", "brand": "Pesto Cafe", "city": "Київ"},
+    80452: {"name": "Pesto Cafe Івасюка", "brand": "Pesto Cafe", "city": "Київ"},
+    80456: {"name": "Pesto Cafe Іоанна Павла", "brand": "Pesto Cafe", "city": "Київ"},
+    80461: {"name": "Pesto Cafe Русанівська набережна", "brand": "Pesto Cafe", "city": "Київ"},
+    80463: {"name": "Pesto Cafe Перемоги", "brand": "Pesto Cafe", "city": "Київ"},
+    80465: {"name": "Pesto Cafe Правди", "brand": "Pesto Cafe", "city": "Київ"},
+    80467: {"name": "Pesto Cafe Інститутська", "brand": "Pesto Cafe", "city": "Київ"},
+    80468: {"name": "Pesto Cafe Дніпровська набережна", "brand": "Pesto Cafe", "city": "Київ"},
+    80470: {"name": "Pesto Cafe Бандери, 34В", "brand": "Pesto Cafe", "city": "Київ"},
+    80471: {"name": "Pesto Cafe Бандери, 23", "brand": "Pesto Cafe", "city": "Київ"},
+    80472: {"name": "Pesto Cafe Борщагівська", "brand": "Pesto Cafe", "city": "Київ"},
+    80475: {"name": "Pesto Cafe Берковецька", "brand": "Pesto Cafe", "city": "Київ"},
+    80477: {"name": "Pesto Cafe Велика Окружна", "brand": "Pesto Cafe", "city": "Київ"},
+    80478: {"name": "Pesto Cafe Шептицького", "brand": "Pesto Cafe", "city": "Київ"},
+    80479: {"name": "Pesto Cafe Малишка", "brand": "Pesto Cafe", "city": "Київ"},
+    113554: {"name": "Pesto Cafe Respublika", "brand": "Pesto Cafe", "city": "Київ"},
+    86588: {"name": "Pasta&Pizza Дніпровська набережна", "brand": "Pasta&Pizza", "city": "Київ"},
+    86591: {"name": "Pasta&Pizza Овруцька", "brand": "Pasta&Pizza", "city": "Київ"},
+    86594: {"name": "Pasta&Pizza Лобановського", "brand": "Pasta&Pizza", "city": "Київ"},
+    86596: {"name": "Pasta&Pizza Велика Окружна", "brand": "Pasta&Pizza", "city": "Київ"},
+    86599: {"name": "Pasta&Pizza Шептицького", "brand": "Pasta&Pizza", "city": "Київ"},
+    86600: {"name": "Pasta&Pizza Іоанна Павла ІІ", "brand": "Pasta&Pizza", "city": "Київ"},
+    86607: {"name": "Mister Twister Глушкова", "brand": "Mister Twister", "city": "Київ"},
+    # Excluded (deleted provider on the platform, confirmed in dim_provider_v2):
+    #   80458 Pesto Cafe Гришка — status "deleted", нуль замовлень з липня 2026
+}
+
 PARTNERS = {
     "salateira": {
         "display_name": "Salateira",
@@ -181,6 +213,15 @@ PARTNERS = {
         "github_folder": "roco-sushi-weekly",
         "providers": ROCO_SUSHI_PROVIDERS,
         "daily_comparison_chart": True,
+    },
+    "pesto_group": {
+        "display_name": "Pesto Group",
+        "emoji": "",
+        "brand_color": "#2A9C64",
+        "github_folder": "pesto-group-weekly",
+        "providers": PESTO_GROUP_PROVIDERS,
+        "daily_comparison_chart": True,
+        "show_brand_in_index": True,
     },
     "pivbar_group": {
         "display_name": "Pivbar group",

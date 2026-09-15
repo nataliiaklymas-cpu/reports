@@ -93,6 +93,15 @@ def slugify(name: str) -> str:
     return s
 
 
+def brand_slug(brand_label: str) -> str:
+    """Brand label for use inside a file name.
+
+    Keeps letters/digits and collapses everything else to "_", so brands like
+    "Pasta&Pizza" don't put a bare "&" into href attributes (invalid HTML).
+    """
+    return slugify(brand_label)
+
+
 def short_location_name(name: str, brand_label: str) -> str:
     short = re.sub(
         rf"^{re.escape(brand_label)}\s*",
@@ -257,6 +266,7 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
     github_folder = cfg["github_folder"]
     locale = cfg.get("locale", "uk")
     show_daily_comparison_chart = cfg.get("daily_comparison_chart", False)
+    show_brand_in_index = cfg.get("show_brand_in_index", False)
     lbl = week["labels"][locale]
     ix = INDEX_I18N[locale]
 
@@ -398,15 +408,18 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
 
         short_name = short_location_name(name, brand_label)
         slug = slugify(short_name)
-        fname = f"{brand_label.replace(' ', '_')}_{slug}_{week['week_folder']}.html".replace("__", "_")
+        fname = f"{brand_slug(brand_label)}_{slug}_{week['week_folder']}.html".replace("__", "_")
         with open(os.path.join(week_dir, fname), "w", encoding="utf-8") as f:
             f.write(html)
-        week_items.append((fname, short_name, pid))
-        loc_results.append(dict(pid=pid, name=name, short_name=short_name, city=city, fname=fname, stats=stats))
+        # Multi-brand groups reuse street names across brands (напр. Лобановського
+        # є і в Pesto Cafe, і в Pasta&Pizza), тому в списках показуємо бренд.
+        label = f"{brand_label} {short_name}" if show_brand_in_index else short_name
+        week_items.append((fname, label, pid))
+        loc_results.append(dict(pid=pid, name=name, short_name=label, city=city, fname=fname, stats=stats))
         print(f"  ok {pid} {name:45s} {stats['delivered']:>4} zam  {stats['gmv']:>8,} UAH".replace(",", " "))
 
     # Network-wide total summary (all locations combined)
-    total_fname = f"{display_name.replace(' ', '_')}_TOTAL_{week['week_folder']}.html"
+    total_fname = f"{brand_slug(display_name)}_TOTAL_{week['week_folder']}.html"
     total_html, total_stats = build_network_summary(
         display_name=display_name, emoji=emoji, brand_color=cfg.get("brand_color", "#2AAF6D"),
         period_label=lbl["period_label"], period_short=lbl["period_short"], prev_label=lbl["prev_label"],
@@ -559,7 +572,7 @@ def run_partner_reviews(partner_key: str, cfg: dict, week: dict, repo_root: str)
     os.makedirs(week_dir, exist_ok=True)
 
     all_reviews = rows_for()
-    total_fname = f"{display_name.replace(' ', '_')}_vidhuky_TOTAL_{week['week_folder']}.html"
+    total_fname = f"{brand_slug(display_name)}_vidhuky_TOTAL_{week['week_folder']}.html"
     with open(os.path.join(week_dir, total_fname), "w", encoding="utf-8") as f:
         f.write(build_reviews_report(
             display_name=display_name,
@@ -576,7 +589,7 @@ def run_partner_reviews(partner_key: str, cfg: dict, week: dict, repo_root: str)
         loc_reviews = rows_for(pid)
         short_name = short_location_name(name, brand_label)
         slug = slugify(short_name)
-        fname = f"{brand_label.replace(' ', '_')}_{slug}_vidhuky_{week['week_folder']}.html".replace("__", "_")
+        fname = f"{brand_slug(brand_label)}_{slug}_vidhuky_{week['week_folder']}.html".replace("__", "_")
         with open(os.path.join(week_dir, fname), "w", encoding="utf-8") as f:
             f.write(build_reviews_report(
                 display_name=display_name,

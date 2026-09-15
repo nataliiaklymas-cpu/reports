@@ -29,6 +29,7 @@ FOLDERS = [
     ("hesburger", "files"),
     ("hesburger-weekly", "weekly"),
     ("roco-sushi-weekly", "weekly"),
+    ("pesto-group-weekly", "weekly"),
     ("this-is-pivbar", "files"),
     ("this-is-pivbar/pivbar-group-weekly", "weekly"),
 ]
