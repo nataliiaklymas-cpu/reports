@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Borysov Gastrofamily Group — вересень 2026</title>
+  <style>
+    @font-face {
+      font-family: Inter;
+      src: url("fonts/Inter-VariableFont.ttf") format("truetype-variations");
+      font-weight: 100 900;
+      font-display: swap;
+    }
+    :root {
+      --brand: #2A9C64;
+      --brand-dark: #0C2C1C;
+      --text: #191F1C;
+      --muted: #5F6563;
+      --floor: #FFFFFF;
+      --grouped: #EEF1F0;
+      --surface: rgba(0,45,30,.07);
+      --separator: rgba(0,45,30,.10);
+      --positive-soft: rgba(0,160,64,.09);
+      --warning-soft: rgba(255,190,0,.23);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--grouped);
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+      font-feature-settings: "cv03", "cv04";
+      line-height: 1.45;
+    }
+    .top {
+      background: var(--brand-dark);
+      color: white;
+      padding: 38px 28px 34px;
+    }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .kicker {
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.68);
+    }
+    h1 { margin: 10px 0 8px; max-width: 780px; font-size: clamp(30px, 5vw, 52px); line-height: 1.04; letter-spacing: -.035em; }
+    h2 { margin: 0 0 14px; font-size: 25px; letter-spacing: -.02em; }
+    h3 { margin: 0 0 8px; font-size: 16px; }
+    p { margin: 0; }
+    .sub { max-width: 760px; color: rgba(255,255,255,.7); }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .pill { border-radius: 600rem; padding: 7px 12px; background: rgba(255,255,255,.1); font-size: 12px; font-weight: 650; }
+    main { padding: 26px 0 60px; }
+    section { margin-top: 34px; }
+    .metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: -58px; }
+    .metric, .card {
+      border-radius: 16px;
+      background: var(--floor);
+    }
+    .metric { min-height: 130px; padding: 19px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .metric strong { display: block; font-size: clamp(23px, 3vw, 32px); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+    .metric span { margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .metric.primary { background: var(--brand); color: white; }
+    .metric.primary span { color: rgba(255,255,255,.72); }
+    .summary { margin-top: 16px; padding: 22px 24px; border-radius: 16px; background: var(--positive-soft); font-size: 16px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card { padding: 22px; }
+    .note { color: var(--muted); font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+    th { text-align: left; color: var(--muted); font-size: 11px; font-weight: 650; padding: 10px 9px; border-bottom: 1px solid var(--separator); }
+    td { padding: 11px 9px; border-bottom: 1px solid var(--separator); vertical-align: top; }
+    tr:last-child td { border-bottom: 0; }
+    .num { text-align: right; white-space: nowrap; }
+    .bars { display: grid; gap: 13px; margin-top: 18px; }
+    .bar-row { display: grid; grid-template-columns: 110px 1fr 60px; gap: 12px; align-items: center; font-size: 13px; }
+    .track { height: 12px; border-radius: 600rem; background: var(--surface); overflow: hidden; }
+    .fill { height: 100%; border-radius: 600rem; background: var(--brand); min-width: 3px; }
+    .bar-value { text-align: right; font-variant-numeric: tabular-nums; }
+    .insight { margin-top: 16px; padding: 18px 20px; background: var(--floor); border-radius: 16px; }
+    .brand-bars .bar-row { grid-template-columns: minmax(140px, 220px) 1fr 92px; }
+    details { background: var(--floor); border-radius: 16px; overflow: hidden; }
+    summary { cursor: pointer; padding: 20px 22px; font-weight: 700; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    details .table-wrap { padding: 0 14px 16px; overflow-x: auto; }
+    .warning { background: var(--warning-soft); border-radius: 16px; padding: 18px 20px; margin-top: 16px; }
+    .method { margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--separator); color: var(--muted); font-size: 12px; }
+    @media (max-width: 880px) {
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 24px, 1180px); }
+      .top { padding: 28px 12px 70px; }
+      .metrics { grid-template-columns: 1fr; }
+      .metric { min-height: 104px; }
+      .bar-row, .brand-bars .bar-row { grid-template-columns: 100px 1fr 55px; gap: 8px; }
+      table { min-width: 680px; }
+      .card { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="kicker">Internal · Bolt Food Ukraine</div>
+      <h1>Borysov Gastrofamily Group</h1>
+      <p class="sub">Продажі, портфель закладів і внесок у регіони Bolt Food у вересні 2026.</p>
+      <div class="pills">
+        <span class="pill">1–21 вересня</span>
+        <span class="pill">Delivered orders</span>
+        <span class="pill">Food vertical</span>
+        <span class="pill">GMV до знижок</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="metrics">
+      <div class="metric primary"><strong>854,8 тис. ₴</strong><span>GMV до знижок</span></div>
+      <div class="metric"><strong>873</strong><span>Доставлені замовлення</span></div>
+      <div class="metric"><strong>979 ₴</strong><span>Середній чек</span></div>
+      <div class="metric"><strong>0,27%</strong><span>Частка GMV Bolt Food UA</span></div>
+      <div class="metric"><strong>≈1,22 млн ₴</strong><span>Темп на повний вересень</span></div>
+    </div>
+
+    <div class="summary">
+      <strong>Коротко:</strong> група помітна локально, але невелика на рівні всієї платформи:
+      0,27% українського GMV та 0,22% замовлень. Майже 90% її продажів припадає на Київ,
+      де вона формує 0,57% міського GMV. Середній чек групи на 23% вищий за Bolt Food UA:
+      979 ₴ проти 796 ₴.
+    </div>
+
+    <section>
+      <h2>Портфель закладів</h2>
+      <p class="note">81 історичний provider ID у 12 сімействах брендів. Поточний портфель — 27 ready_for_work закладів у 4 містах; 25 із них мали продажі у зрізі.</p>
+      <div class="grid-2" style="margin-top:16px">
+        <div class="card">
+          <h3>Активні бренди та продажі</h3>
+          <table>
+            <thead><tr><th>Бренд</th><th class="num">GMV</th><th class="num">Замовлення</th><th class="num">Локації</th><th class="num">Мікс</th></tr></thead>
+            <tbody>
+              <tr><td>БПШ</td><td class="num">263 730 ₴</td><td class="num">320</td><td class="num">4</td><td class="num">30,85%</td></tr>
+              <tr><td>Dogs &amp; Burgers</td><td class="num">166 475 ₴</td><td class="num">208</td><td class="num">5</td><td class="num">19,47%</td></tr>
+              <tr><td>Барсук</td><td class="num">137 047 ₴</td><td class="num">123</td><td class="num">3</td><td class="num">16,03%</td></tr>
+              <tr><td>Philadelphia Roll &amp; Bowl</td><td class="num">136 468 ₴</td><td class="num">72</td><td class="num">3</td><td class="num">15,96%</td></tr>
+              <tr><td>Мушля</td><td class="num">109 037 ₴</td><td class="num">86</td><td class="num">4</td><td class="num">12,76%</td></tr>
+              <tr><td>Biliy Nalyv</td><td class="num">32 862 ₴</td><td class="num">57</td><td class="num">5</td><td class="num">3,84%</td></tr>
+              <tr><td>Любчик</td><td class="num">5 877 ₴</td><td class="num">5</td><td class="num">1</td><td class="num">0,69%</td></tr>
+              <tr><td>Канапа</td><td class="num">3 345 ₴</td><td class="num">2</td><td class="num">1</td><td class="num">0,39%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>GMV за брендами</h3>
+          <p class="note">Шкала відносно найбільшого бренду, тис. ₴</p>
+          <div class="bars brand-bars">
+            <div class="bar-row"><span>БПШ</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="bar-value">263,7</span></div>
+            <div class="bar-row"><span>Dogs &amp; Burgers</span><div class="track"><div class="fill" style="width:63.1%"></div></div><span class="bar-value">166,5</span></div>
+            <div class="bar-row"><span>Барсук</span><div class="track"><div class="fill" style="width:52%"></div></div><span class="bar-value">137,0</span></div>
+            <div class="bar-row"><span>Philadelphia</span><div class="track"><div class="fill" style="width:51.7%"></div></div><span class="bar-value">136,5</span></div>
+            <div class="bar-row"><span>Мушля</span><div class="track"><div class="fill" style="width:41.3%"></div></div><span class="bar-value">109,0</span></div>
+            <div class="bar-row"><span>Biliy Nalyv</span><div class="track"><div class="fill" style="width:12.5%"></div></div><span class="bar-value">32,9</span></div>
+            <div class="bar-row"><span>Любчик</span><div class="track"><div class="fill" style="width:2.2%"></div></div><span class="bar-value">5,9</span></div>
+            <div class="bar-row"><span>Канапа</span><div class="track"><div class="fill" style="width:1.3%"></div></div><span class="bar-value">3,3</span></div>
+          </div>
+          <div class="insight">БПШ, Dogs &amp; Burgers, Барсук і Philadelphia Roll &amp; Bowl разом генерують <strong>82,3% GMV групи</strong>.</div>
+          <p class="note" style="margin-top:14px">Історичні бренди без продажів у вересні: Gastrofamily Market, Остання Барикада, Канапка Бар та «БПШ та Dogs &amp; Burgers».</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Вплив на регіони</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Частка групи у GMV міста</h3>
+          <div class="bars">
+            <div class="bar-row"><span>Київ</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="bar-value">0,57%</span></div>
+            <div class="bar-row"><span>Дніпро</span><div class="track"><div class="fill" style="width:48.8%"></div></div><span class="bar-value">0,28%</span></div>
+            <div class="bar-row"><span>Житомир</span><div class="track"><div class="fill" style="width:39.8%"></div></div><span class="bar-value">0,23%</span></div>
+            <div class="bar-row"><span>Вінниця</span><div class="track"><div class="fill" style="width:30.8%"></div></div><span class="bar-value">0,18%</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <table>
+            <thead><tr><th>Регіон</th><th class="num">GMV групи</th><th class="num">GMV міста</th><th class="num">Замовлення</th><th class="num">Частка замовлень</th><th class="num">Локації</th></tr></thead>
+            <tbody>
+              <tr><td>Київ</td><td class="num">766 684 ₴</td><td class="num">0,57%</td><td class="num">756</td><td class="num">0,49%</td><td class="num">21</td></tr>
+              <tr><td>Дніпро</td><td class="num">50 572 ₴</td><td class="num">0,28%</td><td class="num">68</td><td class="num">0,29%</td><td class="num">2</td></tr>
+              <tr><td>Вінниця</td><td class="num">28 959 ₴</td><td class="num">0,18%</td><td class="num">34</td><td class="num">0,15%</td><td class="num">1</td></tr>
+              <tr><td>Житомир</td><td class="num">8 625 ₴</td><td class="num">0,23%</td><td class="num">15</td><td class="num">0,29%</td><td class="num">2</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="insight"><strong>Київ — основний ринок:</strong> 89,7% GMV групи. Національна частка обмежена вузькою географією: активні продажі є лише у Києві, Дніпрі, Вінниці та Житомирі.</div>
+    </section>
+
+    <section>
+      <details>
+        <summary>Повний список 27 поточних закладів</summary>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Заклад</th><th>Бренд</th><th>Місто</th><th class="num">GMV MTD</th><th class="num">Замовлення</th></tr></thead>
+            <tbody>
+              <tr><td>БПШ на Антоновича</td><td>БПШ</td><td>Київ</td><td class="num">112 617 ₴</td><td class="num">144</td></tr>
+              <tr><td>Philadelphia Roll&amp;Bowl просп. Перемоги</td><td>Philadelphia Roll &amp; Bowl</td><td>Київ</td><td class="num">96 659 ₴</td><td class="num">52</td></tr>
+              <tr><td>Мушля Велика Васильківська, 111/113</td><td>Мушля</td><td>Київ</td><td class="num">76 522 ₴</td><td class="num">62</td></tr>
+              <tr><td>Барсук Гуцала</td><td>Барсук</td><td>Київ</td><td class="num">65 584 ₴</td><td class="num">56</td></tr>
+              <tr><td>БПШ Нижній Вал</td><td>БПШ</td><td>Київ</td><td class="num">65 531 ₴</td><td class="num">75</td></tr>
+              <tr><td>БПШ Площа Українських Героїв</td><td>БПШ</td><td>Київ</td><td class="num">56 622 ₴</td><td class="num">67</td></tr>
+              <tr><td>Dogs&amp;Burgers Гуцала</td><td>Dogs &amp; Burgers</td><td>Київ</td><td class="num">52 727 ₴</td><td class="num">64</td></tr>
+              <tr><td>Dogs&amp;Burgers</td><td>Dogs &amp; Burgers</td><td>Дніпро</td><td class="num">43 596 ₴</td><td class="num">62</td></tr>
+              <tr><td>Barsuk / Барсук на Лук’янівці</td><td>Барсук</td><td>Київ</td><td class="num">37 538 ₴</td><td class="num">39</td></tr>
+              <tr><td>Dogs&amp;Burgers на Шевченка</td><td>Dogs &amp; Burgers</td><td>Київ</td><td class="num">37 163 ₴</td><td class="num">43</td></tr>
+              <tr><td>Барсук на Солом'янці</td><td>Барсук</td><td>Київ</td><td class="num">33 926 ₴</td><td class="num">28</td></tr>
+              <tr><td>Dogs&amp;Burgers Освіти</td><td>Dogs &amp; Burgers</td><td>Київ</td><td class="num">31 766 ₴</td><td class="num">37</td></tr>
+              <tr><td>БПШ</td><td>БПШ</td><td>Вінниця</td><td class="num">28 959 ₴</td><td class="num">34</td></tr>
+              <tr><td>Philadelphia roll&amp;bowl Варшавський</td><td>Philadelphia Roll &amp; Bowl</td><td>Київ</td><td class="num">24 642 ₴</td><td class="num">12</td></tr>
+              <tr><td>MUSHLYA (Русанівка)</td><td>Мушля</td><td>Київ</td><td class="num">22 922 ₴</td><td class="num">15</td></tr>
+              <tr><td>Philadelphia Roll &amp; Bowl ТРЦ Республіка</td><td>Philadelphia Roll &amp; Bowl</td><td>Київ</td><td class="num">15 168 ₴</td><td class="num">8</td></tr>
+              <tr><td>Білий Налив на Шевченка</td><td>Biliy Nalyv</td><td>Київ</td><td class="num">13 761 ₴</td><td class="num">23</td></tr>
+              <tr><td>Білий Налив вул. Небесної сотні</td><td>Biliy Nalyv</td><td>Житомир</td><td class="num">7 403 ₴</td><td class="num">13</td></tr>
+              <tr><td>Mushlya / Мушля</td><td>Мушля</td><td>Дніпро</td><td class="num">6 977 ₴</td><td class="num">6</td></tr>
+              <tr><td>Любчик</td><td>Любчик</td><td>Київ</td><td class="num">5 877 ₴</td><td class="num">5</td></tr>
+              <tr><td>Білий Налив Нижній Вал</td><td>Biliy Nalyv</td><td>Київ</td><td class="num">4 840 ₴</td><td class="num">10</td></tr>
+              <tr><td>Білий налив Освіти</td><td>Biliy Nalyv</td><td>Київ</td><td class="num">3 825 ₴</td><td class="num">5</td></tr>
+              <tr><td>КАНАПА</td><td>Канапа</td><td>Київ</td><td class="num">3 345 ₴</td><td class="num">2</td></tr>
+              <tr><td>Білий налив на ВДНГ</td><td>Biliy Nalyv</td><td>Київ</td><td class="num">3 033 ₴</td><td class="num">6</td></tr>
+              <tr><td>Мушля Бар Поділ</td><td>Мушля</td><td>Київ</td><td class="num">2 616 ₴</td><td class="num">3</td></tr>
+              <tr><td>Білий Налив вул. Хрещатик 27</td><td>Biliy Nalyv</td><td>Київ</td><td class="num">0 ₴</td><td class="num">0</td></tr>
+              <tr><td>Мушля бар Хрещатик</td><td>Мушля</td><td>Київ</td><td class="num">0 ₴</td><td class="num">0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+      <div class="warning"><strong>Статуси:</strong> два ready_for_work заклади не мали delivered-замовлень. Видалений Dogs&amp;Burgers у Житомирі встиг зробити 2 замовлення на 1,2 тис. ₴, тому total включає 26 selling provider ID, з яких 25 зараз активні.</div>
+    </section>
+
+    <div class="method">
+      <strong>Методологія.</strong> Borysov Group визначено точним значенням
+      <code>group_name = BORYSOV GASTROFAMILY GROUP</code>. Джерело: Databricks,
+      <code>main.ng_delivery.dim_provider_v2</code> та <code>main.ng_delivery.dim_order_delivery</code>.
+      Продажі — <code>order_gmv_local</code> до знижок; лише <code>delivery_vertical = food</code>
+      та <code>order_state = delivered</code>. Частка платформи: 854 841 ₴ із 312 830 095 ₴ GMV
+      та 873 із 393 137 замовлень. Прогноз 1,22 млн ₴ — проста екстраполяція темпу 21 дня на 30 днів.
+    </div>
+  </main>
+</body>
+</html>
