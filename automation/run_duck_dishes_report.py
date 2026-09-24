@@ -25,10 +25,14 @@ ALLOWED_RUN_DATES = {
 }
 DISH_CASE_SQL = """
 CASE
-  WHEN lower(basket_item_name) LIKE '%олів%кач%' THEN 'Олів’є з качкою'
-  WHEN lower(basket_item_name) LIKE '%борщ%кач%' THEN 'Борщ з качкою'
-  WHEN lower(basket_item_name) LIKE '%котлет%кач%' THEN 'Домашні котлети з качки'
-  WHEN lower(basket_item_name) RLIKE '(качин.*ніж.*конф|ніж.*кач.*конф)' THEN 'Качина ніжка конфі'
+  WHEN trim(lower(basket_item_name)) = 'качине олів''є'
+    THEN 'Качине олів''є'
+  WHEN trim(lower(basket_item_name)) = 'фірмовий борщ з качкою'
+    THEN 'Фірмовий борщ з качкою'
+  WHEN trim(lower(basket_item_name)) = 'домашня котлета з качки з картопляним пюре та маринованими томатами'
+    THEN 'Домашня котлета з качки з картопляним пюре та маринованими томатами'
+  WHEN trim(lower(basket_item_name)) = 'конфі з качиної ніжки з тушкованою капустою'
+    THEN 'Конфі з качиної ніжки з тушкованою капустою'
 END
 """
 DISH_FILTER_SQL = f"({DISH_CASE_SQL.strip()}) IS NOT NULL"
