@@ -1,0 +1,59 @@
+name: Chornomorka duck dishes report
+
+on:
+  schedule:
+    # Every Monday at 08:15 Kyiv summer time. The script only runs
+    # on 28 Sep, 5/12/19/26 Oct, and 2 Nov 2026.
+    - cron: "15 5 * * 1"
+  workflow_dispatch:
+    inputs:
+      run_date:
+        description: "Run date (YYYY-MM-DD); defaults to today UTC"
+        required: false
+        default: ""
+      force:
+        description: "Allow a date outside the configured schedule"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chornomorka-duck-dishes
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r automation/requirements.txt
+
+      - name: Generate report
+        env:
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: |
+          python automation/run_duck_dishes_report.py \
+            --repo-root . \
+            ${{ github.event.inputs.run_date && format('--run-date {0}', github.event.inputs.run_date) || '' }} \
+            ${{ github.event.inputs.force == 'true' && '--force' || '' }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "bolt-reports-bot"
+          git config user.email "actions@github.com"
+          git add internal/chornomorka-duck-dishes
+          if git diff --cached --quiet; then
+            echo "No report generated for this date."
+          else
+            git commit -m "Auto: Chornomorka duck dishes $(date -u +%Y-%m-%d)"
+            git push
+          fi
