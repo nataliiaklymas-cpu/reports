@@ -6,13 +6,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Качині страви Чорноморки</title>
   <style>
-    :root { --bg:#eef1f0; --card:#fff; --text:#191f1c; --muted:#5f6563; --dark:#0c2c1c; --radius:16px; }
+    :root { --bg:#eef1f0; --card:#fff; --text:#191f1c; --muted:#5f6563; --green:#2a9c64; --dark:#0c2c1c; --radius:16px; --pill:600rem; }
     * { box-sizing:border-box; }
     body { margin:0; background:var(--bg); color:var(--text); font-family:Inter,system-ui,sans-serif; padding:32px 24px; }
     main { max-width:760px; margin:auto; }
     header { background:var(--dark); color:white; border-radius:var(--radius); padding:32px; }
     h1 { margin:0 0 8px; font-size:32px; }
     p { margin:0; }
+    .links { display:flex; gap:8px; margin-top:8px; }
+    .report { display:flex; justify-content:space-between; flex:1; background:var(--card); color:var(--text); text-decoration:none; padding:20px; border-radius:var(--radius); }
+    .excel { display:flex; align-items:center; background:var(--green); color:white; text-decoration:none; font-weight:650; padding:0 20px; border-radius:var(--pill); }
     .empty { margin-top:8px; background:var(--card); padding:24px; border-radius:var(--radius); color:var(--muted); }
     footer { font-size:12px; color:var(--muted); padding:16px 4px; }
   </style>
@@ -23,7 +26,11 @@
       <h1>Качині страви Чорноморки</h1>
       <p>Внутрішній щотижневий звіт · provider 5092622</p>
     </header>
-    <div class="empty">Звіти з’являтимуться щопонеділка.</div>
+    <div class="links">
+      <a class="report" href="demo/chornomorka_duck_dishes_demo.html"><span>Демо · одне уявне замовлення</span><span>Відкрити</span></a>
+      <a class="excel" href="demo/chornomorka_duck_dishes_demo.xlsx">Excel</a>
+    </div>
+    <div class="empty">Реальні звіти з’являтимуться щопонеділка.</div>
     <footer>Оновлення щопонеділка з 28.09 до 02.11.2026 включно.</footer>
   </main>
 </body>
