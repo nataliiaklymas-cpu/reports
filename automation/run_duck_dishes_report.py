@@ -15,7 +15,7 @@ from dbx import DBX
 
 PROVIDER_ID = 5092622
 STANDARD_COMMISSION_RATE = 0.15
-OUTPUT_FOLDER = Path("internal/chornomorka-duck-dishes")
+OUTPUT_FOLDER = Path("internal/kachyni-stravy-chornomorka")
 ALLOWED_RUN_DATES = {
     dt.date(2026, 9, 28),
     dt.date(2026, 10, 5),
@@ -37,6 +37,10 @@ CASE
 END
 """
 DISH_FILTER_SQL = f"({DISH_CASE_SQL.strip()}) IS NOT NULL"
+MONTHS_UK = (
+    "", "січня", "лютого", "березня", "квітня", "травня", "червня",
+    "липня", "серпня", "вересня", "жовтня", "листопада", "грудня",
+)
 
 
 def week_for(run_date: dt.date):
@@ -56,6 +60,17 @@ def integer(value):
     if pd.isna(value):
         return "0"
     return f"{int(value):,}".replace(",", " ")
+
+
+def week_folder_label(folder_name):
+    start = dt.date.fromisoformat(folder_name.split("_", 1)[0])
+    end = start + dt.timedelta(days=6)
+    if start.month == end.month:
+        return f"{start.day}–{end.day} {MONTHS_UK[end.month]} {end.year}"
+    return (
+        f"{start.day} {MONTHS_UK[start.month]} – "
+        f"{end.day} {MONTHS_UK[end.month]} {end.year}"
+    )
 
 
 def esc(value):
@@ -215,7 +230,7 @@ def build_html(details, summary, monday, sunday, xlsx_name, is_demo=False):
     )
     return f"""<!doctype html>
 <html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow"><title>Качині страви Чорноморки · {monday:%d.%m}–{sunday:%d.%m.%Y}</title>
+<meta name="robots" content="noindex,nofollow"><title>Качині страви Чорноморка · {monday:%d.%m}–{sunday:%d.%m.%Y}</title>
 <style>
 @font-face{{font-family:InterVariable;src:url("https://static.bolt.eu/fonts/inter/InterVariable.woff2") format("woff2");font-weight:100 900;font-display:swap}}
 :root{{--floor:#eef1f0;--card:#fff;--text:#191f1c;--muted:#5f6563;--green:#2a9c64;--green-dark:#0c2c1c;--green-soft:#e7f6ed;--red:#b20f1c;--red-soft:#ffeaea;--separator:rgba(0,45,30,.07);--radius:16px;--pill:600rem}}
@@ -225,7 +240,7 @@ header{{background:var(--green-dark);color:white;border-radius:var(--radius);pad
 section{{background:var(--card);border-radius:var(--radius);padding:24px;margin-top:8px}}h2{{font-size:22px;margin:0 0 4px}}.note{{color:var(--muted);font-size:13px;margin:0 0 20px}}.scroll{{overflow-x:auto}}table{{width:100%;border-collapse:collapse;min-width:900px}}th{{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:left;padding:10px 8px;border-bottom:1px solid var(--separator)}}td{{padding:12px 8px;border-bottom:1px solid var(--separator);font-size:13px}}.num{{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}}.status{{display:inline-block;padding:5px 9px;border-radius:var(--pill);font-weight:650;font-size:11px}}.ok{{background:var(--green-soft);color:var(--green-dark)}}.bad{{background:var(--red-soft);color:var(--red)}}.empty{{text-align:center;color:var(--muted);padding:40px}}footer{{color:var(--muted);font-size:12px;padding:20px 4px}}
 @media(max-width:760px){{body{{padding:16px 12px 40px}}header{{padding:24px}}.grid{{grid-template-columns:1fr 1fr}}.value{{font-size:22px}}}}
 </style></head><body><main>
-<header>{demo_banner}<div class="caps">Bolt Food · Internal</div><h1>Качині страви Чорноморки</h1>
+<header>{demo_banner}<div class="caps">Bolt Food · Internal</div><h1>Качині страви Чорноморка</h1>
 <p>Provider {PROVIDER_ID} · {monday:%d.%m.%Y}–{sunday:%d.%m.%Y}</p>
 <div class="actions"><a class="button" href="{xlsx_name}" download>Завантажити Excel</a></div></header>
 <div class="grid"><div class="card"><div class="label">Продано страв</div><div class="value">{integer(delivered_qty)}</div></div>
@@ -301,7 +316,7 @@ def rebuild_root_index(root):
         report = next(folder.glob("*.html"), None)
         workbook = next(folder.glob("*.xlsx"), None)
         if report:
-            label = folder.name.replace("_", "–")
+            label = week_folder_label(folder.name)
             excel = f'<a class="excel" href="{folder.name}/{workbook.name}">Excel</a>' if workbook else ""
             entries.append(
                 f'<li><a href="{folder.name}/{report.name}"><span>{label}</span><span>Відкрити</span></a>{excel}</li>'
@@ -313,9 +328,9 @@ def rebuild_root_index(root):
     )
     report_items = "\n".join(entries) or '<li class="empty">Реальні звіти з’являтимуться щопонеділка.</li>'
     items = demo_entry + "\n" + report_items
-    content = f"""<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Качині страви Чорноморки</title>
-<style>:root{{--bg:#eef1f0;--card:#fff;--text:#191f1c;--muted:#5f6563;--green:#2a9c64;--dark:#0c2c1c;--radius:16px;--pill:600rem}}*{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;padding:32px 24px}}main{{max-width:760px;margin:auto}}header{{background:var(--dark);color:white;border-radius:var(--radius);padding:32px}}h1{{margin:0 0 8px;font-size:32px}}p{{margin:0;color:var(--muted)}}header p{{color:white}}ul{{list-style:none;padding:0;margin:8px 0}}li{{display:flex;gap:8px;margin-bottom:8px}}li>a:first-child{{display:flex;justify-content:space-between;flex:1;background:var(--card);padding:18px;border-radius:var(--radius);color:var(--text);text-decoration:none}}.excel{{display:flex;align-items:center;background:var(--green);color:white;padding:0 18px;border-radius:var(--pill);text-decoration:none;font-weight:650}}.empty{{background:var(--card);padding:24px;border-radius:var(--radius);color:var(--muted)}}footer{{font-size:12px;color:var(--muted);padding:16px 4px}}</style></head>
-<body><main><header><h1>Качині страви Чорноморки</h1><p>Внутрішній щотижневий звіт · provider {PROVIDER_ID}</p></header><ul>{items}</ul><footer>Оновлення щопонеділка з 28.09 до 02.11.2026 включно.</footer></main></body></html>"""
+    content = f"""<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Качині страви Чорноморка</title>
+<style>:root{{--bg:#eef1f0;--card:#fff;--text:#191f1c;--muted:#5f6563;--green:#2a9c64;--dark:#0c2c1c;--radius:16px;--pill:600rem}}*{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;padding:32px 24px}}main{{max-width:760px;margin:auto}}header{{background:var(--dark);color:white;border-radius:var(--radius);padding:32px}}h1{{margin:0 0 8px;font-size:32px}}h2{{font-size:18px;margin:24px 4px 8px}}p{{margin:0;color:var(--muted)}}header p{{color:white}}ul{{list-style:none;padding:0;margin:8px 0}}li{{display:flex;gap:8px;margin-bottom:8px}}li>a:first-child{{display:flex;justify-content:space-between;flex:1;background:var(--card);padding:18px;border-radius:var(--radius);color:var(--text);text-decoration:none}}.excel{{display:flex;align-items:center;background:var(--green);color:white;padding:0 18px;border-radius:var(--pill);text-decoration:none;font-weight:650}}.empty{{background:var(--card);padding:24px;border-radius:var(--radius);color:var(--muted)}}footer{{font-size:12px;color:var(--muted);padding:16px 4px}}</style></head>
+<body><main><header><h1>Качині страви Чорноморка</h1><p>Внутрішній щотижневий звіт · provider {PROVIDER_ID}</p></header><h2>Оберіть звіт за тиждень</h2><ul>{items}</ul><footer>Оновлення щопонеділка з 28.09 до 02.11.2026 включно.</footer></main></body></html>"""
     (root / "index.html").write_text(content, encoding="utf-8")
 
 

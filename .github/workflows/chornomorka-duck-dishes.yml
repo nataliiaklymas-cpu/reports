@@ -50,7 +50,7 @@ jobs:
         run: |
           git config user.name "bolt-reports-bot"
           git config user.email "actions@github.com"
-          git add internal/chornomorka-duck-dishes
+          git add internal/kachyni-stravy-chornomorka
           if git diff --cached --quiet; then
             echo "No report generated for this date."
           else
