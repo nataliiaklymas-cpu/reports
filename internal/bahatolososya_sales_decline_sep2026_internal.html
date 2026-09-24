@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>БагатоЛосося Group — причини падіння продажів</title>
+  <style>
+    @font-face {
+      font-family: Inter;
+      src: url("fonts/Inter-VariableFont.ttf") format("truetype-variations");
+      font-weight: 100 900;
+      font-display: swap;
+    }
+    :root {
+      --brand: #2A9C64;
+      --brand-dark: #0C2C1C;
+      --text: #191F1C;
+      --muted: #5F6563;
+      --floor: #FFFFFF;
+      --grouped: #EEF1F0;
+      --surface: #E4EBE7;
+      --separator: rgba(0,45,30,.10);
+      --positive-soft: rgba(42,156,100,.12);
+      --warning-soft: rgba(255,190,0,.20);
+      --danger: #B42318;
+      --danger-soft: rgba(180,35,24,.09);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--grouped);
+      color: var(--text);
+      font-family: Inter, Arial, sans-serif;
+      font-feature-settings: "cv03", "cv04";
+      line-height: 1.45;
+    }
+    .top { background: var(--brand-dark); color: white; padding: 42px 28px 76px; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .kicker {
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.68);
+    }
+    h1 {
+      margin: 10px 0 10px;
+      max-width: 900px;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.04;
+      letter-spacing: -.035em;
+    }
+    h2 { margin: 0 0 14px; font-size: 25px; letter-spacing: -.02em; }
+    h3 { margin: 0 0 8px; font-size: 16px; }
+    p { margin: 0; }
+    .sub { max-width: 850px; color: rgba(255,255,255,.7); }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .pill {
+      border-radius: 600rem;
+      padding: 7px 12px;
+      background: rgba(255,255,255,.1);
+      font-size: 12px;
+      font-weight: 650;
+    }
+    main { padding: 0 0 60px; }
+    section { margin-top: 34px; }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: -48px;
+    }
+    .metric, .card { border-radius: 16px; background: var(--floor); }
+    .metric {
+      min-height: 124px;
+      padding: 19px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .metric strong {
+      display: block;
+      font-size: clamp(24px, 3vw, 32px);
+      letter-spacing: -.04em;
+      font-variant-numeric: tabular-nums;
+    }
+    .metric span { margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .metric.primary { background: var(--brand); color: white; }
+    .metric.primary span { color: rgba(255,255,255,.72); }
+    .metric.danger strong { color: var(--danger); }
+    .summary {
+      margin-top: 16px;
+      padding: 22px 24px;
+      border-radius: 16px;
+      background: var(--warning-soft);
+      font-size: 16px;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .card { padding: 22px; }
+    .card.success { background: var(--positive-soft); }
+    .card.danger { background: var(--danger-soft); }
+    .note { color: var(--muted); font-size: 13px; }
+    .tiny { color: var(--muted); font-size: 11px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+    }
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+      padding: 10px 9px;
+      border-bottom: 1px solid var(--separator);
+    }
+    td { padding: 11px 9px; border-bottom: 1px solid var(--separator); vertical-align: top; }
+    tr:last-child td { border-bottom: 0; }
+    .num { text-align: right; white-space: nowrap; }
+    .neg { color: var(--danger); font-weight: 700; }
+    .pos { color: var(--brand); font-weight: 700; }
+    .bars { display: grid; gap: 13px; margin-top: 18px; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 126px 1fr 70px;
+      gap: 12px;
+      align-items: center;
+      font-size: 13px;
+    }
+    .track { height: 14px; border-radius: 600rem; background: var(--surface); overflow: hidden; }
+    .fill { height: 100%; border-radius: 600rem; background: var(--brand); min-width: 3px; }
+    .fill.peer { background: #AAB6B0; }
+    .fill.loss { background: var(--danger); }
+    .bar-value { text-align: right; font-variant-numeric: tabular-nums; }
+    .callout { border-radius: 16px; padding: 22px 24px; background: var(--positive-soft); }
+    .owner { background: var(--brand-dark); color: white; }
+    .owner p { color: rgba(255,255,255,.82); font-size: 15px; }
+    .owner h2 { color: white; }
+    .formula {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .factor { border-radius: 16px; background: var(--floor); padding: 18px; }
+    .factor strong { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+    .factor span { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .factor.good strong { color: var(--brand); }
+    .factor.bad strong { color: var(--danger); }
+    .method {
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid var(--separator);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media (max-width: 880px) {
+      .metrics, .grid-4, .formula { grid-template-columns: repeat(2, 1fr); }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 24px, 1180px); }
+      .top { padding: 28px 12px 68px; }
+      .metrics, .grid-4, .formula { grid-template-columns: 1fr; }
+      .metric { min-height: 100px; }
+      .bar-row { grid-template-columns: 100px 1fr 58px; gap: 8px; }
+      table { min-width: 680px; }
+      .card { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <div class="kicker">Internal · Bolt Food Ukraine</div>
+      <h1>Чому просіли продажі БагатоЛосося Group</h1>
+      <p class="sub">БагатоЛосося · СушіХО · Nori Miori. Розбір 14–20 вересня проти 7–13 вересня та контекст попередніх восьми тижнів.</p>
+      <div class="pills">
+        <span class="pill">21 активна точка</span>
+        <span class="pill">Київ</span>
+        <span class="pill">Delivered orders</span>
+        <span class="pill">GMV до знижок</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="metrics">
+      <div class="metric primary"><strong>−35,8%</strong><span>Продажі тиждень до тижня</span></div>
+      <div class="metric danger"><strong>−29,8%</strong><span>Доставлені замовлення</span></div>
+      <div class="metric danger"><strong>−21,6%</strong><span>Покази в застосунку</span></div>
+      <div class="metric"><strong>100%</strong><span>Доступність мережі</span></div>
+    </div>
+
+    <div class="summary">
+      <strong>Висновок:</strong> падіння реальне, але воно не пов’язане із закриттям точок.
+      Ринок суші Києва сповільнився на 9,7%, тоді як група — на 35,8%. Додаткове падіння пояснюють
+      менша кількість показів, слабша конверсія з меню в замовлення та скорочення промо-замовлень на 40,4%.
+      90% абсолютного падіння припало на БагатоЛосося; Nori Miori продовжив рости.
+    </div>
+
+    <section>
+      <h2>Динаміка за вісім тижнів</h2>
+      <div class="card">
+        <table>
+          <thead>
+            <tr><th>Тиждень</th><th class="num">Продажі</th><th class="num">Замовлення</th><th class="num">Промо-замовлення</th><th class="num">Покази</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>27 лип – 2 сер</td><td class="num">333 531 ₴</td><td class="num">233</td><td class="num">146</td><td class="num">80 942</td></tr>
+            <tr><td>3–9 сер</td><td class="num">330 101 ₴</td><td class="num">244</td><td class="num">153</td><td class="num">85 778</td></tr>
+            <tr><td>10–16 сер</td><td class="num">486 262 ₴</td><td class="num">341</td><td class="num">253</td><td class="num">149 231</td></tr>
+            <tr><td>17–23 сер</td><td class="num">337 195 ₴</td><td class="num">253</td><td class="num">188</td><td class="num">126 378</td></tr>
+            <tr><td>24–30 сер</td><td class="num">382 367 ₴</td><td class="num">287</td><td class="num">177</td><td class="num">130 968</td></tr>
+            <tr><td>31 сер – 6 вер</td><td class="num">452 215 ₴</td><td class="num">302</td><td class="num">190</td><td class="num">128 695</td></tr>
+            <tr><td>7–13 вер</td><td class="num">438 853 ₴</td><td class="num">325</td><td class="num">198</td><td class="num">128 713</td></tr>
+            <tr><td><strong>14–20 вер</strong></td><td class="num neg">281 761 ₴</td><td class="num neg">228</td><td class="num neg">118</td><td class="num neg">100 930</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:12px">Після локального мінімуму 17–23 серпня продажі до 7–13 вересня зросли на 30,2%, а замовлення — на 28,5%. Останній тиждень розвернув обидва показники.</p>
+    </section>
+
+    <section>
+      <h2>Звідки взялося −157 тис. ₴</h2>
+      <div class="formula">
+        <div class="factor bad"><strong>−94,7 тис. ₴</strong><span>Менше показів у застосунку</span></div>
+        <div class="factor good"><strong>+5,3 тис. ₴</strong><span>Трохи кращий показ → меню</span></div>
+        <div class="factor bad"><strong>−41,5 тис. ₴</strong><span>Слабша конверсія меню → замовлення</span></div>
+        <div class="factor bad"><strong>−26,1 тис. ₴</strong><span>Нижчий середній чек</span></div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <table>
+          <thead><tr><th>Етап воронки</th><th class="num">7–13 вересня</th><th class="num">14–20 вересня</th><th class="num">Зміна</th></tr></thead>
+          <tbody>
+            <tr><td>Покази в застосунку</td><td class="num">128 713</td><td class="num">100 930</td><td class="num neg">−21,6%</td></tr>
+            <tr><td>Перегляди меню</td><td class="num">2 526</td><td class="num">2 011</td><td class="num neg">−20,4%</td></tr>
+            <tr><td>Показ → перегляд меню</td><td class="num">1,96%</td><td class="num">1,99%</td><td class="num pos">+0,03 п.п.</td></tr>
+            <tr><td>Доставлені замовлення</td><td class="num">325</td><td class="num">228</td><td class="num neg">−29,8%</td></tr>
+            <tr><td>Перегляд меню → замовлення</td><td class="num">12,87%</td><td class="num">11,34%</td><td class="num neg">−1,53 п.п.</td></tr>
+            <tr><td>Середній чек</td><td class="num">1 350 ₴</td><td class="num">1 236 ₴</td><td class="num neg">−8,5%</td></tr>
+            <tr><td>Продажі до знижок</td><td class="num">438 853 ₴</td><td class="num">281 761 ₴</td><td class="num neg">−35,8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Промо просіло значно сильніше за ринок</h2>
+      <div class="grid-2">
+        <div class="card danger">
+          <h3>Промо групи</h3>
+          <table>
+            <tbody>
+              <tr><td>Промо-замовлення</td><td class="num neg">198 → 118</td><td class="num neg">−40,4%</td></tr>
+              <tr><td>Знижка, разом</td><td class="num neg">45,5 → 19,4 тис. ₴</td><td class="num neg">−57,4%</td></tr>
+              <tr><td>Замовлення з menu promo</td><td class="num neg">122 → 58</td><td class="num neg">−52,5%</td></tr>
+              <tr><td>Замовлення з delivery-fee promo</td><td class="num neg">174 → 81</td><td class="num neg">−53,4%</td></tr>
+            </tbody>
+          </table>
+          <p class="note" style="margin-top:12px">Частка промо-замовлень впала з 60,9% до 51,8%. Зафіксована знижка була профінансована Bolt; витрати партнера — 0 ₴.</p>
+        </div>
+        <div class="card">
+          <h3>Інші sushi-провайдери Києва</h3>
+          <table>
+            <tbody>
+              <tr><td>Покази</td><td class="num">−17,7%</td></tr>
+              <tr><td>Продажі</td><td class="num">−9,7%</td></tr>
+              <tr><td>Промо-замовлення</td><td class="num">−2,1%</td></tr>
+              <tr><td>Знижка</td><td class="num">−5,1%</td></tr>
+            </tbody>
+          </table>
+          <p class="note" style="margin-top:12px">Загальний попит був слабшим, але група втратила продажі у 3,7 раза швидше за ринок. Головна відмінність — промо конкурентів майже не змінилося.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Чому до цього продажі росли</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Доступність БагатоЛосося Group</h3>
+          <div class="bars">
+            <div class="bar-row"><span>31 сер – 6 вер</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="bar-value">100%</span></div>
+            <div class="bar-row"><span>7–13 вер</span><div class="track"><div class="fill" style="width:99.9%"></div></div><span class="bar-value">99,9%</span></div>
+            <div class="bar-row"><span>14–20 вер</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="bar-value">100%</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Доступність інших sushi-провайдерів</h3>
+          <div class="bars">
+            <div class="bar-row"><span>31 сер – 6 вер</span><div class="track"><div class="fill peer" style="width:85.3%"></div></div><span class="bar-value">85,3%</span></div>
+            <div class="bar-row"><span>7–13 вер</span><div class="track"><div class="fill peer" style="width:87.6%"></div></div><span class="bar-value">87,6%</span></div>
+            <div class="bar-row"><span>14–20 вер</span><div class="track"><div class="fill peer" style="width:89%"></div></div><span class="bar-value">89,0%</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:16px">
+        <strong>Гіпотеза про тривоги підтверджується даними.</strong>
+        У попередні тижні група була доступна практично 100% часу, тоді як sushi-конкуренти —
+        лише 85–88%. Коли частина ринку закривалася, ці бренди довше залишалися доступними для
+        замовлення й отримували більше шансів на показ. Минулого тижня доступність конкурентів
+        відновилася до 89%, тому ця перевага трохи звузилася.
+      </div>
+    </section>
+
+    <section>
+      <h2>Падіння сконцентроване в БагатоЛосося</h2>
+      <div class="card">
+        <table>
+          <thead><tr><th>Бренд</th><th class="num">7–13 вер</th><th class="num">14–20 вер</th><th class="num">Зміна</th><th class="num">Замовлення</th><th class="num">Промо</th></tr></thead>
+          <tbody>
+            <tr><td>БагатоЛосося</td><td class="num">346 974 ₴</td><td class="num">205 320 ₴</td><td class="num neg">−40,8%</td><td class="num">224 → 131</td><td class="num">148 → 68</td></tr>
+            <tr><td>СушіХО</td><td class="num">65 384 ₴</td><td class="num">49 216 ₴</td><td class="num neg">−24,7%</td><td class="num">50 → 42</td><td class="num">28 → 27</td></tr>
+            <tr><td>Nori Miori</td><td class="num">26 495 ₴</td><td class="num">27 225 ₴</td><td class="num pos">+2,8%</td><td class="num">51 → 55</td><td class="num">22 → 23</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3>П’ять точок із найбільшим внеском у падіння</h3>
+        <table>
+          <thead><tr><th>Точка</th><th class="num">7–13 вер</th><th class="num">14–20 вер</th><th class="num">Втрата</th><th class="num">Зміна</th></tr></thead>
+          <tbody>
+            <tr><td>БагатоЛосося Деміївська</td><td class="num">92 924 ₴</td><td class="num">56 942 ₴</td><td class="num neg">−35 982 ₴</td><td class="num neg">−38,7%</td></tr>
+            <tr><td>БагатоЛосося Січових Стрільців</td><td class="num">77 521 ₴</td><td class="num">45 087 ₴</td><td class="num neg">−32 434 ₴</td><td class="num neg">−41,8%</td></tr>
+            <tr><td>БагатоЛосося Берестейський</td><td class="num">43 603 ₴</td><td class="num">16 070 ₴</td><td class="num neg">−27 533 ₴</td><td class="num neg">−63,1%</td></tr>
+            <tr><td>БагатоЛосося Соборності</td><td class="num">41 184 ₴</td><td class="num">20 981 ₴</td><td class="num neg">−20 203 ₴</td><td class="num neg">−49,1%</td></tr>
+            <tr><td>СушіХО Січових Стрільців</td><td class="num">20 224 ₴</td><td class="num">6 180 ₴</td><td class="num neg">−14 044 ₴</td><td class="num neg">−69,4%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Що не було причиною</h2>
+      <div class="grid-4">
+        <div class="card success"><strong>99,9% → 100%</strong><p class="note">Доступність</p></div>
+        <div class="card success"><strong>0,61% → 0,44%</strong><p class="note">Failed order rate</p></div>
+        <div class="card success"><strong>21,7 → 18,5 хв</strong><p class="note">Приготування</p></div>
+        <div class="card success"><strong>0%</strong><p class="note">Відхилені замовлення</p></div>
+      </div>
+      <p class="note" style="margin-top:12px">Окремий watch-out: частка заборів із затримкою понад 5 хв із вини закладу зросла з 2,1% до 5,7%, але цього недостатньо, щоб пояснити падіння трафіку та промо.</p>
+    </section>
+
+    <section>
+      <div class="callout owner">
+        <h2>Готове пояснення власнику</h2>
+        <p>«Минулого тижня продажі мережі знизилися на 35,8%. Це не пов’язано з тим, що заклади були закриті: доступність залишалася 100%, а операційні показники загалом не погіршилися. Частина падіння була ринковою — покази sushi-ресторанів у Києві знизилися на 17,7%. Але для нашої мережі додатково суттєво скоротилась промо-підтримка: промо-замовлень стало на 40% менше, тоді як у конкурентів — лише на 2%. Разом із нижчою конверсією та середнім чеком це й дало просідання. Попередня позитивна динаміка була закономірною: наші точки працювали майже 100% часу, коли середня доступність sushi-конкурентів опускалася до 85–88%, тому мережа довше залишалась видимою та доступною в застосунку. Падіння сконцентроване переважно в БагатоЛосося; Nori Miori минулого тижня продовжив рости».</p>
+      </div>
+    </section>
+
+    <div class="method">
+      Джерела: main.ng_delivery.dim_order_delivery, main.ng_delivery.fact_provider_weekly,
+      main.ng_delivery.dim_provider_v2. Періоди — повні тижні Пн–Нд. Продажі — provider price
+      before discounts для доставлених замовлень. Sushi peers — 122 активні провайдери Києва з
+      trait shortcuts_sushi, без BAHATOLOSOSYA GROUP. Дані по 20.09.2026 включно.
+    </div>
+  </main>
+</body>
+</html>
