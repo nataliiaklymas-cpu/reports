@@ -14,6 +14,7 @@ from dbx import DBX
 
 
 PROVIDER_ID = 5092622
+STANDARD_COMMISSION_RATE = 0.15
 OUTPUT_FOLDER = Path("internal/chornomorka-duck-dishes")
 ALLOWED_RUN_DATES = {
     dt.date(2026, 9, 28),
@@ -94,8 +95,6 @@ def load_data(monday: dt.date, end: dt.date):
               CAST(o.order_gmv_local AS DOUBLE) AS order_before_discount_uah,
               CAST(o.order_gmv_after_discount_local AS DOUBLE) AS order_after_discount_uah,
               CAST(o.total_order_item_discount_local AS DOUBLE) AS order_discount_uah,
-              CAST(o.provider_price_after_discount_local AS DOUBLE) AS order_commission_base_uah,
-              CAST(o.order_provider_commission_local AS DOUBLE) AS actual_order_commission_uah,
               CAST(m.bolt_menu_campaign_cost_eur AS DOUBLE) AS bolt_discount_eur,
               CAST(m.provider_menu_campaign_cost_eur AS DOUBLE) AS provider_discount_eur
             FROM main.ng_delivery.dim_order_delivery o
@@ -116,15 +115,11 @@ def load_data(monday: dt.date, end: dt.date):
         lambda x: "Доставлено" if x == "delivered" else "Скасовано"
     )
     details["discount_payer"] = details.apply(discount_payer, axis=1)
-    denominator = details["order_commission_base_uah"].replace(0, pd.NA)
-    details["standard_commission_rate_pct"] = (
-        details["actual_order_commission_uah"] / denominator * 100
-    )
+    details["standard_commission_rate_pct"] = STANDARD_COMMISSION_RATE * 100
     delivered = details["order_state"].eq("delivered")
     details["standard_commission_duck_uah"] = (
         details["duck_commission_base_uah"]
-        * details["standard_commission_rate_pct"]
-        / 100
+        * STANDARD_COMMISSION_RATE
     ).where(delivered, 0)
     details["commission_10pct_duck_uah"] = (
         details["duck_commission_base_uah"] * 0.10
@@ -241,7 +236,7 @@ section{{background:var(--card);border-radius:var(--radius);padding:24px;margin-
 <div class="scroll"><table><thead><tr><th>Страва</th><th>Статус</th><th class="num">Кількість</th><th class="num">Замовлення</th><th class="num">Продажі, грн</th><th class="num">Стандартна комісія, грн</th><th class="num">Комісія 10%, грн</th><th class="num">До виплати, грн</th></tr></thead><tbody>{summary_rows}</tbody></table></div></section>
 <section><h2>Перелік замовлень</h2><p class="note">Вартість замовлення — GMV страв до та після меню-знижки. Платник знижки визначається за фактичними campaign cost.</p>
 <div class="scroll"><table><thead><tr><th>Код</th><th>Час</th><th>Статус</th><th>Страва</th><th class="num">К-сть</th><th class="num">До знижки</th><th class="num">Після знижки</th><th>Платник</th><th class="num">Станд. ставка</th><th class="num">Станд. комісія</th><th class="num">10%</th><th class="num">До виплати</th></tr></thead><tbody>{detail_rows}</tbody></table></div></section>
-<footer>Розрахунок “до виплати” = стандартна комісія на качині страви мінус 10% комісії на ці страви. Інші позиції в чеку не враховані.</footer>
+<footer>Розрахунок “до виплати” = стандартна комісія 15% на качині страви мінус комісія 10% на ці страви. Інші позиції в чеку не враховані.</footer>
 </main></body></html>"""
 
 
@@ -283,7 +278,7 @@ def write_excel(path, details, summary, monday, sunday, is_demo=False):
                 ("Період", f"{monday:%d.%m.%Y}–{sunday:%d.%m.%Y}"),
                 (
                     "Формула виплати",
-                    "Стандартна комісія на качині страви мінус 10% на качині страви",
+                    "Комісія 15% на качині страви мінус комісія 10% на качині страви",
                 ),
             ]
         )
