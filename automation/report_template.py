@@ -881,10 +881,13 @@ def build_network_summary(
             f'{s["partner_short"]} {fmt(st.get("part_promo", 0))}</span></td>'
             f'<td class="num">{fmt(st["bp_ord"])}</td>'
             f'<td class="num">{round(st["avail"]*100,1) if st.get("avail") else "—"}%</td>'
-            f'<td class="num">{st.get("overall_conv") or "—"}</td>'
-            f'<td>{st.get("loss_short") or "—"}</td>'
-            f"</tr>"
         )
+        if net_impr:
+            loc_rows += (
+                f'<td class="num">{st.get("overall_conv") or "—"}</td>'
+                f'<td>{st.get("loss_short") or "—"}</td>'
+            )
+        loc_rows += "</tr>"
 
     loss_locs = [
         r for r in loc_results
@@ -914,6 +917,27 @@ def build_network_summary(
             f'<div style="font-size:12px;color:#6B7280;margin-bottom:6px;">{s["loss_network_sub"]}</div>'
             f'<ul>{net_loss_items}</ul></div>'
         )
+
+    funnel_kpis_html = ""
+    funnel_sec_html = ""
+    conv_ths = ""
+    if net_impr:
+        funnel_kpis_html = f"""
+  <div class="g4" style="margin-top:14px;">
+    <div class="card"><div class="cl">{s['unique_customers']}</div><div class="cv">{fmt(net_uniq)}</div></div>
+    <div class="card"><div class="cl">{s['repeat_customers']}</div><div class="cv" style="color:#1565C0;">{fmt(net_repeat)}</div></div>
+    <div class="card"><div class="cl">{s['funnel_overall']}</div><div class="cv">{pct_label(net_ordered_sess, net_impr)}</div></div>
+    <div class="card"><div class="cl">{s['funnel_impr']}</div><div class="cv">{fmt(net_impr)}</div></div>
+  </div>"""
+        funnel_sec_html = f"""
+<div class="sec">
+  <div class="sec-t">{s['funnel_title']}</div>
+  <div class="sec-s">{s['funnel_sub']}</div><div class="hr"></div>
+  {funnel_block(s, net_impr, net_menu, net_cart, net_ordered_sess)}
+  {net_loss_html}
+  <div style="font-size:11px;color:#9CA3AF;margin-top:8px;">{s['funnel_note']}</div>
+</div>"""
+        conv_ths = f'<th class="num">{s["conv_short"]}</th><th>{s["bottleneck"]}</th>'
 
     html = f"""<!DOCTYPE html>
 <html lang="{s['html_lang']}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -961,22 +985,11 @@ def build_network_summary(
     <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:{'#34D186' if net_bad_orders==0 else '#EF4444'};">{fmt(net_bad_orders)}</div></div>
     <div class="card"><div class="cl">{s['avg_availability']}</div><div class="cv" style="color:{avail_color(net_avail)};">{round(net_avail*100,1)}%</div></div>
   </div>
-  <div class="g4" style="margin-top:14px;">
-    <div class="card"><div class="cl">{s['unique_customers']}</div><div class="cv">{fmt(net_uniq)}</div></div>
-    <div class="card"><div class="cl">{s['repeat_customers']}</div><div class="cv" style="color:#1565C0;">{fmt(net_repeat)}</div></div>
-    <div class="card"><div class="cl">{s['funnel_overall']}</div><div class="cv">{pct_label(net_ordered_sess, net_impr)}</div></div>
-    <div class="card"><div class="cl">{s['funnel_impr']}</div><div class="cv">{fmt(net_impr)}</div></div>
-  </div>
+  {funnel_kpis_html}
   <div style="font-size:11px;color:#9CA3AF;margin-top:12px;">{s['promo_note']}</div>
 </div>
 
-<div class="sec">
-  <div class="sec-t">{s['funnel_title']}</div>
-  <div class="sec-s">{s['funnel_sub']}</div><div class="hr"></div>
-  {funnel_block(s, net_impr, net_menu, net_cart, net_ordered_sess)}
-  {net_loss_html}
-  <div style="font-size:11px;color:#9CA3AF;margin-top:8px;">{s['funnel_note']}</div>
-</div>
+{funnel_sec_html}
 
 <div class="sec">
   <div class="sec-t">📅 {s['network_daily']} — {period_short}</div>
@@ -994,7 +1007,7 @@ def build_network_summary(
     <th>{s['location']}</th><th class="num">{s['delivered']}</th><th class="num">{s['revenue_uah']}</th>
     <th class="num">{s['rating']}</th><th class="num">{s['promo_uah']}</th>
     <th class="num">Bolt+</th><th class="num">{s['availability']}</th>
-    <th class="num">{s['conv_short']}</th><th>{s['bottleneck']}</th>
+    {conv_ths}
   </tr></thead><tbody>
     {loc_rows}
   </tbody></table>
