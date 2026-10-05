@@ -7,7 +7,7 @@ ops metrics + ratings/reviews), parameterized by partner branding
 so it works for any partner registered in partners_config.py.
 """
 
-import html
+import html as html_mod
 import math
 
 UAH = 42.0
@@ -58,6 +58,38 @@ STRINGS = {
         "promo_pct": "Промо %",
         "no_comments": "Текстових відгуків немає",
         "confidential": "Конфіденційно",
+        "funnel_title": "Воронка: де втрачаємо продажі",
+        "funnel_sub": "Сесії в додатку: покази в стрічці → відкриття картки → додавання в кошик → оформлення. Це не «скільки привезли», а на якому кроці клієнт відвалюється.",
+        "funnel_impr": "Покази",
+        "funnel_menu": "Відкриття картки",
+        "funnel_cart": "Додано в кошик",
+        "funnel_order": "Оформлено",
+        "funnel_of_prev": "від попереднього кроку",
+        "funnel_overall": "Конверсія показ → замовлення",
+        "funnel_note": "Воронка в сесіях користувача, тому «оформлено» може трохи відрізнятись від «доставлено».",
+        "repeat_customers": "Повторних клієнтів",
+        "unique_customers": "Унікальних клієнтів",
+        "delivery_time": "Час доставки",
+        "loss_title": "Де саме втрачаємо",
+        "loss_avail": "Доступність {pct}% — частина клієнтів бачить заклад, але не може замовити.",
+        "loss_listing": "Слабка конверсія зі стрічки в картку ({pct}%). Часто справа в фото, рейтингу, бейджі промо або високому ETA у видачі.",
+        "loss_menu": "Відкривають меню, але рідко додають страви ({pct}%). Варто перевірити ціни, фото позицій і мінімальне замовлення.",
+        "loss_checkout": "Додають у кошик, але не оформлюють ({pct}%). Типові стоп-фактори: мінімальна сума, час доставки, відсутність промо на чекауті.",
+        "loss_visibility": "Показів менше на {pct}% vs минулий тиждень — втрата ще на етапі видимості, не всередині меню.",
+        "loss_rating": "Рейтинг закладу {rating}★ нижче комфортного рівня — це б’є і по відкриттю картки, і по повторних замовленнях.",
+        "loss_prep": "Час приготування {min} хв (ціль <15) — клієнт бачить довге очікування ще до замовлення.",
+        "loss_cancel": "Скасовано {n} замовлень — частина вже «виграного» попиту не доходить до виручки.",
+        "loss_ok": "Критичного вузького місця на воронці немає — дивіться обсяг показів і доступність.",
+        "loss_short_avail": "доступність",
+        "loss_short_listing": "стрічка → картка",
+        "loss_short_menu": "меню → кошик",
+        "loss_short_checkout": "кошик → замовлення",
+        "loss_short_visibility": "покази",
+        "loss_short_ok": "без вузького місця",
+        "loss_network_title": "Де мережа втрачає продажі",
+        "loss_network_sub": "Локації з найнижчою конверсією показ → замовлення. Відкрийте звіт точки, щоб побачити крок.",
+        "conv_short": "Конверсія",
+        "bottleneck": "Вузьке місце",
         "network_total": "Мережа тотал",
         "summary_network": "ЗВЕДЕНИЙ ЗВІТ · МЕРЕЖА",
         "network_total_title": "{name} — тотал мережі, {n} локацій",
@@ -120,6 +152,38 @@ STRINGS = {
         "promo_pct": "Promo %",
         "no_comments": "No written reviews",
         "confidential": "Confidential",
+        "funnel_title": "Funnel: where sales are lost",
+        "funnel_sub": "App sessions: feed impressions → venue card → add to cart → checkout. This shows where customers drop off, not only how many orders arrived.",
+        "funnel_impr": "Impressions",
+        "funnel_menu": "Card opens",
+        "funnel_cart": "Added to cart",
+        "funnel_order": "Placed",
+        "funnel_of_prev": "of previous step",
+        "funnel_overall": "Impression → order conversion",
+        "funnel_note": "The funnel is session-based, so “placed” can differ slightly from “delivered”.",
+        "repeat_customers": "Repeat customers",
+        "unique_customers": "Unique customers",
+        "delivery_time": "Delivery time",
+        "loss_title": "Where we lose sales",
+        "loss_avail": "Availability {pct}% — some customers see the venue but cannot order.",
+        "loss_listing": "Weak feed → card conversion ({pct}%). Often photo, rating, promo badge or a high ETA in the list.",
+        "loss_menu": "Customers open the menu but rarely add dishes ({pct}%). Check prices, dish photos and the minimum order.",
+        "loss_checkout": "Items go to cart but checkout is not completed ({pct}%). Typical blockers: minimum order, ETA, no promo at checkout.",
+        "loss_visibility": "Impressions are down {pct}% vs last week — the loss is still at visibility, not inside the menu.",
+        "loss_rating": "Venue rating {rating}★ is below a comfortable level — it hits both card opens and repeat orders.",
+        "loss_prep": "Prep time {min} min (target <15) — customers see a long wait before ordering.",
+        "loss_cancel": "{n} cancelled orders — part of already won demand never becomes revenue.",
+        "loss_ok": "No critical funnel bottleneck — check impression volume and availability.",
+        "loss_short_avail": "availability",
+        "loss_short_listing": "feed → card",
+        "loss_short_menu": "menu → cart",
+        "loss_short_checkout": "cart → order",
+        "loss_short_visibility": "impressions",
+        "loss_short_ok": "no bottleneck",
+        "loss_network_title": "Where the network loses sales",
+        "loss_network_sub": "Locations with the lowest impression → order conversion. Open the location report to see the drop-off step.",
+        "conv_short": "Conversion",
+        "bottleneck": "Bottleneck",
         "network_total": "Network total",
         "summary_network": "SUMMARY · NETWORK",
         "network_total_title": "{name} — network total, {n} locations",
@@ -181,8 +245,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .trend-key{display:inline-flex;align-items:center;gap:6px;}
 .trend-line{width:22px;height:3px;border-radius:600rem;background:var(--color-content-action-primary);}
 .trend-line.prev{height:0;border-top:2px dashed var(--color-content-tertiary);background:none;}
-.footer{background:#0d2a1a;color:rgba(255,255,255,.3);text-align:center;padding:14px;font-size:10px;margin-top:24px;}"""
-
+.footer{background:#0d2a1a;color:rgba(255,255,255,.3);text-align:center;padding:14px;font-size:10px;margin-top:24px;}
+.funnel{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.fstep{background:#F8F9FA;border-radius:10px;padding:10px 12px;text-align:center;flex:1;min-width:92px;}
+.fstep .fv{font-size:18px;font-weight:800;line-height:1.1;}
+.fstep .fl{font-size:9px;color:#9CA3AF;text-transform:uppercase;letter-spacing:.4px;margin-top:3px;}
+.farw{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#9CA3AF;font-size:11px;min-width:46px;}
+.farw b{color:#1A1A1A;font-size:11px;font-weight:800;}
+.loss{background:#FFF8F1;border-left:3px solid #F59E0B;border-radius:10px;padding:12px 14px;margin-top:8px;}
+.loss.ok{background:#F0FFF8;border-left-color:#34D186;}
+.loss ul{margin:6px 0 0 18px;}
+.loss li{font-size:12px;color:#374151;margin:0 0 4px;}
+"""
 
 def sf(v, d=0):
     if v is None or (isinstance(v, float) and math.isnan(v)):
@@ -223,6 +297,85 @@ def rat_color(r):
     return "#EF4444"
 
 
+TYPICAL_FUNNEL = {
+    "listing": 0.09,
+    "menu": 0.22,
+    "checkout": 0.70,
+}
+
+
+def pct_label(num, den, digits=1):
+    den = sf(den, 0)
+    if not den:
+        return "—"
+    return f"{sf(num, 0) / den * 100:.{digits}f}%"
+
+
+def diagnose_funnel(s, impr, menu, cart, ordered, avail, rating, prep_min, failed, prev_impr):
+    reasons = []
+    shorts = []
+
+    def add(reason, short):
+        reasons.append(reason)
+        if short and short not in shorts:
+            shorts.append(short)
+
+    if avail is not None and avail < 0.90:
+        add(s["loss_avail"].format(pct=f"{avail * 100:.0f}"), s["loss_short_avail"])
+
+    gaps = []
+    if impr:
+        gaps.append((menu / impr, TYPICAL_FUNNEL["listing"], s["loss_listing"], s["loss_short_listing"]))
+    if menu:
+        gaps.append((cart / menu, TYPICAL_FUNNEL["menu"], s["loss_menu"], s["loss_short_menu"]))
+    if cart:
+        gaps.append((ordered / cart, TYPICAL_FUNNEL["checkout"], s["loss_checkout"], s["loss_short_checkout"]))
+    if gaps:
+        actual, typical, msg, short = max(gaps, key=lambda x: x[1] - x[0])
+        if actual < typical * 0.85:
+            add(msg.format(pct=f"{actual * 100:.1f}"), short)
+
+    if prev_impr and impr and prev_impr > 0 and (impr - prev_impr) / prev_impr <= -0.15:
+        add(
+            s["loss_visibility"].format(pct=f"{abs((impr - prev_impr) / prev_impr * 100):.0f}"),
+            s["loss_short_visibility"],
+        )
+    if rating is not None and rating < 4.3:
+        add(s["loss_rating"].format(rating=f"{rating:.2f}"), None)
+    if prep_min and prep_min > 20:
+        add(s["loss_prep"].format(min=f"{prep_min:.0f}"), None)
+    if failed:
+        add(s["loss_cancel"].format(n=int(failed)), None)
+
+    if not reasons:
+        reasons.append(s["loss_ok"])
+    return reasons[:3], (shorts[0] if shorts else s["loss_short_ok"])
+
+
+def funnel_block(s, impr, menu, cart, ordered):
+    steps = [
+        (impr, s["funnel_impr"]),
+        (menu, s["funnel_menu"]),
+        (cart, s["funnel_cart"]),
+        (ordered, s["funnel_order"]),
+    ]
+    html = ['<div class="funnel">']
+    prev = None
+    for i, (val, label) in enumerate(steps):
+        if i:
+            html.append(
+                f'<div class="farw"><b>{pct_label(val, prev)}</b>'
+                f'<span>{s["funnel_of_prev"]}</span></div>'
+            )
+        html.append(
+            f'<div class="fstep"><div class="fv">{fmt(val)}</div>'
+            f'<div class="fl">{label}</div></div>'
+        )
+        prev = val
+    html.append("</div>")
+    return "".join(html)
+
+
 def build_daily_comparison_chart(days, current, previous, current_label, previous_label):
     """Responsive inline SVG comparing delivered orders by weekday."""
     width, height = 760, 280
@@ -261,7 +414,7 @@ def build_daily_comparison_chart(days, current, previous, current_label, previou
         x_labels.append(
             f'<text x="{x:.1f}" y="{height-18}" text-anchor="middle" '
             'fill="var(--color-content-tertiary)" font-size="11">'
-            f"{html.escape(day_name)}</text>"
+            f"{html_mod.escape(day_name)}</text>"
         )
         cx, cy = current_points[i]
         px, py = previous_points[i]
@@ -280,11 +433,11 @@ def build_daily_comparison_chart(days, current, previous, current_label, previou
     return (
         '<div class="trend-chart">'
         '<div class="trend-legend">'
-        f'<span class="trend-key"><span class="trend-line"></span>{html.escape(current_label)}</span>'
-        f'<span class="trend-key"><span class="trend-line prev"></span>{html.escape(previous_label)}</span>'
+        f'<span class="trend-key"><span class="trend-line"></span>{html_mod.escape(current_label)}</span>'
+        f'<span class="trend-key"><span class="trend-line prev"></span>{html_mod.escape(previous_label)}</span>'
         '</div>'
         f'<svg viewBox="0 0 {width} {height}" role="img" '
-        f'aria-label="{html.escape(current_label)} vs {html.escape(previous_label)}">'
+        f'aria-label="{html_mod.escape(current_label)} vs {html_mod.escape(previous_label)}">'
         + "".join(grid)
         + f'<polyline points="{previous_polyline}" fill="none" stroke="var(--color-content-tertiary)" '
           'stroke-width="2.5" stroke-dasharray="7 6" stroke-linecap="round" stroke-linejoin="round"/>'
@@ -332,9 +485,18 @@ def build_report(
     promo_ord = int(sf(c.get("promo_ord", 0)))
     bp_ord = int(sf(c.get("bp_ord", 0)))
     new_u = int(sf(c.get("new_u", 0)))
+    uniq = int(sf(c.get("uniq", 0)))
+    repeat_u = max(uniq - new_u, 0) if uniq else None
+    uniq = uniq or None
     prep_min = round(sf(c.get("prep_min", 0)), 1)
     accept_min = round(sf(c.get("accept_min", 0)), 2)
+    eta_min = round(sf(c.get("eta_min", 0)), 1)
     avail = sf(c.get("avail", 0))
+    impr = int(sf(c.get("impr", 0)))
+    menu = int(sf(c.get("menu", 0)))
+    cart = int(sf(c.get("cart", 0)))
+    ordered_sess = int(sf(c.get("ordered", 0)))
+    prev_impr = int(sf(prev_row.get("impr", 0)))
     bad_rt = sf(c.get("bad_rt", 0))
     aov = round(gmv / max(delivered, 1))
     bp_sh = round(bp_ord / max(delivered, 1) * 100)
@@ -402,6 +564,18 @@ def build_report(
     acc_note = s["target_accept_ok"] if accept_min < 1 else s["target_accept"]
     bad_c = "#34D186" if bad_pct < 10 else "#EF4444"
     cancel_note = s["no_cancels"] if failed == 0 else s["cancelled"].format(n=failed)
+    eta_c = "#34D186" if eta_min and eta_min <= 40 else ("#F59E0B" if eta_min and eta_min <= 50 else "#9CA3AF")
+    overall_conv = pct_label(ordered_sess, impr)
+    loss_reasons, loss_short = diagnose_funnel(
+        s, impr, menu, cart, ordered_sess, avail, week_rat, prep_min, failed, prev_impr,
+    )
+    loss_ok = loss_reasons == [s["loss_ok"]]
+    loss_html = (
+        f'<div class="loss{" ok" if loss_ok else ""}">'
+        f'<div style="font-size:11px;font-weight:700;margin-bottom:2px;">{s["loss_title"]}</div>'
+        f'<div style="font-size:11px;color:#6B7280;margin-bottom:4px;">{s["funnel_overall"]}: <strong>{overall_conv}</strong></div>'
+        f'<ul>{"".join(f"<li>{html_mod.escape(r)}</li>" for r in loss_reasons)}</ul></div>'
+    )
 
     if comments_pos or comments_neg:
         rev_html = ""
@@ -464,11 +638,20 @@ def build_report(
     <div class="card"><div class="cl">{s['promo_total']}</div><div class="cv">{fmt(promo_total)}</div></div>
   </div>
   <div style="font-size:10px;color:#9CA3AF;margin-bottom:10px;">{s['promo_note']}</div>
-  <div class="g3">
+  <div class="g4">
     <div class="card"><div class="cl">{s['new_customers']}</div><div class="cv" style="color:#7C3AED;">{new_u}</div></div>
+    <div class="card"><div class="cl">{s['unique_customers']}</div><div class="cv">{fmt(uniq) if uniq is not None else "—"}</div></div>
+    <div class="card"><div class="cl">{s['repeat_customers']}</div><div class="cv" style="color:#1565C0;">{fmt(repeat_u) if repeat_u is not None else "—"}</div></div>
     <div class="card"><div class="cl">{s['bolt_plus_orders']}</div><div class="cv" style="color:#34D186;">{bp_ord}</div><div class="cd">{bp_sh}%</div></div>
-    <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:{bad_c};">{bad_orders}</div><div class="cd">{bad_pct}%</div></div>
   </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">{s['funnel_title']}</div>
+  <div class="sec-s">{s['funnel_sub']}</div><div class="hr"></div>
+  {funnel_block(s, impr, menu, cart, ordered_sess)}
+  {loss_html}
+  <div style="font-size:10px;color:#9CA3AF;margin-top:8px;">{s['funnel_note']}</div>
 </div>
 
 <div class="sec">
@@ -500,11 +683,12 @@ def build_report(
 
 <div class="sec">
   <div class="sec-t">⚙️ {s['ops']}</div><div class="hr"></div>
-  <div class="g3">
+  <div class="g4">
     <div class="card"><div class="cl">{s['availability']}</div><div class="cv" style="color:{avc};">{avail_pct}%</div>
       <div class="pb"><div class="pf" style="width:{avail_pct}%;background:{avc};"></div></div></div>
     <div class="card"><div class="cl">{s['prep_time']}</div><div class="cv" style="color:{prep_c};">{prep_min} {s['min']}</div><div class="cd">{prep_note}</div></div>
     <div class="card"><div class="cl">{s['accept_time']}</div><div class="cv" style="color:{acc_c};">{accept_min} {s['min']}</div><div class="cd">{acc_note}</div></div>
+    <div class="card"><div class="cl">{s['delivery_time']}</div><div class="cv" style="color:{eta_c};">{eta_min if eta_min else "—"} {s['min']}</div></div>
   </div>
   <div style="margin-top:8px;"><div style="font-size:11px;color:#9CA3AF;">{cancel_note}</div></div>
 </div>
@@ -532,6 +716,9 @@ def build_report(
         review_cnt=review_cnt, bad_cnt=bad_cnt, failed=failed,
         prev_delivered=prev_del, prev_gmv=prev_gmv, daily=daily,
         previous_daily=previous_daily,
+        impr=impr, menu=menu, cart=cart, ordered_sess=ordered_sess,
+        uniq=uniq or 0, repeat_u=repeat_u or 0, overall_conv=overall_conv,
+        loss_short=loss_short, prep_min=prep_min, eta_min=eta_min,
     )
 
 
@@ -578,7 +765,17 @@ a.loclink:hover{text-decoration:underline;}
 .trend-legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 8px;font-size:11px;color:var(--color-content-tertiary);}
 .trend-key{display:inline-flex;align-items:center;gap:6px;}
 .trend-line{width:22px;height:3px;border-radius:600rem;background:var(--color-content-action-primary);}
-.trend-line.prev{height:0;border-top:2px dashed var(--color-content-tertiary);background:none;}"""
+.trend-line.prev{height:0;border-top:2px dashed var(--color-content-tertiary);background:none;}
+.funnel{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.fstep{background:#F8F9FA;border-radius:10px;padding:12px 14px;text-align:center;flex:1;min-width:110px;}
+.fstep .fv{font-size:20px;font-weight:800;line-height:1.1;}
+.fstep .fl{font-size:10px;color:#9CA3AF;text-transform:uppercase;letter-spacing:.4px;margin-top:4px;}
+.farw{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#9CA3AF;font-size:12px;min-width:52px;}
+.farw b{color:#1A1A1A;font-size:12px;font-weight:800;}
+.loss{background:#FFF8F1;border-left:3px solid #F59E0B;border-radius:10px;padding:14px 16px;margin-top:10px;}
+.loss.ok{background:#F0FFF8;border-left-color:#34D186;}
+.loss ul{margin:6px 0 0 18px;}
+.loss li{font-size:13px;color:#374151;margin:0 0 5px;}"""
 
 
 def build_network_summary(
@@ -610,6 +807,12 @@ def build_network_summary(
     net_new_u = sum(r["stats"]["new_u"] for r in loc_results)
     net_failed = sum(r["stats"]["failed"] for r in loc_results)
     net_bad_orders = sum(r["stats"]["bad_orders"] for r in loc_results)
+    net_impr = sum(r["stats"].get("impr", 0) for r in loc_results)
+    net_menu = sum(r["stats"].get("menu", 0) for r in loc_results)
+    net_cart = sum(r["stats"].get("cart", 0) for r in loc_results)
+    net_ordered_sess = sum(r["stats"].get("ordered_sess", 0) for r in loc_results)
+    net_uniq = sum(r["stats"].get("uniq", 0) for r in loc_results)
+    net_repeat = sum(r["stats"].get("repeat_u", 0) for r in loc_results)
     rated = [r["stats"]["rating"] for r in loc_results if r["stats"]["rating"]]
     net_rating = sum(rated) / len(rated) if rated else None
     avails = [r["stats"]["avail"] for r in loc_results if r["stats"].get("avail")]
@@ -678,7 +881,38 @@ def build_network_summary(
             f'{s["partner_short"]} {fmt(st.get("part_promo", 0))}</span></td>'
             f'<td class="num">{fmt(st["bp_ord"])}</td>'
             f'<td class="num">{round(st["avail"]*100,1) if st.get("avail") else "—"}%</td>'
+            f'<td class="num">{st.get("overall_conv") or "—"}</td>'
+            f'<td>{st.get("loss_short") or "—"}</td>'
             f"</tr>"
+        )
+
+    loss_locs = [
+        r for r in loc_results
+        if r["stats"].get("impr", 0) >= 80 and r["stats"].get("overall_conv") not in (None, "—")
+    ]
+
+    def _conv_val(r):
+        try:
+            return float(str(r["stats"]["overall_conv"]).replace("%", "").replace(",", "."))
+        except (TypeError, ValueError):
+            return 999
+
+    loss_locs.sort(key=_conv_val)
+    net_loss_items = ""
+    for r in loss_locs[:5]:
+        st = r["stats"]
+        net_loss_items += (
+            f'<li><a class="loclink" href="{r["fname"]}">{r["short_name"]}</a>'
+            f' — {s["conv_short"]} {st.get("overall_conv") or "—"}'
+            f' · {st.get("loss_short") or ""}</li>'
+        )
+    net_loss_html = ""
+    if net_loss_items:
+        net_loss_html = (
+            f'<div class="loss"><div style="font-size:13px;font-weight:700;margin-bottom:4px;">'
+            f'{s["loss_network_title"]}</div>'
+            f'<div style="font-size:12px;color:#6B7280;margin-bottom:6px;">{s["loss_network_sub"]}</div>'
+            f'<ul>{net_loss_items}</ul></div>'
         )
 
     html = f"""<!DOCTYPE html>
@@ -727,7 +961,21 @@ def build_network_summary(
     <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:{'#34D186' if net_bad_orders==0 else '#EF4444'};">{fmt(net_bad_orders)}</div></div>
     <div class="card"><div class="cl">{s['avg_availability']}</div><div class="cv" style="color:{avail_color(net_avail)};">{round(net_avail*100,1)}%</div></div>
   </div>
+  <div class="g4" style="margin-top:14px;">
+    <div class="card"><div class="cl">{s['unique_customers']}</div><div class="cv">{fmt(net_uniq)}</div></div>
+    <div class="card"><div class="cl">{s['repeat_customers']}</div><div class="cv" style="color:#1565C0;">{fmt(net_repeat)}</div></div>
+    <div class="card"><div class="cl">{s['funnel_overall']}</div><div class="cv">{pct_label(net_ordered_sess, net_impr)}</div></div>
+    <div class="card"><div class="cl">{s['funnel_impr']}</div><div class="cv">{fmt(net_impr)}</div></div>
+  </div>
   <div style="font-size:11px;color:#9CA3AF;margin-top:12px;">{s['promo_note']}</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">{s['funnel_title']}</div>
+  <div class="sec-s">{s['funnel_sub']}</div><div class="hr"></div>
+  {funnel_block(s, net_impr, net_menu, net_cart, net_ordered_sess)}
+  {net_loss_html}
+  <div style="font-size:11px;color:#9CA3AF;margin-top:8px;">{s['funnel_note']}</div>
 </div>
 
 <div class="sec">
@@ -746,6 +994,7 @@ def build_network_summary(
     <th>{s['location']}</th><th class="num">{s['delivered']}</th><th class="num">{s['revenue_uah']}</th>
     <th class="num">{s['rating']}</th><th class="num">{s['promo_uah']}</th>
     <th class="num">Bolt+</th><th class="num">{s['availability']}</th>
+    <th class="num">{s['conv_short']}</th><th>{s['bottleneck']}</th>
   </tr></thead><tbody>
     {loc_rows}
   </tbody></table>

@@ -285,18 +285,34 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
                 provider_rating_per_order_value AS rating,
                 provider_acceptance_minutes_per_order_value AS accept_min,
                 provider_processing_minutes_per_order_value AS prep_min,
+                courier_to_eater_actual_minutes_per_order_value AS eta_min,
                 bad_provider_rating_rate_value AS bad_rt,
-                provider_active_rate_value AS avail
+                provider_active_rate_value AS avail,
+                provider_impressions_sessions_count AS impr,
+                provider_menu_viewed_sessions_count AS menu,
+                provider_product_added_sessions_count AS cart,
+                provider_order_placed_sessions_count AS ordered
             FROM main.ng_delivery.fact_provider_weekly
             WHERE provider_id IN ({ids_str})
               AND metric_timestamp_partition = DATE('{week["cur_mon"]}')
         """)
         prev_df = dbx.query(f"""
             SELECT provider_id,
-                total_gmv_before_discounts_eur AS gmv_eur
+                total_gmv_before_discounts_eur AS gmv_eur,
+                provider_impressions_sessions_count AS impr,
+                provider_menu_viewed_sessions_count AS menu,
+                provider_product_added_sessions_count AS cart,
+                provider_order_placed_sessions_count AS ordered
             FROM main.ng_delivery.fact_provider_weekly
             WHERE provider_id IN ({ids_str})
               AND metric_timestamp_partition = DATE('{week["prev_mon"]}')
+        """)
+        uniq_df = dbx.query(f"""
+            SELECT CAST(entity_id AS BIGINT) AS provider_id,
+                provider_deliveries_unique_user_count AS uniq
+            FROM main.mart_models.fact_provider_non_additive_weekly
+            WHERE CAST(entity_id AS BIGINT) IN ({ids_str})
+              AND timeframe_date = DATE('{week["cur_mon"]}')
         """)
         total_del_cur_df = dbx.query(f"""
             SELECT provider_id, COUNT(*) AS delivered_total
@@ -392,11 +408,13 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
         pos = [(int(x["rating"]), str(x["comment"])[:220]) for _, x in cm[cm["rating"] >= 4].head(2).iterrows()]
         neg = [(int(x["rating"]), str(x["comment"])[:220]) for _, x in cm[cm["rating"] <= 2].head(2).iterrows()]
 
+        cur = row(cur_df, pid)
+        cur["uniq"] = row(uniq_df, pid).get("uniq", 0)
         html, stats = build_report(
             pid=pid, name=name, brand_label=brand_label, partner_emoji=emoji, city=city,
             period_label=lbl["period_label"], period_short=lbl["period_short"], prev_label=lbl["prev_label"],
             days_ua=lbl["days"], days_iso=week["days_iso"],
-            cur_row=row(cur_df, pid), prev_row=row(prev_df, pid),
+            cur_row=cur, prev_row=row(prev_df, pid),
             delivered_total=row(total_del_cur_df, pid).get("delivered_total", 0),
             prev_delivered_total=row(total_del_prev_df, pid).get("delivered_total", 0),
             daily_map=daily_map, prev_daily_map=prev_daily_map,
