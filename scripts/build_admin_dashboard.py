@@ -31,6 +31,7 @@ FOLDERS = [
     ("idealist", "files"),
     ("contrabanda", "files"),
     ("marchuk-khlib", "files"),
+    ("bahato-lososya", "files"),
     ("roco-sushi-weekly", "weekly"),
     ("pesto-group-weekly", "weekly"),
     ("this-is-pivbar", "files"),
