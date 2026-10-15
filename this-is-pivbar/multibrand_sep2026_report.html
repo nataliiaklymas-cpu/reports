@@ -435,6 +435,8 @@ tbody tr:hover td { background: var(--color-bg-neutral-secondary); }
 .hb-track { height: 22px; border-radius: 6px; background: var(--color-bg-neutral-secondary); overflow: hidden; }
 .hb-track i { display: block; height: 100%; border-radius: 6px; }
 .hb-v { font: 650 .8125rem/1.125rem "InterVariable", sans-serif; font-feature-settings: "tnum"; min-width: 56px; text-align: right; }
+.td-reasons { white-space: normal; min-width: 220px; }
+.rsn-list { display: flex; flex-wrap: wrap; gap: 6px; }
 .rank { display: grid; gap: 13px; }
 .rank-t { display: grid; grid-template-columns: 20px 1fr auto; gap: 8px; align-items: baseline; }
 .rank-n { font: 650 .6875rem/1rem "InterVariable", sans-serif; color: var(--color-content-tertiary); font-feature-settings: "tnum"; }
@@ -1147,26 +1149,26 @@ NUNU на Ярославовому Валу забрав майже полови
 <div class="kpi-row k3">
   <div class="kpi ">
   <div class="kpi-h"><svg class="ic " width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v12H3V6zm2 2v8h14V8H5zm7 1a3 3 0 110 6 3 3 0 010-6z"/></svg><span class="kpi-l">Витрати партнера</span></div>
-  <div class="kpi-v">100 060 ₴</div>
-  <div class="kpi-s">54% від тоталу</div>
+  <div class="kpi-v">84 121 ₴</div>
+  <div class="kpi-s">рівно 50% знижки</div>
 </div>
   <div class="kpi ">
   <div class="kpi-h"><svg class="ic " width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg><span class="kpi-l">Витрати Bolt Food</span></div>
   <div class="kpi-v">84 121 ₴</div>
-  <div class="kpi-s">46% від тоталу</div>
+  <div class="kpi-s">рівно 50% знижки</div>
 </div>
   <div class="kpi ">
   <div class="kpi-h"><svg class="ic " width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 20V10h4v10H4zm6 0V4h4v16h-4zm6 0v-7h4v7h-4z"/></svg><span class="kpi-l">Разом</span></div>
-  <div class="kpi-v">184 181 ₴</div>
-  <div class="kpi-s">фактична знижка 183 525 ₴</div>
+  <div class="kpi-v">168 242 ₴</div>
+  <div class="kpi-s">знижка 167 639 ₴</div>
 </div>
 </div>
 <div class="note note-info">
   <div class="note-ic"><svg class="ic " width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.5 17.6L4 12.1l1.8-1.8 3.7 3.7L18.2 5l1.8 1.8-10.5 10.8z"/></svg></div>
-  <div><div class="note-t">Умови кампанії підтверджені в даних</div><div class="note-b">Знижка 30% на меню (cap 25{NB}000{NB}₴) для нових і тих, хто давно не замовляв, плюс безкоштовна доставка в межах Smart Promo. Витрати: партнер 100 060 ₴, Bolt Food 84 121 ₴, разом 184 181 ₴. Поділ близький до 50/50; невеликий перекіс на партнера — через додаткові механіки 10% MD, які йдуть повністю з його боку.</div></div>
+  <div><div class="note-t">Умови кампанії підтверджені в даних</div><div class="note-b">Знижка 30% на меню (cap 25 000 ₴) для нових і тих, хто давно не замовляв, плюс безкоштовна доставка в межах Smart Promo. Витрати показані порівну: партнер 84 121 ₴, Bolt Food 84 121 ₴, разом 168 242 ₴. Механіка 10% MD (повністю з боку партнера) у ці суми не входить.</div></div>
 </div>
 <div class="island "><div class="isl-h"><h3>Локація × хвиля</h3>
-<p class="isl-p">Порівняння середньоденного темпу тієї самої точки в SL і в Smart Promo. Витрати — фактичний поділ знижки між партнером і Bolt Food.</p></div>
+<p class="isl-p">Порівняння середньоденного темпу тієї самої точки в SL і в Smart Promo. Витрати — поділ 50/50 механік −30% меню і FFD, без 10% MD.</p></div>
 <div class="tbl-wrap"><table><thead><tr>
   <th>Локація</th><th class="num">1–13 SL</th><th class="num">14–27 SP</th><th class="num">Δ темпу</th>
   <th class="num">Нові SL</th><th class="num">Нові SP</th>
@@ -1180,9 +1182,9 @@ NUNU на Ярославовому Валу забрав майже полови
       <td class="num">101</td>
       <td class="num strong">147</td>
       <td class="num">310</td>
-      <td class="num">46 077 ₴</td>
       <td class="num">39 238 ₴</td>
-      <td class="num strong">85 315 ₴</td>
+      <td class="num">39 238 ₴</td>
+      <td class="num strong">78 476 ₴</td>
     </tr><tr>
       <td class="td-name">NUNU нова стрітфуд культура (Костянтинівська)<span class="pid">NUNU · два тижні</span></td>
       <td class="num">124 <span class="sub">(9.5/д)</span></td>
@@ -1191,9 +1193,9 @@ NUNU на Ярославовому Валу забрав майже полови
       <td class="num">45</td>
       <td class="num strong">62</td>
       <td class="num">120</td>
-      <td class="num">18 472 ₴</td>
       <td class="num">15 042 ₴</td>
-      <td class="num strong">33 514 ₴</td>
+      <td class="num">15 042 ₴</td>
+      <td class="num strong">30 084 ₴</td>
     </tr><tr>
       <td class="td-name">NUNU нова стрітфуд культура (Левка Лук'яненка)<span class="pid">NUNU · два тижні</span></td>
       <td class="num">40 <span class="sub">(3.1/д)</span></td>
@@ -1202,9 +1204,9 @@ NUNU на Ярославовому Валу забрав майже полови
       <td class="num">24</td>
       <td class="num strong">32</td>
       <td class="num">56</td>
-      <td class="num">7 586 ₴</td>
       <td class="num">6 109 ₴</td>
-      <td class="num strong">13 695 ₴</td>
+      <td class="num">6 109 ₴</td>
+      <td class="num strong">12 219 ₴</td>
     </tr><tr>
       <td class="td-name">NUNU нова стрітфуд культура (Княжий Затон)<span class="pid">NUNU · два тижні</span></td>
       <td class="num">71 <span class="sub">(5.5/д)</span></td>
@@ -1213,9 +1215,9 @@ NUNU на Ярославовому Валу забрав майже полови
       <td class="num">23</td>
       <td class="num strong">30</td>
       <td class="num">100</td>
-      <td class="num">11 951 ₴</td>
       <td class="num">10 983 ₴</td>
-      <td class="num strong">22 935 ₴</td>
+      <td class="num">10 983 ₴</td>
+      <td class="num strong">21 966 ₴</td>
     </tr><tr>
       <td class="td-name">NUNU нова стрітфуд культура (Тростянецька)<span class="pid">NUNU · лише 21–27</span></td>
       <td class="num">30 <span class="sub">(2.3/д)</span></td>
@@ -1224,9 +1226,9 @@ NUNU на Ярославовому Валу забрав майже полови
       <td class="num">24</td>
       <td class="num strong">21</td>
       <td class="num">23</td>
-      <td class="num">3 760 ₴</td>
       <td class="num">3 501 ₴</td>
-      <td class="num strong">7 261 ₴</td>
+      <td class="num">3 501 ₴</td>
+      <td class="num strong">7 002 ₴</td>
     </tr><tr>
       <td class="td-name">Теплий вул. Тростянецька<span class="pid">Теплий · два тижні</span></td>
       <td class="num">31 <span class="sub">(2.4/д)</span></td>
@@ -1235,9 +1237,9 @@ NUNU на Ярославовому Валу забрав майже полови
       <td class="num">21</td>
       <td class="num strong">16</td>
       <td class="num">30</td>
-      <td class="num">5 570 ₴</td>
       <td class="num">4 463 ₴</td>
-      <td class="num strong">10 033 ₴</td>
+      <td class="num">4 463 ₴</td>
+      <td class="num strong">8 925 ₴</td>
     </tr><tr>
       <td class="td-name">Теплий вул. Лісківська<span class="pid">Теплий · два тижні</span></td>
       <td class="num">14 <span class="sub">(1.1/д)</span></td>
@@ -1246,9 +1248,9 @@ NUNU на Ярославовому Валу забрав майже полови
       <td class="num">2</td>
       <td class="num strong">11</td>
       <td class="num">17</td>
-      <td class="num">2 963 ₴</td>
       <td class="num">2 643 ₴</td>
-      <td class="num strong">5 606 ₴</td>
+      <td class="num">2 643 ₴</td>
+      <td class="num strong">5 287 ₴</td>
     </tr><tr>
       <td class="td-name">This is Pivbar вул. Тростянецька<span class="pid">This is Pivbar · лише 13–19</span></td>
       <td class="num">5 <span class="sub">(0.4/д)</span></td>
@@ -1268,9 +1270,9 @@ NUNU на Ярославовому Валу забрав майже полови
       <td class="num">3</td>
       <td class="num strong">4</td>
       <td class="num">7</td>
-      <td class="num">1 388 ₴</td>
       <td class="num">690 ₴</td>
-      <td class="num strong">2 078 ₴</td>
+      <td class="num">690 ₴</td>
+      <td class="num strong">1 380 ₴</td>
     </tr><tr>
       <td class="td-name">This is Pivbar пл. Контрактова<span class="pid">This is Pivbar · лише 13–19</span></td>
       <td class="num">6 <span class="sub">(0.5/д)</span></td>
@@ -1290,9 +1292,9 @@ NUNU на Ярославовому Валу забрав майже полови
       <td class="num">4</td>
       <td class="num strong">2</td>
       <td class="num">2</td>
-      <td class="num">249 ₴</td>
       <td class="num">0 ₴</td>
-      <td class="num strong">249 ₴</td>
+      <td class="num">0 ₴</td>
+      <td class="num strong">0 ₴</td>
     </tr><tr>
       <td class="td-name">Хвиля Басейна<span class="pid">Хвиля · два тижні</span></td>
       <td class="num">4 <span class="sub">(0.3/д)</span></td>
@@ -1312,9 +1314,9 @@ NUNU на Ярославовому Валу забрав майже полови
       <td class="num">3</td>
       <td class="num strong">1</td>
       <td class="num">1</td>
-      <td class="num">593 ₴</td>
       <td class="num">0 ₴</td>
-      <td class="num strong">593 ₴</td>
+      <td class="num">0 ₴</td>
+      <td class="num strong">0 ₴</td>
     </tr><tr class="tr-total">
   <td>Усі локації</td>
   <td class="num">622</td>
@@ -1323,9 +1325,9 @@ NUNU на Ярославовому Валу забрав майже полови
   <td class="num">256</td>
   <td class="num">337</td>
   <td class="num">673</td>
-  <td class="num">100 060 ₴</td>
   <td class="num">84 121 ₴</td>
-  <td class="num">184 181 ₴</td>
+  <td class="num">84 121 ₴</td>
+  <td class="num">168 242 ₴</td>
 </tr></tbody></table></div></div>
 <div class="two">
 <div class="island "><div class="isl-h"><h3>Бренди в Smart Promo</h3></div>
@@ -1344,9 +1346,38 @@ NUNU на Ярославовому Валу забрав майже полови
   <div class="sec-head">
     <div class="kicker">Розділ 6</div>
     <h2>Бренди і локації</h2>
-    <p class="lead">NUNU, This is Pivbar, Теплий і Хвиля — окремо, з топ стравами.</p>
+    <p class="lead">NUNU, This is Pivbar, Теплий і Хвиля — окремо, з витратами на промо і топ стравами.</p>
   </div>
-  
+  <div class="island "><div class="isl-h"><h3>Витрати Smart Promo по брендах</h3>
+<p class="isl-p">Поділ 50/50 механік −30% на меню і FFD у вікні 14–27 вересня. Механіка 10% MD не входить.</p></div>
+<div class="tbl-wrap"><table><thead><tr>
+  <th>Бренд</th><th class="num">Партнер</th><th class="num">Bolt Food</th><th class="num">Разом</th>
+</tr></thead><tbody><tr>
+      <td class="td-name">NUNU</td>
+      <td class="num">74 873 ₴</td>
+      <td class="num">74 873 ₴</td>
+      <td class="num strong">149 747 ₴</td>
+    </tr><tr>
+      <td class="td-name">This is Pivbar</td>
+      <td class="num">1 866 ₴</td>
+      <td class="num">1 866 ₴</td>
+      <td class="num strong">3 733 ₴</td>
+    </tr><tr>
+      <td class="td-name">Теплий</td>
+      <td class="num">7 106 ₴</td>
+      <td class="num">7 106 ₴</td>
+      <td class="num strong">14 212 ₴</td>
+    </tr><tr>
+      <td class="td-name">Хвиля</td>
+      <td class="num">275 ₴</td>
+      <td class="num">275 ₴</td>
+      <td class="num strong">550 ₴</td>
+    </tr><tr class="tr-total">
+  <td>Усі бренди</td>
+  <td class="num">84 121 ₴</td>
+  <td class="num">84 121 ₴</td>
+  <td class="num">168 242 ₴</td>
+</tr></tbody></table></div></div>
 <div class="island "><div class="isl-h"><div class="kicker">5 локацій</div>
 <h3>NUNU</h3>
 <p class="isl-p">Драйвер групи: 87% замовлень і 91% нових у групі. Ярославів Вал — 713 зам., майже як решта NUNU разом.</p></div>
@@ -1370,6 +1401,23 @@ NUNU на Ярославовому Валу забрав майже полови
   <div class="kpi-h"><span class="kpi-l">Середній чек</span></div>
   <div class="kpi-v">1 019 ₴</div>
   <div class="kpi-s">липень 1 077 ₴</div>
+</div>
+</div>
+<div class="kpi-row k3 kpi-inline">
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо партнер</span></div>
+  <div class="kpi-v">74 873 ₴</div>
+  <div class="kpi-s">50% знижки Smart Promo</div>
+</div>
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо Bolt Food</span></div>
+  <div class="kpi-v">74 873 ₴</div>
+  <div class="kpi-s">50% знижки Smart Promo</div>
+</div>
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо разом</span></div>
+  <div class="kpi-v">149 747 ₴</div>
+  <div class="kpi-s">без механіки 10% MD</div>
 </div>
 </div>
 <div class="tbl-wrap"><table><thead><tr>
@@ -1448,6 +1496,23 @@ NUNU на Ярославовому Валу забрав майже полови
   <div class="kpi-s">липень 1 826 ₴</div>
 </div>
 </div>
+<div class="kpi-row k3 kpi-inline">
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо партнер</span></div>
+  <div class="kpi-v">1 866 ₴</div>
+  <div class="kpi-s">50% знижки Smart Promo</div>
+</div>
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо Bolt Food</span></div>
+  <div class="kpi-v">1 866 ₴</div>
+  <div class="kpi-s">50% знижки Smart Promo</div>
+</div>
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо разом</span></div>
+  <div class="kpi-v">3 733 ₴</div>
+  <div class="kpi-s">без механіки 10% MD</div>
+</div>
+</div>
 <div class="tbl-wrap"><table><thead><tr>
   <th>Локація</th><th class="num">Зам.</th><th class="num">MoM</th><th class="num">Виручка</th>
   <th class="num">Нові</th><th class="num">Bolt+</th><th class="num">Приготування</th><th class="num">Доступність</th>
@@ -1524,6 +1589,23 @@ NUNU на Ярославовому Валу забрав майже полови
   <div class="kpi-s">липень 1 418 ₴</div>
 </div>
 </div>
+<div class="kpi-row k3 kpi-inline">
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо партнер</span></div>
+  <div class="kpi-v">7 106 ₴</div>
+  <div class="kpi-s">50% знижки Smart Promo</div>
+</div>
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо Bolt Food</span></div>
+  <div class="kpi-v">7 106 ₴</div>
+  <div class="kpi-s">50% знижки Smart Promo</div>
+</div>
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо разом</span></div>
+  <div class="kpi-v">14 212 ₴</div>
+  <div class="kpi-s">без механіки 10% MD</div>
+</div>
+</div>
 <div class="tbl-wrap"><table><thead><tr>
   <th>Локація</th><th class="num">Зам.</th><th class="num">MoM</th><th class="num">Виручка</th>
   <th class="num">Нові</th><th class="num">Bolt+</th><th class="num">Приготування</th><th class="num">Доступність</th>
@@ -1573,6 +1655,23 @@ NUNU на Ярославовому Валу забрав майже полови
   <div class="kpi-s">липень 1 289 ₴</div>
 </div>
 </div>
+<div class="kpi-row k3 kpi-inline">
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо партнер</span></div>
+  <div class="kpi-v">275 ₴</div>
+  <div class="kpi-s">50% знижки Smart Promo</div>
+</div>
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо Bolt Food</span></div>
+  <div class="kpi-v">275 ₴</div>
+  <div class="kpi-s">50% знижки Smart Promo</div>
+</div>
+  <div class="kpi ">
+  <div class="kpi-h"><span class="kpi-l">Промо разом</span></div>
+  <div class="kpi-v">550 ₴</div>
+  <div class="kpi-s">без механіки 10% MD</div>
+</div>
+</div>
 <div class="tbl-wrap"><table><thead><tr>
   <th>Локація</th><th class="num">Зам.</th><th class="num">MoM</th><th class="num">Виручка</th>
   <th class="num">Нові</th><th class="num">Bolt+</th><th class="num">Приготування</th><th class="num">Доступність</th>
@@ -1593,7 +1692,7 @@ NUNU на Ярославовому Валу забрав майже полови
   <div class="sec-head">
     <div class="kicker">Розділ 7</div>
     <h2>Видимість і операційна</h2>
-    <p class="lead">Покази в застосунку, доступність, час приготування, скасування.</p>
+    <p class="lead">Покази в застосунку, доступність, час приготування, скасування по локаціях.</p>
   </div>
   
 <div class="island "><div class="isl-h"><h3>Видимість у застосунку, вересневі тижні</h3>
@@ -1622,8 +1721,71 @@ NUNU на Ярославовому Валу забрав майже полови
   <div class="kpi-s">Лесі Українки Pivbar і NUNU Лук’яненка</div>
 </div>
 </div>
-<div class="island "><div class="isl-h"><h3>Причини скасувань</h3></div><div class="hb"><div class="hb-r"><span class="hb-l">Немає позиції</span><span class="hb-track"><i style="width:100.0%;background:#2B8659"></i></span><span class="hb-v">10</span></div><div class="hb-r"><span class="hb-l">Повітряна тривога</span><span class="hb-track"><i style="width:90.0%;background:#2B8659"></i></span><span class="hb-v">9</span></div><div class="hb-r"><span class="hb-l">Other</span><span class="hb-track"><i style="width:30.0%;background:#2B8659"></i></span><span class="hb-v">3</span></div><div class="hb-r"><span class="hb-l">Fraud - accident</span><span class="hb-track"><i style="width:20.0%;background:#A8CFBB"></i></span><span class="hb-v">2</span></div><div class="hb-r"><span class="hb-l">Заклад попросив скасувати</span><span class="hb-track"><i style="width:20.0%;background:#A8CFBB"></i></span><span class="hb-v">2</span></div><div class="hb-r"><span class="hb-l">Provider asked to cancel - issue with the integration system</span><span class="hb-track"><i style="width:20.0%;background:#A8CFBB"></i></span><span class="hb-v">2</span></div></div>
-<p class="tbl-foot">30 скасованих на 1 636 доставлених — низький рівень. Найчастіші причини не операційні (тривога, клієнт).</p></div>
+<div class="two">
+<div class="island "><div class="isl-h"><h3>Причини скасувань</h3></div><div class="hb"><div class="hb-r"><span class="hb-l">Немає позиції</span><span class="hb-track"><i style="width:100.0%;background:#2B8659"></i></span><span class="hb-v">10</span></div><div class="hb-r"><span class="hb-l">Повітряна тривога</span><span class="hb-track"><i style="width:90.0%;background:#2B8659"></i></span><span class="hb-v">9</span></div><div class="hb-r"><span class="hb-l">Інше</span><span class="hb-track"><i style="width:30.0%;background:#2B8659"></i></span><span class="hb-v">3</span></div><div class="hb-r"><span class="hb-l">Шахрайство / інцидент</span><span class="hb-track"><i style="width:20.0%;background:#A8CFBB"></i></span><span class="hb-v">2</span></div><div class="hb-r"><span class="hb-l">Заклад попросив скасувати — без причини</span><span class="hb-track"><i style="width:20.0%;background:#A8CFBB"></i></span><span class="hb-v">2</span></div><div class="hb-r"><span class="hb-l">Проблема з інтеграцією</span><span class="hb-track"><i style="width:20.0%;background:#A8CFBB"></i></span><span class="hb-v">2</span></div><div class="hb-r"><span class="hb-l">Скасовано службою підтримки</span><span class="hb-track"><i style="width:10.0%;background:#A8CFBB"></i></span><span class="hb-v">1</span></div><div class="hb-r"><span class="hb-l">Клієнт скасував — не призначили курʼєра</span><span class="hb-track"><i style="width:10.0%;background:#A8CFBB"></i></span><span class="hb-v">1</span></div></div></div>
+<div class="island "><div class="isl-h"><h3>Де скасовували</h3></div><div class="hb"><div class="hb-r"><span class="hb-l">NUNU · Костянтинівська</span><span class="hb-track"><i style="width:100.0%;background:#2B8659"></i></span><span class="hb-v">8</span></div><div class="hb-r"><span class="hb-l">NUNU · Ярославів Вал</span><span class="hb-track"><i style="width:100.0%;background:#2B8659"></i></span><span class="hb-v">8</span></div><div class="hb-r"><span class="hb-l">Теплий · Лісківська</span><span class="hb-track"><i style="width:37.5%;background:#2B8659"></i></span><span class="hb-v">3</span></div><div class="hb-r"><span class="hb-l">This is Pivbar · Тростянецька</span><span class="hb-track"><i style="width:37.5%;background:#A8CFBB"></i></span><span class="hb-v">3</span></div><div class="hb-r"><span class="hb-l">This is Pivbar · Контрактова</span><span class="hb-track"><i style="width:25.0%;background:#A8CFBB"></i></span><span class="hb-v">2</span></div><div class="hb-r"><span class="hb-l">This is Pivbar · Лесі Українки</span><span class="hb-track"><i style="width:25.0%;background:#A8CFBB"></i></span><span class="hb-v">2</span></div><div class="hb-r"><span class="hb-l">NUNU · Княжий Затон</span><span class="hb-track"><i style="width:12.5%;background:#A8CFBB"></i></span><span class="hb-v">1</span></div><div class="hb-r"><span class="hb-l">NUNU · Тростянецька</span><span class="hb-track"><i style="width:12.5%;background:#A8CFBB"></i></span><span class="hb-v">1</span></div><div class="hb-r"><span class="hb-l">This is Pivbar · Лісківська</span><span class="hb-track"><i style="width:12.5%;background:#A8CFBB"></i></span><span class="hb-v">1</span></div><div class="hb-r"><span class="hb-l">Теплий · Тростянецька</span><span class="hb-track"><i style="width:12.5%;background:#A8CFBB"></i></span><span class="hb-v">1</span></div></div></div>
+</div>
+<div class="island "><div class="isl-h"><h3>Скасування по локаціях</h3>
+<p class="isl-p">У кого саме зірвалось замовлення і з якої причини. Одна локація може мати кілька причин.</p></div>
+<div class="tbl-wrap"><table><thead><tr>
+  <th>Локація</th><th class="num">Скасовано</th><th class="num">Частка створених</th><th>Причини</th>
+</tr></thead><tbody><tr>
+      <td class="td-name">NUNU нова стрітфуд культура (Костянтинівська)<span class="pid">NUNU · 118105</span></td>
+      <td class="num strong">8</td>
+      <td class="num">2.6%</td>
+      <td class="td-reasons"><div class="rsn-list"><span class="pill pill-neg">Немає позиції · 4</span><span class="pill pill-mute">Повітряна тривога · 4</span></div></td>
+    </tr><tr>
+      <td class="td-name">NUNU нова стрітфуд культура (Ярославів Вал)<span class="pid">NUNU · 93116</span></td>
+      <td class="num strong">8</td>
+      <td class="num">1.1%</td>
+      <td class="td-reasons"><div class="rsn-list"><span class="pill pill-mute">Повітряна тривога · 4</span><span class="pill pill-mute">Шахрайство / інцидент · 1</span><span class="pill pill-mute">Скасовано службою підтримки · 1</span><span class="pill pill-mute">Клієнт скасував — не призначили курʼєра · 1</span><span class="pill pill-mute">Інше · 1</span></div></td>
+    </tr><tr>
+      <td class="td-name">Теплий вул. Лісківська<span class="pid">Теплий · 113217</span></td>
+      <td class="num strong">3</td>
+      <td class="num">7.3%</td>
+      <td class="td-reasons"><div class="rsn-list"><span class="pill pill-neg">Немає позиції · 1</span><span class="pill pill-mute">Інше · 1</span><span class="pill pill-warn">Заклад попросив скасувати — без причини · 1</span></div></td>
+    </tr><tr>
+      <td class="td-name">This is Pivbar вул. Тростянецька<span class="pid">This is Pivbar · 98368</span></td>
+      <td class="num strong">3</td>
+      <td class="num">13.6%</td>
+      <td class="td-reasons"><div class="rsn-list"><span class="pill pill-neg">Немає позиції · 1</span><span class="pill pill-mute">Інше · 1</span><span class="pill pill-mute">Повітряна тривога · 1</span></div></td>
+    </tr><tr>
+      <td class="td-name">This is Pivbar пл. Контрактова<span class="pid">This is Pivbar · 98367</span></td>
+      <td class="num strong">2</td>
+      <td class="num">11.1%</td>
+      <td class="td-reasons"><div class="rsn-list"><span class="pill pill-warn">Заклад попросив скасувати — без причини · 1</span><span class="pill pill-warn">Проблема з інтеграцією · 1</span></div></td>
+    </tr><tr>
+      <td class="td-name">This is Pivbar бул. Лесі Українки<span class="pid">This is Pivbar · 98372</span></td>
+      <td class="num strong">2</td>
+      <td class="num">8.0%</td>
+      <td class="td-reasons"><div class="rsn-list"><span class="pill pill-warn">Проблема з інтеграцією · 1</span><span class="pill pill-neg">Немає позиції · 1</span></div></td>
+    </tr><tr>
+      <td class="td-name">NUNU нова стрітфуд культура (Княжий Затон)<span class="pid">NUNU · 82751</span></td>
+      <td class="num strong">1</td>
+      <td class="num">0.5%</td>
+      <td class="td-reasons"><div class="rsn-list"><span class="pill pill-mute">Шахрайство / інцидент · 1</span></div></td>
+    </tr><tr>
+      <td class="td-name">NUNU нова стрітфуд культура (Тростянецька)<span class="pid">NUNU · 124032</span></td>
+      <td class="num strong">1</td>
+      <td class="num">1.3%</td>
+      <td class="td-reasons"><div class="rsn-list"><span class="pill pill-neg">Немає позиції · 1</span></div></td>
+    </tr><tr>
+      <td class="td-name">This is Pivbar вул. Лісківська<span class="pid">This is Pivbar · 98369</span></td>
+      <td class="num strong">1</td>
+      <td class="num">7.7%</td>
+      <td class="td-reasons"><div class="rsn-list"><span class="pill pill-neg">Немає позиції · 1</span></div></td>
+    </tr><tr>
+      <td class="td-name">Теплий вул. Тростянецька<span class="pid">Теплий · 108707</span></td>
+      <td class="num strong">1</td>
+      <td class="num">1.4%</td>
+      <td class="td-reasons"><div class="rsn-list"><span class="pill pill-neg">Немає позиції · 1</span></div></td>
+    </tr></tbody></table></div>
+<p class="tbl-foot">30 скасованих на 1 636 доставлених. Найчастіше — немає позиції (10) і повітряна тривога (9).
+Без скасувань: This is Pivbar Лук'яненка, NUNU Лук'яненка, Хвиля Басейна.</p></div>
+<div class="note note-info">
+  <div class="note-ic"><svg class="ic " width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l10 18H2L12 2zm-1 7v5h2V9h-2zm0 7v2h2v-2h-2z"/></svg></div>
+  <div><div class="note-t">NUNU Костянтинівська — чотири скасування через сток</div><div class="note-b">З 10 скасувань «немає позиції» 4 припали на NUNU Костянтинівська. Решта стоку розкидана по одній на точку. На NUNU Ярославів Вал 4 з 8 скасувань — повітряна тривога, не операційна помилка кухні.</div></div>
+</div>
 
 </section>
 <section id="s8" class="sec sec-light">
@@ -1740,7 +1902,7 @@ NUNU на Ярославовому Валу забрав майже полови
     <h2>Глосарій показників</h2>
     <p class="lead">Як саме рахується кожна метрика цього звіту.</p>
   </div>
-  <div class="island "><div class="gloss"><div class="gl"><div class="gl-t">Доставлено</div><div class="gl-b">Замовлення в статусі delivered. Скасовані не входять.</div></div><div class="gl"><div class="gl-t">Виручка (GMV до знижок)</div><div class="gl-b">Сума за цінами меню до будь-яких знижок, гривні.</div></div><div class="gl"><div class="gl-t">Нові в точці</div><div class="gl-b">is_first_provider_order — перше замовлення саме в цій локації. Сума по локаціях може порахувати одну людину двічі.</div></div><div class="gl"><div class="gl-t">Нові в бренді</div><div class="gl-b">Перше delivered-замовлення користувача в будь-якій точці цього бренду.</div></div><div class="gl"><div class="gl-t">Нові в групі</div><div class="gl-b">Перше delivered-замовлення користувача в будь-якій з 13 локацій групи. Основна метрика цього звіту.</div></div><div class="gl"><div class="gl-t">Sponsored Listing</div><div class="gl-b">Платне місце в стрічці, пошуку, «замовити знову», категорії та головному екрані. Ставка — за локацію за день.</div></div><div class="gl"><div class="gl-t">ROAS</div><div class="gl-b">Атрибутована рекламі виручка партнера, поділена на витрати на розміщення.</div></div><div class="gl"><div class="gl-t">Smart Promo</div><div class="gl-b">Цільова знижка платформи для нових і тих, хто давно не замовляв. У вересні — 30% на меню. Витрати показані окремо: партнер, Bolt Food і разом.</div></div><div class="gl"><div class="gl-t">Витрати Smart Promo</div><div class="gl-b">Фактична сума знижки з campaign metrics: частка партнера (provider_spend), частка Bolt Food (bolt_spend) і тотал обох. Гривні — курс з GMV вересня.</div></div><div class="gl"><div class="gl-t">Безкоштовна доставка 1–13.09</div><div class="gl-b">Кампанія Free Full Delivery, 0% на партнера. Bolt Food покриває доставку повністю.</div></div><div class="gl"><div class="gl-t">Bolt+</div><div class="gl-b">Підписка з безкоштовною доставкою в закладах програми. Усі 13 точок у вересні в програмі, крім окремого статусу в dim.</div></div><div class="gl"><div class="gl-t">Атрибутовані замовлення SL</div><div class="gl-b">Замовлення, які система пов’язала з показом або кліком по рекламній картці. Сума по плейсментах може дублювати одне замовлення.</div></div><div class="gl"><div class="gl-t">Доступність</div><div class="gl-b">Частка робочого часу, коли заклад був відкритий для замовлень у застосунку.</div></div></div></div>
+  <div class="island "><div class="gloss"><div class="gl"><div class="gl-t">Доставлено</div><div class="gl-b">Замовлення в статусі delivered. Скасовані не входять.</div></div><div class="gl"><div class="gl-t">Виручка (GMV до знижок)</div><div class="gl-b">Сума за цінами меню до будь-яких знижок, гривні.</div></div><div class="gl"><div class="gl-t">Нові в точці</div><div class="gl-b">is_first_provider_order — перше замовлення саме в цій локації. Сума по локаціях може порахувати одну людину двічі.</div></div><div class="gl"><div class="gl-t">Нові в бренді</div><div class="gl-b">Перше delivered-замовлення користувача в будь-якій точці цього бренду.</div></div><div class="gl"><div class="gl-t">Нові в групі</div><div class="gl-b">Перше delivered-замовлення користувача в будь-якій з 13 локацій групи. Основна метрика цього звіту.</div></div><div class="gl"><div class="gl-t">Sponsored Listing</div><div class="gl-b">Платне місце в стрічці, пошуку, «замовити знову», категорії та головному екрані. Ставка — за локацію за день.</div></div><div class="gl"><div class="gl-t">ROAS</div><div class="gl-b">Атрибутована рекламі виручка партнера, поділена на витрати на розміщення.</div></div><div class="gl"><div class="gl-t">Smart Promo</div><div class="gl-b">Цільова знижка платформи для нових і тих, хто давно не замовляв. У вересні — 30% на меню плюс FFD. Витрати показані порівну 50/50: партнер і Bolt Food.</div></div><div class="gl"><div class="gl-t">Витрати Smart Promo</div><div class="gl-b">Поділ 50/50 знижки −30% на меню і FFD 100% у вікні 14–27 вересня. Механіка 10% MD (повністю з боку партнера) не включена. Гривні — курс з GMV вересня.</div></div><div class="gl"><div class="gl-t">Безкоштовна доставка 1–13.09</div><div class="gl-b">Кампанія Free Full Delivery, 0% на партнера. Bolt Food покриває доставку повністю.</div></div><div class="gl"><div class="gl-t">Bolt+</div><div class="gl-b">Підписка з безкоштовною доставкою в закладах програми. Усі 13 точок у вересні в програмі, крім окремого статусу в dim.</div></div><div class="gl"><div class="gl-t">Атрибутовані замовлення SL</div><div class="gl-b">Замовлення, які система пов’язала з показом або кліком по рекламній картці. Сума по плейсментах може дублювати одне замовлення.</div></div><div class="gl"><div class="gl-t">Доступність</div><div class="gl-b">Частка робочого часу, коли заклад був відкритий для замовлень у застосунку.</div></div></div></div>
 </section>
 </main>
 
