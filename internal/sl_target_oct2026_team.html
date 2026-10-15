@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Таргет SL жовтень 2026 — виконання по AM</title>
+  <style>
+    @font-face {
+      font-family: InterVariable;
+      src: url("fonts/Inter-VariableFont.ttf") format("truetype-variations");
+      font-weight: 100 900;
+      font-display: swap;
+    }
+    :root {
+      --color-special-brand: #2A9C64;
+      --color-special-brand-alt: #0C2C1C;
+      --color-content-primary: #191F1C;
+      --color-content-secondary: #5F6563;
+      --color-content-tertiary: #868E8B;
+      --color-layer-floor-0: #ffffff;
+      --color-layer-floor-0-grouped: #EEF1F0;
+      --color-border-separator: #DEE2E1;
+      --color-bg-positive-secondary: #E7F6ED;
+      --color-bg-danger-secondary: #FFEAEA;
+      --color-bg-warning-secondary: #FFF0C5;
+      --color-content-danger-primary: #AD000E;
+      --color-content-positive-primary: #147B51;
+      --color-content-warning-primary: #9E5B00;
+      --color-content-primary-inverted: #FDFFFE;
+      --corner-radius-l: 16px;
+      --corner-radius-full: 600rem;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: InterVariable, Inter, system-ui, sans-serif;
+      font-feature-settings: "cv03", "cv04", "liga" 1, "calt" 1;
+      -webkit-font-smoothing: antialiased;
+      background: var(--color-layer-floor-0-grouped);
+      color: var(--color-content-primary);
+      line-height: 1.5;
+    }
+    .page { max-width: 1080px; margin: 0 auto; padding: 0 0 64px; }
+    .hero {
+      background: var(--color-special-brand-alt);
+      color: var(--color-content-primary-inverted);
+      padding: 36px 40px 32px;
+    }
+    .hero-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 18px; }
+    .kicker {
+      font-size: 11px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase;
+      color: rgba(253,255,254,.62);
+    }
+    .logo { height: 44px; width: auto; flex-shrink: 0; }
+    .hero h1 {
+      font-size: 32px; font-weight: 650; letter-spacing: -.022em; line-height: 1.2;
+      margin-bottom: 10px; max-width: 28ch;
+    }
+    .hero p { font-size: 15px; color: rgba(253,255,254,.72); max-width: 72ch; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 28px; }
+    .kpi strong {
+      display: block; font-size: 26px; font-weight: 650; letter-spacing: -.026em;
+      font-feature-settings: "tnum", "cv03", "cv04"; margin-bottom: 2px;
+    }
+    .kpi span { font-size: 12px; color: rgba(253,255,254,.6); line-height: 1.35; display: block; }
+    .kpi.warn strong { color: #FFBF35; }
+    .kpi.neg strong { color: #FF9F94; }
+    .kpi.pos strong { color: #77F8B0; }
+    .body { padding: 32px 40px 0; }
+    section { margin-bottom: 40px; }
+    h2 { font-size: 22px; font-weight: 650; letter-spacing: -.02em; margin-bottom: 8px; }
+    h3 { font-size: 15px; font-weight: 650; letter-spacing: -.011em; margin-bottom: 8px; }
+    p.lead { font-size: 14.5px; color: var(--color-content-secondary); max-width: 82ch; margin-bottom: 18px; }
+    p.lead strong { color: var(--color-content-primary); font-weight: 650; }
+    .card {
+      background: var(--color-layer-floor-0);
+      border-radius: var(--corner-radius-l);
+      padding: 22px 24px;
+      margin-bottom: 16px;
+    }
+    .callout { border-radius: var(--corner-radius-l); padding: 22px 24px; margin-bottom: 16px; }
+    .callout.good { background: var(--color-bg-positive-secondary); }
+    .callout.bad { background: var(--color-bg-danger-secondary); }
+    .callout.warn { background: var(--color-bg-warning-secondary); }
+    .callout h3 { margin-bottom: 6px; }
+    .callout.good h3 { color: var(--color-content-positive-primary); }
+    .callout.bad h3 { color: var(--color-content-danger-primary); }
+    .callout.warn h3 { color: var(--color-content-warning-primary); }
+    .callout p, .callout li { font-size: 14.5px; max-width: 86ch; }
+    .callout ol, .talk ol { margin: 8px 0 0 20px; }
+    .callout li, .talk li { margin: 6px 0; }
+    .track {
+      height: 12px; border-radius: var(--corner-radius-full);
+      background: var(--color-layer-floor-0-grouped); overflow: hidden; margin: 14px 0 6px;
+    }
+    .fill { height: 100%; border-radius: var(--corner-radius-full); background: var(--color-special-brand); }
+    .cap { font-size: 12px; color: var(--color-content-tertiary); font-feature-settings: "tnum", "cv03", "cv04"; }
+    .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 16px; }
+    .opt { background: var(--color-layer-floor-0); border-radius: var(--corner-radius-l); padding: 18px 20px; }
+    .opt .lbl {
+      font-size: 11px; font-weight: 650; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--color-content-tertiary);
+    }
+    .opt strong {
+      display: block; font-size: 22px; font-weight: 650; letter-spacing: -.03em;
+      font-feature-settings: "tnum", "cv03", "cv04"; margin: 4px 0 6px;
+    }
+    .opt span { font-size: 12.5px; color: var(--color-content-secondary); display: block; }
+    .bars { display: grid; gap: 12px; margin-top: 8px; }
+    .bar-row {
+      display: grid; grid-template-columns: 140px 1fr 88px; gap: 12px; align-items: center; font-size: 13px;
+    }
+    .bar-row .n { color: var(--color-content-tertiary); font-size: 12px; }
+    .bar-value { text-align: right; font-feature-settings: "tnum", "cv03", "cv04"; white-space: nowrap; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th {
+      text-align: left; font-size: 11px; font-weight: 650; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--color-content-tertiary); padding: 0 10px 10px; border-bottom: 1px solid var(--color-border-separator);
+    }
+    td { padding: 10px; border-bottom: 1px solid var(--color-layer-floor-0-grouped); vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    .num { text-align: right; font-feature-settings: "tnum", "cv03", "cv04"; white-space: nowrap; }
+    .nm { font-weight: 650; }
+    .tiny { font-size: 11px; color: var(--color-content-tertiary); font-weight: 450; margin-top: 2px; }
+    tr.warn td { background: var(--color-bg-warning-secondary); }
+    tr.good td { background: var(--color-bg-positive-secondary); }
+    .pill {
+      display: inline-block; border-radius: var(--corner-radius-full); padding: 3px 11px;
+      font-size: 11.5px; font-weight: 650;
+    }
+    .pill.g { background: var(--color-bg-positive-secondary); color: var(--color-content-positive-primary); }
+    .pill.w { background: var(--color-bg-warning-secondary); color: var(--color-content-warning-primary); }
+    .pill.n { background: var(--color-layer-floor-0-grouped); color: var(--color-content-secondary); }
+    .table-wrap { overflow-x: auto; }
+    footer {
+      background: var(--color-special-brand-alt); color: rgba(253,255,254,.45);
+      padding: 22px 40px; font-size: 11.5px; margin-top: 24px;
+    }
+    @media (max-width: 760px) {
+      .hero, .body, footer { padding-left: 20px; padding-right: 20px; }
+      .kpis, .grid3 { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 26px; }
+      .bar-row { grid-template-columns: 110px 1fr 72px; }
+    }
+  
+    .bar-pct .fill.over { background: var(--color-content-positive-primary); }
+    tr.over td { background: var(--color-bg-positive-secondary); }
+    tr.low td { background: var(--color-bg-danger-secondary); }
+    .kpi.pos strong { color: #77F8B0; }
+    a { color: var(--color-content-positive-primary); }
+    .hero a { color: #77F8B0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="kicker">Internal · 1×1 з тімлідом · команда AM</div>
+    <img class="logo" alt="Bolt Food" src="data:image/png;base64,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">
+  </div>
+  <h1>Виконання таргету SL по акаунт-менеджерах</h1>
+  <p>Та сама логіка, що в індивідуальному брифі: унікальний провайдер, лише дні жовтня (max 31), у таргет ідуть точки з 15+ днями. Джерело: командний файл Looker, 895 рядків, 499 унікальних ID. Станом на 15.10.2026.</p>
+  <div class="kpis">
+    <div class="kpi warn"><strong>47,9%</strong><span>Шість AM з таргетами в сумі</span></div>
+    <div class="kpi"><strong>4 123 / 8 615</strong><span>Днів жовтня / сума таргетів</span></div>
+    <div class="kpi neg"><strong>4 492</strong><span>Сумарний розрив</span></div>
+    <div class="kpi pos"><strong>1 з 6</strong><span>Уже вище таргету — Vadym</span></div>
+  </div>
+</div>
+
+<div class="body">
+
+<section>
+  <h2>Рейтинг виконання</h2>
+  <p class="lead">Відсоток = зараховані жовтневі дні / персональний таргет. Nataliia — для порівняння з попереднім брифом, у сумі шести AM її немає.</p>
+  <div class="card">
+    <div class="bars bar-pct">
+      <div class="bar-row"><span>Vadym Bardysh</span><div class="track"><div class="fill over" style="width:100%"></div></div><span class="bar-value">161,8%</span></div>
+      <div class="bar-row"><span>Marharyta Zhytnyk</span><div class="track"><div class="fill" style="width:80%"></div></div><span class="bar-value">80,0%</span></div>
+      <div class="bar-row"><span>Ganna Rudaia</span><div class="track"><div class="fill" style="width:59.5%"></div></div><span class="bar-value">59,5%</span></div>
+      <div class="bar-row"><span>Nataliia Klymas</span><div class="track"><div class="fill" style="width:49.1%"></div></div><span class="bar-value">49,1%</span></div>
+      <div class="bar-row"><span>Sviatoslav Yurchuk</span><div class="track"><div class="fill" style="width:34.8%"></div></div><span class="bar-value">34,8%</span></div>
+      <div class="bar-row"><span>Marta Vaskina</span><div class="track"><div class="fill" style="width:24.6%"></div></div><span class="bar-value">24,6%</span></div>
+      <div class="bar-row"><span>Khrystyna Bukhnii</span><div class="track"><div class="fill" style="width:1.4%"></div></div><span class="bar-value">1,4%</span></div>
+    </div>
+    <p class="cap">Шкала до 100%. Vadym обрізаний на повну ширину — фактично 161,8%.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Цифри по кожному AM</h2>
+  <div class="card table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>AM</th>
+          <th class="num">Таргет</th>
+          <th class="num">Унікальні</th>
+          <th class="num">15+ днів</th>
+          <th class="num">Дні жовтня</th>
+          <th class="num">Виконання</th>
+          <th class="num">Розрив</th>
+          <th>Ключове</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="over">
+          <td class="nm">Vadym Bardysh</td>
+          <td class="num">693</td><td class="num">71</td><td class="num">47</td>
+          <td class="num">1 121</td><td class="num">161,8%</td><td class="num">−428</td>
+          <td>Єдиний вище таргету. 21 точка Royal Kebab по 19 днів.</td>
+        </tr>
+        <tr>
+          <td class="nm">Marharyta Zhytnyk</td>
+          <td class="num">1 177</td><td class="num">49</td><td class="num">37</td>
+          <td class="num">942</td><td class="num">80,0%</td><td class="num">235</td>
+          <td>Arizona 13 точок / 293 дні. Якщо докрутити жовтень — 114%.</td>
+        </tr>
+        <tr>
+          <td class="nm">Ganna Rudaia</td>
+          <td class="num">2 150</td><td class="num">66</td><td class="num">56</td>
+          <td class="num">1 280</td><td class="num">59,5%</td><td class="num">870</td>
+          <td>Усе Foodz Collection. Жодної точки на повний місяць.</td>
+        </tr>
+        <tr>
+          <td class="nm">Nataliia Klymas</td>
+          <td class="num">1 262</td><td class="num">28</td><td class="num">28</td>
+          <td class="num">620</td><td class="num">49,1%</td><td class="num">642</td>
+          <td>Усі 28 точок проходять поріг. <a href="sl_target_oct2026.html">Окремий бриф</a>.</td>
+        </tr>
+        <tr>
+          <td class="nm">Sviatoslav Yurchuk</td>
+          <td class="num">964</td><td class="num">27</td><td class="num">16</td>
+          <td class="num">335</td><td class="num">34,8%</td><td class="num">629</td>
+          <td>9 точок Roll Club рівно на 15 днях. 6 точок з 13 днями не входять.</td>
+        </tr>
+        <tr>
+          <td class="nm">Marta Vaskina</td>
+          <td class="num">1 699</td><td class="num">29</td><td class="num">18</td>
+          <td class="num">418</td><td class="num">24,6%</td><td class="num">1 281</td>
+          <td>Найбільший розрив серед тих, хто вже крутить. Pizza Today 172 дні.</td>
+        </tr>
+        <tr class="low">
+          <td class="nm">Khrystyna Bukhnii</td>
+          <td class="num">1 932</td><td class="num">206</td><td class="num">1</td>
+          <td class="num">27</td><td class="num">1,4%</td><td class="num">1 905</td>
+          <td>203 точки з Duration 14 (12–26.10) — не проходять поріг 15.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="cap">Сума шести AM без Nataliia: 4 123 / 8 615 днів (47,9%). Разом із Nataliia: 4 743 / 9 877 (48,0%).</p>
+</section>
+
+<section>
+  <h2>Що сказати на 1×1</h2>
+  <div class="callout warn">
+    <h3>Три факти, які змінюють картину команди</h3>
+    <ol>
+      <li><strong>Vadym уже перекрив таргет</strong> — 1 121 проти 693. Його не треба «рятувати» жовтнем; питання, чи можна частину фокусу віддати тим, хто нижче.</li>
+      <li><strong>Христина виглядає як 1,4%, але це поріг, не відсутність реклами.</strong> 203 локації Lviv Croissants і Pizza Day стоять 12.10–26.10 на 14 днів. Ще +1 день — і вони всі заходять у таргет (~3 072 дні, близько 159% від 1 932).</li>
+      <li><strong>Марта і Святослав не закриють розрив лише продовженням.</strong> Навіть докрутка до 31.10 дає 45% і 76%. Потрібні нові унікальні точки.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <h2>Христина: обрив на 14 днях</h2>
+  <p class="lead">У файлі 206 унікальних точок, але в таргет входить лише Lviv Croissants на Васильківській 72 (27 днів). Решта — масовий запуск 12.10 з кінцем 26.10, Duration = 14. За нашою методологією (як колонка Duration, кінець не включений) це <strong>не 15</strong>, тому 0 днів у таргет.</p>
+  <div class="grid3">
+    <div class="opt">
+      <div class="lbl">Зараз, поріг 15+</div>
+      <strong>27 · 1,4%</strong>
+      <span>1 точка з 206. 203 точки «висять» на 14 днях.</span>
+    </div>
+    <div class="opt">
+      <div class="lbl">Якщо +1 день, поріг 15</div>
+      <strong>~3 072 · 159%</strong>
+      <span>203 × 15 + 27. Достатньо зсунути кінець з 26.10 на 27.10.</span>
+    </div>
+    <div class="opt">
+      <div class="lbl">Якщо докрутити до 31.10</div>
+      <strong>4 128 · 214%</strong>
+      <span>Точки вже запущені, кампанії ще тривають до 26.10 — продовження реальне.</span>
+    </div>
+  </div>
+  <div class="callout good" style="margin-top:16px">
+    <h3>Методологічний нюанс для тімліда</h3>
+    <p>Якщо рахувати календарні дні включно з датою кінця, 12–26 жовтня це вже 15 днів і Христина була б глибоко вище таргету. Ми свідомо лишаємо ту саму формулу, що для Nataliia (Duration = кінець − старт), щоб порівнювати AM однаково. Це варто явно погодити: поріг 15 дивимось по Duration чи по інклюзивних календарних днях.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Що ще видно по портфелях</h2>
+  <div class="grid3">
+    <div class="opt">
+      <div class="lbl">Vadym Bardysh · 161,8%</div>
+      <strong>1 121 / 693</strong>
+      <span>Royal Kebab 21 точка / 399 днів. 12 точок з 13 днями (Shaurmishka та ін., кінець 14.10) у таргет не війшли — і не потрібні, таргет уже перевиконано.</span>
+    </div>
+    <div class="opt">
+      <div class="lbl">Marharyta Zhytnyk · 80%</div>
+      <strong>942 / 1 177</strong>
+      <span>Arizona, Привіт, Izi Burger. 9 точок на повному жовтні. Докрутка поточних закриває таргет (1 339 днів).</span>
+    </div>
+    <div class="opt">
+      <div class="lbl">Ganna Rudaia · 59,5%</div>
+      <strong>1 280 / 2 150</strong>
+      <span>66 точок, усі Foodz Collection. 40 по 26 днів, 16 по 15, 10 по 12 (кампанії вже скінчились 13.10). Навіть 66 × 31 = 2 046 — менше за таргет 2 150. Потрібні нові ID.</span>
+    </div>
+    <div class="opt">
+      <div class="lbl">Sviatoslav Yurchuk · 34,8%</div>
+      <strong>335 / 964</strong>
+      <span>Roll Club і Budusushi. 9 точок рівно на порозі 15. 6 точок з 13 днями не входять. Докрутка дає ~76%.</span>
+    </div>
+    <div class="opt">
+      <div class="lbl">Marta Vaskina · 24,6%</div>
+      <strong>418 / 1 699</strong>
+      <span>Pizza Today, Sushi Story. 29 унікальних — мало під таргет ~55 повних місяців (1 699 / 31). Докрутка дає 45%. Потрібен пайплайн нових точок.</span>
+    </div>
+    <div class="opt">
+      <div class="lbl">Nataliia Klymas · 49,1%</div>
+      <strong>620 / 1 262</strong>
+      <span>Усі 28 унікальних уже в таргеті. Стелі поточним букінгом — 734 (58%). Деталі в <a href="sl_target_oct2026.html">окремому файлі</a>.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Якщо докрутити жовтень по вже запущених точках</h2>
+  <p class="lead">Додаємо незакриті дні з 15.10 до 31.10 на тих самих provider ID. Це не нові точки, а продовження або повторний запуск.</p>
+  <div class="card table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>AM</th>
+          <th class="num">Зараз</th>
+          <th class="num">Після докрутки</th>
+          <th class="num">% після</th>
+          <th>Чи закриває таргет</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="over"><td class="nm">Vadym Bardysh</td><td class="num">161,8%</td><td class="num">292%</td><td class="num">2 026 дн.</td><td>Уже закритий</td></tr>
+        <tr class="over"><td class="nm">Marharyta Zhytnyk</td><td class="num">80,0%</td><td class="num">114%</td><td class="num">1 339 дн.</td><td>Так, якщо докрутити</td></tr>
+        <tr><td class="nm">Ganna Rudaia</td><td class="num">59,5%</td><td class="num">86%</td><td class="num">1 850 дн.</td><td>Ні, треба нові точки</td></tr>
+        <tr><td class="nm">Nataliia Klymas</td><td class="num">49,1%</td><td class="num">58%</td><td class="num">734 дн.</td><td>Ні</td></tr>
+        <tr><td class="nm">Sviatoslav Yurchuk</td><td class="num">34,8%</td><td class="num">76%</td><td class="num">736 дн.</td><td>Ні, близько, але ні</td></tr>
+        <tr class="low"><td class="nm">Marta Vaskina</td><td class="num">24,6%</td><td class="num">45%</td><td class="num">760 дн.</td><td>Ні</td></tr>
+        <tr class="over"><td class="nm">Khrystyna Bukhnii</td><td class="num">1,4%</td><td class="num">214%</td><td class="num">4 128 дн.</td><td>Так, якщо подовжити 14-денні кампанії</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Методологія, коротко</h2>
+  <p class="lead">Унікальний <span class="nm">provider ID</span> усередині AM. Дні жовтня = перетин [старт, кінець) з 01.10–01.11, як колонка Duration. Cap 31. Рахуємо лише точки з 15+ такими днями. Річні кампанії на 180–252 дні дають 31. Кілька рядків на одну точку не додаються. У файлі жоден ID не сидить на двох AM.</p>
+  <div class="callout good">
+    <h3>Що навмисно не додавали</h3>
+    <p>Суму Duration as-is (для команди це тисячі днів поза жовтнем). Плейсменти home / search як окремі дні. Точки з 14 і менше днями. AM без таргету в запиті: Stefaniia Oznobishyna, Valentin Mudriac, Maria Lozova і 17 точок без AM.</p>
+  </div>
+</section>
+
+</div>
+
+<footer>Bolt Food Ukraine · internal · не поширювати партнерам · 15 жовтня 2026 · таргет SL по AM · логіка як у sl_target_oct2026.html</footer>
+</div>
+</body>
+</html>
