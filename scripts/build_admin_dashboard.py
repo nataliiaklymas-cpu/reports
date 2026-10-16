@@ -24,6 +24,7 @@ FOLDERS = [
     ("chornomorka", "files"),
     ("chornomorka-weekly", "weekly"),
     ("evrazia", "files"),
+    ("evrazia-weekly", "weekly"),
     ("pesto-cafe", "files"),
     ("bufet", "files"),
     ("hesburger", "files"),
