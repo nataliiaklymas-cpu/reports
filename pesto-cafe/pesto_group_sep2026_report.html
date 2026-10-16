@@ -353,12 +353,14 @@ h1, h2, h3 { margin: 0; letter-spacing: -.02em; }
 .kpi-row { display: grid; gap: 14px; margin-bottom: 20px; }
 .kpi-row.k5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .kpi-row.k4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.kpi-row.k3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .kpi-row.k2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 .kpi { background: var(--color-layer-floor-1); border-radius: 16px; padding: 20px 20px 18px; min-width: 0; overflow-wrap: anywhere; }
 .kpi-inline .kpi { background: var(--color-bg-neutral-secondary); padding: 15px 16px; }
 .kpi-h { display: flex; align-items: center; gap: 7px; color: var(--color-content-secondary); }
 .kpi-l { font: 650 .75rem/1rem "InterVariable", sans-serif; }
 .kpi-v { font: 650 1.75rem/2.125rem "InterVariable", sans-serif; letter-spacing: -.022em; margin-top: 10px; }
+.kpi-v .kpi-compact { font-size: 1.125rem; line-height: 1.375rem; }
 .kpi-s { font: 450 .8125rem/1.125rem "InterVariable", sans-serif; color: var(--color-content-secondary); margin-top: 7px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .kpi.tone-warn .kpi-v { color: var(--color-content-warning-primary); }
 .kpi-accent .kpi { background: var(--color-bg-action-secondary); }
@@ -388,6 +390,8 @@ h1, h2, h3 { margin: 0; letter-spacing: -.02em; }
 .pill-warn { background: var(--color-bg-warning-secondary); color: var(--color-content-warning-primary); }
 .pill-mute { background: var(--color-bg-neutral-secondary); color: var(--color-content-secondary); }
 .pill-accent { background: var(--color-bg-action-primary); color: #fff; }
+.fail-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+td.td-pills { white-space: normal; max-width: 480px; }
 .sec-dark .pill-mute { background: rgba(241,250,243,.14); color: rgba(244,254,249,.72); }
 .sec-dark .pill-pos { background: rgba(0,255,110,.14); color: #77F8B0; }
 
@@ -570,7 +574,7 @@ footer .f-t { font: 650 1rem/1.5rem "InterVariable", sans-serif; color: rgba(253
 footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-top: 8px; }
 
 @media (max-width: 1180px) {
-  .kpi-row.k5, .kpi-row.k4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kpi-row.k5, .kpi-row.k4, .kpi-row.k3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bcards, .three { grid-template-columns: minmax(0, 1fr); }
   .two { grid-template-columns: minmax(0, 1fr); }
   .hero-sl-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -581,7 +585,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   .fn-conv { padding: 0; justify-content: flex-start; }
 }
 @media (max-width: 720px) {
-  .kpi-row.k5, .kpi-row.k4, .kpi-row.k2, .hero-sl-row, .bcards { grid-template-columns: minmax(0, 1fr); }
+  .kpi-row.k5, .kpi-row.k4, .kpi-row.k3, .kpi-row.k2, .hero-sl-row, .bcards { grid-template-columns: minmax(0, 1fr); }
 }
 @media print {
   .nav { display: none; }
@@ -1208,7 +1212,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
 <p class="isl-p">Усі 26 локацій. Тижнева агрегація fact_provider_weekly — ті самі кроки, що у воронці вересня.</p></div>
 <div class="tbl-wrap"><table>
 <thead><tr><th>Місяць</th><th class="num">Показів</th><th class="num">Переглядів меню</th>
-<th class="num">Показ → меню</th><th class="num">Замовлень</th>
+<th class="num">Показ → меню</th><th class="num">Оформлених сесій</th>
 <th class="num">Меню → замовлення</th><th class="num">Наскрізна</th><th class="num">До попереднього</th></tr></thead>
 <tbody><tr>
   <td class="td-name">січ 2026</td>
@@ -1291,7 +1295,9 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">15.9%</td>
   <td class="num strong">0.35%</td>
   <td class="num"><span class="pill pill-pos"><svg class="ic " width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 5l7 7h-4v7H9v-7H5l7-7z"/></svg>14.7%</span></td>
-</tr></tbody></table></div></div>
+</tr></tbody></table></div>
+<p class="tbl-foot">«Оформлені сесії» — кроки воронки з тижневої агрегації, не доставлені замовлення.
+Частина оформлених потім скасовується, тому цифра може бути трохи більшою за delivered.</p></div>
 
 <div class="two">
 <div class="island "><div class="isl-h"><h3>Показ → меню</h3>
@@ -1310,13 +1316,15 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
 <div class="island "><div class="isl-h"><h3>Конверсія по локаціях Pesto Cafe</h3></div>
 <div class="tbl-wrap"><table>
 <thead><tr><th>Локація</th><th class="num">Показів</th><th class="num">Переглядів меню</th><th class="num">Показ → меню</th>
-<th class="num">Замовлень</th><th class="num">Меню → замовлення</th><th class="num">Наскрізна</th></tr></thead>
+<th class="num">Оформлених сесій</th><th class="num">Доставлено</th>
+<th class="num">Меню → замовлення</th><th class="num">Наскрізна</th></tr></thead>
 <tbody><tr>
   <td class="td-name">Глушкова</td>
   <td class="num">26 805</td>
   <td class="num">509</td>
   <td class="num">1.90%</td>
   <td class="num">70</td>
+  <td class="num">63</td>
   <td class="num">13.8%</td>
   <td class="num strong">0.26%</td>
 </tr><tr>
@@ -1325,6 +1333,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">507</td>
   <td class="num">2.22%</td>
   <td class="num">102</td>
+  <td class="num">93</td>
   <td class="num">20.1%</td>
   <td class="num strong">0.45%</td>
 </tr><tr>
@@ -1333,6 +1342,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">429</td>
   <td class="num">2.14%</td>
   <td class="num">100</td>
+  <td class="num">98</td>
   <td class="num">23.3%</td>
   <td class="num strong">0.50%</td>
 </tr><tr>
@@ -1341,6 +1351,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">415</td>
   <td class="num">2.25%</td>
   <td class="num">87</td>
+  <td class="num">97</td>
   <td class="num">21.0%</td>
   <td class="num strong">0.47%</td>
 </tr><tr>
@@ -1349,6 +1360,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">377</td>
   <td class="num">2.24%</td>
   <td class="num">42</td>
+  <td class="num">34</td>
   <td class="num">11.1%</td>
   <td class="num strong">0.25%</td>
 </tr><tr>
@@ -1357,6 +1369,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">316</td>
   <td class="num">2.01%</td>
   <td class="num">54</td>
+  <td class="num">58</td>
   <td class="num">17.1%</td>
   <td class="num strong">0.34%</td>
 </tr><tr>
@@ -1365,6 +1378,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">341</td>
   <td class="num">2.97%</td>
   <td class="num">51</td>
+  <td class="num">49</td>
   <td class="num">15.0%</td>
   <td class="num strong">0.44%</td>
 </tr><tr>
@@ -1373,6 +1387,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">193</td>
   <td class="num">1.75%</td>
   <td class="num">21</td>
+  <td class="num">24</td>
   <td class="num">10.9%</td>
   <td class="num strong">0.19%</td>
 </tr><tr>
@@ -1381,6 +1396,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">251</td>
   <td class="num">2.60%</td>
   <td class="num">66</td>
+  <td class="num">61</td>
   <td class="num">26.3%</td>
   <td class="num strong">0.68%</td>
 </tr><tr>
@@ -1389,6 +1405,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">165</td>
   <td class="num">1.74%</td>
   <td class="num">24</td>
+  <td class="num">23</td>
   <td class="num">14.5%</td>
   <td class="num strong">0.25%</td>
 </tr><tr>
@@ -1397,6 +1414,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">232</td>
   <td class="num">2.69%</td>
   <td class="num">30</td>
+  <td class="num">28</td>
   <td class="num">12.9%</td>
   <td class="num strong">0.35%</td>
 </tr><tr>
@@ -1405,6 +1423,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">177</td>
   <td class="num">2.17%</td>
   <td class="num">22</td>
+  <td class="num">18</td>
   <td class="num">12.4%</td>
   <td class="num strong">0.27%</td>
 </tr><tr>
@@ -1413,6 +1432,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">126</td>
   <td class="num">1.95%</td>
   <td class="num">24</td>
+  <td class="num">29</td>
   <td class="num">19.0%</td>
   <td class="num strong">0.37%</td>
 </tr><tr>
@@ -1421,6 +1441,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">107</td>
   <td class="num">2.58%</td>
   <td class="num">17</td>
+  <td class="num">13</td>
   <td class="num">15.9%</td>
   <td class="num strong">0.41%</td>
 </tr><tr>
@@ -1429,6 +1450,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">58</td>
   <td class="num">2.13%</td>
   <td class="num">6</td>
+  <td class="num">5</td>
   <td class="num">10.3%</td>
   <td class="num strong">0.22%</td>
 </tr><tr>
@@ -1437,6 +1459,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">23</td>
   <td class="num">1.38%</td>
   <td class="num">2</td>
+  <td class="num">0</td>
   <td class="num">8.7%</td>
   <td class="num strong">0.12%</td>
 </tr><tr>
@@ -1445,9 +1468,13 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <td class="num">28</td>
   <td class="num">1.89%</td>
   <td class="num">2</td>
+  <td class="num">2</td>
   <td class="num">7.1%</td>
   <td class="num strong">0.13%</td>
-</tr></tbody></table></div></div>
+</tr></tbody></table></div>
+<p class="tbl-foot">На Берковецькій у вересні 30 оформлених сесій і 28 доставлених — обидві цифри вірні.
+30 рахує сесії оформлення з тижневої воронки, 28 — замовлення в статусі delivered. Різниця: 4 скасовані
+і зсув тижневої агрегації. У таблицях локацій і в загальній картині орієнтир — 28 доставлених.</p></div>
 
 </section>
 
@@ -1625,23 +1652,159 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
 </div></div>
 </div>
 
-<div class="island "><div class="isl-h"><h3>Точні причини скасувань</h3>
-<p class="isl-p">Pesto Cafe, вересень. Мережа втратила 50 замовлень зі 745 створених —
-6.7%. Причина — та, яку зафіксував агент підтримки при скасуванні.</p></div>
-<div class="tbl-wrap"><table>
-<thead><tr><th>Причина скасування</th><th class="num">Замовлень</th><th class="num">Частка</th><th class="num">Зона впливу</th></tr></thead>
-<tbody><tr><td class="td-name">Заклад зачинений у заявлені години роботи</td><td class="num">18</td><td class="num">36%</td><td class="num"><span class="pill pill-warn">заклад</span></td></tr><tr><td class="td-name">Повітряна тривога</td><td class="num">12</td><td class="num">24%</td><td class="num"><span class="pill pill-mute">зовнішній фактор</span></td></tr><tr><td class="td-name">Заклад попросив скасувати — без причини</td><td class="num">3</td><td class="num">6%</td><td class="num"><span class="pill pill-warn">заклад</span></td></tr><tr><td class="td-name">Заклад попросив скасувати — позиції немає</td><td class="num">3</td><td class="num">6%</td><td class="num"><span class="pill pill-warn">заклад</span></td></tr><tr><td class="td-name">Заклад попросив скасувати — форс-мажор</td><td class="num">3</td><td class="num">6%</td><td class="num"><span class="pill pill-mute">зовнішній фактор</span></td></tr><tr><td class="td-name">Заклад попросив скасувати — немає світла</td><td class="num">2</td><td class="num">4%</td><td class="num"><span class="pill pill-mute">зовнішній фактор</span></td></tr><tr><td class="td-name">Клієнт скасував замовлення</td><td class="num">2</td><td class="num">4%</td><td class="num"><span class="pill pill-mute">клієнт</span></td></tr><tr><td class="td-name">Інше</td><td class="num">2</td><td class="num">4%</td><td class="num"><span class="pill pill-mute">не визначено</span></td></tr><tr><td class="td-name">Шахрайство — замовлення забрав інший курʼєр</td><td class="num">2</td><td class="num">4%</td><td class="num"><span class="pill pill-mute">курʼєр</span></td></tr><tr><td class="td-name">Шахрайство — інцидент</td><td class="num">2</td><td class="num">4%</td><td class="num"><span class="pill pill-mute">зовнішній фактор</span></td></tr><tr><td class="td-name">Скасовано службою підтримки</td><td class="num">1</td><td class="num">2%</td><td class="num"><span class="pill pill-mute">не визначено</span></td></tr>
-<tr class="tr-total"><td class="td-name">Разом</td><td class="num">50</td><td class="num">100%</td><td class="num"></td></tr>
-</tbody></table></div>
-<p class="tbl-foot">«Зона впливу» — наша класифікація за змістом причини: хто фактично може її прибрати.
-Повітряну тривогу не контролює ні заклад, ні Bolt.</p>
+<div class="island "><div class="isl-h"><h3>Причини скасувань — вересень 2026</h3>
+<p class="isl-p">Тотал по групі · локація · кількість · причини. Причину фіксує агент підтримки в момент скасування.</p></div>
+<div class="kpi-row k3 kpi-inline">
+  <div class="kpi tone-warn">
+  <div class="kpi-h"><svg class="ic " width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.3 5.7L12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3 1.4 1.4z"/></svg><span class="kpi-l">Скасовано</span></div>
+  <div class="kpi-v">55</div>
+  <div class="kpi-s">з 789 створених · fail rate 7.0%</div>
+</div>
+  <div class="kpi ">
+  <div class="kpi-h"><svg class="ic " width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l10 18H2L12 2zm-1 7v5h2V9h-2zm0 7v2h2v-2h-2z"/></svg><span class="kpi-l">Найчастіша причина</span></div>
+  <div class="kpi-v"><span class="kpi-compact">Заклад зачинений у заявлені години роботи</span></div>
+  <div class="kpi-s">22 замовлення</div>
+</div>
+  <div class="kpi ">
+  <div class="kpi-h"><svg class="ic " width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h18v4H3V3zm1 6h16v12H4V9zm2 2v8h5v-8H6zm7 0v3h5v-3h-5z"/></svg><span class="kpi-l">Основна зона впливу</span></div>
+  <div class="kpi-v">заклад</div>
+  <div class="kpi-s">51% скасувань</div>
+</div>
+</div>
+<div class="isl-sub">Причини по групі</div>
+<div class="hb" style="--lw:minmax(168px, 280px)"><div class="hb-r"><span class="hb-l">Заклад зачинений у заявлені години роботи</span><span class="hb-track"><i style="width:100.0%;background:#AD000E"></i></span><span class="hb-v">22 · 40%</span></div><div class="hb-r"><span class="hb-l">Повітряна тривога</span><span class="hb-track"><i style="width:59.1%;background:#2B8659"></i></span><span class="hb-v">13 · 24%</span></div><div class="hb-r"><span class="hb-l">Заклад попросив скасувати — без причини</span><span class="hb-track"><i style="width:13.6%;background:#2B8659"></i></span><span class="hb-v">3 · 5%</span></div><div class="hb-r"><span class="hb-l">Заклад попросив скасувати — позиції немає</span><span class="hb-track"><i style="width:13.6%;background:#A8CFBB"></i></span><span class="hb-v">3 · 5%</span></div><div class="hb-r"><span class="hb-l">Заклад попросив скасувати — форс-мажор</span><span class="hb-track"><i style="width:13.6%;background:#A8CFBB"></i></span><span class="hb-v">3 · 5%</span></div><div class="hb-r"><span class="hb-l">Заклад попросив скасувати — немає світла</span><span class="hb-track"><i style="width:9.1%;background:#A8CFBB"></i></span><span class="hb-v">2 · 4%</span></div><div class="hb-r"><span class="hb-l">Клієнт скасував замовлення</span><span class="hb-track"><i style="width:9.1%;background:#A8CFBB"></i></span><span class="hb-v">2 · 4%</span></div><div class="hb-r"><span class="hb-l">Інше</span><span class="hb-track"><i style="width:9.1%;background:#A8CFBB"></i></span><span class="hb-v">2 · 4%</span></div><div class="hb-r"><span class="hb-l">Шахрайство — замовлення забрав інший курʼєр</span><span class="hb-track"><i style="width:9.1%;background:#A8CFBB"></i></span><span class="hb-v">2 · 4%</span></div><div class="hb-r"><span class="hb-l">Шахрайство — інцидент</span><span class="hb-track"><i style="width:9.1%;background:#A8CFBB"></i></span><span class="hb-v">2 · 4%</span></div><div class="hb-r"><span class="hb-l">Скасовано службою підтримки</span><span class="hb-track"><i style="width:4.5%;background:#A8CFBB"></i></span><span class="hb-v">1 · 2%</span></div></div>
+<div class="tbl-wrap" style="margin-top:18px"><table>
+<thead><tr><th>Локація</th><th class="num">Скасовано</th><th class="num">Частка створених</th><th>Причини</th></tr></thead>
+<tbody><tr>
+  <td class="td-name">Pesto Cafe Перемоги<span class="pid">80463</span></td>
+  <td class="num"><strong>8</strong></td>
+  <td class="num"><span class="pill pill-neg">21.6%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Повітряна тривога · 5</span><span class="pill pill-mute">Заклад зачинений у заявлені години роботи · 2</span><span class="pill pill-mute">Заклад попросив скасувати — немає світла · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Глушкова<span class="pid">80450</span></td>
+  <td class="num"><strong>7</strong></td>
+  <td class="num"><span class="pill pill-neg">10.0%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Заклад попросив скасувати — без причини · 2</span><span class="pill pill-mute">Заклад зачинений у заявлені години роботи · 2</span><span class="pill pill-mute">Заклад попросив скасувати — форс-мажор · 1</span><span class="pill pill-mute">Шахрайство — інцидент · 1</span><span class="pill pill-mute">Заклад попросив скасувати — немає світла · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Велика Окружна<span class="pid">80477</span></td>
+  <td class="num"><strong>6</strong></td>
+  <td class="num"><span class="pill pill-neg">6.1%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Заклад зачинений у заявлені години роботи · 2</span><span class="pill pill-mute">Шахрайство — замовлення забрав інший курʼєр · 2</span><span class="pill pill-mute">Клієнт скасував замовлення · 1</span><span class="pill pill-mute">Заклад попросив скасувати — без причини · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Іоанна Павла<span class="pid">80456</span></td>
+  <td class="num"><strong>5</strong></td>
+  <td class="num"><span class="pill pill-warn">4.9%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Заклад попросив скасувати — позиції немає · 2</span><span class="pill pill-mute">Клієнт скасував замовлення · 1</span><span class="pill pill-mute">Інше · 1</span><span class="pill pill-mute">Заклад попросив скасувати — форс-мажор · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Правди<span class="pid">80465</span></td>
+  <td class="num"><strong>5</strong></td>
+  <td class="num"><span class="pill pill-neg">27.8%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Повітряна тривога · 1</span><span class="pill pill-mute">Заклад попросив скасувати — позиції немає · 1</span><span class="pill pill-mute">Заклад попросив скасувати — форс-мажор · 1</span><span class="pill pill-mute">Скасовано службою підтримки · 1</span><span class="pill pill-mute">Шахрайство — інцидент · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Mister Twister Глушкова<span class="pid">86607</span></td>
+  <td class="num"><strong>5</strong></td>
+  <td class="num"><span class="pill pill-neg">50.0%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Заклад зачинений у заявлені години роботи · 4</span><span class="pill pill-mute">Повітряна тривога · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Малишка<span class="pid">80479</span></td>
+  <td class="num"><strong>4</strong></td>
+  <td class="num"><span class="pill pill-neg">10.5%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Заклад зачинений у заявлені години роботи · 3</span><span class="pill pill-mute">Повітряна тривога · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Берковецька<span class="pid">80475</span></td>
+  <td class="num"><strong>4</strong></td>
+  <td class="num"><span class="pill pill-neg">12.5%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Заклад зачинений у заявлені години роботи · 3</span><span class="pill pill-mute">Повітряна тривога · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Шептицького<span class="pid">80478</span></td>
+  <td class="num"><strong>3</strong></td>
+  <td class="num"><span class="pill pill-neg">11.5%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Заклад зачинений у заявлені години роботи · 2</span><span class="pill pill-mute">Повітряна тривога · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Лобановського<span class="pid">80449</span></td>
+  <td class="num"><strong>2</strong></td>
+  <td class="num"><span class="pill pill-pos">2.0%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Заклад зачинений у заявлені години роботи · 2</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Respublika<span class="pid">113554</span></td>
+  <td class="num"><strong>2</strong></td>
+  <td class="num"><span class="pill pill-neg">100.0%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Повітряна тривога · 2</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Дніпровська набережна<span class="pid">80468</span></td>
+  <td class="num"><strong>1</strong></td>
+  <td class="num"><span class="pill pill-pos">1.6%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Заклад зачинений у заявлені години роботи · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Борщагівська<span class="pid">80472</span></td>
+  <td class="num"><strong>1</strong></td>
+  <td class="num"><span class="pill pill-pos">1.7%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Заклад зачинений у заявлені години роботи · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Русанівська набережна<span class="pid">80461</span></td>
+  <td class="num"><strong>1</strong></td>
+  <td class="num"><span class="pill pill-neg">5.3%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Інше · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Бандери, 34В<span class="pid">80470</span></td>
+  <td class="num"><strong>1</strong></td>
+  <td class="num"><span class="pill pill-neg">16.7%</span></td>
+  <td class="td-pills"><div class="fail-pills"><span class="pill pill-mute">Повітряна тривога · 1</span></div></td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Івасюка<span class="pid">80452</span></td>
+  <td class="num"><strong>0</strong></td>
+  <td class="num"><span class="pill pill-pos">0.0%</span></td>
+  <td class="td-pills">—</td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Овруцька<span class="pid">80447</span></td>
+  <td class="num"><strong>0</strong></td>
+  <td class="num"><span class="pill pill-pos">0.0%</span></td>
+  <td class="td-pills">—</td>
+</tr><tr>
+  <td class="td-name">Pasta&Pizza Дніпровська набережна<span class="pid">86588</span></td>
+  <td class="num"><strong>0</strong></td>
+  <td class="num"><span class="pill pill-pos">0.0%</span></td>
+  <td class="td-pills">—</td>
+</tr><tr>
+  <td class="td-name">Pasta&Pizza Іоанна Павла ІІ<span class="pid">86600</span></td>
+  <td class="num"><strong>0</strong></td>
+  <td class="num"><span class="pill pill-pos">0.0%</span></td>
+  <td class="td-pills">—</td>
+</tr><tr>
+  <td class="td-name">Pasta&Pizza Лобановського<span class="pid">86594</span></td>
+  <td class="num"><strong>0</strong></td>
+  <td class="num"><span class="pill pill-pos">0.0%</span></td>
+  <td class="td-pills">—</td>
+</tr><tr>
+  <td class="td-name">Pasta&Pizza Овруцька<span class="pid">86591</span></td>
+  <td class="num"><strong>0</strong></td>
+  <td class="num"><span class="pill pill-pos">0.0%</span></td>
+  <td class="td-pills">—</td>
+</tr><tr>
+  <td class="td-name">Pesto Cafe Інститутська<span class="pid">80467</span></td>
+  <td class="num"><strong>0</strong></td>
+  <td class="num"><span class="pill pill-pos">0.0%</span></td>
+  <td class="td-pills">—</td>
+</tr><tr>
+  <td class="td-name">Pasta&Pizza Велика Окружна<span class="pid">86596</span></td>
+  <td class="num"><strong>0</strong></td>
+  <td class="num"><span class="pill pill-pos">0.0%</span></td>
+  <td class="td-pills">—</td>
+</tr><tr>
+  <td class="td-name">Pasta&Pizza Шептицького<span class="pid">86599</span></td>
+  <td class="num"><strong>0</strong></td>
+  <td class="num"><span class="pill pill-pos">0.0%</span></td>
+  <td class="td-pills">—</td>
+</tr></tbody></table></div>
+<p class="tbl-foot">55 скасованих на 734 доставлених. Одна локація може мати кілька причин.
+«Частка створених» — скасовані поділені на доставлені плюс скасовані.</p>
 <div class="note note-warn">
   <div class="note-ic"><svg class="ic " width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l10 18H2L12 2zm-1 7v5h2V9h-2zm0 7v2h2v-2h-2z"/></svg></div>
-  <div><div class="note-t">18 з 50 скасувань — заклад був зачинений у заявлені години роботи</div><div class="note-b">Це вже не тривога, а операційна причина: 18 скасувань під контролем партнера. Повітряна тривога дала 12 скасувань (24%). Ще 3 — немає позиції, 3 — заклад попросив скасувати без причини. Перший крок на жовтень: звірити години роботи в Bolt Food Portal на всіх точках, особливо там, де скасувань кілька.</div></div>
+  <div><div class="note-t">22 з 55 скасувань — заклад був зачинений у заявлені години роботи</div><div class="note-b">Це вже не тривога, а операційна причина: 22 скасування під контролем партнера. Повітряна тривога дала 13 скасувань (24%). Ще 3 — немає позиції, 3 — заклад попросив скасувати без причини. Перший крок на жовтень: звірити години роботи в Bolt Food Portal на всіх точках, особливо там, де скасувань кілька.</div></div>
 </div>
 <div class="note note-danger">
   <div class="note-ic"><svg class="ic " width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l10 18H2L12 2zm-1 7v5h2V9h-2zm0 7v2h2v-2h-2z"/></svg></div>
-  <div><div class="note-t">Берковецька — 4 скасувань при 28 доставлених</div><div class="note-b">Структура: 1 через тривогу, 3 — зачинений у робочі години. Проблемних замовлень 6. Поки графік не збігається з порталом, локацію не варто додавати в платне розміщення.</div></div>
+  <div><div class="note-t">Берковецька — 4 скасування при 28 доставлених</div><div class="note-b">Офіційна кількість замовлень локації за вересень — 28 доставлених. У воронці поруч стоїть 30 оформлених сесій: це інша метрика, не помилка в даних. Зі скасувань: 1 через тривогу, 3 — зачинений у робочі години. Проблемних замовлень 6. Поки графік не збігається з порталом, локацію не варто додавати в платне розміщення.</div></div>
 </div></div>
 
 </section>
@@ -2270,9 +2433,9 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
   <div class="plan-item">
     <div class="plan-n">3</div>
     <div>
-      <h3>Звірити години роботи — 18 скасувань через зачинений заклад</h3>
-      <p>У вересні це головна причина скасувань Pesto Cafe, не тривога. Особливо Берковецька:
-      4 скасувань при 28 доставлених.
+      <h3>Звірити години роботи — 22 скасування через зачинений заклад</h3>
+      <p>У вересні це головна причина скасувань по групі, не тривога. Особливо Берковецька:
+      4 скасування при 28 доставлених.
       Поки графік у порталі не збігається з реальним, локацію в рекламу не ставимо.</p>
       <div class="plan-tags"><span class="pill pill-warn"><svg class="ic " width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l10 18H2L12 2zm-1 7v5h2V9h-2zm0 7v2h2v-2h-2z"/></svg>блокер</span><span class="pill pill-mute">до 20 жовтня</span></div>
     </div>
@@ -2324,7 +2487,7 @@ footer .f-b { font: 450 .8125rem/1.375rem "InterVariable", sans-serif; margin-to
     <h2>Глосарій показників</h2>
     <p class="lead">Як саме рахується кожна метрика цього звіту.</p>
   </div>
-  <div class="island"><div class="gloss"><div class="gl"><div class="gl-t">Доставлено</div><div class="gl-b">Кількість замовлень у статусі delivered за період. Скасовані замовлення не враховуються.</div></div><div class="gl"><div class="gl-t">Виручка (GMV до знижок)</div><div class="gl-b">Сума замовлень за цінами меню до застосування будь-яких знижок, у гривнях.</div></div><div class="gl"><div class="gl-t">Середній чек</div><div class="gl-b">Виручка поділена на кількість доставлених замовлень.</div></div><div class="gl"><div class="gl-t">Нові клієнти</div><div class="gl-b">Клієнти, для яких це замовлення — перше в цьому закладі (is_first_provider_order).</div></div><div class="gl"><div class="gl-t">Активні клієнти</div><div class="gl-b">Унікальні клієнти, які зробили хоча б одне замовлення за період.</div></div><div class="gl"><div class="gl-t">Частота замовлень</div><div class="gl-b">Замовлення поділені на кількість активних клієнтів за період.</div></div><div class="gl"><div class="gl-t">Промо-замовлення</div><div class="gl-b">Замовлення, у яких застосовано будь-яку знижку — за рахунок Bolt Food або партнера.</div></div><div class="gl"><div class="gl-t">Інвестиції Bolt Food у промо</div><div class="gl-b">Частина знижки, яку покриває платформа. Партнер за неї не платить.</div></div><div class="gl"><div class="gl-t">Bolt+</div><div class="gl-b">Підписка Bolt із безкоштовною доставкою в закладах, підключених до програми. Pesto Group до програми не підключена, тому «замовлення від підписників Bolt+» у цьому звіті означає лише те, що замовлення зробив клієнт із підпискою — безкоштовної доставки він тут не отримує.</div></div><div class="gl"><div class="gl-t">Показів картки закладу</div><div class="gl-b">Скільки разів картка закладу була показана клієнту в застосунку.</div></div><div class="gl"><div class="gl-t">Переглядів меню</div><div class="gl-b">Сесії, у яких клієнт відкрив меню закладу після показу картки.</div></div><div class="gl"><div class="gl-t">Наскрізна конверсія</div><div class="gl-b">Частка показів картки, що завершились оформленим замовленням.</div></div><div class="gl"><div class="gl-t">Smart Promo</div><div class="gl-b">Цільова знижка платформи для нових клієнтів і тих, хто давно не замовляв. У вересні — 30% на меню, 21.09–04.10, на всю групу. Витрати на знижку поділені 50/50 між Bolt Food і партнером.</div></div><div class="gl"><div class="gl-t">Sponsored Listing</div><div class="gl-b">Платне розміщення закладу на преміум-позиціях: головний екран, результати пошуку, «замовити знову». Ціна — за локацію за день. У вересні кампаній не було.</div></div><div class="gl"><div class="gl-t">CTR</div><div class="gl-b">Частка клієнтів, які натиснули на рекламну картку після показу: кліки поділені на покази.</div></div><div class="gl"><div class="gl-t">ROAS</div><div class="gl-b">Атрибутований рекламі дохід поділений на витрати на рекламу. ROAS 1× означає, що реклама повернула рівно стільки, скільки коштувала.</div></div><div class="gl"><div class="gl-t">Атрибутовані замовлення та дохід</div><div class="gl-b">Замовлення й виручка, які система пов'язує безпосередньо з показом або кліком по рекламній картці.</div></div><div class="gl"><div class="gl-t">Час приготування</div><div class="gl-b">Середній час від прийняття замовлення закладом до готовності до видачі курʼєру.</div></div><div class="gl"><div class="gl-t">Час прийняття</div><div class="gl-b">Середній час від надходження замовлення до його підтвердження закладом.</div></div><div class="gl"><div class="gl-t">Доступність</div><div class="gl-b">Частка робочого часу, коли заклад був доступний для замовлень у застосунку.</div></div><div class="gl"><div class="gl-t">Проблемні замовлення</div><div class="gl-b">Замовлення з підтвердженою проблемою. Найчастіші типи — доставка із запізненням понад 15 хв, скасування після того, як заклад прийняв замовлення, відсутня або неправильна позиція, скарга клієнта на якість.</div></div><div class="gl"><div class="gl-t">Скасоване замовлення</div><div class="gl-b">Замовлення, створене клієнтом, але не доставлене. Точну причину обирає агент підтримки в момент скасування — саме ці причини наведені в розділі 5.</div></div><div class="gl"><div class="gl-t">Зона впливу</div><div class="gl-b">Наша класифікація причин скасування за тим, хто фактично може їх прибрати: заклад, курʼєр, Bolt або зовнішній фактор (повітряна тривога). Це не поле з бази, а групування за змістом причини.</div></div><div class="gl"><div class="gl-t">Рейтинг</div><div class="gl-b">Середня оцінка клієнтів за період, від 1 до 5. Враховуються лише оцінки клієнтів, без відхилених.</div></div></div></div>
+  <div class="island"><div class="gloss"><div class="gl"><div class="gl-t">Доставлено</div><div class="gl-b">Кількість замовлень у статусі delivered за період. Скасовані замовлення не враховуються.</div></div><div class="gl"><div class="gl-t">Виручка (GMV до знижок)</div><div class="gl-b">Сума замовлень за цінами меню до застосування будь-яких знижок, у гривнях.</div></div><div class="gl"><div class="gl-t">Середній чек</div><div class="gl-b">Виручка поділена на кількість доставлених замовлень.</div></div><div class="gl"><div class="gl-t">Нові клієнти</div><div class="gl-b">Клієнти, для яких це замовлення — перше в цьому закладі (is_first_provider_order).</div></div><div class="gl"><div class="gl-t">Активні клієнти</div><div class="gl-b">Унікальні клієнти, які зробили хоча б одне замовлення за період.</div></div><div class="gl"><div class="gl-t">Частота замовлень</div><div class="gl-b">Замовлення поділені на кількість активних клієнтів за період.</div></div><div class="gl"><div class="gl-t">Промо-замовлення</div><div class="gl-b">Замовлення, у яких застосовано будь-яку знижку — за рахунок Bolt Food або партнера.</div></div><div class="gl"><div class="gl-t">Інвестиції Bolt Food у промо</div><div class="gl-b">Частина знижки, яку покриває платформа. Партнер за неї не платить.</div></div><div class="gl"><div class="gl-t">Bolt+</div><div class="gl-b">Підписка Bolt із безкоштовною доставкою в закладах, підключених до програми. Pesto Group до програми не підключена, тому «замовлення від підписників Bolt+» у цьому звіті означає лише те, що замовлення зробив клієнт із підпискою — безкоштовної доставки він тут не отримує.</div></div><div class="gl"><div class="gl-t">Показів картки закладу</div><div class="gl-b">Скільки разів картка закладу була показана клієнту в застосунку.</div></div><div class="gl"><div class="gl-t">Переглядів меню</div><div class="gl-b">Сесії, у яких клієнт відкрив меню закладу після показу картки.</div></div><div class="gl"><div class="gl-t">Наскрізна конверсія</div><div class="gl-b">Частка показів картки, що завершились оформленим замовленням.</div></div><div class="gl"><div class="gl-t">Оформлені сесії</div><div class="gl-b">Сесії оформлення замовлення з тижневої воронки. Це не доставлені замовлення: частина оформлених потім скасовується, і тижнева агрегація може на 1–2 відрізнятися від помісячного delivered.</div></div><div class="gl"><div class="gl-t">Smart Promo</div><div class="gl-b">Цільова знижка платформи для нових клієнтів і тих, хто давно не замовляв. У вересні — 30% на меню, 21.09–04.10, на всю групу. Витрати на знижку поділені 50/50 між Bolt Food і партнером.</div></div><div class="gl"><div class="gl-t">Sponsored Listing</div><div class="gl-b">Платне розміщення закладу на преміум-позиціях: головний екран, результати пошуку, «замовити знову». Ціна — за локацію за день. У вересні кампаній не було.</div></div><div class="gl"><div class="gl-t">CTR</div><div class="gl-b">Частка клієнтів, які натиснули на рекламну картку після показу: кліки поділені на покази.</div></div><div class="gl"><div class="gl-t">ROAS</div><div class="gl-b">Атрибутований рекламі дохід поділений на витрати на рекламу. ROAS 1× означає, що реклама повернула рівно стільки, скільки коштувала.</div></div><div class="gl"><div class="gl-t">Атрибутовані замовлення та дохід</div><div class="gl-b">Замовлення й виручка, які система пов'язує безпосередньо з показом або кліком по рекламній картці.</div></div><div class="gl"><div class="gl-t">Час приготування</div><div class="gl-b">Середній час від прийняття замовлення закладом до готовності до видачі курʼєру.</div></div><div class="gl"><div class="gl-t">Час прийняття</div><div class="gl-b">Середній час від надходження замовлення до його підтвердження закладом.</div></div><div class="gl"><div class="gl-t">Доступність</div><div class="gl-b">Частка робочого часу, коли заклад був доступний для замовлень у застосунку.</div></div><div class="gl"><div class="gl-t">Проблемні замовлення</div><div class="gl-b">Замовлення з підтвердженою проблемою. Найчастіші типи — доставка із запізненням понад 15 хв, скасування після того, як заклад прийняв замовлення, відсутня або неправильна позиція, скарга клієнта на якість.</div></div><div class="gl"><div class="gl-t">Скасоване замовлення</div><div class="gl-b">Замовлення, створене клієнтом, але не доставлене. Точну причину обирає агент підтримки в момент скасування — саме ці причини наведені в розділі 5.</div></div><div class="gl"><div class="gl-t">Зона впливу</div><div class="gl-b">Наша класифікація причин скасування за тим, хто фактично може їх прибрати: заклад, курʼєр, Bolt або зовнішній фактор (повітряна тривога). Це не поле з бази, а групування за змістом причини.</div></div><div class="gl"><div class="gl-t">Рейтинг</div><div class="gl-b">Середня оцінка клієнтів за період, від 1 до 5. Враховуються лише оцінки клієнтів, без відхилених.</div></div></div></div>
 </section>
 </main>
 
