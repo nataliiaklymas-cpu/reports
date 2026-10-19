@@ -9,20 +9,8 @@ and network summary — потрібно для мереж, де вулиці п
 No other code changes are needed — run_weekly_reports.py loops over this dict.
 """
 
-SALATEIRA_PROVIDERS = {
-    173027: {"name": "Salateira Дніпровська Набережна", "brand": "Salateira", "city": "Київ"},
-    173034: {"name": "Salateira вул. Лугова", "brand": "Salateira", "city": "Київ"},
-    173035: {"name": "Salateira Проспект Правди", "brand": "Salateira", "city": "Київ"},
-    173039: {"name": "Salateira вул.Берковецька", "brand": "Salateira", "city": "Київ"},
-    173040: {"name": "Salateira Гната Хоткевича", "brand": "Salateira", "city": "Київ"},
-    173043: {"name": "Salateira вулиця Антоновича", "brand": "Salateira", "city": "Київ"},
-    173047: {"name": "Salateira Кільцева Дорога", "brand": "Salateira", "city": "Київ"},
-    173051: {"name": "Salateira Майдан Незалежності", "brand": "Salateira", "city": "Київ"},
-    173052: {"name": "Salateira Михайла Гришка", "brand": "Salateira", "city": "Київ"},
-    173058: {"name": "Salateira Спортивна Площа", "brand": "Salateira", "city": "Київ"},
-    173069: {"name": "Salateira Проспект Романа Шухевича", "brand": "Salateira", "city": "Київ"},
-    173149: {"name": "Salateira вул. Велика Васильківська", "brand": "Salateira", "city": "Київ"},
-}
+# Salateira closed (Oct 2026) — weekly generation stopped.
+# Historical reports stay in salateira-weekly/; do not re-add to PARTNERS.
 
 CHORNOMORKA_PROVIDERS = {
     189178: {"name": "Чорноморка Ужгород", "brand": "Чорноморка", "city": "Ужгород"},
@@ -184,13 +172,6 @@ EVRAZIA_PROVIDERS = {
 }
 
 PARTNERS = {
-    "salateira": {
-        "display_name": "Salateira",
-        "emoji": "🥗",
-        "brand_color": "#2AAF6D",
-        "github_folder": "salateira-weekly",
-        "providers": SALATEIRA_PROVIDERS,
-    },
     "chornomorka": {
         "display_name": "Чорноморка",
         "emoji": "🐟",
