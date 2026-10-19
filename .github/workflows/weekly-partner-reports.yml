@@ -42,7 +42,9 @@ jobs:
             ${{ github.event.inputs.run_date && format('--run-date {0}', github.event.inputs.run_date) || '' }} \
             ${{ github.event.inputs.only && format('--only {0}', github.event.inputs.only) || '' }}
 
+      # Push whatever was generated even if a later partner timed out.
       - name: Commit and push
+        if: success() || failure()
         run: |
           git config user.name "bolt-reports-bot"
           git config user.email "actions@github.com"

@@ -27,6 +27,7 @@ import math
 import os
 import re
 import sys
+import traceback
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -688,11 +689,23 @@ def main():
     print(f"Run date: {run_date.isoformat()}  ->  target week: {week['period_label']} ({week['week_folder']})")
 
     only = set(args.only.split(",")) if args.only else None
+    failures = []
     for key, cfg in PARTNERS.items():
         if only and key not in only:
             continue
-        run_partner(key, cfg, week, args.repo_root)
-        run_partner_reviews(key, cfg, week, args.repo_root)
+        try:
+            run_partner(key, cfg, week, args.repo_root)
+            run_partner_reviews(key, cfg, week, args.repo_root)
+        except Exception as exc:
+            failures.append((key, exc))
+            print(f"\n!!! FAILED {key}: {exc}", file=sys.stderr)
+            traceback.print_exc()
+
+    if failures:
+        print("\nFailed partners:")
+        for key, exc in failures:
+            print(f"  {key}: {exc}")
+        sys.exit(1)
 
     print("\nAll done.")
 
