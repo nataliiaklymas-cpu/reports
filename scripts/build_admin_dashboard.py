@@ -33,6 +33,7 @@ FOLDERS = [
     ("contrabanda", "files"),
     ("marchuk-khlib", "files"),
     ("bahato-lososya", "files"),
+    ("bahato-lososya-weekly", "weekly"),
     ("roco-sushi-weekly", "weekly"),
     ("pesto-group-weekly", "weekly"),
     ("this-is-pivbar", "files"),

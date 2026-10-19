@@ -147,6 +147,30 @@ PESTO_GROUP_PROVIDERS = {
     #   80458 Pesto Cafe Гришка — status "deleted", нуль замовлень з липня 2026
 }
 
+BAHATO_LOSOSYA_PROVIDERS = {
+    9255:   {"name": "БагатоЛосося Січових Стрільців", "brand": "БагатоЛосося", "city": "Київ"},
+    9260:   {"name": "БагатоЛосося Євгена Гуцала", "brand": "БагатоЛосося", "city": "Київ"},
+    11935:  {"name": "БагатоЛосося Урлівська", "brand": "БагатоЛосося", "city": "Київ"},
+    13535:  {"name": "БагатоЛосося Богатирська", "brand": "БагатоЛосося", "city": "Київ"},
+    25023:  {"name": "БагатоЛосося Соборності", "brand": "БагатоЛосося", "city": "Київ"},
+    36860:  {"name": "БагатоЛосося Берестейський", "brand": "БагатоЛосося", "city": "Київ"},
+    51635:  {"name": "БагатоЛосося Деміївська", "brand": "БагатоЛосося", "city": "Київ"},
+    13229:  {"name": "СушіХО Євгена Гуцала", "brand": "СушіХО", "city": "Київ"},
+    13231:  {"name": "СушіХО Урлівська", "brand": "СушіХО", "city": "Київ"},
+    13534:  {"name": "СушіХО Богатирська", "brand": "СушіХО", "city": "Київ"},
+    15224:  {"name": "СушіХО Січових Стрільців", "brand": "СушіХО", "city": "Київ"},
+    25027:  {"name": "СушіХО Соборності", "brand": "СушіХО", "city": "Київ"},
+    36861:  {"name": "СушіХО Берестейський", "brand": "СушіХО", "city": "Київ"},
+    51634:  {"name": "СушіХО Деміївська", "brand": "СушіХО", "city": "Київ"},
+    97796:  {"name": "Nori Miori Євгена Гуцала", "brand": "Nori Miori", "city": "Київ"},
+    162622: {"name": "Nori Miori Січових Стрільців", "brand": "Nori Miori", "city": "Київ"},
+    162625: {"name": "Nori Miori Урлівська", "brand": "Nori Miori", "city": "Київ"},
+    162628: {"name": "Nori Miori Богатирська", "brand": "Nori Miori", "city": "Київ"},
+    162633: {"name": "Nori Miori Соборності", "brand": "Nori Miori", "city": "Київ"},
+    162635: {"name": "Nori Miori Деміївська", "brand": "Nori Miori", "city": "Київ"},
+    162642: {"name": "Nori Miori Берестейський", "brand": "Nori Miori", "city": "Київ"},
+}
+
 EVRAZIA_PROVIDERS = {
     77989:  {"name": "Євразія ТРЦ Республіка", "brand": "Євразія", "city": "Київ"},
     13815:  {"name": "Євразія Смарт Плаза Оболонь", "brand": "Євразія", "city": "Київ"},
@@ -242,5 +266,13 @@ PARTNERS = {
         "brand_color": "#2A9C64",
         "github_folder": "evrazia-weekly",
         "providers": EVRAZIA_PROVIDERS,
+    },
+    "bahato_lososya": {
+        "display_name": "Група Багато Лосося",
+        "emoji": "",
+        "brand_color": "#2A9C64",
+        "github_folder": "bahato-lososya-weekly",
+        "providers": BAHATO_LOSOSYA_PROVIDERS,
+        "show_brand_in_index": True,
     },
 }
