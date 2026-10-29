@@ -69,6 +69,15 @@ STRINGS = {
         "funnel_note": "Воронка в сесіях користувача, тому «оформлено» може трохи відрізнятись від «доставлено».",
         "repeat_customers": "Повторних клієнтів",
         "unique_customers": "Унікальних клієнтів",
+        "active_customers": "Активні користувачі",
+        "wow_quality_sub": "Нові клієнти, конверсія показ → замовлення, рейтинг і активні користувачі vs попередній тиждень",
+        "was": "було",
+        "sl_title": "Sponsored Listing",
+        "sl_spend": "Витрати SL ₴",
+        "sl_days": "Днів у видачі",
+        "sl_clicks": "Кліки",
+        "sl_orders": "Атриб. замовлення",
+        "sl_note": "Витрата = ставка за день × кількість днів, коли оголошення було активне цього тижня. Показуємо лише якщо SL був.",
         "delivery_time": "Час доставки",
         "loss_title": "Де саме втрачаємо",
         "loss_avail": "Доступність {pct}% — частина клієнтів бачить заклад, але не може замовити.",
@@ -163,6 +172,15 @@ STRINGS = {
         "funnel_note": "The funnel is session-based, so “placed” can differ slightly from “delivered”.",
         "repeat_customers": "Repeat customers",
         "unique_customers": "Unique customers",
+        "active_customers": "Active users",
+        "wow_quality_sub": "New customers, impression → order conversion, rating and active users vs previous week",
+        "was": "was",
+        "sl_title": "Sponsored Listing",
+        "sl_spend": "SL spend",
+        "sl_days": "Days live",
+        "sl_clicks": "Clicks",
+        "sl_orders": "Attr. orders",
+        "sl_note": "Spend = daily rate × days the listing was live this week. Shown only when SL ran.",
         "delivery_time": "Delivery time",
         "loss_title": "Where we lose sales",
         "loss_avail": "Availability {pct}% — some customers see the venue but cannot order.",
@@ -274,9 +292,37 @@ def fmt(n):
 def wow_span(pct):
     if pct is None:
         return ""
+    if pct == 0:
+        return '<span style="color:#9CA3AF;font-size:10px;font-weight:700;">0%</span>'
     c = "#EF4444" if pct < 0 else "#34D186"
     a = "▼" if pct < 0 else "▲"
     return f'<span style="color:{c};font-size:10px;font-weight:700;">{a}{abs(pct):.1f}%</span>'
+
+
+def wow_pp_span(delta_pp, locale="uk"):
+    if delta_pp is None:
+        return ""
+    unit = " pp" if locale == "en" else " п.п."
+    if delta_pp == 0:
+        return f'<span style="color:#9CA3AF;font-size:10px;font-weight:700;">0{unit}</span>'
+    c = "#EF4444" if delta_pp < 0 else "#34D186"
+    a = "▼" if delta_pp < 0 else "▲"
+    return f'<span style="color:{c};font-size:10px;font-weight:700;">{a}{abs(delta_pp):.1f}{unit}</span>'
+
+
+def wow_rating_span(delta):
+    if delta is None:
+        return ""
+    c = "#EF4444" if delta < 0 else "#34D186"
+    a = "▼" if delta < 0 else "▲"
+    return f'<span style="color:{c};font-size:10px;font-weight:700;">{a}{abs(delta):.2f}</span>'
+
+
+def _wow_pct(cur, prev):
+    prev = sf(prev, 0)
+    if not prev:
+        return None
+    return round((sf(cur, 0) - prev) / prev * 100, 1)
 
 
 def avail_color(v):
@@ -497,6 +543,18 @@ def build_report(
     cart = int(sf(c.get("cart", 0)))
     ordered_sess = int(sf(c.get("ordered", 0)))
     prev_impr = int(sf(prev_row.get("impr", 0)))
+    prev_menu = int(sf(prev_row.get("menu", 0)))
+    prev_cart = int(sf(prev_row.get("cart", 0)))
+    prev_ordered_sess = int(sf(prev_row.get("ordered", 0)))
+    prev_new_u = int(sf(prev_row.get("new_u", 0)))
+    prev_uniq = int(sf(prev_row.get("uniq", 0)))
+    prev_fact_rating = sf(prev_row.get("rating"), None) or None
+    fact_rating = sf(c.get("rating"), None) or None
+    sl_spend = round(sf(c.get("sl_spend", 0)))
+    sl_days = int(sf(c.get("sl_days", 0)))
+    sl_clicks = int(sf(c.get("sl_clicks", 0)))
+    sl_ord = int(sf(c.get("sl_ord", 0)))
+    sl_impr = int(sf(c.get("sl_impr", 0)))
     bad_rt = sf(c.get("bad_rt", 0))
     aov = round(gmv / max(delivered, 1))
     bp_sh = round(bp_ord / max(delivered, 1) * 100)
@@ -506,16 +564,26 @@ def build_report(
 
     prev_del = int(sf(prev_delivered_total, 0))
     prev_gmv = round(sf(prev_row.get("gmv_eur", 0)) * UAH)
-    wow_ord = round((delivered - prev_del) / prev_del * 100, 1) if prev_del else None
-    wow_gmv = round((gmv - prev_gmv) / prev_gmv * 100, 1) if prev_gmv else None
+    wow_ord = _wow_pct(delivered, prev_del)
+    wow_gmv = _wow_pct(gmv, prev_gmv)
+    wow_new = _wow_pct(new_u, prev_new_u)
+    wow_uniq = _wow_pct(uniq or 0, prev_uniq)
+    conv_pct = (ordered_sess / impr * 100) if impr else None
+    prev_conv_pct = (prev_ordered_sess / prev_impr * 100) if prev_impr else None
+    wow_conv_pp = round(conv_pct - prev_conv_pct, 1) if (conv_pct is not None and prev_conv_pct is not None) else None
 
     avg_rat = sf(rating_row.get("avg_rating"), None)
     review_cnt = int(sf(rating_row.get("review_cnt", 0)))
     bad_cnt = int(sf(rating_row.get("bad_cnt", 0)))
-    week_rat = avg_rat if (avg_rat and review_cnt) else (sf(c.get("rating"), None) or None)
+    week_rat = avg_rat if (avg_rat and review_cnt) else (fact_rating or None)
     rt_c = rat_color(week_rat)
     rt_str = f"{week_rat:.2f} ★" if week_rat else "—"
     r_bad_pct = round(bad_cnt / max(review_cnt, 1) * 100, 1) if review_cnt else 0.0
+    wow_rating = None
+    if fact_rating and prev_fact_rating:
+        wow_rating = round(fact_rating - prev_fact_rating, 2)
+    elif week_rat and prev_fact_rating:
+        wow_rating = round(week_rat - prev_fact_rating, 2)
 
     daily = [daily_map.get(dd, 0) for dd in days_iso]
     previous_daily = []
@@ -596,6 +664,32 @@ def build_report(
 
     wow_hero = f'<div class="kpi"><strong>{wow_span(wow_ord)}</strong>{s["wow_orders"]}</div>' if wow_ord is not None else ""
 
+    sl_promo_html = ""
+    sl_sec_html = ""
+    if sl_spend > 0:
+        sl_promo_html = f"""
+  <div class="g4" style="margin-bottom:10px;">
+    <div class="card" style="border-left:3px solid #2A9C64;"><div class="cl">{s['sl_spend']}</div>
+      <div class="cv" style="color:#2A9C64;">{fmt(sl_spend)}</div>
+      <div class="cd">{s['sl_title']}</div></div>
+    <div class="card"><div class="cl">{s['sl_days']}</div><div class="cv">{sl_days}</div></div>
+    <div class="card"><div class="cl">{s['sl_clicks']}</div><div class="cv">{fmt(sl_clicks)}</div>
+      <div class="cd">{fmt(sl_impr)} {s['funnel_impr'].lower()}</div></div>
+    <div class="card"><div class="cl">{s['sl_orders']}</div><div class="cv">{fmt(sl_ord)}</div></div>
+  </div>
+  <div style="font-size:10px;color:#9CA3AF;margin-bottom:10px;">{s['sl_note']}</div>"""
+        sl_sec_html = f"""
+<div class="sec">
+  <div class="sec-t">{s['sl_title']}</div>
+  <div class="sec-s">{s['sl_note']}</div><div class="hr"></div>
+  <div class="g4">
+    <div class="card"><div class="cl">{s['sl_spend']}</div><div class="cv" style="color:#2A9C64;">{fmt(sl_spend)}&nbsp;₴</div></div>
+    <div class="card"><div class="cl">{s['sl_days']}</div><div class="cv">{sl_days}</div></div>
+    <div class="card"><div class="cl">{s['sl_clicks']}</div><div class="cv">{fmt(sl_clicks)}</div></div>
+    <div class="card"><div class="cl">{s['sl_orders']}</div><div class="cv">{fmt(sl_ord)}</div></div>
+  </div>
+</div>"""
+
     html = f"""<!DOCTYPE html>
 <html lang="{s['html_lang']}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>{name} · Bolt Food · {period_short} 2026</title>
@@ -637,10 +731,11 @@ def build_report(
     <div class="card"><div class="cl">{s['partner_promo']}</div><div class="cv" style="color:#F59E0B;">{fmt(part_promo)}</div></div>
     <div class="card"><div class="cl">{s['promo_total']}</div><div class="cv">{fmt(promo_total)}</div></div>
   </div>
+  {sl_promo_html}
   <div style="font-size:10px;color:#9CA3AF;margin-bottom:10px;">{s['promo_note']}</div>
   <div class="g4">
-    <div class="card"><div class="cl">{s['new_customers']}</div><div class="cv" style="color:#7C3AED;">{new_u}</div></div>
-    <div class="card"><div class="cl">{s['unique_customers']}</div><div class="cv">{fmt(uniq) if uniq is not None else "—"}</div></div>
+    <div class="card"><div class="cl">{s['new_customers']}</div><div class="cv" style="color:#7C3AED;">{new_u}</div><div class="cd">{wow_span(wow_new)} {s['vs_prev']}</div></div>
+    <div class="card"><div class="cl">{s['active_customers']}</div><div class="cv">{fmt(uniq) if uniq is not None else "—"}</div><div class="cd">{wow_span(wow_uniq)} {s['vs_prev']}</div></div>
     <div class="card"><div class="cl">{s['repeat_customers']}</div><div class="cv" style="color:#1565C0;">{fmt(repeat_u) if repeat_u is not None else "—"}</div></div>
     <div class="card"><div class="cl">{s['bolt_plus_orders']}</div><div class="cv" style="color:#34D186;">{bp_ord}</div><div class="cd">{bp_sh}%</div></div>
   </div>
@@ -654,17 +749,35 @@ def build_report(
   <div style="font-size:10px;color:#9CA3AF;margin-top:8px;">{s['funnel_note']}</div>
 </div>
 
+{sl_sec_html}
+
 <div class="sec">
-  <div class="sec-t">📈 {s['wow_comparison']}</div><div class="hr"></div>
+  <div class="sec-t">📈 {s['wow_comparison']}</div>
+  <div class="sec-s">{s['wow_quality_sub']}</div><div class="hr"></div>
+  <div class="g4" style="margin-bottom:10px;">
+    <div class="card"><div class="cl">{s['new_customers']}</div>
+      <div class="cv" style="color:#7C3AED;">{prev_new_u} → {new_u}</div>
+      <div class="cd">{wow_span(wow_new)} {s['vs_prev']}</div></div>
+    <div class="card"><div class="cl">{s['funnel_overall']}</div>
+      <div class="cv">{(f'{prev_conv_pct:.1f}%' if prev_conv_pct is not None else '—')} → {(f'{conv_pct:.1f}%' if conv_pct is not None else '—')}</div>
+      <div class="cd">{wow_pp_span(wow_conv_pp, locale)} {s['vs_prev']}</div></div>
+    <div class="card"><div class="cl">{s['rating']}</div>
+      <div class="cv" style="color:{rt_c};">{(f'{prev_fact_rating:.2f}' if prev_fact_rating else '—')} → {rt_str}</div>
+      <div class="cd">{wow_rating_span(wow_rating)} {s['vs_prev']}</div></div>
+    <div class="card"><div class="cl">{s['active_customers']}</div>
+      <div class="cv">{fmt(prev_uniq) if prev_uniq else '—'} → {fmt(uniq) if uniq is not None else '—'}</div>
+      <div class="cd">{wow_span(wow_uniq)} {s['vs_prev']}</div></div>
+  </div>
   <div class="g2">
     <div class="card" style="border-left:3px solid #BFDBFE;background:#EFF6FF;">
       <div style="font-size:10px;font-weight:700;color:#1e40af;text-transform:uppercase;margin-bottom:6px;">📅 {s['prev_week']} {prev_label}</div>
       <div style="font-size:11px;color:#374151;">{s['delivered']}: <strong>{prev_del}</strong> · GMV: <strong>{fmt(prev_gmv)}&nbsp;₴</strong></div>
+      <div style="font-size:10px;color:#6B7280;margin-top:2px;">{s['new_customers']}: {prev_new_u} · {s['active_customers']}: {fmt(prev_uniq) if prev_uniq else '—'}</div>
     </div>
     <div class="card" style="border-left:3px solid #BBF7D0;background:#F0FFF8;">
       <div style="font-size:10px;font-weight:700;color:#065F46;text-transform:uppercase;margin-bottom:6px;">📅 {s['curr_week']} {period_short} {wow_span(wow_ord)}</div>
       <div style="font-size:11px;color:#374151;">{s['delivered']}: <strong>{delivered}</strong> · GMV: <strong>{fmt(gmv)}&nbsp;₴</strong></div>
-      <div style="font-size:10px;color:#6B7280;margin-top:2px;">{s['new_customers']}: {new_u} · Bolt+: {bp_ord}</div>
+      <div style="font-size:10px;color:#6B7280;margin-top:2px;">{s['new_customers']}: {new_u} · {s['active_customers']}: {fmt(uniq) if uniq is not None else '—'} · Bolt+: {bp_ord}</div>
     </div>
   </div>
 </div>
@@ -696,7 +809,7 @@ def build_report(
 <div class="sec">
   <div class="sec-t">⭐ {s['rating_reviews']}</div><div class="hr"></div>
   <div class="g4" style="margin-bottom:10px;">
-    <div class="card" style="border-left:3px solid {rt_c};"><div class="cl">{s['rating']}</div><div class="cv" style="color:{rt_c};">{rt_str}</div></div>
+    <div class="card" style="border-left:3px solid {rt_c};"><div class="cl">{s['rating']}</div><div class="cv" style="color:{rt_c};">{rt_str}</div><div class="cd">{wow_rating_span(wow_rating)} {s['vs_prev']}</div></div>
     <div class="card"><div class="cl">{s['reviews_count']}</div><div class="cv">{review_cnt}</div></div>
     <div class="card"><div class="cl">Bad rate</div><div class="cv" style="color:{'#34D186' if r_bad_pct<10 else '#EF4444'};">{r_bad_pct}%</div></div>
     <div class="card"><div class="cl">{s['promo_pct']}</div><div class="cv">{promo_sh}%</div></div>
@@ -719,6 +832,12 @@ def build_report(
         impr=impr, menu=menu, cart=cart, ordered_sess=ordered_sess,
         uniq=uniq or 0, repeat_u=repeat_u or 0, overall_conv=overall_conv,
         loss_short=loss_short, prep_min=prep_min, eta_min=eta_min,
+        prev_new_u=prev_new_u, prev_uniq=prev_uniq,
+        prev_impr=prev_impr, prev_ordered_sess=prev_ordered_sess,
+        wow_new=wow_new, wow_uniq=wow_uniq, wow_conv_pp=wow_conv_pp,
+        wow_rating=wow_rating, conv_pct=conv_pct, prev_conv_pct=prev_conv_pct,
+        prev_rating=prev_fact_rating, sl_spend=sl_spend, sl_days=sl_days,
+        sl_clicks=sl_clicks, sl_ord=sl_ord,
     )
 
 
@@ -813,15 +932,30 @@ def build_network_summary(
     net_ordered_sess = sum(r["stats"].get("ordered_sess", 0) for r in loc_results)
     net_uniq = sum(r["stats"].get("uniq", 0) for r in loc_results)
     net_repeat = sum(r["stats"].get("repeat_u", 0) for r in loc_results)
+    net_prev_new_u = sum(r["stats"].get("prev_new_u", 0) for r in loc_results)
+    net_prev_uniq = sum(r["stats"].get("prev_uniq", 0) for r in loc_results)
+    net_prev_impr = sum(r["stats"].get("prev_impr", 0) for r in loc_results)
+    net_prev_ordered_sess = sum(r["stats"].get("prev_ordered_sess", 0) for r in loc_results)
+    net_sl_spend = sum(r["stats"].get("sl_spend", 0) for r in loc_results)
+    net_sl_clicks = sum(r["stats"].get("sl_clicks", 0) for r in loc_results)
+    net_sl_ord = sum(r["stats"].get("sl_ord", 0) for r in loc_results)
     rated = [r["stats"]["rating"] for r in loc_results if r["stats"]["rating"]]
     net_rating = sum(rated) / len(rated) if rated else None
+    prev_rated = [r["stats"].get("prev_rating") for r in loc_results if r["stats"].get("prev_rating")]
+    net_prev_rating = sum(prev_rated) / len(prev_rated) if prev_rated else None
     avails = [r["stats"]["avail"] for r in loc_results if r["stats"].get("avail")]
     net_avail = sum(avails) / len(avails) if avails else 0
     active_loc = sum(1 for r in loc_results if r["stats"]["delivered"] > 0)
 
     net_aov = round(net_gmv / max(net_delivered, 1))
-    wow_ord = round((net_delivered - net_prev_del) / net_prev_del * 100, 1) if net_prev_del else None
-    wow_gmv = round((net_gmv - net_prev_gmv) / net_prev_gmv * 100, 1) if net_prev_gmv else None
+    wow_ord = _wow_pct(net_delivered, net_prev_del)
+    wow_gmv = _wow_pct(net_gmv, net_prev_gmv)
+    wow_new = _wow_pct(net_new_u, net_prev_new_u)
+    wow_uniq = _wow_pct(net_uniq, net_prev_uniq)
+    net_conv_pct = (net_ordered_sess / net_impr * 100) if net_impr else None
+    net_prev_conv_pct = (net_prev_ordered_sess / net_prev_impr * 100) if net_prev_impr else None
+    wow_conv_pp = round(net_conv_pct - net_prev_conv_pct, 1) if (net_conv_pct is not None and net_prev_conv_pct is not None) else None
+    wow_rating = round(net_rating - net_prev_rating, 2) if (net_rating and net_prev_rating) else None
     promo_sh = round(net_promo_ord / max(net_delivered, 1) * 100)
     bp_sh = round(net_bp_ord / max(net_delivered, 1) * 100)
 
@@ -879,14 +1013,19 @@ def build_network_summary(
             f'<td class="num">{fmt(st.get("promo_total", st["bolt_promo"]))}&nbsp;₴<br>'
             f'<span style="font-size:9px;color:#9CA3AF;">Bolt {fmt(st["bolt_promo"])} · '
             f'{s["partner_short"]} {fmt(st.get("part_promo", 0))}</span></td>'
+            f'<td class="num">{fmt(st["new_u"])} {wow_span(st.get("wow_new"))}</td>'
+            f'<td class="num">{fmt(st.get("uniq", 0))} {wow_span(st.get("wow_uniq"))}</td>'
             f'<td class="num">{fmt(st["bp_ord"])}</td>'
             f'<td class="num">{round(st["avail"]*100,1) if st.get("avail") else "—"}%</td>'
         )
         if net_impr:
             loc_rows += (
-                f'<td class="num">{st.get("overall_conv") or "—"}</td>'
+                f'<td class="num">{st.get("overall_conv") or "—"} {wow_pp_span(st.get("wow_conv_pp"), locale)}</td>'
                 f'<td>{st.get("loss_short") or "—"}</td>'
             )
+        if net_sl_spend:
+            loc_sl = st.get("sl_spend", 0)
+            loc_rows += f'<td class="num">{fmt(loc_sl) + "&nbsp;₴" if loc_sl else "—"}</td>'
         loc_rows += "</tr>"
 
     loss_locs = [
@@ -938,6 +1077,20 @@ def build_network_summary(
   <div style="font-size:11px;color:#9CA3AF;margin-top:8px;">{s['funnel_note']}</div>
 </div>"""
         conv_ths = f'<th class="num">{s["conv_short"]}</th><th>{s["bottleneck"]}</th>'
+    sl_th = f'<th class="num">{s["sl_spend"]}</th>' if net_sl_spend else ""
+    sl_net_html = ""
+    if net_sl_spend:
+        sl_net_html = f"""
+  <div class="g4" style="margin-top:14px;">
+    <div class="card" style="border-left:3px solid #2A9C64;"><div class="cl">{s['sl_spend']}</div>
+      <div class="cv" style="color:#2A9C64;">{fmt(net_sl_spend)}</div>
+      <div class="cd">{s['sl_title']}</div></div>
+    <div class="card"><div class="cl">{s['sl_clicks']}</div><div class="cv">{fmt(net_sl_clicks)}</div></div>
+    <div class="card"><div class="cl">{s['sl_orders']}</div><div class="cv">{fmt(net_sl_ord)}</div></div>
+    <div class="card"><div class="cl">{s['sl_title']}</div><div class="cv">{sum(1 for r in loc_results if r['stats'].get('sl_spend'))}</div>
+      <div class="cd">{s['active_locations'].lower()}</div></div>
+  </div>
+  <div style="font-size:11px;color:#9CA3AF;margin-top:8px;">{s['sl_note']}</div>"""
 
     html = f"""<!DOCTYPE html>
 <html lang="{s['html_lang']}"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -961,7 +1114,8 @@ def build_network_summary(
     <div class="kpi"><strong>{fmt(net_gmv)}&nbsp;₴</strong>{s['revenue']} {wow_span(wow_gmv)}</div>
     <div class="kpi"><strong>{fmt(net_aov)}&nbsp;₴</strong>AOV</div>
     <div class="kpi"><strong style="color:{rat_color(net_rating)};">{f'{net_rating:.2f} ★' if net_rating else '—'}</strong>{s['avg_rating']}</div>
-    <div class="kpi"><strong>{fmt(net_new_u)}</strong>{s['new_customers']}</div>
+    <div class="kpi"><strong>{fmt(net_new_u)}</strong>{s['new_customers']} {wow_span(wow_new)}</div>
+    <div class="kpi"><strong>{fmt(net_uniq)}</strong>{s['active_customers']} {wow_span(wow_uniq)}</div>
   </div>
 </div>
 <div class="wrap">
@@ -980,13 +1134,33 @@ def build_network_summary(
   <div class="g6">
     <div class="card"><div class="cl">{s['bolt_plus_orders']}</div><div class="cv" style="color:#34D186;">{fmt(net_bp_ord)}</div><div class="cd">{bp_sh}%</div></div>
     <div class="card"><div class="cl">{s['promo_orders']}</div><div class="cv">{fmt(net_promo_ord)}</div><div class="cd">{promo_sh}%</div></div>
-    <div class="card"><div class="cl">{s['new_customers']}</div><div class="cv" style="color:#7C3AED;">{fmt(net_new_u)}</div></div>
+    <div class="card"><div class="cl">{s['new_customers']}</div><div class="cv" style="color:#7C3AED;">{fmt(net_new_u)}</div><div class="cd">{wow_span(wow_new)} {s['vs_prev']}</div></div>
     <div class="card"><div class="cl">{s['cancelled_short']}</div><div class="cv" style="color:{'#EF4444' if net_failed else '#9CA3AF'};">{fmt(net_failed)}</div></div>
     <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:{'#34D186' if net_bad_orders==0 else '#EF4444'};">{fmt(net_bad_orders)}</div></div>
     <div class="card"><div class="cl">{s['avg_availability']}</div><div class="cv" style="color:{avail_color(net_avail)};">{round(net_avail*100,1)}%</div></div>
   </div>
   {funnel_kpis_html}
+  {sl_net_html}
   <div style="font-size:11px;color:#9CA3AF;margin-top:12px;">{s['promo_note']}</div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📈 {s['wow_comparison']}</div>
+  <div class="sec-s">{s['wow_quality_sub']}</div><div class="hr"></div>
+  <div class="g4">
+    <div class="card"><div class="cl">{s['new_customers']}</div>
+      <div class="cv" style="color:#7C3AED;">{fmt(net_prev_new_u)} → {fmt(net_new_u)}</div>
+      <div class="cd">{wow_span(wow_new)} {s['vs_prev']}</div></div>
+    <div class="card"><div class="cl">{s['funnel_overall']}</div>
+      <div class="cv">{(f'{net_prev_conv_pct:.1f}%' if net_prev_conv_pct is not None else '—')} → {(f'{net_conv_pct:.1f}%' if net_conv_pct is not None else '—')}</div>
+      <div class="cd">{wow_pp_span(wow_conv_pp, locale)} {s['vs_prev']}</div></div>
+    <div class="card"><div class="cl">{s['avg_rating']}</div>
+      <div class="cv">{(f'{net_prev_rating:.2f} ★' if net_prev_rating else '—')} → {(f'{net_rating:.2f} ★' if net_rating else '—')}</div>
+      <div class="cd">{wow_rating_span(wow_rating)} {s['vs_prev']}</div></div>
+    <div class="card"><div class="cl">{s['active_customers']}</div>
+      <div class="cv">{fmt(net_prev_uniq)} → {fmt(net_uniq)}</div>
+      <div class="cd">{wow_span(wow_uniq)} {s['vs_prev']}</div></div>
+  </div>
 </div>
 
 {funnel_sec_html}
@@ -1006,8 +1180,9 @@ def build_network_summary(
   <table><thead><tr>
     <th>{s['location']}</th><th class="num">{s['delivered']}</th><th class="num">{s['revenue_uah']}</th>
     <th class="num">{s['rating']}</th><th class="num">{s['promo_uah']}</th>
+    <th class="num">{s['new_customers']}</th><th class="num">{s['active_customers']}</th>
     <th class="num">Bolt+</th><th class="num">{s['availability']}</th>
-    {conv_ths}
+    {conv_ths}{sl_th}
   </tr></thead><tbody>
     {loc_rows}
   </tbody></table>

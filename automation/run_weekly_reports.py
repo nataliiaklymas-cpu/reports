@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
 Weekly partner report runner.
 
@@ -300,6 +301,8 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
         prev_df = dbx.query(f"""
             SELECT provider_id,
                 total_gmv_before_discounts_eur AS gmv_eur,
+                users_activated_provider_count AS new_u,
+                provider_rating_per_order_value AS rating,
                 provider_impressions_sessions_count AS impr,
                 provider_menu_viewed_sessions_count AS menu,
                 provider_product_added_sessions_count AS cart,
@@ -314,6 +317,45 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
             FROM main.mart_models.fact_provider_non_additive_weekly
             WHERE CAST(entity_id AS BIGINT) IN ({ids_str})
               AND timeframe_date = DATE('{week["cur_mon"]}')
+        """)
+        uniq_prev_df = dbx.query(f"""
+            SELECT CAST(entity_id AS BIGINT) AS provider_id,
+                provider_deliveries_unique_user_count AS uniq
+            FROM main.mart_models.fact_provider_non_additive_weekly
+            WHERE CAST(entity_id AS BIGINT) IN ({ids_str})
+              AND timeframe_date = DATE('{week["prev_mon"]}')
+        """)
+        sl_df = dbx.query(f"""
+            SELECT provider_id,
+                SUM(CAST(offer_price_per_day_local AS DOUBLE) * GREATEST(0,
+                    DATEDIFF(
+                        LEAST(
+                            COALESCE(DATE(sponsored_listing_actual_end_ts_local),
+                                     DATE(sponsored_listing_default_end_ts_local)),
+                            DATE_SUB(DATE('{week["cur_end"]}'), 1)
+                        ),
+                        GREATEST(DATE(sponsored_listing_start_ts_local), DATE('{week["cur_mon"]}'))
+                    ) + 1
+                )) AS sl_spend,
+                SUM(GREATEST(0,
+                    DATEDIFF(
+                        LEAST(
+                            COALESCE(DATE(sponsored_listing_actual_end_ts_local),
+                                     DATE(sponsored_listing_default_end_ts_local)),
+                            DATE_SUB(DATE('{week["cur_end"]}'), 1)
+                        ),
+                        GREATEST(DATE(sponsored_listing_start_ts_local), DATE('{week["cur_mon"]}'))
+                    ) + 1
+                )) AS sl_days,
+                SUM(sum_impressions) AS sl_impr,
+                SUM(sum_clicks) AS sl_clicks,
+                SUM(attr_count_orders) AS sl_ord
+            FROM main.mart_models.mart_sponsored_listing_provider_listing_results
+            WHERE provider_id IN ({ids_str})
+              AND DATE(sponsored_listing_start_ts_local) < DATE('{week["cur_end"]}')
+              AND COALESCE(DATE(sponsored_listing_actual_end_ts_local),
+                           DATE(sponsored_listing_default_end_ts_local)) >= DATE('{week["cur_mon"]}')
+            GROUP BY provider_id
         """)
         total_del_cur_df = dbx.query(f"""
             SELECT provider_id, COUNT(*) AS delivered_total
@@ -411,11 +453,19 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
 
         cur = row(cur_df, pid)
         cur["uniq"] = row(uniq_df, pid).get("uniq", 0)
+        sl = row(sl_df, pid)
+        cur["sl_spend"] = sl.get("sl_spend", 0) or 0
+        cur["sl_days"] = sl.get("sl_days", 0) or 0
+        cur["sl_impr"] = sl.get("sl_impr", 0) or 0
+        cur["sl_clicks"] = sl.get("sl_clicks", 0) or 0
+        cur["sl_ord"] = sl.get("sl_ord", 0) or 0
+        prev = row(prev_df, pid)
+        prev["uniq"] = row(uniq_prev_df, pid).get("uniq", 0)
         html, stats = build_report(
             pid=pid, name=name, brand_label=brand_label, partner_emoji=emoji, city=city,
             period_label=lbl["period_label"], period_short=lbl["period_short"], prev_label=lbl["prev_label"],
             days_ua=lbl["days"], days_iso=week["days_iso"],
-            cur_row=cur, prev_row=row(prev_df, pid),
+            cur_row=cur, prev_row=prev,
             delivered_total=row(total_del_cur_df, pid).get("delivered_total", 0),
             prev_delivered_total=row(total_del_prev_df, pid).get("delivered_total", 0),
             daily_map=daily_map, prev_daily_map=prev_daily_map,
@@ -673,11 +723,31 @@ def run_partner_reviews(partner_key: str, cfg: dict, week: dict, repo_root: str)
     print(f"  -> {len(all_reviews)} ratings written to {week_dir}")
 
 
+def weeks_for_run(run_date: datetime.date, backfill_from: str | None):
+    latest = compute_week(run_date)
+    if not backfill_from:
+        return [latest]
+    start = datetime.date.fromisoformat(backfill_from)
+    start_mon = start - datetime.timedelta(days=start.weekday())
+    last_mon = datetime.date.fromisoformat(latest["cur_mon"])
+    weeks = []
+    mon = start_mon
+    while mon <= last_mon:
+        weeks.append(compute_week(mon + datetime.timedelta(days=7)))
+        mon += datetime.timedelta(days=7)
+    return weeks
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo-root", default=".", help="Path to the checked-out reports repo")
     ap.add_argument("--run-date", default=None, help="Override run date (YYYY-MM-DD), for testing")
     ap.add_argument("--only", default=None, help="Comma-separated partner keys to run (default: all)")
+    ap.add_argument(
+        "--backfill-from",
+        default=None,
+        help="If set (YYYY-MM-DD), generate every completed Mon–Sun week from that date through the target week",
+    )
     args = ap.parse_args()
 
     run_date = (
@@ -685,21 +755,26 @@ def main():
         if args.run_date
         else datetime.datetime.utcnow().date()
     )
-    week = compute_week(run_date)
-    print(f"Run date: {run_date.isoformat()}  ->  target week: {week['period_label']} ({week['week_folder']})")
+    weeks = weeks_for_run(run_date, args.backfill_from)
+    print(
+        f"Run date: {run_date.isoformat()}  ->  "
+        f"{len(weeks)} week(s): {weeks[0]['week_folder']} … {weeks[-1]['week_folder']}"
+    )
 
     only = set(args.only.split(",")) if args.only else None
     failures = []
-    for key, cfg in PARTNERS.items():
-        if only and key not in only:
-            continue
-        try:
-            run_partner(key, cfg, week, args.repo_root)
-            run_partner_reviews(key, cfg, week, args.repo_root)
-        except Exception as exc:
-            failures.append((key, exc))
-            print(f"\n!!! FAILED {key}: {exc}", file=sys.stderr)
-            traceback.print_exc()
+    for week in weeks:
+        print(f"\n######## {week['period_label']} ({week['week_folder']}) ########")
+        for key, cfg in PARTNERS.items():
+            if only and key not in only:
+                continue
+            try:
+                run_partner(key, cfg, week, args.repo_root)
+                run_partner_reviews(key, cfg, week, args.repo_root)
+            except Exception as exc:
+                failures.append((f"{key}@{week['week_folder']}", exc))
+                print(f"\n!!! FAILED {key} {week['week_folder']}: {exc}", file=sys.stderr)
+                traceback.print_exc()
 
     if failures:
         print("\nFailed partners:")

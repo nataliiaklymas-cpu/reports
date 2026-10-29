@@ -44,6 +44,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .trend-line{width:22px;height:3px;border-radius:600rem;background:var(--color-content-action-primary);}
 .trend-line.prev{height:0;border-top:2px dashed var(--color-content-tertiary);background:none;}
 .footer{background:#0d2a1a;color:rgba(255,255,255,.3);text-align:center;padding:14px;font-size:10px;margin-top:24px;}
+.funnel{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.fstep{background:#F8F9FA;border-radius:10px;padding:10px 12px;text-align:center;flex:1;min-width:92px;}
+.fstep .fv{font-size:18px;font-weight:800;line-height:1.1;}
+.fstep .fl{font-size:9px;color:#9CA3AF;text-transform:uppercase;letter-spacing:.4px;margin-top:3px;}
+.farw{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#9CA3AF;font-size:11px;min-width:46px;}
+.farw b{color:#1A1A1A;font-size:11px;font-weight:800;}
+.loss{background:#FFF8F1;border-left:3px solid #F59E0B;border-radius:10px;padding:12px 14px;margin-top:8px;}
+.loss.ok{background:#F0FFF8;border-left-color:#34D186;}
+.loss ul{margin:6px 0 0 18px;}
+.loss li{font-size:12px;color:#374151;margin:0 0 4px;}
+
 </style></head><body>
 
 <div class="hero" style="background:linear-gradient(135deg,#0d2a1a 0%,#1a4d32 100%);">
@@ -80,25 +91,73 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
     <div class="card"><div class="cl">Партнер промо ₴</div><div class="cv" style="color:#F59E0B;">445</div></div>
     <div class="card"><div class="cl">Промо разом ₴</div><div class="cv">1 156</div></div>
   </div>
+  
+  <div class="g4" style="margin-bottom:10px;">
+    <div class="card" style="border-left:3px solid #2A9C64;"><div class="cl">Витрати SL ₴</div>
+      <div class="cv" style="color:#2A9C64;">500</div>
+      <div class="cd">Sponsored Listing</div></div>
+    <div class="card"><div class="cl">Днів у видачі</div><div class="cv">20</div></div>
+    <div class="card"><div class="cl">Кліки</div><div class="cv">114</div>
+      <div class="cd">2 254 покази</div></div>
+    <div class="card"><div class="cl">Атриб. замовлення</div><div class="cv">17</div></div>
+  </div>
+  <div style="font-size:10px;color:#9CA3AF;margin-bottom:10px;">Витрата = ставка за день × кількість днів, коли оголошення було активне цього тижня. Показуємо лише якщо SL був.</div>
   <div style="font-size:10px;color:#9CA3AF;margin-bottom:10px;">Промо-витрати: знижки та доставку фінансують Bolt і партнер окремо, «разом» — сума обох</div>
-  <div class="g3">
-    <div class="card"><div class="cl">Нових клієнтів</div><div class="cv" style="color:#7C3AED;">8</div></div>
+  <div class="g4">
+    <div class="card"><div class="cl">Нових клієнтів</div><div class="cv" style="color:#7C3AED;">8</div><div class="cd"><span style="color:#34D186;font-size:10px;font-weight:700;">▲166.7%</span> vs пр. тиж.</div></div>
+    <div class="card"><div class="cl">Активні користувачі</div><div class="cv">17</div><div class="cd"><span style="color:#34D186;font-size:10px;font-weight:700;">▲54.5%</span> vs пр. тиж.</div></div>
+    <div class="card"><div class="cl">Повторних клієнтів</div><div class="cv" style="color:#1565C0;">9</div></div>
     <div class="card"><div class="cl">Bolt+ замовл.</div><div class="cv" style="color:#34D186;">4</div><div class="cd">24%</div></div>
-    <div class="card"><div class="cl">Bad orders</div><div class="cv" style="color:#34D186;">1</div><div class="cd">5.9%</div></div>
   </div>
 </div>
 
 <div class="sec">
-  <div class="sec-t">📈 WoW порівняння</div><div class="hr"></div>
+  <div class="sec-t">Воронка: де втрачаємо продажі</div>
+  <div class="sec-s">Сесії в додатку: покази в стрічці → відкриття картки → додавання в кошик → оформлення. Це не «скільки привезли», а на якому кроці клієнт відвалюється.</div><div class="hr"></div>
+  <div class="funnel"><div class="fstep"><div class="fv">1 695</div><div class="fl">Покази</div></div><div class="farw"><b>6.7%</b><span>від попереднього кроку</span></div><div class="fstep"><div class="fv">113</div><div class="fl">Відкриття картки</div></div><div class="farw"><b>20.4%</b><span>від попереднього кроку</span></div><div class="fstep"><div class="fv">23</div><div class="fl">Додано в кошик</div></div><div class="farw"><b>73.9%</b><span>від попереднього кроку</span></div><div class="fstep"><div class="fv">17</div><div class="fl">Оформлено</div></div></div>
+  <div class="loss"><div style="font-size:11px;font-weight:700;margin-bottom:2px;">Де саме втрачаємо</div><div style="font-size:11px;color:#6B7280;margin-bottom:4px;">Конверсія показ → замовлення: <strong>1.0%</strong></div><ul><li>Слабка конверсія зі стрічки в картку (6.7%). Часто справа в фото, рейтингу, бейджі промо або високому ETA у видачі.</li><li>Рейтинг закладу 4.17★ нижче комфортного рівня — це б’є і по відкриттю картки, і по повторних замовленнях.</li></ul></div>
+  <div style="font-size:10px;color:#9CA3AF;margin-top:8px;">Воронка в сесіях користувача, тому «оформлено» може трохи відрізнятись від «доставлено».</div>
+</div>
+
+
+<div class="sec">
+  <div class="sec-t">Sponsored Listing</div>
+  <div class="sec-s">Витрата = ставка за день × кількість днів, коли оголошення було активне цього тижня. Показуємо лише якщо SL був.</div><div class="hr"></div>
+  <div class="g4">
+    <div class="card"><div class="cl">Витрати SL ₴</div><div class="cv" style="color:#2A9C64;">500&nbsp;₴</div></div>
+    <div class="card"><div class="cl">Днів у видачі</div><div class="cv">20</div></div>
+    <div class="card"><div class="cl">Кліки</div><div class="cv">114</div></div>
+    <div class="card"><div class="cl">Атриб. замовлення</div><div class="cv">17</div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">📈 WoW порівняння</div>
+  <div class="sec-s">Нові клієнти, конверсія показ → замовлення, рейтинг і активні користувачі vs попередній тиждень</div><div class="hr"></div>
+  <div class="g4" style="margin-bottom:10px;">
+    <div class="card"><div class="cl">Нових клієнтів</div>
+      <div class="cv" style="color:#7C3AED;">3 → 8</div>
+      <div class="cd"><span style="color:#34D186;font-size:10px;font-weight:700;">▲166.7%</span> vs пр. тиж.</div></div>
+    <div class="card"><div class="cl">Конверсія показ → замовлення</div>
+      <div class="cv">0.9% → 1.0%</div>
+      <div class="cd"><span style="color:#34D186;font-size:10px;font-weight:700;">▲0.1 п.п.</span> vs пр. тиж.</div></div>
+    <div class="card"><div class="cl">Рейтинг</div>
+      <div class="cv" style="color:#EF4444;">4.00 → 4.17 ★</div>
+      <div class="cd"><span style="color:#34D186;font-size:10px;font-weight:700;">▲0.29</span> vs пр. тиж.</div></div>
+    <div class="card"><div class="cl">Активні користувачі</div>
+      <div class="cv">11 → 17</div>
+      <div class="cd"><span style="color:#34D186;font-size:10px;font-weight:700;">▲54.5%</span> vs пр. тиж.</div></div>
+  </div>
   <div class="g2">
     <div class="card" style="border-left:3px solid #BFDBFE;background:#EFF6FF;">
       <div style="font-size:10px;font-weight:700;color:#1e40af;text-transform:uppercase;margin-bottom:6px;">📅 Попередній тиж. 17–23 серп</div>
       <div style="font-size:11px;color:#374151;">Доставлено: <strong>11</strong> · GMV: <strong>6 541&nbsp;₴</strong></div>
+      <div style="font-size:10px;color:#6B7280;margin-top:2px;">Нових клієнтів: 3 · Активні користувачі: 11</div>
     </div>
     <div class="card" style="border-left:3px solid #BBF7D0;background:#F0FFF8;">
       <div style="font-size:10px;font-weight:700;color:#065F46;text-transform:uppercase;margin-bottom:6px;">📅 Поточний тиж. 24–30 серп <span style="color:#34D186;font-size:10px;font-weight:700;">▲54.5%</span></div>
       <div style="font-size:11px;color:#374151;">Доставлено: <strong>17</strong> · GMV: <strong>10 563&nbsp;₴</strong></div>
-      <div style="font-size:10px;color:#6B7280;margin-top:2px;">Нових клієнтів: 8 · Bolt+: 4</div>
+      <div style="font-size:10px;color:#6B7280;margin-top:2px;">Нових клієнтів: 8 · Активні користувачі: 17 · Bolt+: 4</div>
     </div>
   </div>
 </div>
@@ -112,16 +171,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 
 <div class="sec">
   <div class="sec-t">🏛️ Топ страви тижня</div><div class="hr"></div>
-  <div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🏛️ Juicy Poltava-style Cutlet with Creamy Mashed Potatoes</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🏛️ Beef Stroganoff with Mushrooms and Buckwheat</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🏛️ Syrnyky with blueberry-mint jam and sour cream</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🏛️ Homemade Varenyky with Potato, Mushrooms, Cracklings, and Polissia Sour Cream</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🏛️ Rich broth with chicken thigh fillet, noodles, potatoes, and carrots</div>
+  <div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🏛️ Juicy Poltava-style Cutlet with Creamy Mashed Potatoes</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🏛️ Beef Stroganoff with Mushrooms and Buckwheat</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🏛️ Syrnyky with blueberry-mint jam and sour cream</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🏛️ Homemade Varenyky with Potato, Mushrooms, Cracklings, and Polissia Sour Cream</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🏛️ Green Borscht</div>
 </div>
 
 <div class="sec">
   <div class="sec-t">⚙️ Операційні метрики</div><div class="hr"></div>
-  <div class="g3">
+  <div class="g4">
     <div class="card"><div class="cl">Доступність</div><div class="cv" style="color:#34D186;">100.0%</div>
       <div class="pb"><div class="pf" style="width:100.0%;background:#34D186;"></div></div></div>
     <div class="card"><div class="cl">Час приготув.</div><div class="cv" style="color:#34D186;">6.9 хв</div><div class="cd">Ціль &lt;15 хв ✅</div></div>
     <div class="card"><div class="cl">Час прийому</div><div class="cv" style="color:#34D186;">0.23 хв</div><div class="cd">Ціль &lt;1 хв ✅</div></div>
+    <div class="card"><div class="cl">Час доставки</div><div class="cv" style="color:#34D186;">8.4 хв</div></div>
   </div>
   <div style="margin-top:8px;"><div style="font-size:11px;color:#9CA3AF;">Скасувань не зафіксовано</div></div>
 </div>
@@ -129,7 +189,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 <div class="sec">
   <div class="sec-t">⭐ Рейтинг та відгуки</div><div class="hr"></div>
   <div class="g4" style="margin-bottom:10px;">
-    <div class="card" style="border-left:3px solid #EF4444;"><div class="cl">Рейтинг</div><div class="cv" style="color:#EF4444;">4.17 ★</div></div>
+    <div class="card" style="border-left:3px solid #EF4444;"><div class="cl">Рейтинг</div><div class="cv" style="color:#EF4444;">4.17 ★</div><div class="cd"><span style="color:#34D186;font-size:10px;font-weight:700;">▲0.29</span> vs пр. тиж.</div></div>
     <div class="card"><div class="cl">Оцінок</div><div class="cv">6</div></div>
     <div class="card"><div class="cl">Bad rate</div><div class="cv" style="color:#EF4444;">16.7%</div></div>
     <div class="card"><div class="cl">Промо %</div><div class="cv">76%</div></div>
