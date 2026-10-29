@@ -37,6 +37,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .rv{background:white;border-radius:8px;padding:10px;box-shadow:0 1px 4px rgba(0,0,0,.05);margin-bottom:6px;}
 .rv.neg{border-left:3px solid #EF4444;}
 .rv.pos{border-left:3px solid #2AAF6D;}
+.rv.mid{border-left:3px solid #5F6563;}
+.rv-s{font-size:11px;margin-bottom:2px;}
+.rv-t{font-size:11px;color:#374151;line-height:1.5;}
+.rv-a{font-size:10px;color:#6B7280;margin-top:6px;}
+.rv-loc{margin-bottom:14px;}
+.rv-loc-t{font-size:13px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.rv-loc-n{font-size:10px;font-weight:700;color:#6B7280;background:#F3F4F6;border-radius:999px;padding:2px 8px;}
 .trend-chart{background:var(--color-layer-floor-1);border-radius:16px;padding:14px 14px 8px;overflow:hidden;}
 .trend-chart svg{display:block;width:100%;height:auto;min-height:220px;}
 .trend-legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 8px;font-size:11px;color:var(--color-content-tertiary);}
@@ -91,10 +98,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
     <div class="card"><div class="cl">Партнер промо ₴</div><div class="cv" style="color:#F59E0B;">79</div></div>
     <div class="card"><div class="cl">Промо разом ₴</div><div class="cv">211</div></div>
   </div>
+  
   <div style="font-size:10px;color:#9CA3AF;margin-bottom:10px;">Промо-витрати: знижки та доставку фінансують Bolt і партнер окремо, «разом» — сума обох</div>
   <div class="g4">
-    <div class="card"><div class="cl">Нових клієнтів</div><div class="cv" style="color:#7C3AED;">1</div></div>
-    <div class="card"><div class="cl">Унікальних клієнтів</div><div class="cv">1</div></div>
+    <div class="card"><div class="cl">Нових клієнтів</div><div class="cv" style="color:#7C3AED;">1</div><div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼66.7%</span> vs пр. тиж.</div></div>
+    <div class="card"><div class="cl">Активні користувачі</div><div class="cv">1</div><div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼66.7%</span> vs пр. тиж.</div></div>
     <div class="card"><div class="cl">Повторних клієнтів</div><div class="cv" style="color:#1565C0;">0</div></div>
     <div class="card"><div class="cl">Bolt+ замовл.</div><div class="cv" style="color:#34D186;">1</div><div class="cd">100%</div></div>
   </div>
@@ -108,17 +116,35 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
   <div style="font-size:10px;color:#9CA3AF;margin-top:8px;">Воронка в сесіях користувача, тому «оформлено» може трохи відрізнятись від «доставлено».</div>
 </div>
 
+
+
 <div class="sec">
-  <div class="sec-t">📈 WoW порівняння</div><div class="hr"></div>
+  <div class="sec-t">📈 WoW порівняння</div>
+  <div class="sec-s">Нові клієнти, конверсія показ → замовлення, рейтинг і активні користувачі vs попередній тиждень</div><div class="hr"></div>
+  <div class="g4" style="margin-bottom:10px;">
+    <div class="card"><div class="cl">Нових клієнтів</div>
+      <div class="cv" style="color:#7C3AED;">3 → 1</div>
+      <div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼66.7%</span> vs пр. тиж.</div></div>
+    <div class="card"><div class="cl">Конверсія показ → замовлення</div>
+      <div class="cv">1.2% → 0.3%</div>
+      <div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼0.9 п.п.</span> vs пр. тиж.</div></div>
+    <div class="card"><div class="cl">Рейтинг</div>
+      <div class="cv" style="color:#EF4444;">5.00 → 3.50 ★</div>
+      <div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼3.00</span> vs пр. тиж.</div></div>
+    <div class="card"><div class="cl">Активні користувачі</div>
+      <div class="cv">3 → 1</div>
+      <div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼66.7%</span> vs пр. тиж.</div></div>
+  </div>
   <div class="g2">
     <div class="card" style="border-left:3px solid #BFDBFE;background:#EFF6FF;">
       <div style="font-size:10px;font-weight:700;color:#1e40af;text-transform:uppercase;margin-bottom:6px;">📅 Попередній тиж. 28–4 жовт</div>
       <div style="font-size:11px;color:#374151;">Доставлено: <strong>4</strong> · GMV: <strong>2 686&nbsp;₴</strong></div>
+      <div style="font-size:10px;color:#6B7280;margin-top:2px;">Нових клієнтів: 3 · Активні користувачі: 3</div>
     </div>
     <div class="card" style="border-left:3px solid #BBF7D0;background:#F0FFF8;">
       <div style="font-size:10px;font-weight:700;color:#065F46;text-transform:uppercase;margin-bottom:6px;">📅 Поточний тиж. 5–11 жовт <span style="color:#EF4444;font-size:10px;font-weight:700;">▼75.0%</span></div>
       <div style="font-size:11px;color:#374151;">Доставлено: <strong>1</strong> · GMV: <strong>610&nbsp;₴</strong></div>
-      <div style="font-size:10px;color:#6B7280;margin-top:2px;">Нових клієнтів: 1 · Bolt+: 1</div>
+      <div style="font-size:10px;color:#6B7280;margin-top:2px;">Нових клієнтів: 1 · Активні користувачі: 1 · Bolt+: 1</div>
     </div>
   </div>
 </div>
@@ -132,7 +158,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 
 <div class="sec">
   <div class="sec-t">🎹 Топ страви тижня</div><div class="hr"></div>
-  <div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🎹 Muza's Pumpkin Cream Soup</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🎹 Salmon with Spinach and Wild Rice</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🎹 Homemade Schnitzel</div>
+  <div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🎹 Muza's Pumpkin Cream Soup</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🎹 Homemade Schnitzel</div><div style="font-size:11px;color:#374151;padding:4px 0;border-bottom:1px solid #F3F4F6;">🎹 Salmon with Spinach and Wild Rice</div>
 </div>
 
 <div class="sec">
@@ -150,7 +176,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 <div class="sec">
   <div class="sec-t">⭐ Рейтинг та відгуки</div><div class="hr"></div>
   <div class="g4" style="margin-bottom:10px;">
-    <div class="card" style="border-left:3px solid #EF4444;"><div class="cl">Рейтинг</div><div class="cv" style="color:#EF4444;">3.50 ★</div></div>
+    <div class="card" style="border-left:3px solid #EF4444;"><div class="cl">Рейтинг</div><div class="cv" style="color:#EF4444;">3.50 ★</div><div class="cd"><span style="color:#EF4444;font-size:10px;font-weight:700;">▼3.00</span> vs пр. тиж.</div></div>
     <div class="card"><div class="cl">Оцінок</div><div class="cv">2</div></div>
     <div class="card"><div class="cl">Bad rate</div><div class="cv" style="color:#EF4444;">50.0%</div></div>
     <div class="card"><div class="cl">Промо %</div><div class="cv">100%</div></div>

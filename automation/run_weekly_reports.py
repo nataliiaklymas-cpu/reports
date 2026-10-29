@@ -448,8 +448,20 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
         dishes = [str(r["basket_item_name"]) for _, r in dish_df[dish_df["provider_id"] == pid].head(5).iterrows()]
 
         cm = cmt_df[cmt_df["provider_id"] == pid]
-        pos = [(int(x["rating"]), str(x["comment"])[:220]) for _, x in cm[cm["rating"] >= 4].head(2).iterrows()]
-        neg = [(int(x["rating"]), str(x["comment"])[:220]) for _, x in cm[cm["rating"] <= 2].head(2).iterrows()]
+        comments = []
+        for _, x in cm.iterrows():
+            raw = x.get("comment")
+            if raw is None or (isinstance(raw, float) and math.isnan(raw)):
+                continue
+            txt = str(raw).strip()
+            if not txt:
+                continue
+            try:
+                rt = int(x["rating"])
+            except (TypeError, ValueError):
+                continue
+            comments.append((rt, txt))
+        comments.sort(key=lambda t: (t[0], -len(t[1])))
 
         cur = row(cur_df, pid)
         cur["uniq"] = row(uniq_df, pid).get("uniq", 0)
@@ -471,7 +483,7 @@ def run_partner(partner_key: str, cfg: dict, week: dict, repo_root: str):
             daily_map=daily_map, prev_daily_map=prev_daily_map,
             show_daily_comparison_chart=show_daily_comparison_chart,
             dishes=dishes,
-            rating_row=row(rat_df, pid), comments_pos=pos, comments_neg=neg,
+            rating_row=row(rat_df, pid), comments=comments,
             locale=locale,
         )
 

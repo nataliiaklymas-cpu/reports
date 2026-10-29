@@ -57,6 +57,9 @@ STRINGS = {
         "reviews_count": "Оцінок",
         "promo_pct": "Промо %",
         "no_comments": "Текстових відгуків немає",
+        "comments_title": "Текстові відгуки",
+        "comments_sub": "Усі коментарі клієнтів за тиждень, з назвою точки",
+        "comments_count": "{n} текстових відгуків на {locs} локаціях",
         "confidential": "Конфіденційно",
         "funnel_title": "Воронка: де втрачаємо продажі",
         "funnel_sub": "Сесії в додатку: покази в стрічці → відкриття картки → додавання в кошик → оформлення. Це не «скільки привезли», а на якому кроці клієнт відвалюється.",
@@ -160,6 +163,9 @@ STRINGS = {
         "reviews_count": "Reviews",
         "promo_pct": "Promo %",
         "no_comments": "No written reviews",
+        "comments_title": "Written reviews",
+        "comments_sub": "All customer comments this week, with location",
+        "comments_count": "{n} written reviews across {locs} locations",
         "confidential": "Confidential",
         "funnel_title": "Funnel: where sales are lost",
         "funnel_sub": "App sessions: feed impressions → venue card → add to cart → checkout. This shows where customers drop off, not only how many orders arrived.",
@@ -257,6 +263,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .rv{background:white;border-radius:8px;padding:10px;box-shadow:0 1px 4px rgba(0,0,0,.05);margin-bottom:6px;}
 .rv.neg{border-left:3px solid #EF4444;}
 .rv.pos{border-left:3px solid #2AAF6D;}
+.rv.mid{border-left:3px solid #5F6563;}
+.rv-s{font-size:11px;margin-bottom:2px;}
+.rv-t{font-size:11px;color:#374151;line-height:1.5;}
+.rv-a{font-size:10px;color:#6B7280;margin-top:6px;}
+.rv-loc{margin-bottom:14px;}
+.rv-loc-t{font-size:13px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.rv-loc-n{font-size:10px;font-weight:700;color:#6B7280;background:#F3F4F6;border-radius:999px;padding:2px 8px;}
 .trend-chart{background:var(--color-layer-floor-1);border-radius:16px;padding:14px 14px 8px;overflow:hidden;}
 .trend-chart svg{display:block;width:100%;height:auto;min-height:220px;}
 .trend-legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 8px;font-size:11px;color:var(--color-content-tertiary);}
@@ -341,6 +354,40 @@ def rat_color(r):
     if r >= 4.4:
         return "#F59E0B"
     return "#EF4444"
+
+
+def _comment_kind(rt):
+    rt = int(rt)
+    if rt <= 2:
+        return "neg", "#EF4444"
+    if rt >= 4:
+        return "pos", "#2A9C64"
+    return "mid", "#5F6563"
+
+
+def review_card(rt, cmt, loc_label=None, loc_href=None):
+    try:
+        rt = int(rt)
+    except (TypeError, ValueError):
+        rt = 0
+    rt = max(0, min(5, rt))
+    kind, color = _comment_kind(rt)
+    stars = "★" * rt + "☆" * (5 - rt)
+    text = html_mod.escape(str(cmt).strip())
+    loc_html = ""
+    if loc_label:
+        name = html_mod.escape(str(loc_label))
+        if loc_href:
+            href = html_mod.escape(str(loc_href), quote=True)
+            loc_html = f'<div class="rv-a"><a class="loclink" href="{href}">{name}</a></div>'
+        else:
+            loc_html = f'<div class="rv-a">{name}</div>'
+    return (
+        f'<div class="rv {kind}">'
+        f'<div class="rv-s" style="color:{color};">{stars} {rt}/5</div>'
+        f'<div class="rv-t">«{text}»</div>'
+        f"{loc_html}</div>"
+    )
 
 
 TYPICAL_FUNNEL = {
@@ -516,8 +563,9 @@ def build_report(
     show_daily_comparison_chart=False,
     dishes,
     rating_row,
-    comments_pos,
-    comments_neg,
+    comments_pos=None,
+    comments_neg=None,
+    comments=None,
     locale="uk",
 ):
     s = STRINGS.get(locale) or STRINGS["uk"]
@@ -645,20 +693,12 @@ def build_report(
         f'<ul>{"".join(f"<li>{html_mod.escape(r)}</li>" for r in loss_reasons)}</ul></div>'
     )
 
-    if comments_pos or comments_neg:
-        rev_html = ""
-        for rt, cmt in comments_pos:
-            rev_html += (
-                f'<div class="rv pos"><div style="font-size:11px;color:#F59E0B;margin-bottom:2px;">'
-                f'{"★"*rt}{"☆"*(5-rt)} {rt}/5</div>'
-                f'<div style="font-size:11px;color:#374151;">«{cmt}»</div></div>'
-            )
-        for rt, cmt in comments_neg:
-            rev_html += (
-                f'<div class="rv neg"><div style="font-size:11px;color:#EF4444;margin-bottom:2px;">'
-                f'{"★"*rt}{"☆"*(5-rt)} {rt}/5</div>'
-                f'<div style="font-size:11px;color:#374151;">«{cmt}»</div></div>'
-            )
+    if comments is None:
+        comments = list(comments_pos or []) + list(comments_neg or [])
+    comments = [(int(rt), str(cmt).strip()) for rt, cmt in comments if str(cmt).strip()]
+    comments.sort(key=lambda t: t[0])
+    if comments:
+        rev_html = "".join(review_card(rt, cmt) for rt, cmt in comments)
     else:
         rev_html = '<div style="font-size:11px;color:#9CA3AF;">' + s["no_comments"] + "</div>"
 
@@ -837,7 +877,7 @@ def build_report(
         wow_new=wow_new, wow_uniq=wow_uniq, wow_conv_pp=wow_conv_pp,
         wow_rating=wow_rating, conv_pct=conv_pct, prev_conv_pct=prev_conv_pct,
         prev_rating=prev_fact_rating, sl_spend=sl_spend, sl_days=sl_days,
-        sl_clicks=sl_clicks, sl_ord=sl_ord,
+        sl_clicks=sl_clicks, sl_ord=sl_ord, comments=comments,
     )
 
 
@@ -879,6 +919,16 @@ tr:hover td{background:#FAFAFA;}
 .footer{background:#0d2a1a;color:rgba(255,255,255,.3);text-align:center;padding:16px;font-size:11px;margin-top:28px;}
 a.loclink{color:inherit;text-decoration:none;font-weight:600;}
 a.loclink:hover{text-decoration:underline;}
+.rv{background:white;border-radius:8px;padding:10px;box-shadow:0 1px 4px rgba(0,0,0,.05);margin-bottom:6px;}
+.rv.neg{border-left:3px solid #EF4444;}
+.rv.pos{border-left:3px solid #2AAF6D;}
+.rv.mid{border-left:3px solid #5F6563;}
+.rv-s{font-size:11px;margin-bottom:2px;}
+.rv-t{font-size:11px;color:#374151;line-height:1.5;}
+.rv-a{font-size:10px;color:#6B7280;margin-top:6px;}
+.rv-loc{margin-bottom:14px;}
+.rv-loc-t{font-size:13px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.rv-loc-n{font-size:10px;font-weight:700;color:#6B7280;background:#F3F4F6;border-radius:999px;padding:2px 8px;}
 .trend-chart{background:var(--color-layer-floor-1);border-radius:16px;padding:14px 14px 8px;overflow:hidden;}
 .trend-chart svg{display:block;width:100%;height:auto;min-height:220px;}
 .trend-legend{display:flex;gap:18px;flex-wrap:wrap;margin:0 0 8px;font-size:11px;color:var(--color-content-tertiary);}
@@ -1077,6 +1127,33 @@ def build_network_summary(
   <div style="font-size:11px;color:#9CA3AF;margin-top:8px;">{s['funnel_note']}</div>
 </div>"""
         conv_ths = f'<th class="num">{s["conv_short"]}</th><th>{s["bottleneck"]}</th>'
+    comments_locs = [r for r in loc_results if r["stats"].get("comments")]
+    n_comments = sum(len(r["stats"]["comments"]) for r in comments_locs)
+    if comments_locs:
+        comments_locs.sort(key=lambda r: min(c[0] for c in r["stats"]["comments"]))
+        loc_blocks = []
+        for r in comments_locs:
+            href = html_mod.escape(r["fname"], quote=True)
+            loc_blocks.append(
+                '<div class="rv-loc">'
+                f'<div class="rv-loc-t"><a class="loclink" href="{href}">'
+                f'{html_mod.escape(r["short_name"])}</a>'
+                f'<span class="rv-loc-n">{len(r["stats"]["comments"])}</span></div>'
+                + "".join(review_card(rt, cmt) for rt, cmt in r["stats"]["comments"])
+                + "</div>"
+            )
+        comments_body = "".join(loc_blocks)
+        comments_sub = s["comments_count"].format(n=n_comments, locs=len(comments_locs))
+    else:
+        comments_body = f'<div style="font-size:12px;color:#9CA3AF;">{s["no_comments"]}</div>'
+        comments_sub = s["comments_sub"]
+    comments_sec_html = f"""
+<div class="sec">
+  <div class="sec-t">{s['comments_title']}</div>
+  <div class="sec-s">{comments_sub}</div><div class="hr"></div>
+  {comments_body}
+</div>"""
+
     sl_th = f'<th class="num">{s["sl_spend"]}</th>' if net_sl_spend else ""
     sl_net_html = ""
     if net_sl_spend:
@@ -1162,6 +1239,8 @@ def build_network_summary(
       <div class="cd">{wow_span(wow_uniq)} {s['vs_prev']}</div></div>
   </div>
 </div>
+
+{comments_sec_html}
 
 {funnel_sec_html}
 
