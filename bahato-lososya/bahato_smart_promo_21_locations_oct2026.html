@@ -124,18 +124,26 @@ body {
 .dv { font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .legend { display: flex; gap: 16px; margin-top: 12px; font-size: 12px; color: var(--color-content-secondary); }
 .dot { display: inline-block; width: 8px; height: 8px; border-radius: 600rem; margin-right: 6px; }
-.tscroll { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.tscroll {
+  max-height: 72vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+table {
+  width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 11.5px;
+}
 th {
-  background: var(--color-layer-floor-0-grouped); padding: 8px 8px; text-align: left;
+  position: sticky; top: 0; z-index: 4;
+  background: var(--color-layer-floor-0-grouped);
+  padding: 8px 6px; text-align: left;
   font-size: 10px; font-weight: 700; color: var(--color-content-secondary);
-  text-transform: uppercase; letter-spacing: .03em; white-space: nowrap;
+  text-transform: uppercase; letter-spacing: .02em; line-height: 1.25;
+  white-space: normal;
+  border-bottom: 1px solid var(--color-border-separator);
 }
 th.num { text-align: right; }
-th:first-child { border-radius: 8px 0 0 8px; }
-th:last-child { border-radius: 0 8px 8px 0; }
 td {
-  padding: 8px 8px; border-bottom: 1px solid var(--color-layer-floor-0-grouped);
+  padding: 7px 6px; border-bottom: 1px solid var(--color-layer-floor-0-grouped);
   vertical-align: middle; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums;
 }
 tr:last-child td { border-bottom: none; }
@@ -149,7 +157,9 @@ tr.tot td {
   border-top: 2px solid var(--color-special-brand);
 }
 td.num { text-align: right; white-space: nowrap; }
-td.loc { font-weight: 600; white-space: nowrap; }
+td.loc { font-weight: 600; white-space: normal; }
+.pair { line-height: 1.25; }
+td.num .delta { font-size: 10.5px; }
 .pid {
   display: inline-block; font-size: 10px; font-weight: 700; color: var(--color-content-tertiary);
   background: var(--color-layer-floor-0-grouped); border-radius: 5px; padding: 1px 6px; margin-right: 8px;
@@ -193,7 +203,7 @@ td.loc { font-weight: 600; white-space: nowrap; }
 
 <div class="sec">
   <div class="sec-t">Загальне порівняння: тиждень до vs тиждень Smart Promo</div>
-  <div class="sec-s">19–25 жовтня проти 26 жовтня – 1 листопада. Доставлені замовлення; нові — перше замовлення на цій точці; чурн — замовляли тиждень до і мовчать зараз.</div>
+  <div class="sec-s">19–25 жовтня проти 26 жовтня – 1 листопада. Доставлені замовлення; нові — перше замовлення на цій точці; «не замовляли 60+ днів» — повернулися після паузи 60 і більше днів на цій точці.</div>
   <div class="hr"></div>
   <div class="cmp-wrap">
     <div class="cmp-card">
@@ -202,7 +212,7 @@ td.loc { font-weight: 600; white-space: nowrap; }
       <div class="cmp-row"><span class="cmp-lbl">GMV</span><span class="cmp-val">5 681 €</span></div>
       <div class="cmp-row"><span class="cmp-lbl">Середній чек (AOV)</span><span class="cmp-val">32,28 €</span></div>
       <div class="cmp-row"><span class="cmp-lbl">Нові клієнти</span><span class="cmp-val">48</span></div>
-      <div class="cmp-row"><span class="cmp-lbl">Чурн</span><span class="cmp-val">132</span></div>
+      <div class="cmp-row"><span class="cmp-lbl">Не замовляли 60+ днів</span><span class="cmp-val">35</span></div>
     </div>
     <div class="cmp-card hi">
       <div class="cmp-t">26 жовтня – 1 листопада — Smart Promo</div>
@@ -210,7 +220,7 @@ td.loc { font-weight: 600; white-space: nowrap; }
       <div class="cmp-row"><span class="cmp-lbl">GMV</span><span class="cmp-val">10 029 € <span class="delta pos">▲ +76,5%</span></span></div>
       <div class="cmp-row"><span class="cmp-lbl">Середній чек (AOV)</span><span class="cmp-val">35,19 € <span class="delta pos">▲ +9,0%</span></span></div>
       <div class="cmp-row"><span class="cmp-lbl">Нові клієнти</span><span class="cmp-val">107 <span class="delta pos">▲ +122,9%</span></span></div>
-      <div class="cmp-row"><span class="cmp-lbl">Чурн</span><span class="cmp-val">135 <span class="delta pos">▲ +2,3%</span></span></div>
+      <div class="cmp-row"><span class="cmp-lbl">Не замовляли 60+ днів</span><span class="cmp-val">69 <span class="delta pos">▲ +97,1%</span></span></div>
     </div>
   </div>
 </div>
@@ -285,322 +295,248 @@ td.loc { font-weight: 600; white-space: nowrap; }
 
 <div class="sec">
   <div class="sec-t">Результати в розрізі кожної точки</div>
-  <div class="sec-s">Замовлення, GMV, середній чек, нові / чурнуті клієнти, частка Smart Promo — 19–25 жовтня → 26 жовтня – 1 листопада</div>
+  <div class="sec-s">Замовлення, GMV, середній чек, нові та ті, хто не замовляв 60+ днів, частка Smart Promo — 19–25 жовтня → 26 жовтня – 1 листопада</div>
   <div class="hr"></div>
   <div class="tscroll">
   <table>
+    <colgroup>
+      <col style="width:18%"><col style="width:13%"><col style="width:13%"><col style="width:12%">
+      <col style="width:10%"><col style="width:14%"><col style="width:11%"><col style="width:9%">
+    </colgroup>
     <thead><tr>
       <th>Локація</th>
       <th class="num">Замовлення</th>
-      <th class="num">Δ%</th>
       <th class="num">GMV, €</th>
-      <th class="num">Δ%</th>
       <th class="num">AOV, €</th>
-      <th class="num">Δ%</th>
-      <th class="num">Нові клієнти</th>
-      <th class="num">Чурн</th>
-      <th class="num">Промо / всього</th>
-      <th class="num">Нові через промо</th>
+      <th class="num">Нові</th>
+      <th class="num">Не замовляли 60+ днів</th>
+      <th class="num">Промо</th>
+      <th class="num">Нові з промо</th>
     </tr></thead>
     <tbody>
-    <tr class="brand"><td colspan="11">БагатоЛосося · 7 точок</td></tr><tr>
+    <tr class="brand"><td colspan="8">БагатоЛосося · 7 точок</td></tr><tr>
       <td class="loc"><span class="pid">9255</span>Cічових Стрільців</td>
-      <td class="num">30 → <strong>52</strong></td>
-      <td class="num"><span class="delta pos">▲ +73,3%</span></td>
-      <td class="num">967 → <strong>2 032</strong></td>
-      <td class="num"><span class="delta pos">▲ +110,2%</span></td>
-      <td class="num">32,23 → <strong>39,08</strong></td>
-      <td class="num"><span class="delta pos">▲ +21,3%</span></td>
+      <td class="num"><div class="pair">30 → <strong>52</strong></div><div><span class="delta pos">▲ +73,3%</span></div></td>
+      <td class="num"><div class="pair">967 → <strong>2 032</strong></div><div><span class="delta pos">▲ +110,2%</span></div></td>
+      <td class="num"><div class="pair">32,23 → <strong>39,08</strong></div><div><span class="delta pos">▲ +21,3%</span></div></td>
       <td class="num">8 → <strong>13</strong></td>
-      <td class="num">23 → <strong>21</strong></td>
+      <td class="num">7 → <strong>16</strong></td>
       <td class="num">45/52 <span class="mut">87%</span></td>
       <td class="num">25%</td>
     </tr><tr>
       <td class="loc"><span class="pid">9260</span>Євгена Гуцала</td>
-      <td class="num">9 → <strong>27</strong></td>
-      <td class="num"><span class="delta pos">▲ +200,0%</span></td>
-      <td class="num">356 → <strong>897</strong></td>
-      <td class="num"><span class="delta pos">▲ +151,7%</span></td>
-      <td class="num">39,61 → <strong>33,23</strong></td>
-      <td class="num"><span class="delta neg">▼ -16,1%</span></td>
+      <td class="num"><div class="pair">9 → <strong>27</strong></div><div><span class="delta pos">▲ +200,0%</span></div></td>
+      <td class="num"><div class="pair">356 → <strong>897</strong></div><div><span class="delta pos">▲ +151,7%</span></div></td>
+      <td class="num"><div class="pair">39,61 → <strong>33,23</strong></div><div><span class="delta neg">▼ -16,1%</span></div></td>
       <td class="num">4 → <strong>5</strong></td>
-      <td class="num">11 → <strong>6</strong></td>
+      <td class="num">3 → <strong>8</strong></td>
       <td class="num">24/27 <span class="mut">89%</span></td>
       <td class="num">17%</td>
     </tr><tr>
       <td class="loc"><span class="pid">11935</span>Урлівська</td>
-      <td class="num">10 → <strong>3</strong></td>
-      <td class="num"><span class="delta neg">▼ -70,0%</span></td>
-      <td class="num">368 → <strong>148</strong></td>
-      <td class="num"><span class="delta neg">▼ -59,8%</span></td>
-      <td class="num">36,78 → <strong>49,28</strong></td>
-      <td class="num"><span class="delta pos">▲ +34,0%</span></td>
+      <td class="num"><div class="pair">10 → <strong>3</strong></div><div><span class="delta neg">▼ -70,0%</span></div></td>
+      <td class="num"><div class="pair">368 → <strong>148</strong></div><div><span class="delta neg">▼ -59,8%</span></div></td>
+      <td class="num"><div class="pair">36,78 → <strong>49,28</strong></div><div><span class="delta pos">▲ +34,0%</span></div></td>
       <td class="num">4 → <strong>0</strong></td>
-      <td class="num">12 → <strong>8</strong></td>
+      <td class="num">3 → <strong>0</strong></td>
       <td class="num">0/3 <span class="mut">0%</span></td>
       <td class="num"><span class="mut">—</span></td>
     </tr><tr>
       <td class="loc"><span class="pid">13535</span>Богатирська</td>
-      <td class="num">14 → <strong>6</strong></td>
-      <td class="num"><span class="delta neg">▼ -57,1%</span></td>
-      <td class="num">600 → <strong>327</strong></td>
-      <td class="num"><span class="delta neg">▼ -45,5%</span></td>
-      <td class="num">42,88 → <strong>54,56</strong></td>
-      <td class="num"><span class="delta pos">▲ +27,2%</span></td>
+      <td class="num"><div class="pair">14 → <strong>6</strong></div><div><span class="delta neg">▼ -57,1%</span></div></td>
+      <td class="num"><div class="pair">600 → <strong>327</strong></div><div><span class="delta neg">▼ -45,5%</span></div></td>
+      <td class="num"><div class="pair">42,88 → <strong>54,56</strong></div><div><span class="delta pos">▲ +27,2%</span></div></td>
       <td class="num">3 → <strong>1</strong></td>
-      <td class="num">7 → <strong>13</strong></td>
+      <td class="num">3 → <strong>3</strong></td>
       <td class="num">0/6 <span class="mut">0%</span></td>
       <td class="num"><span class="mut">—</span></td>
     </tr><tr>
       <td class="loc"><span class="pid">25023</span>Соборності</td>
-      <td class="num">7 → <strong>18</strong></td>
-      <td class="num"><span class="delta pos">▲ +157,1%</span></td>
-      <td class="num">308 → <strong>859</strong></td>
-      <td class="num"><span class="delta pos">▲ +178,8%</span></td>
-      <td class="num">43,99 → <strong>47,70</strong></td>
-      <td class="num"><span class="delta pos">▲ +8,4%</span></td>
+      <td class="num"><div class="pair">7 → <strong>18</strong></div><div><span class="delta pos">▲ +157,1%</span></div></td>
+      <td class="num"><div class="pair">308 → <strong>859</strong></div><div><span class="delta pos">▲ +178,8%</span></div></td>
+      <td class="num"><div class="pair">43,99 → <strong>47,70</strong></div><div><span class="delta pos">▲ +8,4%</span></div></td>
       <td class="num">2 → <strong>7</strong></td>
-      <td class="num">6 → <strong>6</strong></td>
+      <td class="num">4 → <strong>6</strong></td>
       <td class="num">16/18 <span class="mut">89%</span></td>
       <td class="num">38%</td>
     </tr><tr>
       <td class="loc"><span class="pid">36860</span>Берестейський пр-т</td>
-      <td class="num">19 → <strong>24</strong></td>
-      <td class="num"><span class="delta pos">▲ +26,3%</span></td>
-      <td class="num">845 → <strong>1 034</strong></td>
-      <td class="num"><span class="delta pos">▲ +22,4%</span></td>
-      <td class="num">44,47 → <strong>43,09</strong></td>
-      <td class="num"><span class="delta neg">▼ -3,1%</span></td>
+      <td class="num"><div class="pair">19 → <strong>24</strong></div><div><span class="delta pos">▲ +26,3%</span></div></td>
+      <td class="num"><div class="pair">845 → <strong>1 034</strong></div><div><span class="delta pos">▲ +22,4%</span></div></td>
+      <td class="num"><div class="pair">44,47 → <strong>43,09</strong></div><div><span class="delta neg">▼ -3,1%</span></div></td>
       <td class="num">5 → <strong>9</strong></td>
-      <td class="num">16 → <strong>19</strong></td>
+      <td class="num">8 → <strong>6</strong></td>
       <td class="num">21/24 <span class="mut">88%</span></td>
       <td class="num">33%</td>
     </tr><tr>
       <td class="loc"><span class="pid">51635</span>Деміївська</td>
-      <td class="num">34 → <strong>54</strong></td>
-      <td class="num"><span class="delta pos">▲ +58,8%</span></td>
-      <td class="num">1 051 → <strong>2 187</strong></td>
-      <td class="num"><span class="delta pos">▲ +108,1%</span></td>
-      <td class="num">30,91 → <strong>40,50</strong></td>
-      <td class="num"><span class="delta pos">▲ +31,0%</span></td>
+      <td class="num"><div class="pair">34 → <strong>54</strong></div><div><span class="delta pos">▲ +58,8%</span></div></td>
+      <td class="num"><div class="pair">1 051 → <strong>2 187</strong></div><div><span class="delta pos">▲ +108,1%</span></div></td>
+      <td class="num"><div class="pair">30,91 → <strong>40,50</strong></div><div><span class="delta pos">▲ +31,0%</span></div></td>
       <td class="num">6 → <strong>26</strong></td>
-      <td class="num">23 → <strong>28</strong></td>
+      <td class="num">4 → <strong>13</strong></td>
       <td class="num">46/54 <span class="mut">85%</span></td>
       <td class="num">49%</td>
     </tr><tr class="subtot">
       <td>Разом БагатоЛосося</td>
-      <td class="num">123 → <strong>184</strong></td>
-      <td class="num"><span class="delta pos">▲ +49,6%</span></td>
-      <td class="num">4 495 → <strong>7 484</strong></td>
-      <td class="num"><span class="delta pos">▲ +66,5%</span></td>
-      <td class="num">36,55 → <strong>40,67</strong></td>
-      <td class="num"><span class="delta pos">▲ +11,3%</span></td>
+      <td class="num"><div class="pair">123 → <strong>184</strong></div><div><span class="delta pos">▲ +49,6%</span></div></td>
+      <td class="num"><div class="pair">4 495 → <strong>7 484</strong></div><div><span class="delta pos">▲ +66,5%</span></div></td>
+      <td class="num"><div class="pair">36,55 → <strong>40,67</strong></div><div><span class="delta pos">▲ +11,3%</span></div></td>
       <td class="num">32 → <strong>61</strong></td>
-      <td class="num">98 → <strong>101</strong></td>
+      <td class="num">32 → <strong>52</strong></td>
       <td class="num">152/184 <span class="mut">83%</span></td>
       <td class="num">33%</td>
-    </tr><tr class="brand"><td colspan="11">СушіХО · 7 точок</td></tr><tr>
+    </tr><tr class="brand"><td colspan="8">СушіХО · 7 точок</td></tr><tr>
       <td class="loc"><span class="pid">13229</span>Євгена Гуцала</td>
-      <td class="num">6 → <strong>10</strong></td>
-      <td class="num"><span class="delta pos">▲ +66,7%</span></td>
-      <td class="num">155 → <strong>256</strong></td>
-      <td class="num"><span class="delta pos">▲ +64,9%</span></td>
-      <td class="num">25,90 → <strong>25,63</strong></td>
-      <td class="num"><span class="delta neg">▼ -1,0%</span></td>
+      <td class="num"><div class="pair">6 → <strong>10</strong></div><div><span class="delta pos">▲ +66,7%</span></div></td>
+      <td class="num"><div class="pair">155 → <strong>256</strong></div><div><span class="delta pos">▲ +64,9%</span></div></td>
+      <td class="num"><div class="pair">25,90 → <strong>25,63</strong></div><div><span class="delta neg">▼ -1,0%</span></div></td>
       <td class="num">3 → <strong>3</strong></td>
-      <td class="num">5 → <strong>5</strong></td>
+      <td class="num">1 → <strong>3</strong></td>
       <td class="num">10/10 <span class="mut">100%</span></td>
       <td class="num">30%</td>
     </tr><tr>
       <td class="loc"><span class="pid">13231</span>Урлівська</td>
-      <td class="num">0 → <strong>3</strong></td>
-      <td class="num"><span class="mut">—</span></td>
-      <td class="num">0 → <strong>81</strong></td>
-      <td class="num"><span class="mut">—</span></td>
-      <td class="num">— → <strong>26,95</strong></td>
-      <td class="num"><span class="mut">—</span></td>
+      <td class="num"><div class="pair">0 → <strong>3</strong></div><div><span class="mut">—</span></div></td>
+      <td class="num"><div class="pair">0 → <strong>81</strong></div><div><span class="mut">—</span></div></td>
+      <td class="num"><div class="pair">— → <strong>26,95</strong></div><div><span class="mut">—</span></div></td>
       <td class="num">0 → <strong>1</strong></td>
-      <td class="num">2 → <strong>0</strong></td>
+      <td class="num">0 → <strong>1</strong></td>
       <td class="num">2/3 <span class="mut">67%</span></td>
       <td class="num">0%</td>
     </tr><tr>
       <td class="loc"><span class="pid">13534</span>Богатирська</td>
-      <td class="num">5 → <strong>9</strong></td>
-      <td class="num"><span class="delta pos">▲ +80,0%</span></td>
-      <td class="num">236 → <strong>292</strong></td>
-      <td class="num"><span class="delta pos">▲ +23,6%</span></td>
-      <td class="num">47,28 → <strong>32,46</strong></td>
-      <td class="num"><span class="delta neg">▼ -31,3%</span></td>
+      <td class="num"><div class="pair">5 → <strong>9</strong></div><div><span class="delta pos">▲ +80,0%</span></div></td>
+      <td class="num"><div class="pair">236 → <strong>292</strong></div><div><span class="delta pos">▲ +23,6%</span></div></td>
+      <td class="num"><div class="pair">47,28 → <strong>32,46</strong></div><div><span class="delta neg">▼ -31,3%</span></div></td>
       <td class="num">1 → <strong>4</strong></td>
-      <td class="num">2 → <strong>5</strong></td>
+      <td class="num">2 → <strong>3</strong></td>
       <td class="num">7/9 <span class="mut">78%</span></td>
       <td class="num">29%</td>
     </tr><tr>
       <td class="loc"><span class="pid">15224</span>Січових Стрільців</td>
-      <td class="num">8 → <strong>13</strong></td>
-      <td class="num"><span class="delta pos">▲ +62,5%</span></td>
-      <td class="num">276 → <strong>526</strong></td>
-      <td class="num"><span class="delta pos">▲ +90,1%</span></td>
-      <td class="num">34,55 → <strong>40,43</strong></td>
-      <td class="num"><span class="delta pos">▲ +17,0%</span></td>
+      <td class="num"><div class="pair">8 → <strong>13</strong></div><div><span class="delta pos">▲ +62,5%</span></div></td>
+      <td class="num"><div class="pair">276 → <strong>526</strong></div><div><span class="delta pos">▲ +90,1%</span></div></td>
+      <td class="num"><div class="pair">34,55 → <strong>40,43</strong></div><div><span class="delta pos">▲ +17,0%</span></div></td>
       <td class="num">5 → <strong>6</strong></td>
-      <td class="num">2 → <strong>6</strong></td>
+      <td class="num">0 → <strong>0</strong></td>
       <td class="num">11/13 <span class="mut">85%</span></td>
       <td class="num">36%</td>
     </tr><tr>
       <td class="loc"><span class="pid">25027</span>Соборності</td>
-      <td class="num">3 → <strong>2</strong></td>
-      <td class="num"><span class="delta neg">▼ -33,3%</span></td>
-      <td class="num">79 → <strong>37</strong></td>
-      <td class="num"><span class="delta neg">▼ -53,1%</span></td>
-      <td class="num">26,21 → <strong>18,45</strong></td>
-      <td class="num"><span class="delta neg">▼ -29,6%</span></td>
+      <td class="num"><div class="pair">3 → <strong>2</strong></div><div><span class="delta neg">▼ -33,3%</span></div></td>
+      <td class="num"><div class="pair">79 → <strong>37</strong></div><div><span class="delta neg">▼ -53,1%</span></div></td>
+      <td class="num"><div class="pair">26,21 → <strong>18,45</strong></div><div><span class="delta neg">▼ -29,6%</span></div></td>
       <td class="num">1 → <strong>2</strong></td>
-      <td class="num">1 → <strong>3</strong></td>
+      <td class="num">0 → <strong>0</strong></td>
       <td class="num">2/2 <span class="mut">100%</span></td>
       <td class="num">100%</td>
     </tr><tr>
       <td class="loc"><span class="pid">36861</span>Берестейський пр-т</td>
-      <td class="num">0 → <strong>11</strong></td>
-      <td class="num"><span class="mut">—</span></td>
-      <td class="num">0 → <strong>380</strong></td>
-      <td class="num"><span class="mut">—</span></td>
-      <td class="num">— → <strong>34,51</strong></td>
-      <td class="num"><span class="mut">—</span></td>
+      <td class="num"><div class="pair">0 → <strong>11</strong></div><div><span class="mut">—</span></div></td>
+      <td class="num"><div class="pair">0 → <strong>380</strong></div><div><span class="mut">—</span></div></td>
+      <td class="num"><div class="pair">— → <strong>34,51</strong></div><div><span class="mut">—</span></div></td>
       <td class="num">0 → <strong>4</strong></td>
-      <td class="num">4 → <strong>0</strong></td>
+      <td class="num">0 → <strong>5</strong></td>
       <td class="num">9/11 <span class="mut">82%</span></td>
       <td class="num">33%</td>
     </tr><tr>
       <td class="loc"><span class="pid">51634</span>Деміївська</td>
-      <td class="num">2 → <strong>8</strong></td>
-      <td class="num"><span class="delta pos">▲ +300,0%</span></td>
-      <td class="num">75 → <strong>367</strong></td>
-      <td class="num"><span class="delta pos">▲ +388,5%</span></td>
-      <td class="num">37,62 → <strong>45,94</strong></td>
-      <td class="num"><span class="delta pos">▲ +22,1%</span></td>
+      <td class="num"><div class="pair">2 → <strong>8</strong></div><div><span class="delta pos">▲ +300,0%</span></div></td>
+      <td class="num"><div class="pair">75 → <strong>367</strong></div><div><span class="delta pos">▲ +388,5%</span></div></td>
+      <td class="num"><div class="pair">37,62 → <strong>45,94</strong></div><div><span class="delta pos">▲ +22,1%</span></div></td>
       <td class="num">0 → <strong>2</strong></td>
-      <td class="num">1 → <strong>1</strong></td>
+      <td class="num">0 → <strong>4</strong></td>
       <td class="num">8/8 <span class="mut">100%</span></td>
       <td class="num">29%</td>
     </tr><tr class="subtot">
       <td>Разом СушіХО</td>
-      <td class="num">24 → <strong>56</strong></td>
-      <td class="num"><span class="delta pos">▲ +133,3%</span></td>
-      <td class="num">822 → <strong>1 939</strong></td>
-      <td class="num"><span class="delta pos">▲ +135,9%</span></td>
-      <td class="num">34,25 → <strong>34,62</strong></td>
-      <td class="num"><span class="delta pos">▲ +1,1%</span></td>
+      <td class="num"><div class="pair">24 → <strong>56</strong></div><div><span class="delta pos">▲ +133,3%</span></div></td>
+      <td class="num"><div class="pair">822 → <strong>1 939</strong></div><div><span class="delta pos">▲ +135,9%</span></div></td>
+      <td class="num"><div class="pair">34,25 → <strong>34,62</strong></div><div><span class="delta pos">▲ +1,1%</span></div></td>
       <td class="num">10 → <strong>22</strong></td>
-      <td class="num">17 → <strong>20</strong></td>
+      <td class="num">3 → <strong>16</strong></td>
       <td class="num">49/56 <span class="mut">88%</span></td>
       <td class="num">33%</td>
-    </tr><tr class="brand"><td colspan="11">Nori Miori · 7 точок</td></tr><tr>
+    </tr><tr class="brand"><td colspan="8">Nori Miori · 7 точок</td></tr><tr>
       <td class="loc"><span class="pid">97796</span>Nori Miori</td>
-      <td class="num">8 → <strong>11</strong></td>
-      <td class="num"><span class="delta pos">▲ +37,5%</span></td>
-      <td class="num">110 → <strong>151</strong></td>
-      <td class="num"><span class="delta pos">▲ +37,7%</span></td>
-      <td class="num">13,75 → <strong>13,77</strong></td>
-      <td class="num"><span class="delta pos">▲ +0,2%</span></td>
+      <td class="num"><div class="pair">8 → <strong>11</strong></div><div><span class="delta pos">▲ +37,5%</span></div></td>
+      <td class="num"><div class="pair">110 → <strong>151</strong></div><div><span class="delta pos">▲ +37,7%</span></div></td>
+      <td class="num"><div class="pair">13,75 → <strong>13,77</strong></div><div><span class="delta pos">▲ +0,2%</span></div></td>
       <td class="num">1 → <strong>5</strong></td>
-      <td class="num">5 → <strong>4</strong></td>
+      <td class="num">0 → <strong>0</strong></td>
       <td class="num">10/11 <span class="mut">91%</span></td>
       <td class="num">62%</td>
     </tr><tr>
       <td class="loc"><span class="pid">162622</span>Січових Стрільців</td>
-      <td class="num">5 → <strong>10</strong></td>
-      <td class="num"><span class="delta pos">▲ +100,0%</span></td>
-      <td class="num">64 → <strong>126</strong></td>
-      <td class="num"><span class="delta pos">▲ +95,9%</span></td>
-      <td class="num">12,88 → <strong>12,62</strong></td>
-      <td class="num"><span class="delta neg">▼ -2,0%</span></td>
+      <td class="num"><div class="pair">5 → <strong>10</strong></div><div><span class="delta pos">▲ +100,0%</span></div></td>
+      <td class="num"><div class="pair">64 → <strong>126</strong></div><div><span class="delta pos">▲ +95,9%</span></div></td>
+      <td class="num"><div class="pair">12,88 → <strong>12,62</strong></div><div><span class="delta neg">▼ -2,0%</span></div></td>
       <td class="num">2 → <strong>6</strong></td>
-      <td class="num">5 → <strong>2</strong></td>
+      <td class="num">0 → <strong>1</strong></td>
       <td class="num">7/10 <span class="mut">70%</span></td>
       <td class="num">83%</td>
     </tr><tr>
       <td class="loc"><span class="pid">162625</span>Урлівська</td>
-      <td class="num">2 → <strong>1</strong></td>
-      <td class="num"><span class="delta neg">▼ -50,0%</span></td>
-      <td class="num">17 → <strong>7</strong></td>
-      <td class="num"><span class="delta neg">▼ -60,5%</span></td>
-      <td class="num">8,68 → <strong>6,86</strong></td>
-      <td class="num"><span class="delta neg">▼ -21,0%</span></td>
+      <td class="num"><div class="pair">2 → <strong>1</strong></div><div><span class="delta neg">▼ -50,0%</span></div></td>
+      <td class="num"><div class="pair">17 → <strong>7</strong></div><div><span class="delta neg">▼ -60,5%</span></div></td>
+      <td class="num"><div class="pair">8,68 → <strong>6,86</strong></div><div><span class="delta neg">▼ -21,0%</span></div></td>
       <td class="num">0 → <strong>1</strong></td>
-      <td class="num">1 → <strong>2</strong></td>
+      <td class="num">0 → <strong>0</strong></td>
       <td class="num">1/1 <span class="mut">100%</span></td>
       <td class="num">100%</td>
     </tr><tr>
       <td class="loc"><span class="pid">162628</span>Богатирська</td>
-      <td class="num">1 → <strong>3</strong></td>
-      <td class="num"><span class="delta pos">▲ +200,0%</span></td>
-      <td class="num">14 → <strong>59</strong></td>
-      <td class="num"><span class="delta pos">▲ +310,2%</span></td>
-      <td class="num">14,30 → <strong>19,55</strong></td>
-      <td class="num"><span class="delta pos">▲ +36,7%</span></td>
+      <td class="num"><div class="pair">1 → <strong>3</strong></div><div><span class="delta pos">▲ +200,0%</span></div></td>
+      <td class="num"><div class="pair">14 → <strong>59</strong></div><div><span class="delta pos">▲ +310,2%</span></div></td>
+      <td class="num"><div class="pair">14,30 → <strong>19,55</strong></div><div><span class="delta pos">▲ +36,7%</span></div></td>
       <td class="num">0 → <strong>2</strong></td>
-      <td class="num">0 → <strong>1</strong></td>
+      <td class="num">0 → <strong>0</strong></td>
       <td class="num">3/3 <span class="mut">100%</span></td>
       <td class="num">67%</td>
     </tr><tr>
       <td class="loc"><span class="pid">162633</span>проспект Соборності</td>
-      <td class="num">3 → <strong>5</strong></td>
-      <td class="num"><span class="delta pos">▲ +66,7%</span></td>
-      <td class="num">45 → <strong>69</strong></td>
-      <td class="num"><span class="delta pos">▲ +54,8%</span></td>
-      <td class="num">14,86 → <strong>13,80</strong></td>
-      <td class="num"><span class="delta neg">▼ -7,1%</span></td>
+      <td class="num"><div class="pair">3 → <strong>5</strong></div><div><span class="delta pos">▲ +66,7%</span></div></td>
+      <td class="num"><div class="pair">45 → <strong>69</strong></div><div><span class="delta pos">▲ +54,8%</span></div></td>
+      <td class="num"><div class="pair">14,86 → <strong>13,80</strong></div><div><span class="delta neg">▼ -7,1%</span></div></td>
       <td class="num">1 → <strong>2</strong></td>
-      <td class="num">1 → <strong>0</strong></td>
+      <td class="num">0 → <strong>0</strong></td>
       <td class="num">3/5 <span class="mut">60%</span></td>
       <td class="num">67%</td>
     </tr><tr>
       <td class="loc"><span class="pid">162635</span>Деміївська</td>
-      <td class="num">10 → <strong>11</strong></td>
-      <td class="num"><span class="delta pos">▲ +10,0%</span></td>
-      <td class="num">113 → <strong>132</strong></td>
-      <td class="num"><span class="delta pos">▲ +17,1%</span></td>
-      <td class="num">11,25 → <strong>11,98</strong></td>
-      <td class="num"><span class="delta pos">▲ +6,5%</span></td>
+      <td class="num"><div class="pair">10 → <strong>11</strong></div><div><span class="delta pos">▲ +10,0%</span></div></td>
+      <td class="num"><div class="pair">113 → <strong>132</strong></div><div><span class="delta pos">▲ +17,1%</span></div></td>
+      <td class="num"><div class="pair">11,25 → <strong>11,98</strong></div><div><span class="delta pos">▲ +6,5%</span></div></td>
       <td class="num">2 → <strong>4</strong></td>
-      <td class="num">4 → <strong>5</strong></td>
+      <td class="num">0 → <strong>0</strong></td>
       <td class="num">4/11 <span class="mut">36%</span></td>
       <td class="num">75%</td>
     </tr><tr>
       <td class="loc"><span class="pid">162642</span>Берестейський пр-т</td>
+      <td class="num"><div class="pair">0 → <strong>4</strong></div><div><span class="mut">—</span></div></td>
+      <td class="num"><div class="pair">0 → <strong>62</strong></div><div><span class="mut">—</span></div></td>
+      <td class="num"><div class="pair">— → <strong>15,46</strong></div><div><span class="mut">—</span></div></td>
       <td class="num">0 → <strong>4</strong></td>
-      <td class="num"><span class="mut">—</span></td>
-      <td class="num">0 → <strong>62</strong></td>
-      <td class="num"><span class="mut">—</span></td>
-      <td class="num">— → <strong>15,46</strong></td>
-      <td class="num"><span class="mut">—</span></td>
-      <td class="num">0 → <strong>4</strong></td>
-      <td class="num">1 → <strong>0</strong></td>
+      <td class="num">0 → <strong>0</strong></td>
       <td class="num">3/4 <span class="mut">75%</span></td>
       <td class="num">100%</td>
     </tr><tr class="subtot">
       <td>Разом Nori Miori</td>
-      <td class="num">29 → <strong>45</strong></td>
-      <td class="num"><span class="delta pos">▲ +55,2%</span></td>
-      <td class="num">363 → <strong>606</strong></td>
-      <td class="num"><span class="delta pos">▲ +66,8%</span></td>
-      <td class="num">12,52 → <strong>13,46</strong></td>
-      <td class="num"><span class="delta pos">▲ +7,5%</span></td>
+      <td class="num"><div class="pair">29 → <strong>45</strong></div><div><span class="delta pos">▲ +55,2%</span></div></td>
+      <td class="num"><div class="pair">363 → <strong>606</strong></div><div><span class="delta pos">▲ +66,8%</span></div></td>
+      <td class="num"><div class="pair">12,52 → <strong>13,46</strong></div><div><span class="delta pos">▲ +7,5%</span></div></td>
       <td class="num">6 → <strong>24</strong></td>
-      <td class="num">17 → <strong>14</strong></td>
+      <td class="num">0 → <strong>1</strong></td>
       <td class="num">31/45 <span class="mut">69%</span></td>
       <td class="num">75%</td>
     </tr><tr class="tot">
       <td>Тотал · 21 точка</td>
-      <td class="num">176 → <strong>285</strong></td>
-      <td class="num"><span class="delta pos">▲ +61,9%</span></td>
-      <td class="num">5 681 → <strong>10 029</strong></td>
-      <td class="num"><span class="delta pos">▲ +76,5%</span></td>
-      <td class="num">32,28 → <strong>35,19</strong></td>
-      <td class="num"><span class="delta pos">▲ +9,0%</span></td>
+      <td class="num"><div class="pair">176 → <strong>285</strong></div><div><span class="delta pos">▲ +61,9%</span></div></td>
+      <td class="num"><div class="pair">5 681 → <strong>10 029</strong></div><div><span class="delta pos">▲ +76,5%</span></div></td>
+      <td class="num"><div class="pair">32,28 → <strong>35,19</strong></div><div><span class="delta pos">▲ +9,0%</span></div></td>
       <td class="num">48 → <strong>107</strong></td>
-      <td class="num">132 → <strong>135</strong></td>
+      <td class="num">35 → <strong>69</strong></td>
       <td class="num">232/285 <span class="mut">81%</span></td>
       <td class="num">38%</td>
     </tr>
@@ -608,7 +544,7 @@ td.loc { font-weight: 600; white-space: nowrap; }
   </table>
   </div>
   <div class="mut" style="margin-top:10px; display:block;">
-    «Δ%» — зміна тижня 26.10–01.11 проти тижня до (19–25.10). «Промо / всього» — скільки delivered-замовлень тижня пройшло зі знижкою Smart Promo. «Нові через промо» — яка частка клієнтів із промо-замовленням є новими для цієї точки. Чурн рахується на рівні точки.
+    «Δ%» під числом — зміна тижня 26.10–01.11 проти тижня до (19–25.10). «Не замовляли 60+ днів» — клієнти точки, які повернулися після паузи 60 і більше днів. «Промо» — скільки delivered-замовлень тижня зі знижкою Smart Promo. «Нові з промо» — яка частка промо-клієнтів є новими для цієї точки.
   </div>
 </div>
 
@@ -619,7 +555,7 @@ td.loc { font-weight: 600; white-space: nowrap; }
     <div class="insight">
       <strong>Замовлення +61,9%, GMV +76,5% WoW</strong> — ефект запуску Smart Promo одразу на тижні старту, на всіх 21 точках. Приріст виручки сильніший за кількість, бо середній чек теж зріс (32,28 € → 35,19 €). Найбільший стрибок серед точок із замовленнями тиждень до — СушіХО Деміївська (+300,0%) і БагатоЛосося Євгена Гуцала (+200,0%).
       <br><br>
-      <strong>Нові клієнти +122,9%</strong> (48 → 107), а чурн майже не зрушив (132 → 135) — акція розширила базу, а не «спалила» лояльних клієнтів знижкою.
+      <strong>Нові клієнти +122,9%</strong> (48 → 107). Тих, хто не замовляв 60+ днів і повернувся, теж побільшало: 35 → 69 (<span class="delta pos">▲ +97,1%</span>). Акція підтягнула і нових, і «сплячих», а не лише тих, хто й так замовляє щотижня.
     </div>
     <div class="insight p">
       <strong>81% усіх нових клієнтів тижня прийшли саме через Smart Promo</strong> (87 з 107) — акція є головним каналом залучення цього тижня, а не просто знижкою для тих, хто й так замовив би. Серед промо-клієнтів нові становлять 38% (87 з 226).
