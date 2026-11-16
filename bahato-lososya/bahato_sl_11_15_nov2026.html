@@ -52,6 +52,7 @@ section { margin-top: 28px; }
 .note { color: var(--color-content-secondary); font-size: 13px; margin-top: 10px; }
 .callout { background: var(--color-bg-action-secondary); border-radius: var(--radius); padding: 20px 22px; }
 .warn { background: var(--color-bg-warning-secondary); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
 table { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
 th { text-align: left; font-size: 11px; color: var(--color-content-secondary); font-weight: 650; padding: 10px 8px; border-bottom: 1px solid var(--color-border-separator); }
@@ -61,9 +62,10 @@ tr:last-child td { border-bottom: 0; }
 .nm { font-weight: 650; }
 td.pos { color: var(--color-content-action-primary); font-weight: 650; }
 tr.tot td { font-weight: 750; background: var(--color-bg-action-secondary); }
+tr.weak td { background: var(--color-bg-warning-secondary); }
 footer { background: var(--color-special-brand-alt); color: rgba(255,255,255,.5); text-align: center; padding: 18px; font-size: 12px; }
 @media (max-width: 800px) {
-  .metrics, .grid3 { grid-template-columns: 1fr; }
+  .metrics, .grid2, .grid3 { grid-template-columns: 1fr; }
   .wrap { width: min(100% - 24px, 1120px); }
 }
 </style>
@@ -173,7 +175,7 @@ footer { background: var(--color-special-brand-alt); color: rgba(255,255,255,.5)
 
   <section>
     <h2>Чому це доречно лишати</h2>
-    <div class="grid3">
+    <div class="grid2">
       <div class="card">
         <h3>Видимість, не лише знижка</h3>
         <p>На тижні паралельно йшли знижки. Реклама в стрічці дає інше: картка вище в видачі. 158 з 180 атрибутованих замовлень — нові на точці. Без показу в стрічці ця аудиторія просто не доходить до меню.</p>
@@ -182,14 +184,34 @@ footer { background: var(--color-special-brand-alt); color: rgba(255,255,255,.5)
         <h3>Гроші невеликі відносно обороту</h3>
         <p>6 240&nbsp;₴ за п’ять днів на вісім точок. Січових Стрільців і Деміївська БагатоЛосося самі закрили більшу частину атрибутованого обороту. На цьому чеку реклама окупається швидко.</p>
       </div>
-      <div class="card">
-        <h3>Працює не всюди однаково</h3>
-        <p>БагатоЛосося Богатирська майже не зібрала показів — 1 атрибутоване замовлення. Не привід вимикати інструмент: привід тримати бюджет на точках, де є попит, і не розмазувати тонким шаром слабкі адреси.</p>
-      </div>
     </div>
-    <div class="callout warn" style="margin-top:12px">
-      <h3>Що з цього випливає</h3>
-      <p>Реклама в стрічці не «не працює». На цьому тижні вона якраз і дала приріст на частині точок. Далі має сенс тримати Січових Стрільців, Деміївську і Соборності БагатоЛосося плюс сильніші СушіХО, і не чекати такого самого ефекту від точки з сотнею показів. З 16 листопада модель уже за клік: без зазначеного бюджету кампанія не стартує.</p>
+  </section>
+
+  <section>
+    <h2>Чому Богатирська БагатоЛосося майже не зібрала показів</h2>
+    <div class="callout warn">
+      <p>Рейтинг точки в додатку <strong>4,81</strong> — як у решти вісімки (4,65–4,83). Частка промо за тиждень 9–15 листопада <strong>6 з 7 замовлень</strong> — теж як у групи, де промо було 86–100%. Ні рейтинг, ні знижки тут не пояснюють провал.</p>
+      <p style="margin-top:10px">Пояснює доступність. Тиждень 2–8 листопада точка була в мережі <strong>100%</strong> робочого часу і зібрала <strong>4&nbsp;248</strong> показів картки в стрічці. Тиждень 9–15 листопада — лише <strong>41%</strong> часу в мережі, покази картки впали до <strong>820 (−81%)</strong>. Реклама в стрічці дала 106 показів за п’ять днів. Тижнем раніше цієї кампанії на точці не було, тож порівнювати є сенс саме загальні покази картки, не рекламні.</p>
+      <p style="margin-top:10px">З вечора <strong>11 листопада</strong> точка не виходила в мережу: остання активність о 20:18. 12–15 листопада, коли реклама ще була оплачена, замовлень немає. Того ж 11 листопада — одне неуспішне замовлення і одна погана оцінка за день. СушіХО на тій самій Богатирській лишалась онлайн: покази картки навіть виросли (6&nbsp;414 → 7&nbsp;129), реклама зібрала 1&nbsp;956 показів і 10 атрибутованих замовлень.</p>
+    </div>
+    <p class="note">Доступність — частка хвилин у мережі в робочі години. Покази картки — усі покази в стрічці, не лише рекламні. Рекламні покази — колонка SL. Рейтинг — як у додатку, останні 500 оцінок.</p>
+    <div class="card" style="margin-top:12px">
+      <table>
+        <thead>
+          <tr>
+            <th>Точка</th>
+            <th class="num">Рейтинг</th>
+            <th class="num">В мережі 2–8 → 9–15</th>
+            <th class="num">Покази картки</th>
+            <th class="num">Δ показів</th>
+            <th class="num">Рекламні покази 11–15</th>
+            <th class="num">Промо 9–15</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class='nm'>БагатоЛосося · Січових Стрільців</td><td class='num'>4,8</td><td class='num'>100% → 100%</td><td class='num'>13 473 → 7 886</td><td class="num">−41%</td><td class='num'>2 002</td><td class='num'>100 / 111 · 90%</td></tr><tr><td class='nm'>БагатоЛосося · Деміївська</td><td class='num'>4,79</td><td class='num'>100% → 100%</td><td class='num'>11 810 → 8 562</td><td class="num">−28%</td><td class='num'>2 077</td><td class='num'>68 / 76 · 89%</td></tr><tr><td class='nm'>БагатоЛосося · Соборності</td><td class='num'>4,83</td><td class='num'>100% → 100%</td><td class='num'>15 093 → 11 714</td><td class="num">−22%</td><td class='num'>3 556</td><td class='num'>42 / 46 · 91%</td></tr><tr><td class='nm'>СушіХО · Січових Стрільців</td><td class='num'>4,78</td><td class='num'>100% → 100%</td><td class='num'>6 763 → 13 759</td><td class="num pos">+103%</td><td class='num'>5 176</td><td class='num'>27 / 27 · 100%</td></tr><tr><td class='nm'>СушіХО · Соборності</td><td class='num'>4,65</td><td class='num'>100% → 100%</td><td class='num'>20 539 → 17 315</td><td class="num">−16%</td><td class='num'>6 660</td><td class='num'>16 / 16 · 100%</td></tr><tr><td class='nm'>СушіХО · Богатирська</td><td class='num'>4,82</td><td class='num'>100% → 100%</td><td class='num'>6 414 → 7 129</td><td class="num pos">+11%</td><td class='num'>1 956</td><td class='num'>15 / 16 · 94%</td></tr><tr><td class='nm'>СушіХО · Деміївська</td><td class='num'>4,7</td><td class='num'>100% → 100%</td><td class='num'>6 105 → 9 102</td><td class="num pos">+49%</td><td class='num'>3 002</td><td class='num'>12 / 13 · 92%</td></tr><tr class='weak'><td class='nm'>БагатоЛосося · Богатирська</td><td class='num'>4,81</td><td class='num'>100% → 41%</td><td class='num'>4 248 → 820</td><td class="num">−81%</td><td class='num'>106</td><td class='num'>6 / 7 · 86%</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 </main>
