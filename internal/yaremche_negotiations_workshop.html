@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Воркшоп з перемовин · Яремче</title>
+<style>
+@font-face{font-family:"InterVariable";src:url("fonts/Inter-VariableFont.ttf") format("truetype-variations");
+  font-weight:100 900;font-style:normal;font-display:swap;}
+:root {
+  --color-special-brand: #2A9C64;
+  --color-special-brand-alt: #0C2C1C;
+  --color-content-primary: #191F1C;
+  --color-content-secondary: #5F6563;
+  --color-content-tertiary: #868E8B;
+  --color-content-primary-inverted: #FDFFFE;
+  --color-content-positive-primary: #147B51;
+  --color-content-warning-primary: #9E5B00;
+  --color-content-danger-primary: #B20F1C;
+  --color-layer-floor-0: #ffffff;
+  --color-layer-floor-0-grouped: #EEF1F0;
+  --color-border-separator: #DEE2E1;
+  --color-bg-positive-secondary: #E7F6ED;
+  --color-bg-warning-secondary: #FFF0C5;
+  --color-bg-danger-secondary: #FFEEEE;
+  --color-bg-action-secondary: rgba(0, 160, 64, 0.09);
+  --color-layer-sage: #C4D0CB;
+  --corner-radius-l: 16px;
+  --corner-radius-full: 600rem;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"InterVariable",Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-feature-settings:"cv03","cv04","liga" 1,"calt" 1;-webkit-font-smoothing:antialiased;
+  background:var(--color-layer-floor-0-grouped);color:var(--color-content-primary);line-height:1.5;}
+.page{max-width:1180px;margin:0 auto;padding:0 0 64px;}
+.hero{background:var(--color-special-brand-alt);color:var(--color-content-primary-inverted);padding:36px 40px 32px;}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:18px;}
+.kicker{font-size:11px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:rgba(253,255,254,.62);}
+.logo{height:44px;width:auto;flex-shrink:0;}
+.hero h1{font-size:32px;font-weight:650;letter-spacing:-.022em;line-height:1.2;margin-bottom:10px;max-width:22ch;}
+.hero p{font-size:15px;color:rgba(253,255,254,.72);max-width:78ch;}
+.hero p strong{color:var(--color-content-primary-inverted);font-weight:650;}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:28px;}
+.kpi strong{display:block;font-size:26px;font-weight:650;letter-spacing:-.026em;
+  font-feature-settings:"tnum","cv03","cv04";margin-bottom:2px;}
+.kpi span{font-size:12px;color:rgba(253,255,254,.6);line-height:1.35;display:block;}
+.nav{position:sticky;top:0;z-index:5;background:var(--color-layer-floor-0-grouped);
+  padding:12px 40px;display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--color-border-separator);}
+.nav a{display:inline-block;text-decoration:none;font-size:13px;font-weight:650;
+  padding:8px 14px;border-radius:var(--corner-radius-full);background:var(--color-layer-floor-0);
+  color:var(--color-content-primary);}
+.nav a:hover{background:var(--color-special-brand);color:var(--color-content-primary-inverted);text-decoration:none;}
+.body{padding:32px 40px 0;}
+section{margin-bottom:48px;}
+h2{font-size:22px;font-weight:650;letter-spacing:-.02em;margin-bottom:8px;}
+h3{font-size:15px;font-weight:650;letter-spacing:-.011em;margin:20px 0 8px;}
+p.lead{font-size:14.5px;color:var(--color-content-secondary);max-width:86ch;margin-bottom:18px;}
+p.lead strong{color:var(--color-content-primary);font-weight:650;}
+.card{background:var(--color-layer-floor-0);border-radius:var(--corner-radius-l);padding:22px 24px;margin-bottom:16px;}
+.card h3{margin-top:0;}
+.callout{background:var(--color-bg-positive-secondary);border-radius:var(--corner-radius-l);padding:22px 24px;margin:16px 0 20px;}
+.callout h3{font-size:15px;font-weight:650;letter-spacing:-.011em;margin:0 0 6px;color:var(--color-content-positive-primary);}
+.callout p{font-size:14.5px;max-width:86ch;color:var(--color-content-primary);}
+.callout.warn{background:var(--color-bg-warning-secondary);}
+.callout.warn h3{color:var(--color-content-warning-primary);}
+.callout.no{background:var(--color-bg-danger-secondary);}
+.callout.no h3{color:var(--color-content-danger-primary);}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 20px;}
+.mini .card{margin:0;padding:16px 18px;}
+.mini strong{display:block;font-size:22px;font-weight:650;letter-spacing:-.024em;
+  font-feature-settings:"tnum","cv03","cv04";}
+.mini span{font-size:12px;color:var(--color-content-secondary);}
+.mini .danger strong{color:var(--color-content-danger-primary);}
+.mini .ok strong{color:var(--color-content-positive-primary);}
+.mini .warn strong{color:var(--color-content-warning-primary);}
+.table-wrap{overflow-x:auto;background:var(--color-layer-floor-0);border-radius:var(--corner-radius-l);padding:8px 8px 4px;margin-bottom:12px;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{text-align:left;font-size:11px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--color-content-tertiary);padding:10px;border-bottom:1px solid var(--color-border-separator);}
+td{padding:12px 10px;border-bottom:1px solid var(--color-layer-floor-0-grouped);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+.nm{font-weight:650;letter-spacing:-.011em;}
+.num{text-align:right;font-feature-settings:"tnum","cv03","cv04";white-space:nowrap;}
+.row-bad td:first-child{border-left:3px solid var(--color-content-danger-primary);}
+.row-ok td:first-child{border-left:3px solid var(--color-special-brand);}
+.row-warn td:first-child{border-left:3px solid var(--color-content-warning-primary);}
+.pill{display:inline-block;font-size:11px;font-weight:650;letter-spacing:.04em;text-transform:uppercase;
+  padding:4px 10px;border-radius:var(--corner-radius-full);background:var(--color-bg-action-secondary);
+  color:var(--color-content-positive-primary);}
+.share{margin:8px 0 16px;}
+.share-lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--color-content-secondary);margin-bottom:6px;}
+.share-track{display:flex;height:12px;border-radius:var(--corner-radius-full);overflow:hidden;background:var(--color-layer-floor-0);}
+.share-track i{display:block;height:100%;}
+.bars{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0 8px;}
+.bar-row{margin:10px 0;}
+.bar-row span{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;}
+.bar-row b{font-feature-settings:"tnum","cv03","cv04";}
+.track{height:10px;border-radius:var(--corner-radius-full);background:var(--color-layer-floor-0);}
+.fill{height:10px;border-radius:var(--corner-radius-full);background:var(--color-special-brand);}
+.fill.cpo{background:var(--color-content-danger-primary);}
+.cap{font-size:11.5px;color:var(--color-content-tertiary);margin-top:8px;line-height:1.45;}
+.env{background:var(--color-layer-floor-0);border-radius:var(--corner-radius-l);padding:20px 22px;margin-bottom:0;}
+.env h3{margin:0 0 8px;}
+.env p{font-size:14px;margin-bottom:8px;color:var(--color-content-secondary);}
+.env p strong{color:var(--color-content-primary);}
+ul.plain{margin:8px 0 0 18px;color:var(--color-content-secondary);font-size:14px;}
+ul.plain li{margin:4px 0;}
+footer{padding:8px 40px 0;font-size:12px;color:var(--color-content-tertiary);}
+@media (max-width:900px){
+  .hero,.body,footer,.nav{padding-left:20px;padding-right:20px;}
+  .kpis,.grid2,.mini,.bars{grid-template-columns:1fr 1fr;}
+  .grid3{grid-template-columns:1fr;}
+  .hero h1{font-size:26px;}
+}
+@media (max-width:560px){
+  .kpis,.grid2,.mini,.bars{grid-template-columns:1fr;}
+}
+@media print{
+  .nav{display:none;}
+  .hero{padding:24px;}
+  .page{max-width:none;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-top">
+      <div class="kicker">Internal · воркшоп · не партнерам</div>
+      <img class="logo" alt="Bolt Food" src="data:image/png;base64,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">
+    </div>
+    <h1>Воркшоп з перемовин · Яремче</h1>
+    <p>Два раунди, одні четвірки, зміна сторін. Без слайдів — конверти, таймер і аркуш угоди.
+      Сітка: <strong>MM 27%</strong>, <strong>SMB 33%</strong>. ENT єдиної цілі немає.</p>
+    <div class="kpis">
+      <div class="kpi"><strong>2 год 30 хв</strong><span>повний цикл з дебрифом</span></div>
+      <div class="kpi"><strong>8 людей</strong><span>дві четвірки, без ротації складу</span></div>
+      <div class="kpi"><strong>2 кейси</strong><span>не шість окремих тасків</span></div>
+      <div class="kpi"><strong>20% / 24%</strong><span>стартові ставки, не 15%</span></div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <a href="#format">Формат</a>
+    <a href="#grid">Сітка</a>
+    <a href="#teams">Команди</a>
+    <a href="#case1">Кейс 1</a>
+    <a href="#case2">Кейс 2</a>
+    <a href="#logic">Цифри</a>
+    <a href="#run">Хід дня</a>
+  </nav>
+
+  <div class="body">
+
+<section id="format">
+  <h2>Формат</h2>
+  <p class="lead">За 15–20 хв підготовки плюс 30 хв «захист + стіл» команда встигає <strong>одну угоду</strong>, не чотири.
+    Комісію віддаєш лише за промо, Bolt+ міняєш на freeze ставки, service fee не ріжеш разом зі ставкою.</p>
+  <div class="callout">
+    <h3>Чому не окремі вправи</h3>
+    <p>Підняття комісії, Bolt+, перше промо і запит «знижте ставку» сидять усередині двох пакетів. Так і відбуваються живі столи з партнерами.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Раунд</th><th>Хто ініціює</th><th>Архетип</th><th>Головний конфлікт</th><th>Чого не робити</th></tr></thead>
+      <tbody>
+        <tr class="row-warn"><td class="nm">1 · Grill &amp; Co</td><td>Bolt Food</td><td>ENT international QSR, 42 локації, 20%</td><td>20 → 22% і/або +2 п.п. Bolt+. Перше промо партнера</td><td>Тягнути MM-сітку 27% на Мак-подібний бренд</td></tr>
+        <tr class="row-ok"><td class="nm">2 · Сім Каструль</td><td>Партнер</td><td>Регіональний MM, 9 локацій, 24%</td><td>Втримати 24% і вийти на 27%, коли просять 22%</td><td>Аргумент «CPO не покритий» — тут 153,6 ₴ vs 80 ₴</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Обов’язкові теми (вже в кейсах)</h3>
+      <ul class="plain">
+        <li>Підняття комісії, коли ставка нижче сітки</li>
+        <li>Bolt+ за +2 п.п., коли підписники вже замовляють</li>
+        <li>Перша промо-інвестиція партнера (cost-share 0% → ≥30%)</li>
+        <li>Запит партнера знизити комісію «бо Glovo дав краще»</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Не окремий раунд — валюта угоди</h3>
+      <ul class="plain">
+        <li>Service fee: клієнтський важіль, б’є в CP L2</li>
+        <li>Sponsored Listing / тестовий медіабюджет замість −п.п.</li>
+        <li>Канікули комісії лише на нові локації</li>
+        <li>SLA: BOR, reject, доступність, прайс-паритет</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout warn">
+    <h3>Чого немає в лайві</h3>
+    <p>Окремі столи про меню-фото, self-delivery, MOV чи касові оплати. Це фішка в конверті або матеріал на другий заїзд. Інакше за 30 хв стіл розсиплеться на операційку.</p>
+  </div>
+</section>
+
+<section id="grid">
+  <h2>Сітка, з якої стартуємо</h2>
+  <p class="lead">MM 27% і SMB 33% — ціль. ENT єдиної цілі в bulk-increase немає: international QSR і national chain живуть різними коридорами. <strong>15% у кейсах не використовуємо.</strong></p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Сегмент</th><th>Ціль</th><th>Портфель · червень 2026</th><th>Як граємо</th></tr></thead>
+      <tbody>
+        <tr><td class="nm">SMB</td><td class="num">33%</td><td>медіана 30%, лише ~17% уже на 33%+</td><td>У лайві немає. Шпаргалка, якщо партнер мішає сегменти</td></tr>
+        <tr class="row-ok"><td class="nm">MM</td><td class="num">27%</td><td>медіана 25%, ~30% уже ≥27%, ~35% ще ≤24%</td><td>Кейс 2: зараз 24%, сітка 27%, партнер просить 22%</td></tr>
+        <tr class="row-warn"><td class="nm">ENT international</td><td>Немає єдиної цілі</td><td>McD 15%, KFC 16%, Hesburger 23%. Domino's / LOKO в зрізі — ROD, не platform</td><td>Кейс 1: зараз 20% (Мак уже не 15%). Крок столу +2 п.п., не стрибок на 27%</td></tr>
+        <tr><td class="nm">ENT national</td><td>Немає єдиної цілі; ближче до MM</td><td>Євразія / Мама Манана 24%, Lviv Croissants 25%</td><td>Якщо скажуть «ми вже ENT — дайте 20%» — пастка кейсу 2</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="cap">Медіани — знімок fact_provider + dim на тиждень 1–7 червня 2026, не ціль. Станом на листопад Мак уже вище 15%.</p>
+</section>
+
+<section id="teams">
+  <h2>Команди</h2>
+  <p class="lead">Склад фіксований на обидва раунди. Ярослав і Анатолій завжди по різні боки. Двох KAM, двох київських MM і двох «регіональних у розвитку» теж розведено. Перший голос у раунді — не найстарший.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>Явір <span class="pill">Раунд 1 = Bolt</span></h3>
+      <div class="table-wrap" style="padding:0;background:transparent;">
+        <table>
+          <thead><tr><th>Людина</th><th>У компанії</th><th>За столом</th></tr></thead>
+          <tbody>
+            <tr><td class="nm">Ярослав Бокій</td><td>Тімлід</td><td>Директор. Мовчить, доки не візьме 2-хв huddle</td></tr>
+            <tr><td class="nm">Ганна Руда</td><td>KAM · McD та складні мережі</td><td>Важкі заперечення, не відкриття</td></tr>
+            <tr><td class="nm">Марта Васькіна</td><td>AM, київський MM</td><td>Раунд 1: lead speaker від Bolt</td></tr>
+            <tr><td class="nm">Маргарита Житник</td><td>AM · регіони, Львів, НОА</td><td>Раунд 2: lead speaker від партнера</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Смерека <span class="pill">Раунд 1 = партнер</span></h3>
+      <div class="table-wrap" style="padding:0;background:transparent;">
+        <table>
+          <thead><tr><th>Людина</th><th>У компанії</th><th>За столом</th></tr></thead>
+          <tbody>
+            <tr><td class="nm">Анатолій Федоренко</td><td>Регіональний менеджер</td><td>Директор / huddle</td></tr>
+            <tr><td class="nm">Христина Бухній</td><td>KAM · KFC, Domino's</td><td>Раунд 2: lead speaker від Bolt</td></tr>
+            <tr><td class="nm">Наталія Климась</td><td>Senior AM · топ MM Київ</td><td>Цифри в обох раундах, не перший голос</td></tr>
+            <tr><td class="nm">Вадім Бардиш</td><td>Account specialist · регіони</td><td>Раунд 1: lead speaker від партнера</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Рішення</th><th>Навіщо</th></tr></thead>
+      <tbody>
+        <tr><td class="nm">Ганна в раунді 1 на боці Bolt проти QSR</td><td>Її робочий м’яз: національний бренд, який «нас не потребує».</td></tr>
+        <tr><td class="nm">Христина в раунді 1 на боці QSR-партнера</td><td>Знає, як думає KFC / Domino's, і змусить Bolt почути реальні заперечення.</td></tr>
+        <tr><td class="nm">Вадім відкриває раунд 1 як партнер</td><td>Безпечніша роль перед рев’ю. У раунді 2 сидить на боці Bolt і слухає, як тримають ставку.</td></tr>
+        <tr><td class="nm">Маргарита відкриває раунд 2 як регіональний MM</td><td>Прямо її книга: Львів, регіони, складний новий партнер.</td></tr>
+        <tr><td class="nm">Наталія не lead speaker</td><td>Знає брифи. Таймер і дебриф після другого раунду — її.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout warn">
+    <h3>Якщо Наталія лише фасилітує, не грає</h3>
+    <p>Залишається 7 людей: 4 на «Явір» і 3 на «Смерека». Краще не робити. Вадім втрачає стіл з регіональним менеджером. Залишаємо 8 гравців.</p>
+  </div>
+</section>
+
+<section id="case1">
+  <h2>Кейс 1 · Grill &amp; Co</h2>
+  <p class="lead">Раунд 1. ENT international QSR. Сітка MM 27% сюди не наїжджає — крок столу +2 п.п., не стрибок. Назви вигадані, не McD і не KFC.</p>
+  <div class="mini">
+    <div class="card"><strong>32 000</strong><span>замовлення / міс</span></div>
+    <div class="card"><strong>390 ₴</strong><span>чек партнера до знижки</span></div>
+    <div class="card"><strong>20%</strong><span>поточна комісія</span></div>
+    <div class="card danger"><strong>96 ₴</strong><span>CPO кур’єра</span></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Показник</th><th class="num">Значення</th><th>Навіщо на столі</th></tr></thead>
+      <tbody>
+        <tr class="row-warn"><td class="nm">Сегмент</td><td class="num">ENT international</td><td>Не MM. 27% за цей стіл не просимо</td></tr>
+        <tr><td class="nm">Локації</td><td class="num">42, з них 28 Київ</td><td>Національний QSR, 8 міст</td></tr>
+        <tr><td class="nm">Food GMV / міс</td><td class="num">12 480 000 ₴</td><td>32 000 × 390</td></tr>
+        <tr class="row-bad"><td class="nm">Комісія 20%</td><td class="num">2 496 000 ₴ · 78 ₴/зам</td><td>Не криє CPO 96 ₴. Дірка 18 ₴/зам = 576 000 ₴</td></tr>
+        <tr class="row-warn"><td class="nm">Eater fees (інвойс)</td><td class="num">52 ₴/зам, з них SF 19 ₴</td><td>Саме SF тримає юніт, не комісія</td></tr>
+        <tr class="row-warn"><td class="nm">Always-on промо Bolt / партнер</td><td class="num">720 000 ₴ / 0 ₴</td><td>Cost-share 0%. Партнер ніколи не інвестував</td></tr>
+        <tr class="row-bad"><td class="nm">CP L2 спрощено</td><td class="num">~143 000 ₴ · 1,1%</td><td>Комісія + eater − CPO − 1,8% − DI</td></tr>
+        <tr><td class="nm">Частка замовлень Bolt+</td><td class="num">22%, не enrolled</td><td>Підписники вже їдять, +2 п.п. не зібрані</td></tr>
+        <tr><td class="nm">Частка каналів</td><td class="num">61 / 29 / 10</td><td>Glovo / Bolt / своє. Бриф гри</td></tr>
+        <tr><td class="nm">BOR / рейтинг</td><td class="num">11% · 4,2</td><td>Обідній wait на кухні роздуває CPO</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="cap">20% × 390 = 78 ₴ проти CPO 96 ₴. Eater 52 ₴ закриває дірку, тому «ми в мінусі» — слабка теза. Чесна: комісія не криє кур’єра, юніт стоїть на SF, always-on 720 тис. платить тільки Bolt. +2 п.п. до 22% = +249 600 ₴ і комісія 85,8 ₴, усе ще нижче CPO. −5 ₴ SF = −160 000 ₴ і CP L2 ≈ 0. 30% cost-share з 720 тис. = +216 000 ₴ до L2 без зміни ставки.</p>
+  <div class="share">
+    <div class="share-lbl"><span>Частка каналів · бриф гри</span><span>61 / 29 / 10</span></div>
+    <div class="share-track">
+      <i style="width:61%;background:var(--color-content-tertiary)"></i>
+      <i style="width:29%;background:var(--color-special-brand)"></i>
+      <i style="width:10%;background:var(--color-layer-sage)"></i>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="env">
+      <h3>Конверт Bolt Food</h3>
+      <p><strong>Must-have:</strong> вийти з 20% «як є». Або 22% без Bolt+, або 20% + Bolt+ 2 п.п. Обидва разом — лише в обмін на cost-share. Не обіцяти 27%: це не MM.</p>
+      <p><strong>Nice:</strong> партнер бере ≥30% існуючого always-on (216 000 ₴ з 720 000 ₴). Це перша інвестиція, не новий бюджет Bolt.</p>
+      <p><strong>Red line:</strong> SF не ріжемо. −5 ₴ = −160 тис. і CP L2 ≈ 0.</p>
+      <p><strong>BATNA:</strong> вимикаємо always-on, через 90 днів новий раунд без знижки за обсяг.</p>
+    </div>
+    <div class="env">
+      <h3>Конверт партнера</h3>
+      <p><strong>Must-have:</strong> публічно не вище 22% all-in. Хочуть freeze 20% і −5 ₴ SF. Промо — якщо Bolt лишає ≥70% витрат. «Ми вже піднялись з 15%, вистачить».</p>
+      <p><strong>Bolt+:</strong> ок, якщо це замість підняття бази, не плюс до 22%.</p>
+      <p><strong>Red line:</strong> 22% + ще +2 п.п. Bolt+ одночасно.</p>
+      <p><strong>BATNA вголос:</strong> «Glovo 16% і 200 тис. маркетингу». Блеф: CFO схвалив 21% або 20+2 Plus, якщо буде календар. Генеральний цього не знає.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <h3>Зона угоди, яку команди не бачать</h3>
+    <p>20% + Bolt+ 2 п.п. і 30% cost-share на always-on, або 21–22% без Plus і 30% cost-share. SF freeze. Програш — freeze 20% + віддати SF + лишити промо на Bolt.</p>
+  </div>
+</section>
+
+<section id="case2">
+  <h2>Кейс 2 · Сім Каструль</h2>
+  <p class="lead">Раунд 2. MM, сітка 27%. Ініціатива партнера. CPO покритий — хто принесе аргумент Grill &amp; Co, програє стіл. Пастка: «ми вже ENT, дайте 20% як QSR».</p>
+  <div class="mini">
+    <div class="card"><strong>7 200</strong><span>замовлення / міс</span></div>
+    <div class="card"><strong>640 ₴</strong><span>чек партнера до знижки</span></div>
+    <div class="card warn"><strong>24%</strong><span>поточна · сітка MM 27%</span></div>
+    <div class="card ok"><strong>80 ₴</strong><span>CPO кур’єра</span></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Показник</th><th class="num">Значення</th><th>Навіщо на столі</th></tr></thead>
+      <tbody>
+        <tr class="row-warn"><td class="nm">Сегмент</td><td class="num">MM · ціль 27%</td><td>Зараз 24%. Не ENT, не SMB 33%</td></tr>
+        <tr><td class="nm">Локації</td><td class="num">9</td><td>5 Львів, 2 ІФ, 1 Тернопіль, 1 Чернівці</td></tr>
+        <tr><td class="nm">Food GMV / міс</td><td class="num">4 608 000 ₴</td><td>7 200 × 640</td></tr>
+        <tr class="row-ok"><td class="nm">Комісія 24%</td><td class="num">1 106 000 ₴ · 153,6 ₴/зам</td><td>Покриває CPO 80 ₴ з запасом +73,6 ₴</td></tr>
+        <tr class="row-warn"><td class="nm">Eater fees інвойс / лист</td><td class="num">38 ₴ · лист 48 ₴ · SF 22 ₴</td><td>Партнер звинуватить SF у −12% конверсії</td></tr>
+        <tr class="row-ok"><td class="nm">CP L2 спрощено</td><td class="num">~626 000 ₴ · ~13,6%</td><td>Здоровий партнер. Не бити CPO-діркою</td></tr>
+        <tr class="row-warn"><td class="nm">Промо Bolt / партнер</td><td class="num">95 000 ₴ / 0 ₴</td><td>Cost-share 0% при ставці нижче сітки</td></tr>
+        <tr><td class="nm">Bolt+</td><td class="num">не enrolled · 18% уже Plus</td><td>Важіль досітки: 24+2 = 26, потім 27</td></tr>
+        <tr><td class="nm">Частка каналів</td><td class="num">48 / 44 / 8</td><td>Майже паритет. −п.п. = дарувати share</td></tr>
+        <tr class="row-bad"><td class="nm">Якість / нові ІФ</td><td class="num">3,7 · BOR 19% · 400 зам</td><td>SLA і ramp 22→24→27, не 15% на нові</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="cap">−2 п.п. до 22% на всю мережу = −92 000 ₴/міс; 22% усе ще криє CPO (140,8 vs 80). +3 п.п. до сітки 27% = +138 000 ₴. +1 п.п. зараз до 25% = +46 000 ₴. Канікули 22% на 2 нові ІФ vs поточні 24%: 400 × 640 × 2 п.п. ≈ 5 000 ₴/міс — у 18 разів дешевше, ніж −2 п.п. на дев’ять точок.</p>
+  <div class="share">
+    <div class="share-lbl"><span>Частка каналів · бриф гри</span><span>48 / 44 / 8</span></div>
+    <div class="share-track">
+      <i style="width:48%;background:var(--color-content-tertiary)"></i>
+      <i style="width:44%;background:var(--color-special-brand)"></i>
+      <i style="width:8%;background:var(--color-layer-sage)"></i>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="env">
+      <h3>Конверт партнера</h3>
+      <p><strong>Must-have:</strong> перемога для власника цього кварталу. Вголос просять 22% «як Glovo» або 100 000 ₴ маркетингу. Додадуть: «у нас 9 локацій, ми вже ENT, дайте 20% як великим мережам». Плюс −7 ₴ SF.</p>
+      <p><strong>Red line:</strong> не платити промо, якщо їх ведуть на 27% зараз.</p>
+      <p><strong>BATNA:</strong> 30% рекламного бюджету на Glovo, Bolt лишається #2.</p>
+      <p><strong>Приховано:</strong> офер Glovo 24%, не 22%. Візьмуть freeze 24% + медіа або Plus, якщо не треба підписувати 27% сьогодні.</p>
+    </div>
+    <div class="env">
+      <h3>Конверт Bolt Food</h3>
+      <p><strong>Must-have:</strong> підлога 24%. Сітка 27% — траєкторія, не сьогодні. Не мішати з кейсом 1: ENT international 20% ≠ ставка для MM. «9 локацій = ENT» — ні, сегмент MM, ціль 27%.</p>
+      <p><strong>Шлях:</strong> freeze 24% + Bolt+ 2 п.п. (26 all-in) і 27% через 4 місяці, або +1 п.п. до 25% зараз без Plus. Партнер ≥30% cost-share або тестовий SL.</p>
+      <p><strong>Red line:</strong> нижче 24% на 7 старих точок. SF ріжемо лише якщо ставка лишається 24%+ і є cost-share.</p>
+      <p><strong>Дешевий чіп:</strong> нові ІФ 22% на 2 місяці → 24% → разом із мережею на 27%. Плюс SLA на точку з BOR 19%.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <h3>Зона угоди, яку команди не бачать</h3>
+    <p>Freeze 24% + Bolt+ +2 і 40% cost-share, або 25% без Plus + ramp 27% у Q1. SF freeze або мінус лише в пакеті з промо. Канікули 22% тільки на ІФ. Програш — 22% на всю мережу «бо вже ENT».</p>
+  </div>
+</section>
+
+<section id="logic">
+  <h2>Цифри, які не роз’їжджаються</h2>
+  <p class="lead">Сітка в голові до формул: SMB 33%, MM 27%, ENT — без єдиної цілі. Далі три плутанини: <strong>GMV ≠ чек партнера</strong>, <strong>CPO кур’єра ≠ CPO промо</strong>, <strong>SF ≠ комісія ресторану</strong>.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Метрика</th><th>Як рахуємо на воркшопі</th><th>Чого не робити</th></tr></thead>
+      <tbody>
+        <tr><td class="nm">Чек партнера</td><td>Ціна меню до знижки. База комісії.</td><td>Не додавати доставку і SF — це вже eater fees.</td></tr>
+        <tr><td class="nm">Комісія ₴/зам</td><td>Чек × ставка</td><td>Не порівнювати % з CPO. Порівнювати гривні з гривнями.</td></tr>
+        <tr><td class="nm">CPO кур’єра</td><td>Invoiced courier / courier delivered orders</td><td>Не ділити на всі user delivered (own delivery розмиває).</td></tr>
+        <tr><td class="nm">Покриття CPO</td><td>Комісія ₴/зам − CPO</td><td>Додатково є eater fees, але їх різати ≠ «знижка ресторану».</td></tr>
+        <tr><td class="nm">Service fee</td><td>Revenue Bolt з клієнта</td><td>Партнер просить «зменшити SF» як компенсацію комісії — це два різні P&amp;L.</td></tr>
+        <tr><td class="nm">CP L2 (спрощено)</td><td>Комісія + eater fees − CPO − 1,8% еквайринг − DI Bolt</td><td>Немає support / HQ. Для столу досить знака й порядку.</td></tr>
+        <tr><td class="nm">Cost-share</td><td>Промо партнера / (партнер + Bolt)</td><td>Ціль ≥25–30%. 0% при живій комісії — не «лояльність», а дірка.</td></tr>
+        <tr><td class="nm">Bolt+</td><td>+2 п.п. на весь GMV enrolled-закладу</td><td>Не «тільки на замовлення підписників».</td></tr>
+        <tr><td class="nm">Частка конкурента</td><td>Бриф гри</td><td>Не видавати за витяг Databricks. Блеф перевіряти: «покажіть лист».</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Комісія ₴/зам проти CPO</h3>
+  <div class="bars">
+    <div class="card">
+      <h3>Grill &amp; Co · 20%</h3>
+      <div class="bar-row"><span>Комісія <b>78 ₴</b></span><div class="track"><div class="fill" style="width:43%"></div></div></div>
+      <div class="bar-row"><span>CPO <b>96 ₴</b></span><div class="track"><div class="fill cpo" style="width:53%"></div></div></div>
+      <p class="cap">78 не криє 96. Юніт тримає SF.</p>
+    </div>
+    <div class="card">
+      <h3>Сім Каструль · 24%</h3>
+      <div class="bar-row"><span>Комісія <b>153,6 ₴</b></span><div class="track"><div class="fill" style="width:85%"></div></div></div>
+      <div class="bar-row"><span>CPO <b>80 ₴</b></span><div class="track"><div class="fill cpo" style="width:44%"></div></div></div>
+      <p class="cap">153,6 криє 80. CPO-дірка тут заборонений аргумент.</p>
+    </div>
+  </div>
+  <p class="cap">Орієнтир Києва Q3 2026 (Багато Лосося): CPO 77→98 ₴. Курс 42 ₴/€, на столі гривня.</p>
+  <h3>Правило торгу на дебрифі</h3>
+  <div class="grid3">
+    <div class="card"><h3>Одна поступка = один зустрічний</h3><p class="lead" style="margin:0">«Добре, 1 п.п.» без фішки у відповідь — мінус. SF і комісія в один бік за раунд — мінус.</p></div>
+    <div class="card"><h3>Дешеве замість дорогого</h3><p class="lead" style="margin:0">Канікули на 2 точки, SL, SLA, календар промо — дешевше, ніж −п.п. на всю мережу.</p></div>
+    <div class="card"><h3>Цифра в кожній тезі</h3><p class="lead" style="margin:0">Не «нам треба більше інвестицій», а «720 тис. always-on / 30% ваші».</p></div>
+  </div>
+</section>
+
+<section id="run">
+  <h2>Хід дня · 2 години 30 хвилин</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Час</th><th class="num">Хв</th><th>Що відбувається</th></tr></thead>
+      <tbody>
+        <tr><td class="nm">0:00</td><td class="num">12</td><td>Правила, шпаргалка формул, конверти. Без слайдів.</td></tr>
+        <tr><td class="nm">0:12</td><td class="num">20</td><td>Підготовка раунду 1. Директор мовчить перші 10 хв — говорять lead і цифри.</td></tr>
+        <tr><td class="nm">0:32</td><td class="num">30</td><td>Стіл 1: 4+4 хв відкриття, 18 хв торг, 4 хв аркуш угоди.</td></tr>
+        <tr><td class="nm">1:02</td><td class="num">10</td><td>Перерва. Мандати не обговорювати між командами.</td></tr>
+        <tr><td class="nm">1:12</td><td class="num">20</td><td>Підготовка раунду 2, інший кейс, сторони навпаки.</td></tr>
+        <tr><td class="nm">1:32</td><td class="num">30</td><td>Стіл 2. Той самий таймінг.</td></tr>
+        <tr><td class="nm">2:02</td><td class="num">28</td><td>Дебриф: аркуші vs приховані мандати, хто говорив, що заберете в понеділок.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>30 хвилин столу</h3>
+  <p class="lead">4 хв відкриття Bolt (ціль, 3 цифри, не вся біографія мережі). 4 хв відкриття партнера. 18 хв торг: можна один huddle по 2 хв на команду. 4 хв — заповнити аркуш. Нема підпису двох сторін — угоди немає. Walk-away дозволений, якщо назвали BATNA.</p>
+  <h3>Аркуш угоди</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Поле</th><th>Раунд 1</th><th>Раунд 2</th></tr></thead>
+      <tbody>
+        <tr><td class="nm">Комісія all-in, %</td><td></td><td></td></tr>
+        <tr><td class="nm">З них Bolt+, п.п.</td><td></td><td></td></tr>
+        <tr><td class="nm">Промо ₴ і cost-share %</td><td></td><td></td></tr>
+        <tr><td class="nm">Service fee</td><td></td><td></td></tr>
+        <tr><td class="nm">Фішки (SL / нові точки / SLA)</td><td></td><td></td></tr>
+        <tr><td class="nm">Термін перегляду</td><td></td><td></td></tr>
+        <tr><td class="nm">Що не закрили</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Дебриф, не «хто переміг»</h3>
+  <p class="lead">Питання після обох раундів, по черзі Вадім і Маргарита першими: яку цифру ви сказали першою. Що віддали без зустрічного. Чи перевірили офер Glovo. Чи чіпали SF і комісію разом. Де lead speaker застряг, і чи старші перехопили стіл.</p>
+</section>
+
+  </div>
+  <footer>Bolt Food Ukraine · internal · не поширювати партнерам · 17 листопада 2026 · Nataliia Klymas</footer>
+</div>
+</body>
+</html>
