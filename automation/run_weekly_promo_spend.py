@@ -138,10 +138,35 @@ tr:hover td{{background:var(--surface);}}
     return style, logo_uri
 
 
-def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, out_dir: Path):
+def prorate_sl(listings: pd.DataFrame, week_start: dt.date, week_end: dt.date) -> dict:
+    """SL spend in local ₴ for listings overlapping the inclusive week."""
+    out = {}
+    if listings is None or listings.empty:
+        return out
+    for _, r in listings.iterrows():
+        pid = int(r["provider_id"])
+        sl_start = pd.Timestamp(r["sl_start"]).date()
+        sl_end = pd.Timestamp(r["sl_end"]).date()
+        overlap_start = max(sl_start, week_start)
+        overlap_end = min(sl_end, week_end)
+        days = (overlap_end - overlap_start).days + 1
+        if days <= 0:
+            continue
+        price = float(safe(r["price_per_day"]))
+        rec = out.setdefault(pid, {"sl": 0.0, "sl_days": 0, "sl_ppd": price})
+        rec["sl"] += price * days
+        rec["sl_days"] += days
+        rec["sl_ppd"] = price
+    for rec in out.values():
+        rec["sl"] = int(round(rec["sl"]))
+    return out
+
+
+def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, out_dir: Path, sl_map=None):
     ids = list(providers.keys())
     week_label = f"{start.day}.{start.month:02d}–{end.day}.{end.month:02d}.{end.year}"
     file_stub = f"muza_promo_spend_{start.strftime('%Y%m%d')}_{end.strftime('%Y%m%d')}"
+    sl_map = sl_map or {}
 
     L = {}
     for pid in ids:
@@ -155,13 +180,18 @@ def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, o
             promo_ord = int(safe(r["promo_ord"]))
         else:
             delivered = gmv = bolt = part = promo_ord = 0
+        sl_rec = sl_map.get(pid) or {}
+        sl_spend = int(round(safe(sl_rec.get("sl"))))
         L[pid] = {
             **meta,
             "delivered": delivered,
             "gmv": gmv,
             "bolt": bolt,
             "part": part,
-            "total": bolt + part,
+            "sl": sl_spend,
+            "sl_days": int(safe(sl_rec.get("sl_days"))),
+            "sl_ppd": safe(sl_rec.get("sl_ppd")),
+            "total": bolt + part + sl_spend,
             "promo_ord": promo_ord,
             "promo_sh": round(promo_ord / max(delivered, 1) * 100) if delivered else 0,
         }
@@ -180,10 +210,11 @@ def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, o
     net_gmv = sum(d["gmv"] for d in L.values())
     net_bolt = sum(d["bolt"] for d in L.values())
     net_part = sum(d["part"] for d in L.values())
-    net_total = net_bolt + net_part
+    net_sl = sum(d["sl"] for d in L.values())
+    net_total = net_bolt + net_part + net_sl
     net_promo_ord = sum(d["promo_ord"] for d in L.values())
-    bolt_sh = round(net_bolt / max(net_total, 1) * 100)
-    part_sh = round(net_part / max(net_total, 1) * 100)
+    muza_n = sum(1 for d in L.values() if d["brand"] == "Муза")
+    sl_locs = [d for d in L.values() if d["sl"] > 0]
 
     def loc_rows(brand: str) -> str:
         rows = []
@@ -191,10 +222,10 @@ def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, o
             [p for p in ids if L[p]["brand"] == brand],
             key=lambda p: (-L[p]["total"], L[p]["city"], L[p]["name"]),
         )
-        tb = tp = tt = td = tg = tpo = 0
+        tb = tp = ts = tt = td = tg = tpo = 0
         for pid in pids:
             d = L[pid]
-            tb += d["bolt"]; tp += d["part"]; tt += d["total"]
+            tb += d["bolt"]; tp += d["part"]; ts += d["sl"]; tt += d["total"]
             td += d["delivered"]; tg += d["gmv"]; tpo += d["promo_ord"]
             rows.append(
                 f"<tr><td>{d['name']}</td><td>{d['city']}</td>"
@@ -202,6 +233,7 @@ def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, o
                 f"<td class='num'>{money(d['gmv'])}</td>"
                 f"<td class='num' style='color:var(--ac);'>{money(d['bolt'])}</td>"
                 f"<td class='num'>{money(d['part'])}</td>"
+                f"<td class='num'>{money(d['sl'])}</td>"
                 f"<td class='num'><strong>{money(d['total'])}</strong></td>"
                 f"<td class='num'>{fmt(d['promo_ord'])}</td>"
                 f"<td class='num'><span class='b bg'>{d['promo_sh']}%</span></td></tr>"
@@ -210,7 +242,8 @@ def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, o
             f"<tr class='tot'><td colspan='2'>Разом {brand}</td>"
             f"<td class='num'>{fmt(td)}</td><td class='num'>{money(tg)}</td>"
             f"<td class='num'>{money(tb)}</td><td class='num'>{money(tp)}</td>"
-            f"<td class='num'>{money(tt)}</td><td class='num'>{fmt(tpo)}</td><td></td></tr>"
+            f"<td class='num'>{money(ts)}</td><td class='num'>{money(tt)}</td>"
+            f"<td class='num'>{fmt(tpo)}</td><td></td></tr>"
         )
         return "\n".join(rows)
 
@@ -225,33 +258,34 @@ def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, o
    <img class="hero-logo" src="{logo_uri}" alt="Bolt Food">
  </div>
  <div class="hbadge">Щотижневий звіт · {week_label}</div>
- <h1>Витрати на промо <span>Bolt vs заклад</span></h1>
- <p class="hero-sub">{len(ids)} локацій · доставлені замовлення · дані Databricks</p>
+ <h1>Витрати на промо <span>і платне просування</span></h1>
+ <p class="hero-sub">{muza_n} локацій Муза · знижки на замовленнях + платне просування · дані Databricks</p>
  <div class="kpis">
    <div class="kpi"><strong>{fmt(net_del)}</strong>доставлено</div>
    <div class="kpi"><strong>{money(net_gmv)}</strong>GMV</div>
-   <div class="kpi"><strong>{money(net_bolt)}</strong>витрати Bolt ({bolt_sh}%)</div>
-   <div class="kpi"><strong>{money(net_part)}</strong>витрати закладу ({part_sh}%)</div>
-   <div class="kpi"><strong>{money(net_total)}</strong>промо разом</div>
-   <div class="kpi"><strong>{fmt(net_promo_ord)}</strong>замовлень з промо</div>
+   <div class="kpi"><strong>{money(net_bolt)}</strong>знижки Bolt</div>
+   <div class="kpi"><strong>{money(net_part)}</strong>знижки закладу</div>
+   <div class="kpi"><strong>{money(net_sl)}</strong>платне просування</div>
+   <div class="kpi"><strong>{money(net_total)}</strong>разом витрати</div>
+   <div class="kpi"><strong>{fmt(net_promo_ord)}</strong>замовлень зі знижкою</div>
  </div>
 </div></div>
 <div class="sec" style="background:#fff;"><div class="wrap">
- <div class="nav"><a href="#by-loc">По локаціях</a><a href="#by-order">По замовленнях</a></div>
+ <div class="nav"><a href="#by-loc">По локаціях</a><a href="#sl">Платне просування</a><a href="#by-order">По замовленнях</a></div>
 </div></div>
 <div class="sec" style="background:var(--surface);"><div class="wrap">
  <div class="sec-t">Підсумок тижня</div>
- <div class="sec-s">Розподіл фінансування промо між Bolt і закладом</div><div class="hr"></div>
+ <div class="sec-s">Знижки на замовленнях (Bolt і заклад) і платне просування в стрічці</div><div class="hr"></div>
  <div class="g4">
-  <div class="card"><div class="cl">Витрати Bolt</div><div class="cv" style="color:var(--ac);">{money(net_bolt)}</div><div class="cd">{bolt_sh}% від промо</div></div>
-  <div class="card"><div class="cl">Витрати закладу</div><div class="cv">{money(net_part)}</div><div class="cd">{part_sh}% від промо</div></div>
-  <div class="card"><div class="cl">Разом промо</div><div class="cv">{money(net_total)}</div><div class="cd">{fmt(net_promo_ord)} замовлень</div></div>
-  <div class="card"><div class="cl">GMV тижня</div><div class="cv">{money(net_gmv)}</div><div class="cd">{fmt(net_del)} доставок</div></div>
+  <div class="card"><div class="cl">Знижки Bolt</div><div class="cv" style="color:var(--ac);">{money(net_bolt)}</div><div class="cd">на замовленнях</div></div>
+  <div class="card"><div class="cl">Знижки закладу</div><div class="cv">{money(net_part)}</div><div class="cd">на замовленнях</div></div>
+  <div class="card"><div class="cl">Платне просування</div><div class="cv">{money(net_sl)}</div><div class="cd">{len(sl_locs)} локацій цього тижня</div></div>
+  <div class="card"><div class="cl">Разом витрати</div><div class="cv">{money(net_total)}</div><div class="cd">{fmt(net_promo_ord)} замовлень зі знижкою</div></div>
  </div>
 </div></div>
 <div class="sec" id="by-loc" style="background:#fff;"><div class="wrap">
  <div class="sec-t">Розріз по локаціях</div>
- <div class="sec-s">Доставлено / GMV / витрати Bolt і закладу / частка замовлень з промо</div><div class="hr"></div>
+ <div class="sec-s">Доставлено / GMV / знижки Bolt і закладу / платне просування / частка замовлень зі знижкою</div><div class="hr"></div>
 """)
     for brand in ["Муза", "Європіано"]:
         parts.append(f"""
@@ -260,16 +294,44 @@ def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, o
  <table>
   <thead><tr>
    <th>Локація</th><th>Місто</th><th class="num">Доставлено</th><th class="num">GMV</th>
-   <th class="num">Bolt</th><th class="num">Заклад</th><th class="num">Разом</th>
-   <th class="num">З промо</th><th class="num">Частка</th>
+   <th class="num">Bolt</th><th class="num">Заклад</th><th class="num">Платне просування</th><th class="num">Разом</th>
+   <th class="num">Зі знижкою</th><th class="num">Частка</th>
   </tr></thead>
   <tbody>{loc_rows(brand)}</tbody>
  </table></div>""")
     parts.append("</div></div>")
+    sl_rows_html = []
+    if sl_locs:
+        for d in sorted(sl_locs, key=lambda x: (-x["sl"], x["name"])):
+            sl_rows_html.append(
+                f"<tr><td>{d['name']}</td><td>{d['city']}</td>"
+                f"<td class='num'>{fmt(d['sl_days'])}</td>"
+                f"<td class='num'>{money(d['sl_ppd'])}</td>"
+                f"<td class='num'><strong>{money(d['sl'])}</strong></td></tr>"
+            )
+        sl_rows_html.append(
+            f"<tr class='tot'><td colspan='2'>Разом</td><td></td><td></td>"
+            f"<td class='num'>{money(net_sl)}</td></tr>"
+        )
+        sl_body = "\n".join(sl_rows_html)
+    else:
+        sl_body = "<tr><td colspan='5'>Цього тижня витрат на платне просування немає.</td></tr>"
     parts.append(f"""
-<div class="sec" id="by-order" style="background:var(--surface);"><div class="wrap">
+<div class="sec" id="sl" style="background:var(--surface);"><div class="wrap">
+ <div class="sec-t">Платне просування</div>
+ <div class="sec-s">Витрати за цей тиждень · тариф на точку на день · 100% оплачує заклад</div><div class="hr"></div>
+ <div class="card" style="padding:0;overflow:auto;">
+ <table>
+  <thead><tr>
+   <th>Локація</th><th>Місто</th><th class="num">Днів у тижні</th><th class="num">₴ / день</th><th class="num">Витрати за тиждень</th>
+  </tr></thead>
+  <tbody>{sl_body}</tbody>
+ </table></div>
+</div></div>""")
+    parts.append(f"""
+<div class="sec" id="by-order" style="background:#fff;"><div class="wrap">
  <div class="sec-t">Розріз по замовленнях</div>
- <div class="sec-s">Лише замовлення з промо-витратами · код / дата / вартість / Bolt / партнер · {fmt(len(orders))} рядків</div><div class="hr"></div>
+ <div class="sec-s">Лише замовлення зі знижками · код / дата / вартість / Bolt / заклад · {fmt(len(orders))} рядків. Платне просування тут не розкладається по чеках.</div><div class="hr"></div>
  <div class="scroll"><table>
   <thead><tr>
    <th>Дата</th><th>Код замовлення</th><th>Бренд</th><th>Локація</th><th>Місто</th>
@@ -292,7 +354,7 @@ def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, o
     parts.append("</tbody></table></div></div></div>")
     parts.append(f"""
 <div class="foot"><div class="wrap">
- Джерело: main.ng_delivery.dim_order_delivery · курс {UAH} ₴/€ · згенеровано {dt.datetime.now().strftime('%Y-%m-%d %H:%M')} · тиждень {start.isoformat()} — {end.isoformat()}
+ Джерело: знижки — dim_order_delivery · платне просування — mart_sponsored_listing_provider_listing_results · курс {UAH} ₴/€ · згенеровано {dt.datetime.now().strftime('%Y-%m-%d %H:%M')} · тиждень {start.isoformat()} — {end.isoformat()}
 </div></div>
 </body></html>""")
 
@@ -310,9 +372,10 @@ def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, o
             "GMV, ₴": L[pid]["gmv"],
             "Витрати Bolt, ₴": L[pid]["bolt"],
             "Витрати закладу, ₴": L[pid]["part"],
-            "Разом промо, ₴": L[pid]["total"],
-            "Замовлень з промо": L[pid]["promo_ord"],
-            "Частка з промо, %": L[pid]["promo_sh"],
+            "Платне просування, ₴": L[pid]["sl"],
+            "Разом, ₴": L[pid]["total"],
+            "Замовлень зі знижкою": L[pid]["promo_ord"],
+            "Частка зі знижкою, %": L[pid]["promo_sh"],
         }
         for pid in ids
     ])
@@ -337,19 +400,32 @@ def render_week(providers, loc_week, orders_week, start, end, style, logo_uri, o
     xlsx_path = out_dir / f"{file_stub}.xlsx"
     with pd.ExcelWriter(xlsx_path, engine="openpyxl") as w:
         loc_df.to_excel(w, sheet_name="По локаціях", index=False)
+        pd.DataFrame([
+            {
+                "Provider ID": pid,
+                "Бренд": L[pid]["brand"],
+                "Локація": L[pid]["name"],
+                "Місто": L[pid]["city"],
+                "Днів у тижні": L[pid]["sl_days"],
+                "₴ / день": L[pid]["sl_ppd"],
+                "Платне просування, ₴": L[pid]["sl"],
+            }
+            for pid in ids if L[pid]["sl"] > 0
+        ]).to_excel(w, sheet_name="Платне просування", index=False)
         ord_df.to_excel(w, sheet_name="По замовленнях", index=False)
         pd.DataFrame([{
             "Тиждень з": start.isoformat(),
             "Тиждень по": end.isoformat(),
             "Доставлено": net_del,
             "GMV, ₴": net_gmv,
-            "Bolt, ₴": net_bolt,
-            "Заклад, ₴": net_part,
-            "Разом промо, ₴": net_total,
-            "Замовлень з промо": net_promo_ord,
+            "Bolt знижки, ₴": net_bolt,
+            "Заклад знижки, ₴": net_part,
+            "Платне просування, ₴": net_sl,
+            "Разом, ₴": net_total,
+            "Замовлень зі знижкою": net_promo_ord,
         }]).to_excel(w, sheet_name="Підсумок", index=False)
 
-    print(f"  {file_stub}: bolt={net_bolt} part={net_part} promo_ord={len(orders)}")
+    print(f"  {file_stub}: bolt={net_bolt} part={net_part} sl={net_sl} promo_ord={len(orders)}")
     return html_path.name, f"Промо-витрати {start.day:02d}.{start.month:02d}–{end.day:02d}.{end.month:02d}.{end.year}"
 
 
@@ -398,7 +474,7 @@ def rebuild_index(out_dir: Path):
     <a class="back" href="../">← Назад до звітів Муза</a>
     <div class="badge"><span class="dot"></span> Bolt Food · Weekly</div>
     <h1>Щотижневі витрати на промо</h1>
-    <p class="sub">Муза / Європіано · Bolt vs заклад · по локаціях і по замовленнях</p>
+    <p class="sub">Муза / Європіано · знижки та платне просування · по локаціях і по замовленнях</p>
     <ul class="list">
 {lis}
     </ul>
@@ -485,7 +561,19 @@ def main():
               AND (COALESCE(campaign_spend_bolt_eur, 0) > 0
                    OR COALESCE(campaign_spend_provider_eur, 0) > 0)
         """)
-    print(f"  daily loc rows: {len(loc)}; promo orders: {len(orders)}")
+        sl_listings = dbx.query(f"""
+            SELECT provider_id,
+              DATE(sponsored_listing_start_ts_local) AS sl_start,
+              COALESCE(DATE(sponsored_listing_actual_end_ts_local),
+                       DATE(sponsored_listing_default_end_ts_local)) AS sl_end,
+              CAST(offer_price_per_day_local AS DOUBLE) AS price_per_day
+            FROM main.mart_models.mart_sponsored_listing_provider_listing_results
+            WHERE provider_id IN ({ids_str})
+              AND DATE(sponsored_listing_start_ts_local) < DATE_ADD(DATE('{range_end.isoformat()}'), 1)
+              AND COALESCE(DATE(sponsored_listing_actual_end_ts_local),
+                           DATE(sponsored_listing_default_end_ts_local)) >= DATE('{range_start.isoformat()}')
+        """)
+    print(f"  daily loc rows: {len(loc)}; promo orders: {len(orders)}; SL listings: {0 if sl_listings is None or sl_listings.empty else len(sl_listings)}")
 
     if not loc.empty:
         loc["week_mon"] = pd.to_datetime(loc["order_date"]).dt.date.map(
@@ -507,7 +595,8 @@ def main():
         orders_week = pd.DataFrame()
         if not orders.empty:
             orders_week = orders[orders["week_mon"] == start].copy()
-        render_week(providers, loc_week, orders_week, start, end, style, logo_uri, out_dir)
+        sl_map = prorate_sl(sl_listings, start, end)
+        render_week(providers, loc_week, orders_week, start, end, style, logo_uri, out_dir, sl_map=sl_map)
 
     rebuild_index(out_dir)
     print(f"Wrote {len(weeks)} promo-spend report(s) to {out_dir}")
