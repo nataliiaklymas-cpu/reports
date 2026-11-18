@@ -287,12 +287,10 @@ tr:hover td{background:var(--surface);}
     <div class="card"><div class="cl">Bolt+ customers</div><div class="cv">175</div><div class="cd">Sep: 186 <span style="font-size:12px;color:#DE1929;font-weight:700;">▼5.9%</span></div></div>
     <div class="card"><div class="cl">% new</div><div class="cv">43.7%</div><div class="cd">Sep: 50.8%</div></div>
   </div>
-  <div style="overflow-x:auto;margin-bottom:28px;"><table><thead><tr>
-    <th>Location</th>
-    <th class="num">Active (Oct)</th><th class="num">New (Oct)</th>
-    <th class="num">Active (Sep)</th><th class="num">New (Sep)</th>
-  </tr></thead><tbody>
-<tr><td><strong>Vyshneve</strong></td><td class="num"><strong>226</strong></td><td class="num">97</td><td class="num">244</td><td class="num">123</td></tr><tr><td><strong>Zdolbunivska</strong></td><td class="num"><strong>184</strong></td><td class="num">99</td><td class="num">137</td><td class="num">79</td></tr><tr><td><strong>Kyivskyi Shliakh</strong></td><td class="num"><strong>164</strong></td><td class="num">46</td><td class="num">166</td><td class="num">57</td></tr><tr><td><strong>Shevchenka</strong></td><td class="num"><strong>160</strong></td><td class="num">66</td><td class="num">169</td><td class="num">82</td></tr><tr><td><strong>Pavla Polubotka</strong></td><td class="num"><strong>157</strong></td><td class="num">74</td><td class="num">233</td><td class="num">138</td></tr><tr><td><strong>Kyivska</strong></td><td class="num"><strong>88</strong></td><td class="num">44</td><td class="num">99</td><td class="num">52</td></tr></tbody></table></div>
+  <div class="chart-wrap" style="margin-bottom:28px;">
+    <div style="font-size:13px;font-weight:600;color:var(--muted);margin-bottom:10px;">Active and new customers by location</div>
+    <canvas id="chartUsers" height="130"></canvas>
+  </div>
   <div class="card">
     <div style="font-size:15px;font-weight:650;margin-bottom:4px;">Customer journey funnel — October 2026</div>
     <div style="font-size:12px;color:var(--muted);margin-bottom:18px;">From venue impression in feed to a placed order</div>
@@ -329,6 +327,25 @@ tr:hover td{background:var(--surface);}
     </tr></thead><tbody><tr><td><strong>May</strong></td><td class="num">42,165</td><td class="num">5,047</td><td class="num">1,701</td><td class="num">1,031</td><td class="num">11.97%</td><td class="num">33.70%</td><td class="num">60.61%</td><td class="num"><strong>2.45%</strong></td></tr><tr><td><strong>Jun</strong></td><td class="num">47,531</td><td class="num">5,589</td><td class="num">1,972</td><td class="num">1,247</td><td class="num">11.76%</td><td class="num">35.28%</td><td class="num">63.24%</td><td class="num"><strong>2.62%</strong></td></tr><tr><td><strong>Jul</strong></td><td class="num">45,702</td><td class="num">4,802</td><td class="num">1,520</td><td class="num">964</td><td class="num">10.51%</td><td class="num">31.65%</td><td class="num">63.42%</td><td class="num"><strong>2.11%</strong></td></tr><tr><td><strong>Aug</strong></td><td class="num">59,636</td><td class="num">6,822</td><td class="num">2,319</td><td class="num">1,299</td><td class="num">11.44%</td><td class="num">33.99%</td><td class="num">56.02%</td><td class="num"><strong>2.18%</strong></td></tr><tr><td><strong>Sep</strong></td><td class="num">38,118</td><td class="num">5,320</td><td class="num">2,033</td><td class="num">1,216</td><td class="num">13.96%</td><td class="num">38.21%</td><td class="num">59.81%</td><td class="num"><strong>3.19%</strong></td></tr><tr><td><strong>Oct</strong></td><td class="num">36,597</td><td class="num">5,071</td><td class="num">1,728</td><td class="num">1,046</td><td class="num">13.86%</td><td class="num">34.08%</td><td class="num">60.53%</td><td class="num"><strong>2.86%</strong></td></tr></tbody></table></div>
   </div>
 </div></div>
+<script>
+(function(){
+  new Chart(document.getElementById('chartUsers'),{
+    type:'bar',
+    data:{labels:["Vyshneve", "Zdolbunivska", "Kyivskyi Shliakh", "Shevchenka", "Pavla Polubotka", "Kyivska"],datasets:[
+      {label:'Active (Oct)',data:[226, 184, 164, 160, 157, 88],backgroundColor:'rgba(42,156,100,.75)',borderColor:'#2A9C64',borderWidth:1.5,borderRadius:4},
+      {label:'New (Oct)',data:[97, 99, 46, 66, 74, 44],backgroundColor:'rgba(12,44,28,.85)',borderColor:'#0C2C1C',borderWidth:1.5,borderRadius:4},
+      {label:'Active (Sep)',data:[244, 137, 166, 169, 233, 99],backgroundColor:'rgba(143,211,172,.65)',borderColor:'#8FD3AC',borderWidth:1.5,borderRadius:4},
+      {label:'New (Sep)',data:[123, 79, 57, 82, 138, 52],backgroundColor:'rgba(200,231,212,.95)',borderColor:'#C8E7D4',borderWidth:1.5,borderRadius:4}
+    ]},
+    options:{responsive:true,interaction:{mode:'index',intersect:false},
+      plugins:{legend:{position:'top',labels:{font:{size:11}}}},
+      scales:{
+        x:{grid:{display:false},ticks:{maxRotation:40,minRotation:0,font:{size:11}}},
+        y:{beginAtZero:true,title:{display:true,text:'Customers',font:{size:11}}}
+      }}
+  });
+})();
+</script>
 <div class="sec" style="background:var(--gray);" id="dishes"><div class="wrap">
   <div class="sec-t">Chain top dishes — October 2026</div>
   <div class="sec-s">Names as in the Bolt Food app · drinks excluded · October 2026</div><div class="hr"></div>
@@ -347,10 +364,6 @@ tr:hover td{background:var(--surface);}
       <div class="cl">Average items per check</div>
       <div class="cv" style="color:var(--ac);">5.98</div>
       <div class="cd">Sep: 5.94 <span style="font-size:12px;color:#2A9C64;font-weight:700;">▲0.6%</span></div>
-      <div style="font-size:12px;color:var(--dark);line-height:1.7;margin-top:14px;">
-        Items in a delivered order, counting quantity. Unique items 5.28
-        vs 5.18 in September.
-      </div>
     </div>
   </div>
 </div></div>
@@ -395,13 +408,28 @@ tr:hover td{background:var(--surface);}
     <div class="card"><div class="cl">Delivery time (Oct)</div><div class="cv">23.4 min</div></div>
     <div class="card"><div class="cl">Delivery time (Sep)</div><div class="cv">22.8 min</div><div class="cd"><span style="font-size:12px;color:#DE1929;font-weight:700;">▲2.6%</span></div></div>
   </div>
-  <div style="overflow-x:auto;"><table><thead><tr>
-    <th>Location</th>
-    <th class="num">Availability (Sep)</th>
-    <th class="num">Availability (Oct)</th>
-    <th class="num">Change</th>
-  </tr></thead><tbody>
-<tr><td><strong>Kyivska</strong></td><td class="num" style="color:#DE1929;">42.1%</td><td class="num" style="color:#DE1929;font-weight:650;">30.2%</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼28.2%</span></td></tr><tr><td><strong>Kyivskyi Shliakh</strong></td><td class="num" style="color:#DE1929;">36.2%</td><td class="num" style="color:#DE1929;font-weight:650;">32.9%</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼8.9%</span></td></tr><tr><td><strong>Shevchenka</strong></td><td class="num" style="color:#DE1929;">38.2%</td><td class="num" style="color:#DE1929;font-weight:650;">38.0%</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼0.6%</span></td></tr><tr><td><strong>Vyshneve</strong></td><td class="num" style="color:#DE1929;">47.1%</td><td class="num" style="color:#DE1929;font-weight:650;">40.8%</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼13.4%</span></td></tr><tr><td><strong>Zdolbunivska</strong></td><td class="num" style="color:#DE1929;">57.0%</td><td class="num" style="color:#DE1929;font-weight:650;">53.9%</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼5.5%</span></td></tr><tr><td><strong>Pavla Polubotka</strong></td><td class="num" style="color:#DE1929;">58.1%</td><td class="num" style="color:#DE1929;font-weight:650;">63.4%</td><td class="num"><span style="font-size:12px;color:#2A9C64;font-weight:700;">▲9.2%</span></td></tr></tbody></table></div></div></div>
+  <div class="chart-wrap">
+    <div style="font-size:13px;font-weight:600;color:var(--muted);margin-bottom:10px;">Availability by location — October vs September</div>
+    <canvas id="chartAvail" height="160"></canvas>
+  </div>
+</div></div>
+<script>
+(function(){
+  new Chart(document.getElementById('chartAvail'),{
+    type:'bar',
+    data:{labels:["Kyivska", "Kyivskyi Shliakh", "Shevchenka", "Vyshneve", "Zdolbunivska", "Pavla Polubotka"],datasets:[
+      {label:'October',data:[30.2, 32.9, 38.0, 40.8, 53.9, 63.4],backgroundColor:'rgba(42,156,100,.75)',borderColor:'#2A9C64',borderWidth:1.5,borderRadius:4},
+      {label:'September',data:[42.1, 36.2, 38.2, 47.1, 57.0, 58.1],backgroundColor:'rgba(143,211,172,.75)',borderColor:'#8FD3AC',borderWidth:1.5,borderRadius:4}
+    ]},
+    options:{indexAxis:'y',responsive:true,interaction:{mode:'index',intersect:false},
+      plugins:{legend:{position:'top',labels:{font:{size:11}}}},
+      scales:{
+        x:{beginAtZero:true,max:100,ticks:{callback:v=>v+'%'},title:{display:true,text:'%',font:{size:11}}},
+        y:{grid:{display:false}}
+      }}
+  });
+})();
+</script>
 <div class="sec" style="background:white;" id="prep"><div class="wrap">
   <div class="sec-t">Order preparation time</div>
   <div class="sec-s">Chain trend over the last 5 months · October vs September by location</div><div class="hr"></div>
@@ -433,24 +461,53 @@ tr:hover td{background:var(--surface);}
     <th class="num">Bolt+ Oct</th><th class="num">Share</th>
     <th class="num">Bolt+ Sep</th><th class="num">MoM</th>
   </tr></thead><tbody>
-<tr><td><strong>Pavla Polubotka</strong></td><td class="num"><strong style="color:var(--ac);">69</strong></td><td class="num"><span class="b bg">31.9%</span></td><td class="num">77</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼10.4%</span></td></tr><tr><td><strong>Zdolbunivska</strong></td><td class="num"><strong style="color:var(--ac);">68</strong></td><td class="num"><span class="b bg">27.0%</span></td><td class="num">38</td><td class="num"><span style="font-size:12px;color:#2A9C64;font-weight:700;">▲78.9%</span></td></tr><tr><td><strong>Vyshneve</strong></td><td class="num"><strong style="color:var(--ac);">62</strong></td><td class="num"><span class="b bo">21.9%</span></td><td class="num">72</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼13.9%</span></td></tr><tr><td><strong>Shevchenka</strong></td><td class="num"><strong style="color:var(--ac);">30</strong></td><td class="num"><span class="b bo">15.7%</span></td><td class="num">31</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼3.2%</span></td></tr><tr><td><strong>Kyivskyi Shliakh</strong></td><td class="num"><strong style="color:var(--ac);">21</strong></td><td class="num"><span class="b br">10.0%</span></td><td class="num">17</td><td class="num"><span style="font-size:12px;color:#2A9C64;font-weight:700;">▲23.5%</span></td></tr><tr><td><strong>Kyivska</strong></td><td class="num"><strong style="color:var(--ac);">20</strong></td><td class="num"><span class="b bo">17.9%</span></td><td class="num">28</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼28.6%</span></td></tr></tbody></table></div></div></div>
+<tr><td><strong>Pavla Polubotka</strong></td><td class="num"><strong style="color:var(--ac);">69</strong></td><td class="num"><span class="b bg">31.9%</span></td><td class="num">77</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼10.4%</span></td></tr><tr><td><strong>Zdolbunivska</strong></td><td class="num"><strong style="color:var(--ac);">68</strong></td><td class="num"><span class="b bg">27.0%</span></td><td class="num">38</td><td class="num"><span style="font-size:12px;color:#2A9C64;font-weight:700;">▲78.9%</span></td></tr><tr><td><strong>Vyshneve</strong></td><td class="num"><strong style="color:var(--ac);">62</strong></td><td class="num"><span class="b bo">21.9%</span></td><td class="num">72</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼13.9%</span></td></tr><tr><td><strong>Shevchenka</strong></td><td class="num"><strong style="color:var(--ac);">30</strong></td><td class="num"><span class="b bo">15.7%</span></td><td class="num">31</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼3.2%</span></td></tr><tr><td><strong>Kyivskyi Shliakh</strong></td><td class="num"><strong style="color:var(--ac);">21</strong></td><td class="num"><span class="b br">10.0%</span></td><td class="num">17</td><td class="num"><span style="font-size:12px;color:#2A9C64;font-weight:700;">▲23.5%</span></td></tr><tr><td><strong>Kyivska</strong></td><td class="num"><strong style="color:var(--ac);">20</strong></td><td class="num"><span class="b bo">17.9%</span></td><td class="num">28</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼28.6%</span></td></tr></tbody></table></div>
+  <div class="card" style="background:var(--acd);color:#fff;margin-top:24px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+      <span class="b" style="background:var(--ac);color:#fff;">Bolt+ week</span>
+      <div style="font-size:15px;font-weight:650;">Bolt+ banner + exclusive discount — 1 week every month</div>
+    </div>
+    <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:16px;">
+      A promo mechanic Bolt offers partners monthly: a one-week wave for Bolt+ subscribers only, to lift their order share and loyalty.
+    </div>
+    <div class="g3" style="margin-bottom:14px;">
+      <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:12px;">
+        <div style="font-size:10px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:5px;">Next week</div>
+        <div style="font-size:18px;font-weight:800;color:#fff;">16–22 December</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;">December 2026</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:12px;">
+        <div style="font-size:10px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:5px;">What</div>
+        <div style="font-size:12px;color:#fff;line-height:1.5;">In-app banner for Bolt+ subscribers + menu discount</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:10px;padding:12px;">
+        <div style="font-size:10px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:5px;">For whom</div>
+        <div style="font-size:12px;color:#fff;line-height:1.5;">Bolt+ subscribers only</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,.6);">
+      <strong style="color:#fff;">Goal:</strong>
+      increase the share of Bolt+ orders (currently 21.4%) without a permanent margin burden — one active week per month.
+    </div>
+  </div>
+</div></div>
 <div class="sec" style="background:white;" id="ratings"><div class="wrap">
   <div class="sec-t">Rating and quality — October 2026</div>
-  <div class="sec-s">Average score from customer reviews this month</div><div class="hr"></div>
+  <div class="sec-s">Average score from customer star ratings this month · text reviews below</div><div class="hr"></div>
   <div class="g4" style="margin-bottom:24px;">
     <div class="card"><div class="cl">Avg chain rating</div><div class="cv" style="color:var(--ac);">4.66&nbsp;★</div><div class="cd">Sep: 4.56&nbsp;★ <span style="font-size:12px;color:#2A9C64;font-weight:700;">▲2.2%</span></div></div>
     <div class="card"><div class="cl">Highest</div><div class="cv">4.82&nbsp;★</div><div class="cd">Kyivska</div></div>
     <div class="card"><div class="cl">Needs attention</div><div class="cv" style="color:var(--red);">4.59&nbsp;★</div><div class="cd">Kyivskyi Shliakh</div></div>
-    <div class="card"><div class="cl">Reviews</div><div class="cv">367</div><div class="cd">Sep: 426</div></div>
+    <div class="card"><div class="cl">Ratings</div><div class="cv">367</div><div class="cd">star ratings in the app · Sep: 426</div></div>
   </div>
   <div style="overflow-x:auto;margin-bottom:28px;"><table><thead><tr>
     <th>Location</th>
     <th class="num">Rating (Oct)</th>
     <th class="num">Current in app</th>
     <th class="num">Rating (Sep)</th>
-    <th class="num">Reviews</th>
-    <th class="num">Positive</th>
-    <th class="num">Negative</th>
+    <th class="num">Ratings</th>
+    <th class="num">Positive ratings</th>
+    <th class="num">Negative ratings</th>
   </tr></thead><tbody>
 <tr><td><strong>Kyivska</strong></td><td class="num"><span class="b bg">4.82&nbsp;★</span></td><td class="num"><span class="b bo">4.69&nbsp;★</span></td><td class="num">4.6&nbsp;★</td><td class="num">33</td><td class="num" style="color:#187B51;font-weight:600;">31</td><td class="num" style="color:#B20F1C;">1</td></tr><tr><td><strong>Shevchenka</strong></td><td class="num"><span class="b bg">4.78&nbsp;★</span></td><td class="num"><span class="b bo">4.63&nbsp;★</span></td><td class="num">4.82&nbsp;★</td><td class="num">49</td><td class="num" style="color:#187B51;font-weight:600;">46</td><td class="num" style="color:#B20F1C;">2</td></tr><tr><td><strong>Zdolbunivska</strong></td><td class="num"><span class="b bo">4.68&nbsp;★</span></td><td class="num"><span class="b bg">4.76&nbsp;★</span></td><td class="num">4.65&nbsp;★</td><td class="num">71</td><td class="num" style="color:#187B51;font-weight:600;">64</td><td class="num" style="color:#B20F1C;">4</td></tr><tr><td><strong>Vyshneve</strong></td><td class="num"><span class="b bo">4.63&nbsp;★</span></td><td class="num"><span class="b bg">4.72&nbsp;★</span></td><td class="num">4.53&nbsp;★</td><td class="num">81</td><td class="num" style="color:#187B51;font-weight:600;">73</td><td class="num" style="color:#B20F1C;">5</td></tr><tr><td><strong>Pavla Polubotka</strong></td><td class="num"><span class="b bo">4.6&nbsp;★</span></td><td class="num"><span class="b bo">4.59&nbsp;★</span></td><td class="num">4.37&nbsp;★</td><td class="num">65</td><td class="num" style="color:#187B51;font-weight:600;">58</td><td class="num" style="color:#B20F1C;">6</td></tr><tr><td><strong>Kyivskyi Shliakh</strong></td><td class="num"><span class="b bo">4.59&nbsp;★</span></td><td class="num"><span class="b bo">4.69&nbsp;★</span></td><td class="num">4.6&nbsp;★</td><td class="num">68</td><td class="num" style="color:#187B51;font-weight:600;">60</td><td class="num" style="color:#B20F1C;">3</td></tr></tbody></table></div><div class="g2"><div><div style="font-size:14px;font-weight:650;margin-bottom:12px;color:#187B51;">Positive reviews — October</div><div style="display:flex;flex-direction:column;gap:10px;"><div class="rv"><div class="rv-s">★★★★☆</div><div class="rv-t">«Все гуд но можна було б положити трубочку»</div><div class="rv-a">Vyshneve · Courier: motorbike · JD820 · 23.10.2026</div></div></div></div><div><div style="font-size:14px;font-weight:650;margin-bottom:12px;color:#B20F1C;">Negative reviews — October</div><div style="display:flex;flex-direction:column;gap:10px;"><div class="rv neg"><div class="rv-s">★☆☆☆☆</div><div class="rv-t">«Американо розмяк стакан та розлився»</div><div class="rv-a">Zdolbunivska · Courier: motorbike · 7HMNF · 21.10.2026</div></div><div class="rv neg"><div class="rv-s">★☆☆☆☆</div><div class="rv-t">«У мене у другій тортилії половина взагалі пуста. Просто лаваш і все. Як це таке можна за 175 гривень привезти?»</div><div class="rv-a">Shevchenka · Courier: bicycle · EECYZ · 01.10.2026</div></div><div class="rv neg"><div class="rv-s">★★☆☆☆</div><div class="rv-t">«Пляшка коли була відкрита.»</div><div class="rv-a">Vyshneve · Courier: motorbike · KG5OR · 05.10.2026</div></div><div class="rv neg"><div class="rv-s">★★☆☆☆</div><div class="rv-t">«Кола повністю негазована, скоріше за все її налили давно і погрузили в моє замовлення, бургери непогані, але нагетси жирні і мʼясо дивне на смак»</div><div class="rv-a">Shevchenka · Courier: motorbike · 729QN · 26.10.2026</div></div><div class="rv neg"><div class="rv-s">★★☆☆☆</div><div class="rv-t">«Замість американо без молока зробили американо з молоком»</div><div class="rv-a">Zdolbunivska · Courier: motorbike · KWKOJ · 11.10.2026</div></div><div class="rv neg"><div class="rv-s">★★★☆☆</div><div class="rv-t">«Забагато беруть оплати»</div><div class="rv-a">Vyshneve · Courier: motorbike · SYMOV · 01.10.2026</div></div><div class="rv neg"><div class="rv-s">★★★★☆</div><div class="rv-t">«Не доклали халапеньйо в кебаб»</div><div class="rv-a">Kyivskyi Shliakh · Courier: motorbike · 41GUF · 17.10.2026</div></div><div class="rv neg"><div class="rv-s">★★★★★</div><div class="rv-t">«Забули покласти 3й соус(огірковий)»</div><div class="rv-a">Zdolbunivska · Courier: e-bike · HE7VC · 19.10.2026</div></div></div></div></div></div></div>
 <div style="background:var(--acd);padding:48px 0;" id="sponsored"><div class="wrap">
