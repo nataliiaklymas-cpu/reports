@@ -39,6 +39,7 @@ FOLDERS = [
     ("pesto-group-weekly", "weekly"),
     ("this-is-pivbar", "files"),
     ("this-is-pivbar/pivbar-group-weekly", "weekly"),
+    ("pizza-day", "files"),
 ]
 
 

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Pizza Day — Smart Promo, 10–16 листопада 2026</title>
+<style>
+@import url("https://static.bolt.eu/fonts/inter/inter.css");
+:root {
+  --color-special-brand: #2A9C64;
+  --color-special-brand-alt: #0C2C1C;
+  --color-content-primary: #191F1C;
+  --color-content-secondary: #5F6563;
+  --color-content-tertiary: #868E8B;
+  --color-layer-floor-0: #FBFDFC;
+  --color-layer-floor-0-grouped: #EEF1F0;
+  --color-layer-floor-1: #FFFFFF;
+  --color-bg-action-secondary: rgba(43,134,89,.08);
+  --color-bg-promo-secondary: rgba(89,102,243,.08);
+  --color-content-action-primary: #147B51;
+  --color-content-danger: #DE1929;
+  --color-border-separator: #DEE2E1;
+  --radius: 16px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--color-layer-floor-0); }
+body {
+  font-family: Inter, "InterVariable", system-ui, sans-serif;
+  font-feature-settings: "cv03","cv04","liga" 1,"calt" 1;
+  -webkit-font-smoothing: antialiased;
+  color: var(--color-content-primary);
+  line-height: 1.55;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+.kicker {
+  font-size: 11px; font-weight: 750; letter-spacing: .08em;
+  text-transform: uppercase; color: rgba(255,255,255,.55);
+}
+.pill {
+  display: inline-flex; align-items: center;
+  padding: 5px 13px; border-radius: 600rem;
+  font-size: 12px; font-weight: 700;
+  background: var(--color-bg-promo-secondary); color: #b3b8ff;
+}
+.hero {
+  background: var(--color-special-brand-alt); color: white;
+  border-radius: var(--radius); padding: 36px 40px; margin-bottom: 20px;
+}
+.hero-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 16px; margin-bottom: 18px; flex-wrap: wrap;
+}
+.hero-top-l { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.logo { width: 84px; height: auto; }
+.hero h1 {
+  font: 650 30px/1.25 Inter, sans-serif; letter-spacing: -.02em; margin-bottom: 8px;
+}
+.hero .sub { font-size: 13px; color: rgba(255,255,255,.55); margin-bottom: 26px; max-width: 860px; }
+.hero-kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+.hkpi strong {
+  display: block; font-size: 22px; font-weight: 700; color: white;
+  font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; margin-bottom: 2px;
+}
+.hkpi span.lbl { font-size: 11px; color: rgba(255,255,255,.45); }
+@media (max-width: 900px) {
+  .hero-kpis { grid-template-columns: repeat(2,1fr); }
+  .hero { padding: 24px 20px; }
+  .sec { padding: 20px 16px; }
+  body { padding: 16px 12px 40px; }
+}
+.sec {
+  background: var(--color-layer-floor-1); border-radius: var(--radius);
+  padding: 26px 28px; margin-bottom: 18px;
+}
+.sec-t { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.sec-s { font-size: 13px; color: var(--color-content-secondary); margin-bottom: 16px; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 800px) { .g2 { grid-template-columns: 1fr; } }
+.card { background: var(--color-layer-floor-0-grouped); border-radius: var(--radius); padding: 16px; }
+.card.green { background: var(--color-bg-action-secondary); }
+.cl {
+  font-size: 10px; font-weight: 700; color: var(--color-content-secondary);
+  text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px;
+}
+.cv {
+  font-size: 22px; font-weight: 700; font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums; margin-bottom: 2px;
+}
+.cd { font-size: 11px; color: var(--color-content-secondary); }
+.insight {
+  background: var(--color-bg-action-secondary); border-radius: var(--radius);
+  padding: 16px 18px; font-size: 13px; color: var(--color-content-primary); line-height: 1.7;
+}
+.split {
+  display: flex; height: 12px; border-radius: 600rem; overflow: hidden;
+  background: var(--color-layer-floor-0-grouped); margin: 10px 0 8px;
+}
+.split i { display: block; height: 100%; }
+.split .p { background: var(--color-special-brand); }
+.split .b { background: #98CBAC; }
+.legend { display: flex; gap: 16px; font-size: 12px; color: var(--color-content-secondary); flex-wrap: wrap; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 600rem; margin-right: 6px; }
+.cmp-row {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  font-size: 13px; padding: 8px 0; border-bottom: 1px solid var(--color-layer-floor-0-grouped);
+}
+.cmp-row:last-child { border-bottom: none; }
+.cmp-lbl { color: var(--color-content-secondary); }
+.cmp-val { font-weight: 650; font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.days { display: grid; grid-template-columns: repeat(7,1fr); gap: 8px; align-items: end; height: 140px; }
+.day { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; }
+.bar {
+  width: 100%; max-width: 36px; border-radius: 8px 8px 4px 4px;
+  background: var(--color-special-brand);
+}
+.dn { font-size: 10px; color: var(--color-content-tertiary); margin-top: 6px; }
+.dv { font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.tools {
+  display: flex; gap: 10px; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; margin-bottom: 12px;
+}
+input[type="search"] {
+  flex: 1; min-width: 220px; border: 0; background: var(--color-layer-floor-0-grouped);
+  border-radius: 600rem; padding: 10px 16px; font: 500 13px Inter, sans-serif;
+  color: var(--color-content-primary); outline: none;
+}
+button.linkish {
+  border: 0; background: var(--color-bg-action-secondary); color: var(--color-content-action-primary);
+  font: 700 12px Inter, sans-serif; border-radius: 600rem; padding: 10px 16px; cursor: pointer;
+}
+.tscroll { max-height: 72vh; overflow: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th {
+  position: sticky; top: 0; z-index: 4;
+  background: var(--color-layer-floor-0-grouped);
+  padding: 8px 6px; text-align: left;
+  font-size: 10px; font-weight: 700; color: var(--color-content-secondary);
+  text-transform: uppercase; letter-spacing: .02em; line-height: 1.25;
+  border-bottom: 1px solid var(--color-border-separator);
+}
+th.num, td.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+td { padding: 8px 6px; border-bottom: 1px solid var(--color-layer-floor-0-grouped); vertical-align: middle; }
+td.loc { font-weight: 600; }
+tr.tot td {
+  background: var(--color-bg-action-secondary); font-weight: 700;
+  border-top: 2px solid var(--color-special-brand);
+}
+.pid {
+  display: inline-block; font-size: 10px; font-weight: 700; color: var(--color-content-tertiary);
+  background: var(--color-layer-floor-0-grouped); border-radius: 5px; padding: 1px 6px; margin-right: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.mut { color: var(--color-content-tertiary); }
+ul.quiet { margin: 8px 0 0 18px; font-size: 13px; color: var(--color-content-secondary); }
+ul.quiet li { margin: 4px 0; }
+.footer { text-align: center; font-size: 11px; color: var(--color-content-tertiary); margin-top: 28px; padding: 18px 0; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-top-l">
+      <span class="kicker">Bolt Food Ukraine × Pizza Day</span>
+      <span class="pill">Smart Promo</span>
+    </div>
+    <img class="logo" alt="Bolt Food" src="data:image/png;base64,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">
+  </div>
+  <h1>Витрати Smart Promo по кожній точці</h1>
+  <p class="sub">10–16 листопада 2026 (понеділок–неділя). Сума знижки клієнту = витрата закладу + витрата Bolt. Замовлення пораховані унікально: якщо в чеку були і знижка на меню, і безкоштовна доставка, це одне замовлення, а гроші сумуються.</p>
+  <div class="hero-kpis">
+    <div class="hkpi"><strong>77</strong><span class="lbl">Точок зі Smart Promo</span></div>
+    <div class="hkpi"><strong>994</strong><span class="lbl">Замовлень зі Smart Promo</span></div>
+    <div class="hkpi"><strong>92 551 ₴</strong><span class="lbl">Витрата закладу</span></div>
+    <div class="hkpi"><strong>80 441 ₴</strong><span class="lbl">Витрата Bolt</span></div>
+    <div class="hkpi"><strong>172 990 ₴</strong><span class="lbl">Знижка клієнтам разом</span></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Що варто знати перед таблицею</div>
+  <p class="insight">Smart Promo минулого тижня було не на всю мережу: витрата є по <b>Києву</b> (76 точок, 946 замовлень) і по <b>Дніпру</b> (1 точка, 48 замовлень — Pizza Day To Go 067 Гагаріна). На enrollment цього тижня було 83 точок, з них 6 без жодного Smart Promo замовлення. По інших містах мережі доставлені замовлення були, але без Smart Promo. Майже всі SP-замовлення припали на будні (978); у суботу–неділю лише 16. GMV замовлень зі Smart Promo — 708 338 ₴ (витрата закладу 13% від цього GMV).</p>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Хто платив знижку</div>
+  <p class="sec-s">Заклад 53.5% · Bolt 46.5%. Не рівно 50/50, бо частина оферів була повністю за рахунок закладу (Bolt = 0 ₴).</p>
+  <div class="split"><i class="p" style="width:53.50%"></i><i class="b" style="width:46.50%"></i></div>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--color-special-brand)"></i>Заклад 92 551 ₴</span>
+    <span><i class="dot" style="background:#98CBAC"></i>Bolt 80 441 ₴</span>
+  </div>
+  <div style="margin-top:16px"><div class="cmp-row">
+  <span class="cmp-lbl">Реактивація</span>
+  <span class="cmp-val">338 зам. · 41 080 ₴ / 41 080 ₴</span>
+</div><div class="cmp-row">
+  <span class="cmp-lbl">Залучення</span>
+  <span class="cmp-val">420 зам. · 36 619 ₴ / 36 619 ₴</span>
+</div><div class="cmp-row">
+  <span class="cmp-lbl">Повністю за рахунок закладу</span>
+  <span class="cmp-val">211 зам. · 12 107 ₴ / 0 ₴</span>
+</div><div class="cmp-row">
+  <span class="cmp-lbl">Нові на платформі</span>
+  <span class="cmp-val">25 зам. · 2 740 ₴ / 2 740 ₴</span>
+</div></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Міста і дні</div>
+  <p class="sec-s">Замовлення зі Smart Promo по містах і по днях тижня.</p>
+  <div class="g2" style="margin-bottom:18px"><div class="card">
+  <div class="cl">Київ</div>
+  <div class="cv">946</div>
+  <div class="cd">76 точ. · заклад 87 984 ₴ · Bolt 75 874 ₴</div>
+</div><div class="card">
+  <div class="cl">Дніпро</div>
+  <div class="cv">48</div>
+  <div class="cd">1 точ. · заклад 4 567 ₴ · Bolt 4 567 ₴</div>
+</div></div>
+  <div class="days"><div class="day">
+  <div class="dv">173</div>
+  <div class="bar tgt" style="height:50px"></div>
+  <div class="dn">Пн 10</div>
+</div><div class="day">
+  <div class="dv">151</div>
+  <div class="bar tgt" style="height:43px"></div>
+  <div class="dn">Вт 11</div>
+</div><div class="day">
+  <div class="dv">192</div>
+  <div class="bar tgt" style="height:55px"></div>
+  <div class="dn">Ср 12</div>
+</div><div class="day">
+  <div class="dv">218</div>
+  <div class="bar tgt" style="height:63px"></div>
+  <div class="dn">Чт 13</div>
+</div><div class="day">
+  <div class="dv">244</div>
+  <div class="bar tgt" style="height:70px"></div>
+  <div class="dn">Пт 14</div>
+</div><div class="day">
+  <div class="dv">11</div>
+  <div class="bar tgt" style="height:8px"></div>
+  <div class="dn">Сб 15</div>
+</div><div class="day">
+  <div class="dv">5</div>
+  <div class="bar tgt" style="height:8px"></div>
+  <div class="dn">Нд 16</div>
+</div></div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Кожна точка</div>
+  <p class="sec-s">Сортування за кількістю Smart Promo замовлень. Частка закладу — від суми (заклад + Bolt) на цій точці.</p>
+  <div class="tools">
+    <input type="search" id="q" placeholder="Пошук за назвою або містом" oninput="filterRows()">
+    <button class="linkish" type="button" onclick="downloadCsv()">Завантажити CSV</button>
+  </div>
+  <div class="tscroll">
+    <table id="loc">
+      <thead>
+        <tr>
+          <th class="num">#</th>
+          <th>Точка</th>
+          <th>Місто</th>
+          <th class="num">Замовлення SP</th>
+          <th class="num">Заклад, ₴</th>
+          <th class="num">Bolt, ₴</th>
+          <th class="num">Знижка, ₴</th>
+          <th class="num">Частка закладу</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-q="pizza day to go 067 гагаріна, 99д дніпро"><td class="num mut">1</td><td class="loc"><span class="pid">171832</span>Pizza Day To Go 067 Гагаріна, 99д</td><td>Дніпро</td><td class="num">48</td><td class="num">4 567 ₴</td><td class="num">4 567 ₴</td><td class="num">9 135 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 128 ломоносова, 50/2 київ"><td class="num mut">2</td><td class="loc"><span class="pid">32498</span>Pizza Day 128 Ломоносова, 50/2</td><td>Київ</td><td class="num">42</td><td class="num">3 930 ₴</td><td class="num">3 054 ₴</td><td class="num">6 984 ₴</td><td class="num mut">56%</td></tr><tr data-q="pizza day 098 солом'янська, 24 київ"><td class="num mut">3</td><td class="loc"><span class="pid">32491</span>Pizza Day 098 Солом'янська, 24</td><td>Київ</td><td class="num">36</td><td class="num">3 346 ₴</td><td class="num">2 842 ₴</td><td class="num">6 188 ₴</td><td class="num mut">54%</td></tr><tr data-q="pizza day 330 вул.шалімова київ"><td class="num mut">4</td><td class="loc"><span class="pid">134482</span>Pizza Day 330 вул.Шалімова</td><td>Київ</td><td class="num">36</td><td class="num">2 821 ₴</td><td class="num">1 853 ₴</td><td class="num">4 674 ₴</td><td class="num mut">60%</td></tr><tr data-q="pizza day 322 олександра бринжали київ"><td class="num mut">5</td><td class="loc"><span class="pid">133156</span>Pizza Day 322 Олександра Бринжали</td><td>Київ</td><td class="num">34</td><td class="num">3 051 ₴</td><td class="num">2 587 ₴</td><td class="num">5 637 ₴</td><td class="num mut">54%</td></tr><tr data-q="pizza day 080 просп. науки, 26в київ"><td class="num mut">6</td><td class="loc"><span class="pid">41048</span>Pizza Day 080 просп. Науки, 26В</td><td>Київ</td><td class="num">32</td><td class="num">4 230 ₴</td><td class="num">3 681 ₴</td><td class="num">7 910 ₴</td><td class="num mut">53%</td></tr><tr data-q="pizza day 180 княжий затон, 9 київ"><td class="num mut">7</td><td class="loc"><span class="pid">56815</span>Pizza Day 180 Княжий Затон, 9</td><td>Київ</td><td class="num">32</td><td class="num">3 000 ₴</td><td class="num">2 762 ₴</td><td class="num">5 762 ₴</td><td class="num mut">52%</td></tr><tr data-q="pizza day 096 просп. свободи, 2 київ"><td class="num mut">8</td><td class="loc"><span class="pid">32483</span>Pizza Day 096 просп. Свободи, 2</td><td>Київ</td><td class="num">30</td><td class="num">2 894 ₴</td><td class="num">2 652 ₴</td><td class="num">5 546 ₴</td><td class="num mut">52%</td></tr><tr data-q="pizza day 114 львівська, 8 київ"><td class="num mut">9</td><td class="loc"><span class="pid">32484</span>Pizza Day 114 Львівська, 8</td><td>Київ</td><td class="num">28</td><td class="num">2 746 ₴</td><td class="num">2 393 ₴</td><td class="num">5 138 ₴</td><td class="num mut">53%</td></tr><tr data-q="pizza day 375 бульвар чоколівський 6 київ"><td class="num mut">10</td><td class="loc"><span class="pid">191532</span>Pizza day 375 бульвар Чоколівський 6</td><td>Київ</td><td class="num">28</td><td class="num">2 134 ₴</td><td class="num">1 657 ₴</td><td class="num">3 791 ₴</td><td class="num mut">56%</td></tr><tr data-q="pizza day 292 покровська київ"><td class="num mut">11</td><td class="loc"><span class="pid">141076</span>Pizza Day 292 Покровська</td><td>Київ</td><td class="num">26</td><td class="num">2 780 ₴</td><td class="num">2 356 ₴</td><td class="num">5 136 ₴</td><td class="num mut">54%</td></tr><tr data-q="pizza day 387 вул. героїв дніпра 31-а київ"><td class="num mut">12</td><td class="loc"><span class="pid">191534</span>Pizza day 387 вул. Героїв Дніпра 31-А</td><td>Київ</td><td class="num">26</td><td class="num">2 390 ₴</td><td class="num">2 258 ₴</td><td class="num">4 648 ₴</td><td class="num mut">51%</td></tr><tr data-q="pizza day 119 ірпінська, 76 київ"><td class="num mut">13</td><td class="loc"><span class="pid">32489</span>Pizza Day 119 Ірпінська, 76</td><td>Київ</td><td class="num">24</td><td class="num">2 205 ₴</td><td class="num">1 962 ₴</td><td class="num">4 167 ₴</td><td class="num mut">53%</td></tr><tr data-q="pizza day 132 вул.деревлянська 12/42 київ"><td class="num mut">14</td><td class="loc"><span class="pid">115195</span>Pizza Day 132 вул.Деревлянська 12/42</td><td>Київ</td><td class="num">22</td><td class="num">2 540 ₴</td><td class="num">2 495 ₴</td><td class="num">5 035 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 291 вул.героїв дніпра 34 київ"><td class="num mut">15</td><td class="loc"><span class="pid">115200</span>Pizza Day 291 вул.Героїв Дніпра 34</td><td>Київ</td><td class="num">21</td><td class="num">1 940 ₴</td><td class="num">1 676 ₴</td><td class="num">3 615 ₴</td><td class="num mut">54%</td></tr><tr data-q="pizza day 235 вул. тулузи, 11 київ"><td class="num mut">16</td><td class="loc"><span class="pid">103759</span>Pizza Day 235 вул. Тулузи, 11</td><td>Київ</td><td class="num">21</td><td class="num">1 871 ₴</td><td class="num">1 503 ₴</td><td class="num">3 374 ₴</td><td class="num mut">55%</td></tr><tr data-q="pizza day 185 лятошинського, 14 київ"><td class="num mut">17</td><td class="loc"><span class="pid">56810</span>Pizza Day 185 Лятошинського, 14</td><td>Київ</td><td class="num">20</td><td class="num">1 816 ₴</td><td class="num">1 322 ₴</td><td class="num">3 138 ₴</td><td class="num mut">58%</td></tr><tr data-q="pizza day 366 вул. доківська київ"><td class="num mut">18</td><td class="loc"><span class="pid">198601</span>Pizza day 366 вул. Доківська</td><td>Київ</td><td class="num">19</td><td class="num">1 631 ₴</td><td class="num">1 220 ₴</td><td class="num">2 851 ₴</td><td class="num mut">57%</td></tr><tr data-q="pizza day 205 тараса шевченка, 5 київ"><td class="num mut">19</td><td class="loc"><span class="pid">85091</span>Pizza Day 205 Тараса Шевченка, 5</td><td>Київ</td><td class="num">19</td><td class="num">1 619 ₴</td><td class="num">1 283 ₴</td><td class="num">2 902 ₴</td><td class="num mut">56%</td></tr><tr data-q="pizza day 219 корольова, 4 київ"><td class="num mut">20</td><td class="loc"><span class="pid">85083</span>Pizza Day 219 Корольова, 4</td><td>Київ</td><td class="num">19</td><td class="num">1 424 ₴</td><td class="num">1 086 ₴</td><td class="num">2 511 ₴</td><td class="num mut">57%</td></tr><tr data-q="pizza day 333 воскресенський київ"><td class="num mut">21</td><td class="loc"><span class="pid">140692</span>Pizza Day 333 Воскресенський</td><td>Київ</td><td class="num">18</td><td class="num">1 599 ₴</td><td class="num">1 515 ₴</td><td class="num">3 114 ₴</td><td class="num mut">51%</td></tr><tr data-q="pizza day 177 лаврухіна, 9 київ"><td class="num mut">22</td><td class="loc"><span class="pid">56808</span>Pizza Day 177 Лаврухіна, 9</td><td>Київ</td><td class="num">17</td><td class="num">2 009 ₴</td><td class="num">1 885 ₴</td><td class="num">3 893 ₴</td><td class="num mut">52%</td></tr><tr data-q="pizza day 340 молодіжна київ"><td class="num mut">23</td><td class="loc"><span class="pid">141085</span>Pizza Day 340 Молодіжна</td><td>Київ</td><td class="num">17</td><td class="num">1 681 ₴</td><td class="num">1 595 ₴</td><td class="num">3 276 ₴</td><td class="num mut">51%</td></tr><tr data-q="pizza day 163 святоюріївська, 14 київ"><td class="num mut">24</td><td class="loc"><span class="pid">41051</span>Pizza Day 163 Святоюріївська, 14</td><td>Київ</td><td class="num">17</td><td class="num">1 535 ₴</td><td class="num">1 301 ₴</td><td class="num">2 836 ₴</td><td class="num mut">54%</td></tr><tr data-q="pizza day 236 пр-т правди 41-б київ"><td class="num mut">25</td><td class="loc"><span class="pid">92094</span>Pizza Day 236 пр-т Правди 41-Б</td><td>Київ</td><td class="num">14</td><td class="num">1 547 ₴</td><td class="num">1 265 ₴</td><td class="num">2 812 ₴</td><td class="num mut">55%</td></tr><tr data-q="pizza day 293 вул.олени пчілки, 6а київ"><td class="num mut">26</td><td class="loc"><span class="pid">115211</span>Pizza Day 293 вул.Олени Пчілки, 6а</td><td>Київ</td><td class="num">14</td><td class="num">1 317 ₴</td><td class="num">1 195 ₴</td><td class="num">2 512 ₴</td><td class="num mut">52%</td></tr><tr data-q="pizza day 221 рокосовського, 3/4 київ"><td class="num mut">27</td><td class="loc"><span class="pid">83524</span>Pizza Day 221 Рокосовського, 3/4</td><td>Київ</td><td class="num">14</td><td class="num">1 202 ₴</td><td class="num">1 038 ₴</td><td class="num">2 240 ₴</td><td class="num mut">54%</td></tr><tr data-q="pizza day 239 єреванська, 9 київ"><td class="num mut">28</td><td class="loc"><span class="pid">87007</span>Pizza Day 239 Єреванська, 9</td><td>Київ</td><td class="num">13</td><td class="num">1 314 ₴</td><td class="num">989 ₴</td><td class="num">2 303 ₴</td><td class="num mut">57%</td></tr><tr data-q="pizza day 402 вул. перемишльська київ"><td class="num mut">29</td><td class="loc"><span class="pid">4582614</span>Pizza day 402 вул. Перемишльська</td><td>Київ</td><td class="num">13</td><td class="num">1 228 ₴</td><td class="num">930 ₴</td><td class="num">2 159 ₴</td><td class="num mut">57%</td></tr><tr data-q="pizza day 179 дорогожицька, 13 київ"><td class="num mut">30</td><td class="loc"><span class="pid">55454</span>Pizza Day 179 Дорогожицька, 13</td><td>Київ</td><td class="num">13</td><td class="num">1 142 ₴</td><td class="num">984 ₴</td><td class="num">2 126 ₴</td><td class="num mut">54%</td></tr><tr data-q="pizza day 147 данченка, 14 київ"><td class="num mut">31</td><td class="loc"><span class="pid">85087</span>Pizza Day 147 Данченка, 14</td><td>Київ</td><td class="num">13</td><td class="num">874 ₴</td><td class="num">816 ₴</td><td class="num">1 690 ₴</td><td class="num mut">52%</td></tr><tr data-q="pizza day 078 бориспільська, 9 київ"><td class="num mut">32</td><td class="loc"><span class="pid">56809</span>Pizza Day 078 Бориспільська, 9</td><td>Київ</td><td class="num">12</td><td class="num">1 256 ₴</td><td class="num">1 256 ₴</td><td class="num">2 513 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 237 молодіжна, 32а київ"><td class="num mut">33</td><td class="loc"><span class="pid">85093</span>Pizza Day 237 Молодіжна, 32а</td><td>Київ</td><td class="num">12</td><td class="num">1 200 ₴</td><td class="num">1 170 ₴</td><td class="num">2 370 ₴</td><td class="num mut">51%</td></tr><tr data-q="pizza day 342 архітектора вербицького київ"><td class="num mut">34</td><td class="loc"><span class="pid">140687</span>Pizza Day 342 Архітектора Вербицького</td><td>Київ</td><td class="num">12</td><td class="num">1 168 ₴</td><td class="num">1 126 ₴</td><td class="num">2 294 ₴</td><td class="num mut">51%</td></tr><tr data-q="pizza day 276 вул. шолом алейхема, 17 київ"><td class="num mut">35</td><td class="loc"><span class="pid">103764</span>Pizza Day 276 вул. Шолом Алейхема, 17</td><td>Київ</td><td class="num">12</td><td class="num">1 139 ₴</td><td class="num">1 058 ₴</td><td class="num">2 197 ₴</td><td class="num mut">52%</td></tr><tr data-q="pizza day 122 майдан незалежності, 1 київ"><td class="num mut">36</td><td class="loc"><span class="pid">32490</span>Pizza Day 122 Майдан Незалежності, 1</td><td>Київ</td><td class="num">12</td><td class="num">980 ₴</td><td class="num">787 ₴</td><td class="num">1 767 ₴</td><td class="num mut">55%</td></tr><tr data-q="pizza day 136 кирилівська, 127 київ"><td class="num mut">37</td><td class="loc"><span class="pid">32496</span>Pizza Day 136 Кирилівська, 127</td><td>Київ</td><td class="num">10</td><td class="num">1 067 ₴</td><td class="num">903 ₴</td><td class="num">1 970 ₴</td><td class="num mut">54%</td></tr><tr data-q="pizza day 109 щербаківського, 56/7 київ"><td class="num mut">38</td><td class="loc"><span class="pid">32488</span>Pizza Day 109 Щербаківського, 56/7</td><td>Київ</td><td class="num">9</td><td class="num">750 ₴</td><td class="num">613 ₴</td><td class="num">1 362 ₴</td><td class="num mut">55%</td></tr><tr data-q="pizza day 116 лариси руденко, 11б київ"><td class="num mut">39</td><td class="loc"><span class="pid">32497</span>Pizza Day 116 Лариси Руденко, 11Б</td><td>Київ</td><td class="num">8</td><td class="num">833 ₴</td><td class="num">833 ₴</td><td class="num">1 665 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 257 вул.гарматна 49 київ"><td class="num mut">40</td><td class="loc"><span class="pid">115206</span>Pizza Day 257 вул.Гарматна 49</td><td>Київ</td><td class="num">8</td><td class="num">700 ₴</td><td class="num">700 ₴</td><td class="num">1 401 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 288 площа михайлівська київ"><td class="num mut">41</td><td class="loc"><span class="pid">130827</span>Pizza Day 288 площа Михайлівська</td><td>Київ</td><td class="num">8</td><td class="num">698 ₴</td><td class="num">624 ₴</td><td class="num">1 322 ₴</td><td class="num mut">53%</td></tr><tr data-q="pizza day 082 івана виговського, 22 київ"><td class="num mut">42</td><td class="loc"><span class="pid">32481</span>Pizza Day 082 Івана Виговського, 22</td><td>Київ</td><td class="num">8</td><td class="num">656 ₴</td><td class="num">656 ₴</td><td class="num">1 312 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 195 перемоги, 87 київ"><td class="num mut">43</td><td class="loc"><span class="pid">63285</span>Pizza Day 195 Перемоги, 87</td><td>Київ</td><td class="num">8</td><td class="num">637 ₴</td><td class="num">596 ₴</td><td class="num">1 233 ₴</td><td class="num mut">52%</td></tr><tr data-q="pizza day 306 вул. остафія дашкевича київ"><td class="num mut">44</td><td class="loc"><span class="pid">133153</span>Pizza Day 306 вул. Остафія Дашкевича</td><td>Київ</td><td class="num">8</td><td class="num">479 ₴</td><td class="num">425 ₴</td><td class="num">904 ₴</td><td class="num mut">53%</td></tr><tr data-q="pizza day 281 євгенія харченка київ"><td class="num mut">45</td><td class="loc"><span class="pid">140695</span>Pizza Day 281 Євгенія Харченка</td><td>Київ</td><td class="num">7</td><td class="num">733 ₴</td><td class="num">712 ₴</td><td class="num">1 445 ₴</td><td class="num mut">51%</td></tr><tr data-q="pizza day 383 вул. дніпровська набережна, 33 київ"><td class="num mut">46</td><td class="loc"><span class="pid">198666</span>Pizza day 383 вул. Дніпровська набережна, 33</td><td>Київ</td><td class="num">7</td><td class="num">718 ₴</td><td class="num">718 ₴</td><td class="num">1 437 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 334 вул. щаслива київ"><td class="num mut">47</td><td class="loc"><span class="pid">133291</span>Pizza Day 334 вул. Щаслива</td><td>Київ</td><td class="num">7</td><td class="num">667 ₴</td><td class="num">610 ₴</td><td class="num">1 277 ₴</td><td class="num mut">52%</td></tr><tr data-q="pizza day 318 амвросія бучми київ"><td class="num mut">48</td><td class="loc"><span class="pid">140694</span>Pizza Day 318 Амвросія Бучми</td><td>Київ</td><td class="num">7</td><td class="num">664 ₴</td><td class="num">600 ₴</td><td class="num">1 264 ₴</td><td class="num mut">53%</td></tr><tr data-q="pizza day 188 закревського, 61/2 київ"><td class="num mut">49</td><td class="loc"><span class="pid">63281</span>Pizza Day 188 Закревського, 61/2</td><td>Київ</td><td class="num">7</td><td class="num">561 ₴</td><td class="num">457 ₴</td><td class="num">1 018 ₴</td><td class="num mut">55%</td></tr><tr data-q="pizza day 285 вул. оноре де бальзака, 87/1 київ"><td class="num mut">50</td><td class="loc"><span class="pid">104021</span>Pizza Day 285 вул. Оноре де Бальзака, 87/1</td><td>Київ</td><td class="num">7</td><td class="num">505 ₴</td><td class="num">464 ₴</td><td class="num">969 ₴</td><td class="num mut">52%</td></tr><tr data-q="pizza day 201 шептицького, 22 київ"><td class="num mut">51</td><td class="loc"><span class="pid">83522</span>Pizza Day 201 Шептицького, 22</td><td>Київ</td><td class="num">7</td><td class="num">469 ₴</td><td class="num">274 ₴</td><td class="num">743 ₴</td><td class="num mut">63%</td></tr><tr data-q="pizza day 196 декабристів, 2а київ"><td class="num mut">52</td><td class="loc"><span class="pid">63290</span>Pizza Day 196 Декабристів, 2а</td><td>Київ</td><td class="num">6</td><td class="num">790 ₴</td><td class="num">739 ₴</td><td class="num">1 530 ₴</td><td class="num mut">52%</td></tr><tr data-q="pizza day 278 вул.алматинська 2в київ"><td class="num mut">53</td><td class="loc"><span class="pid">115204</span>Pizza Day 278 вул.Алматинська 2В</td><td>Київ</td><td class="num">6</td><td class="num">593 ₴</td><td class="num">593 ₴</td><td class="num">1 186 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 256 вул. львівська, 1-а київ"><td class="num mut">54</td><td class="loc"><span class="pid">104023</span>Pizza Day 256 вул. Львівська, 1-А</td><td>Київ</td><td class="num">6</td><td class="num">504 ₴</td><td class="num">409 ₴</td><td class="num">914 ₴</td><td class="num mut">55%</td></tr><tr data-q="pizza day 262  вул. дегтярівська, 62 київ"><td class="num mut">55</td><td class="loc"><span class="pid">104352</span>Pizza Day 262  вул. Дегтярівська, 62</td><td>Київ</td><td class="num">5</td><td class="num">432 ₴</td><td class="num">350 ₴</td><td class="num">782 ₴</td><td class="num mut">55%</td></tr><tr data-q="pizza day 232 леся курбаса, 9в київ"><td class="num mut">56</td><td class="loc"><span class="pid">85092</span>Pizza Day 232 Леся Курбаса, 9В</td><td>Київ</td><td class="num">5</td><td class="num">401 ₴</td><td class="num">244 ₴</td><td class="num">645 ₴</td><td class="num mut">62%</td></tr><tr data-q="pizza day 173 солом'янська 39а київ"><td class="num mut">57</td><td class="loc"><span class="pid">38231</span>Pizza Day 173 Солом'янська 39А</td><td>Київ</td><td class="num">5</td><td class="num">401 ₴</td><td class="num">329 ₴</td><td class="num">730 ₴</td><td class="num mut">55%</td></tr><tr data-q="pizza day 117 марини цвєтаєвої, 18-78 київ"><td class="num mut">58</td><td class="loc"><span class="pid">32392</span>Pizza Day 117 Марини Цвєтаєвої, 18-78</td><td>Київ</td><td class="num">5</td><td class="num">374 ₴</td><td class="num">374 ₴</td><td class="num">747 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 227 богданівська, 7 київ"><td class="num mut">59</td><td class="loc"><span class="pid">83565</span>Pizza Day 227 Богданівська, 7</td><td>Київ</td><td class="num">5</td><td class="num">325 ₴</td><td class="num">267 ₴</td><td class="num">592 ₴</td><td class="num mut">55%</td></tr><tr data-q="pizza day 248 вул. краківська, 14/6 київ"><td class="num mut">60</td><td class="loc"><span class="pid">104022</span>Pizza Day 248 вул. Краківська, 14/6</td><td>Київ</td><td class="num">4</td><td class="num">453 ₴</td><td class="num">453 ₴</td><td class="num">906 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 246 вул. аболмасова, 5 київ"><td class="num mut">61</td><td class="loc"><span class="pid">92093</span>Pizza Day 246 вул. Аболмасова, 5</td><td>Київ</td><td class="num">4</td><td class="num">373 ₴</td><td class="num">295 ₴</td><td class="num">669 ₴</td><td class="num mut">56%</td></tr><tr data-q="pizza day 229 вул. червоної калини, 26а київ"><td class="num mut">62</td><td class="loc"><span class="pid">92091</span>Pizza Day 229 вул. Червоної Калини, 26А</td><td>Київ</td><td class="num">4</td><td class="num">371 ₴</td><td class="num">329 ₴</td><td class="num">700 ₴</td><td class="num mut">53%</td></tr><tr data-q="pizza day 362 левицького, 19а київ"><td class="num mut">63</td><td class="loc"><span class="pid">171236</span>Pizza Day 362 Левицького, 19а</td><td>Київ</td><td class="num">4</td><td class="num">320 ₴</td><td class="num">285 ₴</td><td class="num">605 ₴</td><td class="num mut">53%</td></tr><tr data-q="pizza day 280 вул.ентузіастів київ"><td class="num mut">64</td><td class="loc"><span class="pid">115202</span>Pizza Day 280 вул.Ентузіастів</td><td>Київ</td><td class="num">4</td><td class="num">264 ₴</td><td class="num">180 ₴</td><td class="num">444 ₴</td><td class="num mut">59%</td></tr><tr data-q="pizza day 327 вул. симиренко київ"><td class="num mut">65</td><td class="loc"><span class="pid">130308</span>Pizza Day 327 вул. Симиренко</td><td>Київ</td><td class="num">4</td><td class="num">262 ₴</td><td class="num">106 ₴</td><td class="num">367 ₴</td><td class="num mut">71%</td></tr><tr data-q="pizza day 186 вершигори, 1 київ"><td class="num mut">66</td><td class="loc"><span class="pid">63289</span>Pizza Day 186 Вершигори, 1</td><td>Київ</td><td class="num">3</td><td class="num">416 ₴</td><td class="num">416 ₴</td><td class="num">832 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 166 григоровича-барського, 1в київ"><td class="num mut">67</td><td class="loc"><span class="pid">38226</span>Pizza Day 166 Григоровича-Барського, 1В</td><td>Київ</td><td class="num">3</td><td class="num">327 ₴</td><td class="num">224 ₴</td><td class="num">550 ₴</td><td class="num mut">59%</td></tr><tr data-q="pizza day 233 сверстюка, 6д київ"><td class="num mut">68</td><td class="loc"><span class="pid">83531</span>Pizza Day 233 Сверстюка, 6Д</td><td>Київ</td><td class="num">3</td><td class="num">317 ₴</td><td class="num">317 ₴</td><td class="num">634 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 400 вул. миропільська 13-в київ"><td class="num mut">69</td><td class="loc"><span class="pid">982528</span>Pizza day 400 вул. Миропільська 13-В</td><td>Київ</td><td class="num">3</td><td class="num">314 ₴</td><td class="num">314 ₴</td><td class="num">628 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 172 академіка корольова, 3 київ"><td class="num mut">70</td><td class="loc"><span class="pid">38230</span>Pizza Day 172 Академіка Корольова, 3</td><td>Київ</td><td class="num">3</td><td class="num">248 ₴</td><td class="num">248 ₴</td><td class="num">496 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 303 вул.небесної сотні 30 київ"><td class="num mut">71</td><td class="loc"><span class="pid">115212</span>Pizza Day 303 вул.Небесної Сотні 30</td><td>Київ</td><td class="num">3</td><td class="num">182 ₴</td><td class="num">143 ₴</td><td class="num">325 ₴</td><td class="num mut">56%</td></tr><tr data-q="pizza day 355 харківське шосе київ"><td class="num mut">72</td><td class="loc"><span class="pid">164082</span>Pizza Day 355 Харківське шосе</td><td>Київ</td><td class="num">2</td><td class="num">215 ₴</td><td class="num">215 ₴</td><td class="num">430 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 176 харківське шосе, 160 київ"><td class="num mut">73</td><td class="loc"><span class="pid">55456</span>Pizza Day 176 Харківське шосе, 160</td><td>Київ</td><td class="num">1</td><td class="num">136 ₴</td><td class="num">136 ₴</td><td class="num">272 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 298 вул.сосницкая, 19 київ"><td class="num mut">74</td><td class="loc"><span class="pid">115209</span>Pizza Day 298 вул.Сосницкая, 19</td><td>Київ</td><td class="num">1</td><td class="num">113 ₴</td><td class="num">113 ₴</td><td class="num">226 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 228 тираспольська, 58 київ"><td class="num mut">75</td><td class="loc"><span class="pid">85090</span>Pizza Day 228 Тираспольська, 58</td><td>Київ</td><td class="num">1</td><td class="num">58 ₴</td><td class="num">58 ₴</td><td class="num">115 ₴</td><td class="num mut">50%</td></tr><tr data-q="pizza day 101 драгоманова, 2 київ"><td class="num mut">76</td><td class="loc"><span class="pid">32395</span>Pizza Day 101 Драгоманова, 2</td><td>Київ</td><td class="num">1</td><td class="num">54 ₴</td><td class="num">0 ₴</td><td class="num">54 ₴</td><td class="num mut">100%</td></tr><tr data-q="pizza day 103 ревуцького, 15 київ"><td class="num mut">77</td><td class="loc"><span class="pid">32396</span>Pizza Day 103 Ревуцького, 15</td><td>Київ</td><td class="num">1</td><td class="num">45 ₴</td><td class="num">0 ₴</td><td class="num">45 ₴</td><td class="num mut">100%</td></tr>
+        <tr class="tot">
+          <td></td>
+          <td>Усього</td>
+          <td></td>
+          <td class="num">994</td>
+          <td class="num">92 551 ₴</td>
+          <td class="num">80 441 ₴</td>
+          <td class="num">172 990 ₴</td>
+          <td class="num">54%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-t">Точки в enrollment без Smart Promo замовлень</div>
+  <p class="sec-s">Були в Smart Promo на цьому тижні, але витрати й замовлень SP = 0. Три з них приховані в додатку.</p>
+  <ul class="quiet"><li><span class="pid">38229</span>Pizza Day 171 Вишгородська, 33 · Київ · активна</li><li><span class="pid">56814</span>Pizza Day 183 пров. Політехнічний, 1/3 · Київ · активна</li><li><span class="pid">65766</span>Pizza Day 193 Гетьмана, 34 · Київ · активна</li><li><span class="pid">38227</span>Pizza Day Маршала Малиновського, 34 · Київ · прихована</li><li><span class="pid">38223</span>Pizza Day Оноре де Бальзака, 57Г · Київ · прихована</li><li><span class="pid">32495</span>Pizza Day Підлісна, 1 · Київ · прихована</li></ul>
+</div>
+
+<p class="footer">Джерело: campaign order metrics, is_smart_promotion = true · суми в гривнях з ПДВ (provider_spend_local / bolt_spend_local) · конфіденційно для Pizza Day · Bolt Food Ukraine</p>
+
+<script>
+function filterRows() {
+  const q = (document.getElementById('q').value || '').trim().toLowerCase();
+  document.querySelectorAll('#loc tbody tr').forEach(tr => {
+    if (tr.classList.contains('tot')) return;
+    tr.style.display = !q || (tr.getAttribute('data-q') || '').includes(q) ? '' : 'none';
+  });
+}
+function downloadCsv() {
+  const rows = [['provider_id','location','city','sp_orders','partner_uah','bolt_uah','discount_uah']];
+  [["171832", "Pizza Day To Go 067 Гагаріна, 99д", "Дніпро", 48, 4567, 4567, 9135], ["32498", "Pizza Day 128 Ломоносова, 50/2", "Київ", 42, 3930, 3054, 6984], ["32491", "Pizza Day 098 Солом'янська, 24", "Київ", 36, 3346, 2842, 6188], ["134482", "Pizza Day 330 вул.Шалімова", "Київ", 36, 2821, 1853, 4674], ["133156", "Pizza Day 322 Олександра Бринжали", "Київ", 34, 3051, 2587, 5637], ["41048", "Pizza Day 080 просп. Науки, 26В", "Київ", 32, 4230, 3681, 7910], ["56815", "Pizza Day 180 Княжий Затон, 9", "Київ", 32, 3000, 2762, 5762], ["32483", "Pizza Day 096 просп. Свободи, 2", "Київ", 30, 2894, 2652, 5546], ["32484", "Pizza Day 114 Львівська, 8", "Київ", 28, 2746, 2393, 5138], ["191532", "Pizza day 375 бульвар Чоколівський 6", "Київ", 28, 2134, 1657, 3791], ["141076", "Pizza Day 292 Покровська", "Київ", 26, 2780, 2356, 5136], ["191534", "Pizza day 387 вул. Героїв Дніпра 31-А", "Київ", 26, 2390, 2258, 4648], ["32489", "Pizza Day 119 Ірпінська, 76", "Київ", 24, 2205, 1962, 4167], ["115195", "Pizza Day 132 вул.Деревлянська 12/42", "Київ", 22, 2540, 2495, 5035], ["115200", "Pizza Day 291 вул.Героїв Дніпра 34", "Київ", 21, 1940, 1676, 3615], ["103759", "Pizza Day 235 вул. Тулузи, 11", "Київ", 21, 1871, 1503, 3374], ["56810", "Pizza Day 185 Лятошинського, 14", "Київ", 20, 1816, 1322, 3138], ["198601", "Pizza day 366 вул. Доківська", "Київ", 19, 1631, 1220, 2851], ["85091", "Pizza Day 205 Тараса Шевченка, 5", "Київ", 19, 1619, 1283, 2902], ["85083", "Pizza Day 219 Корольова, 4", "Київ", 19, 1424, 1086, 2511], ["140692", "Pizza Day 333 Воскресенський", "Київ", 18, 1599, 1515, 3114], ["56808", "Pizza Day 177 Лаврухіна, 9", "Київ", 17, 2009, 1885, 3893], ["141085", "Pizza Day 340 Молодіжна", "Київ", 17, 1681, 1595, 3276], ["41051", "Pizza Day 163 Святоюріївська, 14", "Київ", 17, 1535, 1301, 2836], ["92094", "Pizza Day 236 пр-т Правди 41-Б", "Київ", 14, 1547, 1265, 2812], ["115211", "Pizza Day 293 вул.Олени Пчілки, 6а", "Київ", 14, 1317, 1195, 2512], ["83524", "Pizza Day 221 Рокосовського, 3/4", "Київ", 14, 1202, 1038, 2240], ["87007", "Pizza Day 239 Єреванська, 9", "Київ", 13, 1314, 989, 2303], ["4582614", "Pizza day 402 вул. Перемишльська", "Київ", 13, 1228, 930, 2159], ["55454", "Pizza Day 179 Дорогожицька, 13", "Київ", 13, 1142, 984, 2126], ["85087", "Pizza Day 147 Данченка, 14", "Київ", 13, 874, 816, 1690], ["56809", "Pizza Day 078 Бориспільська, 9", "Київ", 12, 1256, 1256, 2513], ["85093", "Pizza Day 237 Молодіжна, 32а", "Київ", 12, 1200, 1170, 2370], ["140687", "Pizza Day 342 Архітектора Вербицького", "Київ", 12, 1168, 1126, 2294], ["103764", "Pizza Day 276 вул. Шолом Алейхема, 17", "Київ", 12, 1139, 1058, 2197], ["32490", "Pizza Day 122 Майдан Незалежності, 1", "Київ", 12, 980, 787, 1767], ["32496", "Pizza Day 136 Кирилівська, 127", "Київ", 10, 1067, 903, 1970], ["32488", "Pizza Day 109 Щербаківського, 56/7", "Київ", 9, 750, 613, 1362], ["32497", "Pizza Day 116 Лариси Руденко, 11Б", "Київ", 8, 833, 833, 1665], ["115206", "Pizza Day 257 вул.Гарматна 49", "Київ", 8, 700, 700, 1401], ["130827", "Pizza Day 288 площа Михайлівська", "Київ", 8, 698, 624, 1322], ["32481", "Pizza Day 082 Івана Виговського, 22", "Київ", 8, 656, 656, 1312], ["63285", "Pizza Day 195 Перемоги, 87", "Київ", 8, 637, 596, 1233], ["133153", "Pizza Day 306 вул. Остафія Дашкевича", "Київ", 8, 479, 425, 904], ["140695", "Pizza Day 281 Євгенія Харченка", "Київ", 7, 733, 712, 1445], ["198666", "Pizza day 383 вул. Дніпровська набережна, 33", "Київ", 7, 718, 718, 1437], ["133291", "Pizza Day 334 вул. Щаслива", "Київ", 7, 667, 610, 1277], ["140694", "Pizza Day 318 Амвросія Бучми", "Київ", 7, 664, 600, 1264], ["63281", "Pizza Day 188 Закревського, 61/2", "Київ", 7, 561, 457, 1018], ["104021", "Pizza Day 285 вул. Оноре де Бальзака, 87/1", "Київ", 7, 505, 464, 969], ["83522", "Pizza Day 201 Шептицького, 22", "Київ", 7, 469, 274, 743], ["63290", "Pizza Day 196 Декабристів, 2а", "Київ", 6, 790, 739, 1530], ["115204", "Pizza Day 278 вул.Алматинська 2В", "Київ", 6, 593, 593, 1186], ["104023", "Pizza Day 256 вул. Львівська, 1-А", "Київ", 6, 504, 409, 914], ["104352", "Pizza Day 262  вул. Дегтярівська, 62", "Київ", 5, 432, 350, 782], ["85092", "Pizza Day 232 Леся Курбаса, 9В", "Київ", 5, 401, 244, 645], ["38231", "Pizza Day 173 Солом'янська 39А", "Київ", 5, 401, 329, 730], ["32392", "Pizza Day 117 Марини Цвєтаєвої, 18-78", "Київ", 5, 374, 374, 747], ["83565", "Pizza Day 227 Богданівська, 7", "Київ", 5, 325, 267, 592], ["104022", "Pizza Day 248 вул. Краківська, 14/6", "Київ", 4, 453, 453, 906], ["92093", "Pizza Day 246 вул. Аболмасова, 5", "Київ", 4, 373, 295, 669], ["92091", "Pizza Day 229 вул. Червоної Калини, 26А", "Київ", 4, 371, 329, 700], ["171236", "Pizza Day 362 Левицького, 19а", "Київ", 4, 320, 285, 605], ["115202", "Pizza Day 280 вул.Ентузіастів", "Київ", 4, 264, 180, 444], ["130308", "Pizza Day 327 вул. Симиренко", "Київ", 4, 262, 106, 367], ["63289", "Pizza Day 186 Вершигори, 1", "Київ", 3, 416, 416, 832], ["38226", "Pizza Day 166 Григоровича-Барського, 1В", "Київ", 3, 327, 224, 550], ["83531", "Pizza Day 233 Сверстюка, 6Д", "Київ", 3, 317, 317, 634], ["982528", "Pizza day 400 вул. Миропільська 13-В", "Київ", 3, 314, 314, 628], ["38230", "Pizza Day 172 Академіка Корольова, 3", "Київ", 3, 248, 248, 496], ["115212", "Pizza Day 303 вул.Небесної Сотні 30", "Київ", 3, 182, 143, 325], ["164082", "Pizza Day 355 Харківське шосе", "Київ", 2, 215, 215, 430], ["55456", "Pizza Day 176 Харківське шосе, 160", "Київ", 1, 136, 136, 272], ["115209", "Pizza Day 298 вул.Сосницкая, 19", "Київ", 1, 113, 113, 226], ["85090", "Pizza Day 228 Тираспольська, 58", "Київ", 1, 58, 58, 115], ["32395", "Pizza Day 101 Драгоманова, 2", "Київ", 1, 54, 0, 54], ["32396", "Pizza Day 103 Ревуцького, 15", "Київ", 1, 45, 0, 45]].forEach(r => rows.push(r));
+  const csv = rows.map(r => r.map(x => '"' + String(x).replaceAll('"','""') + '"').join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], {type: 'text/csv;charset=utf-8'}));
+  a.download = 'pizza_day_smart_promo_10_16_nov2026.csv';
+  a.click();
+}
+</script>
+</body>
+</html>
