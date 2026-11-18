@@ -398,28 +398,19 @@ tr:hover td{background:var(--surface);}
     <div class="card"><div class="cl">Час доставки (жов)</div><div class="cv">23.4 хв</div></div>
     <div class="card"><div class="cl">Час доставки (вер)</div><div class="cv">22.8 хв</div><div class="cd"><span style="font-size:12px;color:#DE1929;font-weight:700;">▲2.6%</span></div></div>
   </div>
-  <div class="chart-wrap">
-    <div style="font-size:13px;font-weight:600;color:var(--muted);margin-bottom:10px;">Доступність по локаціях — жовтень vs вересень</div>
-    <canvas id="chartAvail" height="160"></canvas>
-  </div>
+  <div style="overflow-x:auto;"><table><thead><tr>
+    <th>Локація</th>
+    <th>Місто</th>
+    <th class="num">Доступність (жов)</th>
+    <th class="num">Доступність (вер)</th>
+    <th class="num">MoM</th>
+    <th class="num">Час доставки (жов)</th>
+    <th class="num">Час доставки (вер)</th>
+    <th style="min-width:110px;">Прогрес</th>
+  </tr></thead><tbody>
+    <tr><td><strong>Павла Полуботка</strong></td><td><span class="b bb">Kyiv</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">63.4%</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">58.1%</span></td><td class="num"><span style="font-size:12px;color:#2A9C64;font-weight:700;">▲9.2%</span></td><td class="num"><span class="b bg">24.4 хв</span></td><td class="num">23.4&nbsp;хв</td><td><div class="pb"><div class="pf" style="width:63.4%;background:#DE1929;"></div></div></td></tr><tr><td><strong>Здолбунівська</strong></td><td><span class="b bb">Kyiv</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">53.9%</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">57.0%</span></td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼5.5%</span></td><td class="num"><span class="b bg">25.3 хв</span></td><td class="num">25.1&nbsp;хв</td><td><div class="pb"><div class="pf" style="width:53.9%;background:#DE1929;"></div></div></td></tr><tr><td><strong>Вишневе</strong></td><td><span class="b bb">Kyiv</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">40.8%</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">47.1%</span></td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼13.4%</span></td><td class="num"><span class="b bg">22.5 хв</span></td><td class="num">21.9&nbsp;хв</td><td><div class="pb"><div class="pf" style="width:40.8%;background:#DE1929;"></div></div></td></tr><tr><td><strong>Шевченка</strong></td><td><span class="b bo">Irpin</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">38.0%</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">38.2%</span></td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼0.6%</span></td><td class="num"><span class="b bg">21.7 хв</span></td><td class="num">21.3&nbsp;хв</td><td><div class="pb"><div class="pf" style="width:38.0%;background:#DE1929;"></div></div></td></tr><tr><td><strong>Київський Шлях</strong></td><td><span class="b" style="background:rgba(89,102,243,.14);color:var(--promo-tx);">Boryspil</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">32.9%</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">36.2%</span></td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼8.9%</span></td><td class="num"><span class="b bg">17.7 хв</span></td><td class="num">19.5&nbsp;хв</td><td><div class="pb"><div class="pf" style="width:32.9%;background:#DE1929;"></div></div></td></tr><tr><td><strong>Київська</strong></td><td><span class="b bg">Brovary</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">30.2%</span></td><td class="num"><span style="color:#DE1929;font-weight:650;">42.1%</span></td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼28.2%</span></td><td class="num"><span class="b bg">33.3 хв</span></td><td class="num">28.6&nbsp;хв</td><td><div class="pb"><div class="pf" style="width:30.2%;background:#DE1929;"></div></div></td></tr><tr style="background:var(--surface);font-weight:650;"><td colspan="2">Мережа</td><td class="num">44.6%</td><td class="num">47.4%</td><td class="num"><span style="font-size:12px;color:#DE1929;font-weight:700;">▼5.9%</span></td><td class="num">23.4 хв</td><td class="num">22.8 хв</td><td></td></tr>
+  </tbody></table></div>
 </div></div>
-<script>
-(function(){
-  new Chart(document.getElementById('chartAvail'),{
-    type:'bar',
-    data:{labels:["Київська", "Київський Шлях", "Шевченка", "Вишневе", "Здолбунівська", "Павла Полуботка"],datasets:[
-      {label:'Жовтень',data:[30.2, 32.9, 38.0, 40.8, 53.9, 63.4],backgroundColor:'rgba(42,156,100,.75)',borderColor:'#2A9C64',borderWidth:1.5,borderRadius:4},
-      {label:'Вересень',data:[42.1, 36.2, 38.2, 47.1, 57.0, 58.1],backgroundColor:'rgba(143,211,172,.75)',borderColor:'#8FD3AC',borderWidth:1.5,borderRadius:4}
-    ]},
-    options:{indexAxis:'y',responsive:true,interaction:{mode:'index',intersect:false},
-      plugins:{legend:{position:'top',labels:{font:{size:11}}}},
-      scales:{
-        x:{beginAtZero:true,max:100,ticks:{callback:v=>v+'%'},title:{display:true,text:'%',font:{size:11}}},
-        y:{grid:{display:false}}
-      }}
-  });
-})();
-</script>
 <div class="sec" style="background:white;" id="prep"><div class="wrap">
   <div class="sec-t">Час приготування замовлень</div>
   <div class="sec-s">Динаміка мережі за останні 5 місяців · таблиця жовтень vs вересень по локаціях</div><div class="hr"></div>
