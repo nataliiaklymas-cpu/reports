@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Воркшоп з перемовин · Яремче</title>
+<style>
+@font-face{font-family:"InterVariable";src:url("fonts/Inter-VariableFont.ttf") format("truetype-variations");
+  font-weight:100 900;font-style:normal;font-display:swap;}
+:root {
+  --color-special-brand: #2A9C64;
+  --color-special-brand-alt: #0C2C1C;
+  --color-content-primary: #191F1C;
+  --color-content-secondary: #5F6563;
+  --color-content-tertiary: #868E8B;
+  --color-content-primary-inverted: #FDFFFE;
+  --color-content-positive-primary: #147B51;
+  --color-layer-floor-0: #ffffff;
+  --color-layer-floor-0-grouped: #EEF1F0;
+  --color-border-separator: #DEE2E1;
+  --color-bg-action-secondary: rgba(0, 160, 64, 0.09);
+  --color-layer-sage: #C4D0CB;
+  --corner-radius-l: 16px;
+  --corner-radius-full: 600rem;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"InterVariable",Inter,system-ui,sans-serif;
+  font-feature-settings:"cv03","cv04","tnum";-webkit-font-smoothing:antialiased;
+  background:var(--color-layer-floor-0-grouped);color:var(--color-content-primary);line-height:1.45;}
+.page{max-width:1120px;margin:0 auto;padding-bottom:72px;}
+.hero{background:var(--color-special-brand-alt);color:var(--color-content-primary-inverted);padding:40px 48px 36px;}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:20px;}
+.kicker{font-size:12px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:rgba(253,255,254,.55);}
+.logo{height:48px;width:auto;}
+.hero h1{font-size:40px;font-weight:650;letter-spacing:-.03em;line-height:1.15;margin-bottom:12px;max-width:16ch;}
+.hero p{font-size:18px;color:rgba(253,255,254,.78);max-width:42ch;}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px;}
+.steps div{background:rgba(253,255,254,.06);border-radius:var(--corner-radius-l);padding:16px 18px;}
+.steps b{display:block;font-size:22px;font-weight:650;letter-spacing:-.02em;margin-bottom:4px;}
+.steps span{font-size:13px;color:rgba(253,255,254,.6);}
+.nav{position:sticky;top:0;z-index:5;background:var(--color-layer-floor-0-grouped);
+  padding:14px 48px;display:flex;flex-wrap:wrap;gap:8px;}
+.nav a{text-decoration:none;font-size:14px;font-weight:650;padding:9px 16px;
+  border-radius:var(--corner-radius-full);background:var(--color-layer-floor-0);color:var(--color-content-primary);}
+.nav a:hover{background:var(--color-special-brand);color:var(--color-content-primary-inverted);}
+.body{padding:8px 48px 0;}
+section{margin-bottom:40px;}
+h2{font-size:28px;font-weight:650;letter-spacing:-.025em;margin-bottom:10px;}
+h3{font-size:16px;font-weight:650;letter-spacing:-.012em;margin:0 0 8px;}
+.lead{font-size:17px;color:var(--color-content-secondary);max-width:52ch;margin-bottom:20px;}
+.card{background:var(--color-layer-floor-0);border-radius:var(--corner-radius-l);padding:24px 26px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.who{font-size:13px;color:var(--color-content-tertiary);margin-bottom:4px;}
+.name{font-size:20px;font-weight:650;letter-spacing:-.02em;}
+.role{font-size:15px;color:var(--color-content-secondary);margin-top:4px;}
+.tag{display:inline-block;margin-top:12px;font-size:12px;font-weight:650;letter-spacing:.04em;
+  text-transform:uppercase;padding:5px 12px;border-radius:var(--corner-radius-full);
+  background:var(--color-bg-action-secondary);color:var(--color-content-positive-primary);}
+.task{background:var(--color-special-brand-alt);color:var(--color-content-primary-inverted);
+  border-radius:var(--corner-radius-l);padding:28px 30px;margin-bottom:16px;}
+.task p{font-size:20px;font-weight:650;letter-spacing:-.02em;line-height:1.35;max-width:48ch;}
+.task .kicker{margin-bottom:10px;display:block;}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0;}
+.kpis .card{padding:18px 20px;}
+.kpis b{display:block;font-size:26px;font-weight:650;letter-spacing:-.03em;}
+.kpis span{font-size:13px;color:var(--color-content-secondary);}
+table{width:100%;border-collapse:collapse;font-size:15px;}
+th{text-align:left;font-size:11px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--color-content-tertiary);padding:0 8px 10px;border-bottom:1px solid var(--color-border-separator);}
+td{padding:12px 8px;border-bottom:1px solid var(--color-layer-floor-0-grouped);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+.num{text-align:right;font-feature-settings:"tnum","cv03","cv04";white-space:nowrap;font-weight:650;}
+.hint{font-size:13px;color:var(--color-content-tertiary);margin-top:10px;}
+.share{margin-top:8px;}
+.share-lbl{display:flex;justify-content:space-between;font-size:13px;color:var(--color-content-secondary);margin-bottom:6px;}
+.bar{display:flex;height:14px;border-radius:var(--corner-radius-full);overflow:hidden;background:var(--color-layer-floor-0);}
+.bar i{display:block;height:100%;}
+.help{margin-top:16px;}
+.blank td{height:44px;}
+footer{padding:8px 48px 0;font-size:13px;color:var(--color-content-tertiary);}
+@media (max-width:900px){
+  .hero,.body,footer,.nav{padding-left:20px;padding-right:20px;}
+  .steps,.kpis,.grid2{grid-template-columns:1fr 1fr;}
+  .hero h1{font-size:32px;}
+}
+@media (max-width:560px){
+  .steps,.kpis,.grid2{grid-template-columns:1fr;}
+}
+.steps{grid-template-columns:repeat(5,minmax(0,1fr));}@media(max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr));}}@media(max-width:560px){.steps{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-top">
+      <div class="kicker">Командна гра · Яремче</div>
+      <img class="logo" alt="Bolt Food" src="data:image/png;base64,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">
+    </div>
+    <h1>Перемовини з партнером</h1>
+    <p>Дві команди, два кейси, зміна сторін. Тренуємося домовлятися про пакет умов, а не торгуватися за один відсоток.</p>
+    <div class="steps">
+      <div><b>20 хв</b><span>розібрати кейс</span></div>
+      <div><b>30 хв</b><span>стіл</span></div>
+      <div><b>10 хв</b><span>перерва</span></div>
+      <div><b>20 + 30 хв</b><span>другий раунд</span></div>
+      <div><b>20 хв</b><span>спільний розбір</span></div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <a href="#teams">Команди</a>
+    <a href="#r1">Раунд 1</a>
+    <a href="#r2">Раунд 2</a>
+    <a href="#help">Шпаргалка</a>
+    <a href="#deal">Результат</a>
+  </nav>
+
+  <div class="body">
+
+  <section id="teams">
+    <h2>Команди</h2>
+    <p class="lead">Склад не міняємо. Міняємо лише сторону: Bolt Food або партнер. Кожна сторона отримує окремий бриф: не показуйте його іншій команді.</p>
+    <div class="grid2">
+      <div class="card">
+        <div class="who">Команда Явір</div>
+        <p class="name">Ярослав Бокій</p>
+        <p class="role">Тімлід · директор, huddle</p>
+        <p class="name" style="margin-top:14px">Ганна Руда</p>
+        <p class="role">KAM · складні мережі</p>
+        <p class="name" style="margin-top:14px">Марта Васькіна</p>
+        <p class="role">AM · Київ MM · голос Bolt у раунді 1</p>
+        <p class="name" style="margin-top:14px">Маргарита Житник</p>
+        <p class="role">AM · регіони · голос партнера в раунді 2</p>
+        <span class="tag">Раунд 1 — Bolt Food</span>
+      </div>
+      <div class="card">
+        <div class="who">Команда Смерека</div>
+        <p class="name">Анатолій Федоренко</p>
+        <p class="role">Регіональний менеджер · директор, huddle</p>
+        <p class="name" style="margin-top:14px">Христина Бухній</p>
+        <p class="role">KAM · голос Bolt у раунді 2</p>
+        <p class="name" style="margin-top:14px">Наталія Климась</p>
+        <p class="role">Senior AM · цифри, таймер</p>
+        <p class="name" style="margin-top:14px">Вадім Бардиш</p>
+        <p class="role">Account specialist · голос партнера в раунді 1</p>
+        <span class="tag">Раунд 1 — партнер</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="r1">
+    <h2>Раунд 1 · Grill &amp; Co</h2>
+    <p class="lead">Велика міжнародна мережа фастфуду. 42 локації, 8 міст. Бренд вигаданий.</p>
+    <div class="task">
+      <span class="kicker">Задача Bolt Food</span>
+      <p>Покращити економіку з чинних 20%: домовитися про вищу сумарну ставку та перший внесок партнера в промо.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Bolt Food хоче</h3>
+        <p class="lead" style="margin:0">Вийти на 22% сумарно: через 20% бази + 2 п.п. Bolt+ або через перегляд базової ставки. Додати внесок партнера в промо.</p>
+      </div>
+      <div class="card">
+        <h3>Партнер хоче</h3>
+        <p class="lead" style="margin:0">Дешевшу комісію або легший service fee. Не платити за промо. Ставку 20% не піднімати.</p>
+      </div>
+    </div>
+    <h3 style="margin-top:24px">Цифри в поміч — спільні</h3>
+    <div class="kpis">
+      <div class="card"><b>32 000</b><span>замовлень / міс</span></div>
+      <div class="card"><b>390 ₴</b><span>чек до знижки</span></div>
+      <div class="card"><b>20%</b><span>комісія зараз</span></div>
+      <div class="card"><b>96 ₴</b><span>CPO кур’єра</span></div>
+    </div>
+    <div class="card help">
+      <table>
+        <thead><tr><th>Що</th><th class="num">Цифра</th></tr></thead>
+        <tbody>
+          <tr><td>Комісія з одного замовлення</td><td class="num">78 ₴</td></tr>
+          <tr><td>CPO кур’єра</td><td class="num">96 ₴</td></tr>
+          <tr><td>Service fee з клієнта</td><td class="num">19 ₴</td></tr>
+          <tr><td>Усі eater fees</td><td class="num">52 ₴</td></tr>
+          <tr><td>Поточний бюджет промо (за умовами гри)</td><td class="num">720 000 ₴: зараз 100% платить Bolt</td></tr>
+          <tr><td>Замовлення від підписників Plus</td><td class="num">22%, не в програмі</td></tr>
+        </tbody>
+      </table>
+      <div class="share">
+        <div class="share-lbl"><span>Канали · для гри</span><span>Glovo 61 · Bolt 29 · своє 10</span></div>
+        <div class="bar">
+          <i style="width:61%;background:var(--color-content-tertiary)"></i>
+          <i style="width:29%;background:var(--color-special-brand)"></i>
+          <i style="width:10%;background:var(--color-layer-sage)"></i>
+        </div>
+      </div>
+      <p class="hint">Сітка MM 27% на цей бренд не наїжджає. Це великий international QSR.</p>
+    </div>
+  </section>
+
+  <section id="r2">
+    <h2>Раунд 2 · Сім Каструль</h2>
+    <p class="lead">Регіональна MM-мережа. 9 локацій: Львів, Івано-Франківськ, Тернопіль, Чернівці. Бренд вигаданий.</p>
+    <div class="task">
+      <span class="kicker">Задача Bolt Food</span>
+      <p>Партнер просить нижчу ставку. Не знижувати 24% на чинних точках. Запропонувати крок до 27% через ставку або Bolt+; промо й умови нових точок використати в обміні.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Партнер</h3>
+        <p class="lead" style="margin:0">Знизити комісію з 24% до 22% або отримати маркетингову підтримку натомість. Каже, що конкурент дав краще. Хоче легший service fee.</p>
+      </div>
+      <div class="card">
+        <h3>Bolt Food</h3>
+        <p class="lead" style="margin:0">Втримати ставку. Ціль MM — 27%. Партнер досі не інвестує в промо. Є точка зі слабким рейтингом і дві нові в ІФ.</p>
+      </div>
+    </div>
+    <h3 style="margin-top:24px">Цифри в поміч — спільні</h3>
+    <div class="kpis">
+      <div class="card"><b>7 200</b><span>замовлень / міс</span></div>
+      <div class="card"><b>640 ₴</b><span>чек до знижки</span></div>
+      <div class="card"><b>24%</b><span>комісія · сітка 27%</span></div>
+      <div class="card"><b>80 ₴</b><span>CPO кур’єра</span></div>
+    </div>
+    <div class="card help">
+      <table>
+        <thead><tr><th>Що</th><th class="num">Цифра</th></tr></thead>
+        <tbody>
+          <tr><td>Комісія з одного замовлення</td><td class="num">153,6 ₴</td></tr>
+          <tr><td>CPO кур’єра</td><td class="num">80 ₴</td></tr>
+          <tr><td>Service fee з клієнта</td><td class="num">22 ₴</td></tr>
+          <tr><td>Промо Bolt / партнер</td><td class="num">95 000 ₴ / 0</td></tr>
+          <tr><td>Bolt+</td><td class="num">не підключені · 18% замовлень уже Plus</td></tr>
+          <tr><td>Нові 2 точки ІФ</td><td class="num">~400 замовлень / міс разом, понад поточні 7 200</td></tr>
+          <tr><td>Слабка точка</td><td class="num">рейтинг 3,7 · BOR 19%</td></tr>
+        </tbody>
+      </table>
+      <div class="share">
+        <div class="share-lbl"><span>Канали · для гри</span><span>Glovo 48 · Bolt 44 · своє 8</span></div>
+        <div class="bar">
+          <i style="width:48%;background:var(--color-content-tertiary)"></i>
+          <i style="width:44%;background:var(--color-special-brand)"></i>
+          <i style="width:8%;background:var(--color-layer-sage)"></i>
+        </div>
+      </div>
+      <p class="hint">Це MM, не ENT. Сітка — 27%. SMB 33% тут не застосовуємо.</p>
+    </div>
+  </section>
+
+  <section id="help">
+    <h2>Шпаргалка</h2>
+    <div class="card">
+      <table>
+        <thead><tr><th>Рахуємо так</th><th>Не плутати</th></tr></thead>
+        <tbody>
+          <tr><td>Комісія ₴/зам = чек × ставка</td><td>% і CPO не порівнювати. Лише гривні з гривнями.</td></tr>
+          <tr><td>CPO = витрати на кур’єра / замовлення</td><td>Це не CPO промо.</td></tr>
+          <tr><td>Service fee платить клієнт, не ресторан</td><td>Зрізати SF ≠ знижка комісії партнеру.</td></tr>
+          <tr><td>У цій грі: Bolt+ = +2 п.п. на весь оборот закладу</td><td>Не лише на замовлення підписників.</td></tr>
+          <tr><td>Cost-share = що платить партнер / усе промо</td><td>Домовтеся про суму, частки і період.</td></tr>
+        </tbody>
+      </table>
+      <p class="hint">Перед столом: визначте першу пропозицію, свою межу і дві поступки, які готові обміняти. На столі: «Ми можемо X, якщо ви готові на Y».</p>
+    </div>
+  </section>
+
+  <section id="deal">
+    <h2>На чому зійшлись</h2>
+    <p class="lead">В останні 3 хвилини раунду один учасник записує умови у спільну нотатку або на папір. Якщо угоди немає, зафіксуйте, на чому розійшлися і що перевірите далі.</p>
+    <div class="card">
+      <table>
+        <thead><tr><th>Поле</th><th>Раунд 1</th><th>Раунд 2</th></tr></thead>
+        <tbody>
+          <tr class="blank"><td>Базова комісія / сумарна ставка, %</td><td></td><td></td></tr>
+          <tr class="blank"><td>З них Bolt+, п.п.</td><td></td><td></td></tr>
+          <tr class="blank"><td>Промо і хто платить</td><td></td><td></td></tr>
+          <tr class="blank"><td>Service fee</td><td></td><td></td></tr>
+          <tr class="blank"><td>Інші фішки</td><td></td><td></td></tr>
+          <tr class="blank"><td>Хто що робить і коли переглянемо</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  </div>
+  <footer>Bolt Food · командна гра · бренди вигадані</footer>
+</div>
+</body>
+</html>
