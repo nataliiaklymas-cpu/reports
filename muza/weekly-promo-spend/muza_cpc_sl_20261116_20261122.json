@@ -1,0 +1,141 @@
+{
+  "week": "2026-11-16_22",
+  "week_start": "2026-11-16",
+  "week_end": "2026-11-22",
+  "source": "main.mart_models.mart_ads_sponsored_listing_performance",
+  "timeframe": "calendar_date_local",
+  "pricing_model": "cpc",
+  "currency": "UAH",
+  "note": "17 листопада кліки вже були, білінг 0 ₴ (перший день після переходу на CPC). Витрати в звіті — округлення по локації; exact_uah — сума днів без округлення.",
+  "locations": [
+    {
+      "provider_id": 129340,
+      "name": "вул. Саксаганського",
+      "city": "Kyiv",
+      "listing": 2003371,
+      "spend": 410,
+      "clicks": 70,
+      "impr": 1510,
+      "orders": 15,
+      "exact": 409.53,
+      "days": [
+        {
+          "date": "2026-11-17",
+          "clicks": 12,
+          "cpc_uah": 0.0,
+          "spend_uah": 0.0,
+          "impressions": 180,
+          "attributed_orders": 3
+        },
+        {
+          "date": "2026-11-18",
+          "clicks": 8,
+          "cpc_uah": 11.7913,
+          "spend_uah": 94.33,
+          "impressions": 376,
+          "attributed_orders": 1
+        },
+        {
+          "date": "2026-11-19",
+          "clicks": 2,
+          "cpc_uah": 25.505,
+          "spend_uah": 51.01,
+          "impressions": 50,
+          "attributed_orders": 0
+        },
+        {
+          "date": "2026-11-20",
+          "clicks": 16,
+          "cpc_uah": 5.8438,
+          "spend_uah": 93.5,
+          "impressions": 337,
+          "attributed_orders": 3
+        },
+        {
+          "date": "2026-11-21",
+          "clicks": 16,
+          "cpc_uah": 5.2113,
+          "spend_uah": 83.38,
+          "impressions": 228,
+          "attributed_orders": 4
+        },
+        {
+          "date": "2026-11-22",
+          "clicks": 16,
+          "cpc_uah": 5.4569,
+          "spend_uah": 87.31,
+          "impressions": 339,
+          "attributed_orders": 4
+        }
+      ]
+    },
+    {
+      "provider_id": 156163,
+      "name": "вул. Гарматна",
+      "city": "Kyiv",
+      "listing": 2033260,
+      "spend": 439,
+      "clicks": 40,
+      "impr": 916,
+      "orders": 10,
+      "exact": 438.87,
+      "days": [
+        {
+          "date": "2026-11-17",
+          "clicks": 10,
+          "cpc_uah": 0.0,
+          "spend_uah": 0.0,
+          "impressions": 138,
+          "attributed_orders": 2
+        },
+        {
+          "date": "2026-11-18",
+          "clicks": 6,
+          "cpc_uah": 20.0783,
+          "spend_uah": 120.47,
+          "impressions": 255,
+          "attributed_orders": 3
+        },
+        {
+          "date": "2026-11-19",
+          "clicks": 2,
+          "cpc_uah": 17.705,
+          "spend_uah": 35.41,
+          "impressions": 47,
+          "attributed_orders": 1
+        },
+        {
+          "date": "2026-11-20",
+          "clicks": 11,
+          "cpc_uah": 8.5755,
+          "spend_uah": 94.33,
+          "impressions": 168,
+          "attributed_orders": 1
+        },
+        {
+          "date": "2026-11-21",
+          "clicks": 8,
+          "cpc_uah": 10.9763,
+          "spend_uah": 87.81,
+          "impressions": 152,
+          "attributed_orders": 2
+        },
+        {
+          "date": "2026-11-22",
+          "clicks": 3,
+          "cpc_uah": 33.6167,
+          "spend_uah": 100.85,
+          "impressions": 156,
+          "attributed_orders": 1
+        }
+      ]
+    }
+  ],
+  "network": {
+    "spend_uah_rounded_sum": 849,
+    "spend_uah_exact": 848.4,
+    "clicks": 110,
+    "impressions": 2426,
+    "attributed_orders": 25
+  }
+}
